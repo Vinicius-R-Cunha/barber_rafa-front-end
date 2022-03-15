@@ -21,7 +21,7 @@ const HeaderDiv = styled.div`
     align-items: center;
 
     .nav-button {
-        font-size: 18px;
+        font-size: 23px;
         letter-spacing: 2px;
         font-weight: 700;
 
@@ -67,21 +67,79 @@ const HeaderDiv = styled.div`
 const BookButton = styled.button`
     all: unset;
 
-    width: 270px;
-    height: 65px;
+    width: 370px;
+    height: 90px;
     
     font-weight: 700;
-    font-size: 20px;
+    font-size: 30px;
     letter-spacing: 2px;
     
     display: flex;
     justify-content: center;
     align-items: center;
+
+    margin: 20px 0;
     
     border-radius: 300px;
-    border: 2px solid #FFFFFF;
+    border: 3px solid #FFFFFF;
 
     cursor: pointer;
+
+    :hover {
+        transition: .1s linear;
+        color: #A73238;
+        background-color: #FFFFFF;
+    }
 `
 
-export { Container, HeaderDiv, BookButton }
+const ScheduleDiv = styled.div`
+
+    background-color: green;
+
+    .schedule-title {
+        font-size: 40px;
+        font-weight: 700;
+
+        margin-bottom: 40px;
+    }
+
+    .weekday {
+        font-size: 25px;
+        
+        display: flex;
+        justify-content: space-between;
+
+        margin-bottom: 35px;
+    }
+`
+
+const AboutDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 40px;
+
+    .about {
+        font-size: 76px;
+        font-weight: 700;
+        line-height: 100px;
+
+        text-align: center;
+    }
+
+    .adress {
+        font-size: 26px;
+
+        margin-top: 40px;
+    }
+
+    .phone-number {
+        font-size: 60px;
+        font-weight: 700;
+
+        margin-top: 40px;
+    }
+`
+
+export { Container, HeaderDiv, BookButton, ScheduleDiv, AboutDiv }
