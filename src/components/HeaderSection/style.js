@@ -21,7 +21,9 @@ const HeaderDiv = styled.div`
     align-items: center;
 
     .nav-button {
-        font-size: 24px;
+        font-size: 18px;
+        letter-spacing: 2px;
+        font-weight: 700;
 
         margin: 0 30px;
 
