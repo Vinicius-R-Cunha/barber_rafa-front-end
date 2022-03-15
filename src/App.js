@@ -1,10 +1,11 @@
-import Header from "./components/Header"
+import MainPage from "./components/MainPage"
+import './styles/reset.css'
+import './styles/style.css'
 
 export default function App() {
     return (
         <>
-            <Header />
-            <h1>Hello World</h1>
+            <MainPage />
         </>
     );
 }
