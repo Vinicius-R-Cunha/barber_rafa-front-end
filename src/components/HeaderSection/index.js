@@ -5,11 +5,13 @@ export default function HeaderSection() {
     return (
         <Container>
             <HeaderDiv>
-                <p className="nav-button">Serviços</p>
+                <p className="nav-button">Segurança</p>
+                <p className="nav-button">Horários</p>
                 <div className="logo" onClick={() => window.location.reload()}>
                     <img src={logo} alt="" />
                     <h1>Barber Rafa Macedo</h1>
                 </div>
+                <p className="nav-button">Serviços</p>
                 <p className="nav-button">Contato</p>
             </HeaderDiv>
             <BookButton>Agendar</BookButton>
