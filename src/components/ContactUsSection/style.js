@@ -23,6 +23,8 @@ const ContactUsDiv = styled.div`
             font-size: 40px;
             font-weight: 700;
             text-transform: uppercase;
+
+            margin-bottom: 42px;
         }
         
         .button-phone-div {
@@ -30,7 +32,7 @@ const ContactUsDiv = styled.div`
             justify-content: space-around;
             align-items: center;
 
-            margin-top: 40px;
+            margin-top: 20px;
 
             .phone {
                 font-size: 30px;
@@ -44,7 +46,6 @@ const ContactUsDiv = styled.div`
             line-height: 23px;
             color: rgba(0,0,0,.59);
 
-            margin-top: 25px;
             margin-bottom: 15px;
         }
 
