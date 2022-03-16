@@ -19,11 +19,11 @@ export default function ServicesSection() {
                     weekday.open ?
                         <div className="weekday">
                             <p>{weekday.day}</p>
-                            <p>{`${weekday.open} - ${weekday.close}`}</p>
+                            <p className="time">{`${weekday.open} - ${weekday.close}`}</p>
                         </div> :
                         <div className="weekday">
                             <p>{weekday.day}</p>
-                            <p>Fechado</p>
+                            <p className="time">Fechado</p>
                         </div>
                 )
             })}

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import background from '../../assets/background.jpeg'
 
-const Container = styled.main`
+const Container = styled.div`
     width: 100%;
     height: 800px;
 
@@ -14,8 +14,6 @@ const Container = styled.main`
     background: #A73238;
     background-image: url(${background});
     background-size: 100% 800px;
-
-    margin-bottom: 130px;
 `
 
 const HeaderDiv = styled.div`
