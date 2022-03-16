@@ -94,7 +94,11 @@ const MapDiv = styled.div`
 
     padding: 80px;
 
-    background-color: green;
+    .temp-map {
+        width: 450px;
+
+        object-fit: cover;
+    }
 `
 
 export { ContactUsDiv, MapDiv, ContactContainer }

@@ -1,6 +1,6 @@
 import { ScheduleDiv } from "./style"
 
-export default function ServicesSection() {
+export default function ScheduleSection() {
     const scheduleArray = [
         { id: 1, day: "Segunda-Feira", open: null, close: null },
         { id: 2, day: "Terça-Feira", open: "09:00", close: "20:00" },
@@ -17,11 +17,11 @@ export default function ServicesSection() {
             {scheduleArray.map(weekday => {
                 return (
                     weekday.open ?
-                        <div className="weekday">
+                        <div className="weekday" key={weekday.id}>
                             <p>{weekday.day}</p>
                             <p className="time">{`${weekday.open} - ${weekday.close}`}</p>
                         </div> :
-                        <div className="weekday">
+                        <div className="weekday" key={weekday.id} >
                             <p>{weekday.day}</p>
                             <p className="time">Fechado</p>
                         </div>

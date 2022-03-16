@@ -1,7 +1,11 @@
 import { ContactUsDiv, MapDiv, ContactContainer } from "./style"
 import whats from "../../assets/whats.png"
+import maps from "../../assets/maps.jpg"
 
 export default function ContactUsSection() {
+
+    // lat: -23.525438021785874, lng: -46.50453847304112
+
     return (
         <ContactContainer>
             <ContactUsDiv>
@@ -19,7 +23,7 @@ export default function ContactUsSection() {
                 </div>
             </ContactUsDiv>
             <MapDiv>
-                <p>alo</p>
+                <img className="temp-map" src={maps} alt="" />
             </MapDiv>
         </ContactContainer>
     );
