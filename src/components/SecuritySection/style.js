@@ -7,21 +7,31 @@ const SecurityDiv = styled.div`
     flex-direction: column;
     align-items: center;
 
-    padding: 90px 0;
+    padding: 90px 0 70px 0;
 
     background-color: #F7F7F7;
 
     .security-title {
-        font-size: 40px;
+        font-size: 35px;
         color: rgba(0,0,0,.79);
 
+        margin-bottom: 45px;
     }
     
     ul {
+        width: 850px;
+
         list-style-type: square;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
 
         li {
             font-size: 18px;
+            line-height: 22px;
+            color: rgba(0,0,0,.79);
+
+            margin-left: 50px;
+            margin-bottom: 30px;
         }
     }
 `
