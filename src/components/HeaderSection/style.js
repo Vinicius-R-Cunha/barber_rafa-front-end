@@ -24,12 +24,12 @@ const HeaderDiv = styled.div`
     align-items: center;
 
     .nav-button {
-        font-size: 19px;
+        font-size: 17.5px;
         letter-spacing: 2px;
         font-weight: 700;
         text-transform: uppercase;
 
-        margin: 0 30px;
+        margin: 0 20px;
 
         cursor: pointer;
 
@@ -52,8 +52,8 @@ const HeaderDiv = styled.div`
         cursor: pointer;
 
         img {
-            width: 130px;
-            height: 130px;
+            width: 120px;
+            height: 120px;
     
             margin-right: 35px;
     
@@ -65,7 +65,7 @@ const HeaderDiv = styled.div`
         }
     
         h1 {
-            font-size: 80px;
+            font-size: 70px;
             color: #FFFFFF;
     
             text-shadow: 0 8px 4px black;
@@ -76,8 +76,8 @@ const HeaderDiv = styled.div`
 const BookButton = styled.button`
     all: unset;
 
-    width: 370px;
-    height: 90px;
+    width: 300px;
+    height: 78px;
     
     font-weight: 700;
     font-size: 30px;
@@ -109,7 +109,7 @@ const AboutDiv = styled.div`
     margin-top: 40px;
 
     .about {
-        font-size: 76px;
+        font-size: 72px;
         font-weight: 700;
         line-height: 100px;
         color: rgba(360,0,0,.85);
@@ -120,16 +120,16 @@ const AboutDiv = styled.div`
     }
 
     .adress {
-        font-size: 26px;
+        font-size: 24px;
         color: #000000;
 
-        margin-top: 40px;
+        margin-top: 55px;
 
         text-shadow: -2px 5px 25px black;
     }
 
     .phone-number {
-        font-size: 60px;
+        font-size: 55px;
         font-weight: 700;
 
         margin-top: 40px;
