@@ -2,7 +2,7 @@ import { SecurityDiv } from "./style";
 
 export default function SecuritySection() {
     return (
-        <SecurityDiv>
+        <SecurityDiv name='security'>
             <p className="security-title">Regras de Saúde e Segurança</p>
             <ul>
                 <li>Espaço de tempo estendido entre os agendamentos</li>

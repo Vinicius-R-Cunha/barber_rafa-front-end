@@ -7,7 +7,7 @@ export default function ContactUsSection() {
     // lat: -23.525438021785874, lng: -46.50453847304112
 
     return (
-        <ContactContainer>
+        <ContactContainer name='contact-us'>
             <ContactUsDiv>
                 <div className="contact-container">
                     <p className="contact-title">Contato:</p>

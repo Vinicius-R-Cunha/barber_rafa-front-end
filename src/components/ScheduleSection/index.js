@@ -12,7 +12,7 @@ export default function ScheduleSection() {
     ];
 
     return (
-        <ScheduleDiv>
+        <ScheduleDiv name="schedule">
             <p className="schedule-title">Horário de funcionamento:</p>
             {scheduleArray.map(weekday => {
                 return (

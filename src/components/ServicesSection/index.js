@@ -1,4 +1,5 @@
 import { ServicesDiv, Services, Service } from "./style";
+import React from "react";
 
 export default function ServicesSection() {
 
@@ -25,15 +26,15 @@ export default function ServicesSection() {
     ];
 
     return (
-        <ServicesDiv>
+        <ServicesDiv name='services'>
             {servicesArray.map(service => {
                 return (
-                    <>
+                    <React.Fragment key={service.title}>
                         <p className="services-title">{service.title}</p>
                         <Services>
                             {service.data.map(obj => {
                                 return (
-                                    <Service>
+                                    <Service key={obj.id}>
                                         <div className="name-price-div">
                                             <p className="service-name">{obj.name}</p>
                                             <p className="service-price">{`R$ ${obj.price}`}</p>
@@ -47,7 +48,7 @@ export default function ServicesSection() {
                                 )
                             })}
                         </Services>
-                    </>
+                    </React.Fragment>
                 )
             })}
         </ServicesDiv>
