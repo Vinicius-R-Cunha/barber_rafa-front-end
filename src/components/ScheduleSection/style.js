@@ -16,24 +16,24 @@ const ScheduleDiv = styled.div`
     border-bottom: 1px solid rgba(0,0,0,.2);
 
     .schedule-title {
-        font-size: 40px;
+        font-size: 30px;
         font-weight: 700;
 
-        margin-bottom: 40px;
+        margin-bottom: 25px;
 
         text-transform: uppercase;
     }
 
     .weekday {
-        width: 450px;
+        width: 350px;
 
-        font-size: 25px;
+        font-size: 22px;
         color: rgba(0,0,0,.59);
 
         display: flex;
         justify-content: space-between;
         
-        padding: 15px 0;
+        padding: 11px 0;
 
         .time {
             color: rgba(0,0,0,.90)

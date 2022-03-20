@@ -7,4 +7,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    background-color: #F7F7F7;
 }

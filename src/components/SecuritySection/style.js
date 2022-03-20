@@ -9,7 +9,7 @@ const SecurityDiv = styled.div`
 
     padding: 90px 0 70px 0;
 
-    background-color: #F7F7F7;
+    background-color: #FFFFFF;
 
     .security-title {
         font-size: 35px;

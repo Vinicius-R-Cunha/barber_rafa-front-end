@@ -10,8 +10,8 @@ export default function App() {
     return (
         <>
             <HeaderSection />
-            <ScheduleSection />
             <SecuritySection />
+            <ScheduleSection />
             <ServicesSection />
             <ContactUsSection />
         </>

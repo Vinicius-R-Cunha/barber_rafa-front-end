@@ -32,22 +32,17 @@ const Services = styled.div`
 
     justify-content: center;
 
-    margin-bottom: 40px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
 `
 
 const Service = styled.div`
     width: 320px;
     min-height: 100px;
-    /* max-height: 180px; */
 
     padding: 10px;
 
-    /* border-radius: 15px;
-    border: 1px solid rgba(0,0,0,.1);
-
-    box-shadow: 5px 8px 15px black; */
-
-    cursor: pointer;
+    position: relative;
 
     .name-price-div {
         width: 100%;
@@ -72,6 +67,38 @@ const Service = styled.div`
         color: rgba(0,0,0,.7);
 
         margin-top: 12px;
+    }
+    
+    .button-div {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        .duration {
+            font-size: 12px;
+            color: rgba(0,0,0,.7);
+
+            margin-right: 6px;
+        }
+
+        button {
+            all: unset;
+
+            font-size: 12px;
+            font-weight: 700;
+            color: #FFFFFF;
+
+            padding: 7px 8px;
+            background-color: #A73238;
+            border-radius: 7px;     
+            
+            cursor: pointer;
+
+            :hover {
+                background-color: #cf6066;
+            } 
+        }
     }
 `
 
