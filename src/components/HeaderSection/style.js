@@ -112,7 +112,7 @@ const AboutDiv = styled.div`
         font-size: 76px;
         font-weight: 700;
         line-height: 100px;
-        color: #A73238;
+        color: rgba(360,0,0,.85);
 
         text-align: center;
 
