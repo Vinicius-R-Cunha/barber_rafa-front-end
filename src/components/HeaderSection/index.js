@@ -5,13 +5,24 @@ import { Link } from 'react-scroll'
 export default function HeaderSection() {
     return (
         <Container>
+            <div className="query-1250px">
+                <img className="logo-image-1250px" src={logo} alt="" />
+                <div className="nav-buttons">
+                    <Link activeClass="active" className="nav-button" to="security" spy={true} smooth={true} offset={-120} duration={500}>Segurança</Link>
+                    <Link activeClass="active" className="nav-button" to="schedule" spy={true} smooth={true} offset={-120} duration={500}>Horários</Link>
+                    <Link activeClass="active" className="nav-button" to="services" spy={true} smooth={true} duration={500}>Serviços</Link>
+                    <Link activeClass="active" className="nav-button" to="security" spy={true} smooth={true} offset={-120} duration={500}>Galeria</Link>
+                    <Link activeClass="active" className="nav-button" to="contact-us" spy={true} smooth={true} duration={500}>Contato</Link>
+                    <Link activeClass="active" className="nav-button" to="security" spy={true} smooth={true} offset={-120} duration={500}>Localização</Link>
+                </div>
+            </div>
             <HeaderDiv>
                 <div className="left-right-side">
                     <Link activeClass="active" className="nav-button" to="security" spy={true} smooth={true} offset={-120} duration={500}>Segurança</Link>
                     <Link activeClass="active" className="nav-button" to="schedule" spy={true} smooth={true} offset={-120} duration={500}>Horários</Link>
                     <Link activeClass="active" className="nav-button" to="services" spy={true} smooth={true} duration={500}>Serviços</Link>
                 </div>
-                <Link><img className="logo-image" src={logo} alt="" /></Link>
+                <img className="logo-image" src={logo} alt="" />
                 <div className="left-right-side">
                     <Link activeClass="active" className="nav-button" to="security" spy={true} smooth={true} offset={-120} duration={500}>Galeria</Link>
                     <Link activeClass="active" className="nav-button" to="contact-us" spy={true} smooth={true} duration={500}>Contato</Link>

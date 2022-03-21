@@ -13,28 +13,7 @@ const Container = styled.div`
 
     background: #A73238;
     background-image: url(${background});
-    background-size: 100% 800px;
-
-    .logo-name {
-        font-family: 'Yesteryear', cursive;
-        font-size: 100px;
-        color: #FFFFFF;
-
-        margin-top: 30px;    
-        text-shadow: 0 8px 4px black;
-    }
-`
-
-const HeaderDiv = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    margin-top: 10px;
-
-    .left-right-side {
-        min-width: 410px;
-    }
+    background-size: 100%, 800px, cover;
 
     .nav-button {
         font-size: 17px;
@@ -52,6 +31,54 @@ const HeaderDiv = styled.div`
         }
     }
 
+    .query-1250px {
+        display: none;
+
+        .logo-image-1250px {
+            width: 230px;
+            height: 230px;
+
+            margin-top: 10px;
+            margin-bottom: 28px;
+
+            border-radius: 50%;
+            border: 2px dashed #FFFFFF;
+            box-shadow: -2px 5px 25px black;
+
+            cursor: pointer;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            margin-top: 10px;
+        }
+    }
+
+    @media(max-width: 1249px) {
+        background-size: cover;
+
+        .query-1250px {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+`
+
+const HeaderDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 10px;
+
+    .left-right-side {
+        min-width: 410px;
+    }
+
     .logo-image {
         width: 250px;
         height: 250px;
@@ -60,11 +87,15 @@ const HeaderDiv = styled.div`
 
         margin: 0 60px;
 
-        cursor: pointer;
-
         border-radius: 50%;
         border: 2px dashed #FFFFFF;
         box-shadow: -2px 5px 25px black;
+        
+        cursor: pointer;
+    }
+
+    @media(max-width: 1249px) {
+        display: none;
     }
 `
 
@@ -93,6 +124,13 @@ const BookButton = styled.button`
         transition: .1s linear;
         color: #000000;
         background-color: #FFFFFF;
+    }
+
+    @media(max-width: 1249px) {
+        width: 230px;
+        height: 63px;
+
+        margin: 55px 0 30px 0;
     }
 `
 
@@ -129,6 +167,20 @@ const AboutDiv = styled.div`
         margin-top: 38px;
 
         text-shadow: -2px 5px 25px black;
+    }
+
+    @media(max-width: 1249px) {
+        .about {
+            font-size: 50px;
+        }
+
+        .phone-number {
+            font-size: 40px;
+        }
+
+        .adress {
+            font-size: 20px;
+        }
     }
 `
 
