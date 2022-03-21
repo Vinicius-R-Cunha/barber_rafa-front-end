@@ -97,7 +97,7 @@ const ContactUsDiv = styled.div`
                 .phone {
                     font-size: 25px;
                 }
-        }
+            }
 
             .contact-about {
                 font-size: 17px;
