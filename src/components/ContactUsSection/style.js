@@ -15,7 +15,7 @@ const ContactUsDiv = styled.div`
     justify-content: center;
     align-items: center;
 
-    padding: 80px;
+    padding: 80px 0;
 
     .contact-container {
         width: 500px;
@@ -84,23 +84,38 @@ const ContactUsDiv = styled.div`
             }
         }
     }
-`
 
-const MapDiv = styled.div`
-    width: 300px;
-    height: 300px;
+    @media(max-width: 879px) {
+        .contact-container {
+            width: 500px;
+            
+            .contact-title {
+                font-size: 30px;
+            }
+            
+            .button-phone-div {
+                .phone {
+                    font-size: 25px;
+                }
+        }
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+            .contact-about {
+                font-size: 17px;
+            }
 
-    padding: 80px;
+            .whatsapp-button {
+                width: 190px;
+                height: 50px;
+                
+                font-size: 15px;
 
-    .temp-map {
-        width: 450px;
-
-        object-fit: cover;
+                img {
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+        }
     }
 `
 
-export { ContactUsDiv, MapDiv, ContactContainer }
+export { ContactUsDiv, ContactContainer }

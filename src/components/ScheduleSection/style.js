@@ -39,6 +39,16 @@ const ScheduleDiv = styled.div`
             color: rgba(0,0,0,.90)
         }
     }
+
+    @media (max-width: 879px) {
+        .schedule-title {
+            font-size: 25px;
+        }
+
+        .weekday {
+            font-size: 20px;
+        }
+    }
 `
 
 export { ScheduleDiv }

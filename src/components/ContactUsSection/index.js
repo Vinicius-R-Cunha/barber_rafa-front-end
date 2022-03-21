@@ -1,6 +1,5 @@
-import { ContactUsDiv, MapDiv, ContactContainer } from "./style"
+import { ContactUsDiv, ContactContainer } from "./style"
 import whats from "../../assets/whats.png"
-import maps from "../../assets/maps.jpg"
 
 export default function ContactUsSection() {
 

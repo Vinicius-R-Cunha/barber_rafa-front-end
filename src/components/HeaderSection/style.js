@@ -15,6 +15,17 @@ const Container = styled.div`
     background-image: url(${background});
     background-size: 100%, 800px, cover;
 
+    position: relative;
+
+    ion-icon {
+        display: none;
+
+        font-size: 40px;
+        position: absolute;
+        top: 5px;
+        left: 9px;
+    }
+
     .nav-button {
         font-size: 17px;
         letter-spacing: 2px;
@@ -64,6 +75,26 @@ const Container = styled.div`
             display: flex;
             flex-direction: column;
             align-items: center;
+        }
+    }
+
+    @media (max-width: 879px) {
+        .query-1250px {
+
+            .logo-image-1250px {
+                width: 180px;
+                height: 180px;
+
+                margin-top: 40px;
+            }
+
+            .nav-buttons {
+                display: none;
+            }
+        }
+
+        ion-icon {
+            display: flex;
         }
     }
 `
@@ -131,6 +162,10 @@ const BookButton = styled.button`
         height: 63px;
 
         margin: 55px 0 30px 0;
+    }
+
+    @media (max-width: 879px) {
+        margin: 30px 0;
     }
 `
 

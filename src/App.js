@@ -10,10 +10,10 @@ export default function App() {
     return (
         <>
             <HeaderSection />
-            {/* <SecuritySection />
+            <SecuritySection />
             <ScheduleSection />
             <ServicesSection />
-            <ContactUsSection /> */}
+            <ContactUsSection />
         </>
     );
 }

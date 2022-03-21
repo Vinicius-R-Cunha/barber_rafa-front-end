@@ -34,6 +34,20 @@ const SecurityDiv = styled.div`
             margin-bottom: 30px;
         }
     }
+
+    @media(max-width: 879px) {
+        ul {
+            width: 630px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            li {
+                width: 70%;
+            }
+        }
+    }
 `
 
 export { SecurityDiv }

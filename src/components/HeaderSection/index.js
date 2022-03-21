@@ -5,6 +5,7 @@ import { Link } from 'react-scroll'
 export default function HeaderSection() {
     return (
         <Container>
+            <ion-icon name="menu-outline"></ion-icon>
             <div className="query-1250px">
                 <img className="logo-image-1250px" src={logo} alt="" />
                 <div className="nav-buttons">

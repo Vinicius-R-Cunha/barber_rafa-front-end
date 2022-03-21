@@ -40,6 +40,12 @@ const Services = styled.div`
 
         grid-template-columns: 1fr 1fr;
     }
+
+    @media (max-width: 779px) {
+        width: 350px;
+
+        grid-template-columns: 1fr;
+    }
 `
 
 const Service = styled.div`
