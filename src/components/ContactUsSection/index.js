@@ -22,9 +22,6 @@ export default function ContactUsSection() {
                     </div>
                 </div>
             </ContactUsDiv>
-            <MapDiv>
-                <img className="temp-map" src={maps} alt="" />
-            </MapDiv>
         </ContactContainer>
     );
 }

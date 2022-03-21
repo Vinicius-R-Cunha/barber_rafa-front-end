@@ -14,22 +14,35 @@ const Container = styled.div`
     background: #A73238;
     background-image: url(${background});
     background-size: 100% 800px;
+
+    .logo-name {
+        font-family: 'Yesteryear', cursive;
+        font-size: 100px;
+        color: #FFFFFF;
+
+        margin-top: 30px;    
+        text-shadow: 0 8px 4px black;
+    }
 `
 
 const HeaderDiv = styled.div`
-    width: 100%;
-
     display: flex;
     justify-content: center;
     align-items: center;
 
+    margin-top: 10px;
+
+    .left-right-side {
+        min-width: 410px;
+    }
+
     .nav-button {
-        font-size: 17.5px;
+        font-size: 17px;
         letter-spacing: 2px;
         font-weight: 700;
         text-transform: uppercase;
 
-        margin: 0 20px;
+        margin: 0 16px;
 
         cursor: pointer;
 
@@ -39,45 +52,27 @@ const HeaderDiv = styled.div`
         }
     }
 
-    .logo {
-        height: 170px;
+    .logo-image {
+        width: 250px;
+        height: 250px;
 
-        font-family: 'Yesteryear', cursive;
+        margin-bottom: 50px;
 
-        display: flex;
-        align-items: center;
-
-        margin: 0 30px;
+        margin: 0 60px;
 
         cursor: pointer;
 
-        img {
-            width: 120px;
-            height: 120px;
-    
-            margin-right: 35px;
-    
-            box-sizing: border-box;
-    
-            border-radius: 50%;
-            border: 2px dashed #FFFFFF;
-            box-shadow: -2px 5px 25px black;
-        }
-    
-        h1 {
-            font-size: 70px;
-            color: #FFFFFF;
-    
-            text-shadow: 0 8px 4px black;
-        }
+        border-radius: 50%;
+        border: 2px dashed #FFFFFF;
+        box-shadow: -2px 5px 25px black;
     }
 `
 
 const BookButton = styled.button`
     all: unset;
 
-    width: 300px;
-    height: 78px;
+    width: 280px;
+    height: 73px;
     
     font-weight: 700;
     font-size: 30px;
@@ -87,7 +82,7 @@ const BookButton = styled.button`
     justify-content: center;
     align-items: center;
 
-    margin: 20px 0;
+    margin: 60px 0 40px 0;
     
     border-radius: 300px;
     border: 3px solid #FFFFFF;
@@ -106,33 +101,32 @@ const AboutDiv = styled.div`
     flex-direction: column;
     align-items: center;
 
-    margin-top: 40px;
-
     .about {
-        font-size: 72px;
+        font-size: 60px;
         font-weight: 700;
-        line-height: 100px;
-        color: rgba(360,0,0,.85);
+        line-height: 80px;
+        color: #b2353b;
 
         text-align: center;
 
         text-shadow: 0 6px 4px black;
     }
 
-    .adress {
-        font-size: 24px;
-        color: #000000;
-
-        margin-top: 55px;
-
+    .phone-number {
+        font-size: 45px;
+        font-weight: 700;
+        
+        margin-top: 40px;
+        
         text-shadow: -2px 5px 25px black;
     }
 
-    .phone-number {
-        font-size: 55px;
+    .adress {
+        font-size: 22px;
         font-weight: 700;
+        color: #FFFFFF;
 
-        margin-top: 40px;
+        margin-top: 38px;
 
         text-shadow: -2px 5px 25px black;
     }
