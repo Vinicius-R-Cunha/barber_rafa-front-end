@@ -48,6 +48,21 @@ const SecurityDiv = styled.div`
             }
         }
     }
+
+    @media(max-width: 639px) {
+
+        .security-title {
+            font-size: 21px;
+        }
+
+        ul {
+            width: 100%;
+
+            li {
+                font-size: 16px;
+            }
+        }
+    }
 `
 
 export { SecurityDiv }

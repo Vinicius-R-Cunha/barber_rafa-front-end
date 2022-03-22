@@ -116,6 +116,24 @@ const ContactUsDiv = styled.div`
             }
         }
     }
+
+    @media(max-width: 629px) {
+        padding: 60px 0;
+
+        .contact-container {
+            width: 90%;
+
+            .button-phone-div {
+                flex-direction: column;
+
+                .phone {
+                    font-size: 21px;
+
+                    margin: 15px 0;
+                }
+            }
+        }
+    }
 `
 
 export { ContactUsDiv, ContactContainer }

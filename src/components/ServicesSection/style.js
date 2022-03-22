@@ -46,6 +46,10 @@ const Services = styled.div`
 
         grid-template-columns: 1fr;
     }
+
+    @media(max-width: 380px) {
+        width: 100%;
+    }
 `
 
 const Service = styled.div`
@@ -83,9 +87,12 @@ const Service = styled.div`
     
     .button-div {
         width: 100%;
+
         display: flex;
         justify-content: flex-end;
         align-items: center;
+
+        margin-top: 15px;
 
         .duration {
             font-size: 12px;
@@ -110,6 +117,18 @@ const Service = styled.div`
             :hover {
                 background-color: #cf6066;
             } 
+        }
+    }
+
+    @media(max-width: 380px) {
+        width: 90%;
+
+        .name-price-div {
+            font-size: 16px;
+        }
+
+        .description {
+            font-size: 15px;
         }
     }
 `

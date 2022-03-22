@@ -49,6 +49,23 @@ const ScheduleDiv = styled.div`
             font-size: 20px;
         }
     }
+
+    @media (max-width: 639px) {
+        padding: 30px 0 10px 0;
+
+        .schedule-title {
+            width: 100%;
+
+            font-size: 22px;
+            text-align: center;
+        }
+
+        .weekday {
+            width: 230px;
+
+            font-size: 16px;
+        }
+    }
 `
 
 export { ScheduleDiv }

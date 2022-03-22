@@ -80,7 +80,6 @@ const Container = styled.div`
 
     @media (max-width: 879px) {
         .query-1250px {
-
             .logo-image-1250px {
                 width: 180px;
                 height: 180px;
@@ -95,6 +94,19 @@ const Container = styled.div`
 
         ion-icon {
             display: flex;
+        }
+    }
+
+    @media (max-width: 629px) {
+        height: 540px;
+
+        .query-1250px {
+            .logo-image-1250px {
+                width: 140px;
+                height: 140px;
+
+                margin-top: 25px;
+            }
         }
     }
 `
@@ -167,6 +179,12 @@ const BookButton = styled.button`
     @media (max-width: 879px) {
         margin: 30px 0;
     }
+
+    @media (max-width: 629px) {
+        margin: 20px 0;
+
+        background-color: transparent;
+    }
 `
 
 const AboutDiv = styled.div`
@@ -215,6 +233,25 @@ const AboutDiv = styled.div`
 
         .adress {
             font-size: 20px;
+        }
+    }
+
+    @media(max-width: 639px) {
+        .about {
+            font-size: 32px;
+            line-height: 40px;
+        }
+
+        .phone-number {
+            font-size: 25px;
+
+            margin-top: 25px;
+        }
+
+        .adress {
+            font-size: 14px;
+
+            margin-top: 25px;
         }
     }
 `
