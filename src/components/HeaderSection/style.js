@@ -256,4 +256,15 @@ const AboutDiv = styled.div`
     }
 `
 
-export { Container, HeaderDiv, BookButton, AboutDiv }
+const MobileMenu = styled.div`
+    width: 100%;
+    height: 100vh;
+
+    background-color: #000;
+    opacity: 0.8;
+
+    position: fixed;
+    top: 0;
+`
+
+export { Container, HeaderDiv, BookButton, AboutDiv, MobileMenu }

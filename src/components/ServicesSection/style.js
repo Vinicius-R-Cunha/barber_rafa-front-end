@@ -20,6 +20,10 @@ const ServicesDiv = styled.div`
 
         margin-bottom: 30px;
     }
+
+    @media (max-width: 779px) {
+        padding-bottom: 30px;
+    }
 `
 
 const Services = styled.div`
