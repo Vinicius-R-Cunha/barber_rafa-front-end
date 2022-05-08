@@ -41,16 +41,17 @@ const Services = styled.div`
 
     @media (max-width: 1249px) {
         width: 700px;
-
+        margin-left: 13px;
+        
         grid-template-columns: 1fr 1fr;
     }
-
+    
     @media (max-width: 779px) {
         width: 350px;
-
+        
         grid-template-columns: 1fr;
     }
-
+    
     @media(max-width: 380px) {
         width: 100%;
     }
@@ -84,6 +85,8 @@ const Service = styled.div`
     .description {
         font-size: 16px;
         line-height: 21px;
+        text-align: justify;
+        text-justify: inter-word;
         color: rgba(0,0,0,.7);
 
         margin-top: 12px;
