@@ -4,7 +4,7 @@ export default function LeftSideMenu({ setOpenMenu }) {
     return (
         <>
             <Link
-                onClick={setOpenMenu ? () => setOpenMenu(false) : ""}
+                onClick={setOpenMenu ? () => setOpenMenu(false) : null}
                 activeClass="active"
                 className="nav-button"
                 to="security"
@@ -16,7 +16,7 @@ export default function LeftSideMenu({ setOpenMenu }) {
                 Segurança
             </Link>
             <Link
-                onClick={setOpenMenu ? () => setOpenMenu(false) : ""}
+                onClick={setOpenMenu ? () => setOpenMenu(false) : null}
                 activeClass="active"
                 className="nav-button"
                 to="schedule"
@@ -28,7 +28,7 @@ export default function LeftSideMenu({ setOpenMenu }) {
                 Horários
             </Link>
             <Link
-                onClick={setOpenMenu ? () => setOpenMenu(false) : ""}
+                onClick={setOpenMenu ? () => setOpenMenu(false) : null}
                 activeClass="active"
                 className="nav-button"
                 to="services"

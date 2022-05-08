@@ -4,7 +4,7 @@ export default function RightSideMenu({ setOpenMenu }) {
     return (
         <>
             <Link
-                onClick={setOpenMenu ? () => setOpenMenu(false) : ""}
+                onClick={setOpenMenu ? () => setOpenMenu(false) : null}
                 activeClass="active"
                 className="nav-button"
                 to="security"
@@ -16,7 +16,7 @@ export default function RightSideMenu({ setOpenMenu }) {
                 Galeria
             </Link>
             <Link
-                onClick={setOpenMenu ? () => setOpenMenu(false) : ""}
+                onClick={setOpenMenu ? () => setOpenMenu(false) : null}
                 activeClass="active"
                 className="nav-button"
                 to="contact-us"
@@ -27,7 +27,7 @@ export default function RightSideMenu({ setOpenMenu }) {
                 Contato
             </Link>
             <Link
-                onClick={setOpenMenu ? () => setOpenMenu(false) : ""}
+                onClick={setOpenMenu ? () => setOpenMenu(false) : null}
                 activeClass="active"
                 className="nav-button"
                 to="security"
