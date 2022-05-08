@@ -41,8 +41,6 @@ const Services = styled.div`
 
     @media (max-width: 1249px) {
         width: 700px;
-        box-sizing: border-box;
-        padding-left: 13px;
         
         grid-template-columns: 1fr 1fr;
     }
@@ -55,6 +53,9 @@ const Services = styled.div`
     
     @media(max-width: 380px) {
         width: 100%;
+        
+        box-sizing: border-box;
+        padding-left: 13px;
     }
 `
 
