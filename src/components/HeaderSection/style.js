@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import background from '../../assets/background.jpeg'
+import background from "../../assets/background.jpeg";
 
 const Container = styled.div`
     width: 100%;
@@ -9,9 +9,9 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
 
-    color: #FFFFFF;
+    color: #ffffff;
 
-    background: #A73238;
+    background: #a73238;
     background-image: url(${background});
     background-size: 100%, 800px, cover;
 
@@ -37,8 +37,8 @@ const Container = styled.div`
         cursor: pointer;
 
         :hover {
-            color: #A73238;
-            transition: .1s ease-in-out;
+            color: #a73238;
+            transition: 0.1s ease-in-out;
         }
     }
 
@@ -53,7 +53,7 @@ const Container = styled.div`
             margin-bottom: 28px;
 
             border-radius: 50%;
-            border: 2px dashed #FFFFFF;
+            border: 2px dashed #ffffff;
             box-shadow: -2px 5px 25px black;
 
             cursor: pointer;
@@ -68,7 +68,7 @@ const Container = styled.div`
         }
     }
 
-    @media(max-width: 1249px) {
+    @media (max-width: 1249px) {
         background-size: cover;
 
         .query-1250px {
@@ -109,7 +109,7 @@ const Container = styled.div`
             }
         }
     }
-`
+`;
 
 const HeaderDiv = styled.div`
     display: flex;
@@ -131,45 +131,45 @@ const HeaderDiv = styled.div`
         margin: 0 60px;
 
         border-radius: 50%;
-        border: 2px dashed #FFFFFF;
+        border: 2px dashed #ffffff;
         box-shadow: -2px 5px 25px black;
-        
+
         cursor: pointer;
     }
 
-    @media(max-width: 1249px) {
+    @media (max-width: 1249px) {
         display: none;
     }
-`
+`;
 
 const BookButton = styled.button`
     all: unset;
 
     width: 280px;
     height: 73px;
-    
+
     font-weight: 700;
     font-size: 30px;
     letter-spacing: 2px;
-    
+
     display: flex;
     justify-content: center;
     align-items: center;
 
     margin: 60px 0 40px 0;
-    
+
     border-radius: 300px;
-    border: 3px solid #FFFFFF;
+    border: 3px solid #ffffff;
 
     cursor: pointer;
 
     :hover {
-        transition: .1s linear;
+        transition: 0.1s linear;
         color: #000000;
-        background-color: #FFFFFF;
+        background-color: #ffffff;
     }
 
-    @media(max-width: 1249px) {
+    @media (max-width: 1249px) {
         width: 230px;
         height: 63px;
 
@@ -185,7 +185,7 @@ const BookButton = styled.button`
 
         background-color: transparent;
     }
-`
+`;
 
 const AboutDiv = styled.div`
     display: flex;
@@ -206,23 +206,23 @@ const AboutDiv = styled.div`
     .phone-number {
         font-size: 45px;
         font-weight: 700;
-        
+
         margin-top: 40px;
-        
+
         text-shadow: -2px 5px 25px black;
     }
 
     .adress {
         font-size: 22px;
         font-weight: 700;
-        color: #FFFFFF;
+        color: #ffffff;
 
         margin-top: 38px;
 
         text-shadow: -2px 5px 25px black;
     }
 
-    @media(max-width: 1249px) {
+    @media (max-width: 1249px) {
         .about {
             font-size: 50px;
         }
@@ -236,7 +236,7 @@ const AboutDiv = styled.div`
         }
     }
 
-    @media(max-width: 639px) {
+    @media (max-width: 639px) {
         .about {
             font-size: 32px;
             line-height: 40px;
@@ -254,17 +254,28 @@ const AboutDiv = styled.div`
             margin-top: 25px;
         }
     }
-`
+`;
 
 const MobileMenu = styled.div`
     width: 100%;
     height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 50px;
 
     background-color: #000;
     opacity: 0.8;
 
     position: fixed;
     top: 0;
-`
 
-export { Container, HeaderDiv, BookButton, AboutDiv, MobileMenu }
+    .nav-button {
+        font-size: 20px;
+    }
+`;
+
+export { Container, HeaderDiv, BookButton, AboutDiv, MobileMenu };

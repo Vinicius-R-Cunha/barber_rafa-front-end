@@ -9,15 +9,15 @@ const SecurityDiv = styled.div`
 
     padding: 90px 0 70px 0;
 
-    background-color: #FFFFFF;
+    background-color: #ffffff;
 
     .security-title {
         font-size: 35px;
-        color: rgba(0,0,0,.79);
+        color: rgba(0, 0, 0, 0.79);
 
         margin-bottom: 45px;
     }
-    
+
     ul {
         width: 850px;
 
@@ -28,14 +28,14 @@ const SecurityDiv = styled.div`
         li {
             font-size: 18px;
             line-height: 22px;
-            color: rgba(0,0,0,.79);
+            color: rgba(0, 0, 0, 0.79);
 
             margin-left: 50px;
             margin-bottom: 30px;
         }
     }
 
-    @media(max-width: 879px) {
+    @media (max-width: 879px) {
         ul {
             width: 630px;
 
@@ -49,8 +49,7 @@ const SecurityDiv = styled.div`
         }
     }
 
-    @media(max-width: 639px) {
-
+    @media (max-width: 639px) {
         .security-title {
             font-size: 21px;
         }
@@ -63,6 +62,6 @@ const SecurityDiv = styled.div`
             }
         }
     }
-`
+`;
 
-export { SecurityDiv }
+export { SecurityDiv };

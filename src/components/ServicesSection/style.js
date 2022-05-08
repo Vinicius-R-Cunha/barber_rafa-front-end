@@ -11,7 +11,7 @@ const ServicesDiv = styled.div`
     gap: 15px;
     padding: 90px 0;
 
-    background-color: #FFFFFF;
+    background-color: #ffffff;
 
     .services-title {
         font-size: 26px;
@@ -24,7 +24,7 @@ const ServicesDiv = styled.div`
     @media (max-width: 779px) {
         padding-bottom: 30px;
     }
-`
+`;
 
 const Services = styled.div`
     width: 1126px;
@@ -41,23 +41,23 @@ const Services = styled.div`
 
     @media (max-width: 1249px) {
         width: 700px;
-        
+
         grid-template-columns: 1fr 1fr;
     }
-    
+
     @media (max-width: 779px) {
         width: 350px;
-        
+
         grid-template-columns: 1fr;
     }
-    
-    @media(max-width: 380px) {
+
+    @media (max-width: 380px) {
         width: 100%;
-        
+
         box-sizing: border-box;
         padding-left: 13px;
     }
-`
+`;
 
 const Service = styled.div`
     width: 320px;
@@ -73,7 +73,7 @@ const Service = styled.div`
         font-size: 18px;
         font-weight: 700;
         text-transform: uppercase;
-        color: rgba(0,0,0,.6);
+        color: rgba(0, 0, 0, 0.6);
 
         display: flex;
         justify-content: space-between;
@@ -81,7 +81,7 @@ const Service = styled.div`
         .service-name {
             width: 70%;
             line-height: 20px;
-        }       
+        }
     }
 
     .description {
@@ -89,11 +89,11 @@ const Service = styled.div`
         line-height: 21px;
         text-align: justify;
         text-justify: inter-word;
-        color: rgba(0,0,0,.7);
+        color: rgba(0, 0, 0, 0.7);
 
         margin-top: 12px;
     }
-    
+
     .button-div {
         width: 100%;
 
@@ -105,7 +105,7 @@ const Service = styled.div`
 
         .duration {
             font-size: 12px;
-            color: rgba(0,0,0,.7);
+            color: rgba(0, 0, 0, 0.7);
 
             margin-right: 6px;
         }
@@ -115,21 +115,21 @@ const Service = styled.div`
 
             font-size: 12px;
             font-weight: 700;
-            color: #FFFFFF;
+            color: #ffffff;
 
             padding: 7px 8px;
-            background-color: #A73238;
-            border-radius: 7px;     
-            
+            background-color: #a73238;
+            border-radius: 7px;
+
             cursor: pointer;
 
             :hover {
                 background-color: #cf6066;
-            } 
+            }
         }
     }
 
-    @media(max-width: 380px) {
+    @media (max-width: 380px) {
         width: 90%;
 
         .name-price-div {
@@ -140,6 +140,6 @@ const Service = styled.div`
             font-size: 15px;
         }
     }
-`
+`;
 
-export { ServicesDiv, Services, Service }
+export { ServicesDiv, Services, Service };
