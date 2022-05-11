@@ -14,17 +14,17 @@ import background from "../../assets/background.jpeg";
 import { BsPersonCircle } from "react-icons/bs";
 import { RiFacebookFill } from "react-icons/ri";
 import { AiOutlineInstagram } from "react-icons/ai";
-import HeaderTablet from "../HeaderTablet";
+import ResponsiveHeader from "../ResponsiveHeader";
 
-export default function HeaderSection() {
+export default function HeaderSection({ page, title }) {
     const navigate = useNavigate();
 
     return (
-        <Container>
+        <Container page={page}>
             <img className="background-image" src={background} alt="" />
             <div className="background-darkness"></div>
 
-            <HeaderTablet />
+            <ResponsiveHeader />
 
             <HeaderDiv>
                 <img className="logo-image" src={logo} alt="" />
@@ -38,39 +38,49 @@ export default function HeaderSection() {
                     </NavButton>
                     <NavButton>Contato</NavButton>
                     <NavButton>
-                        <BsPersonCircle className="login-button" />
+                        <BsPersonCircle className="login-icon" />
                         <NavButton>Entrar/Inscrever-se</NavButton>
                     </NavButton>
                 </NavButtons>
             </HeaderDiv>
 
-            <About>
-                Barbearia com ambiente
-                <br />
-                <span>para toda a família</span>
-            </About>
-            <SocialIcons>
-                <AiOutlineInstagram
-                    className="icon"
-                    onClick={() =>
-                        window.open(
-                            "https://www.instagram.com/barberafamacedo/",
-                            "_blank"
-                        )
-                    }
-                />
-                <RiFacebookFill
-                    className="icon"
-                    onClick={() =>
-                        window.open(
-                            "https://m.facebook.com/BarberRafaMacedo/?ref=bookmarks",
-                            "_blank"
-                        )
-                    }
-                />
-            </SocialIcons>
+            {page === "home" && (
+                <>
+                    <About page={page}>
+                        Barbearia com ambiente
+                        <br />
+                        <span>para toda a família</span>
+                    </About>
+                    <SocialIcons>
+                        <AiOutlineInstagram
+                            className="icon"
+                            onClick={() =>
+                                window.open(
+                                    "https://www.instagram.com/barberafamacedo/",
+                                    "_blank"
+                                )
+                            }
+                        />
+                        <RiFacebookFill
+                            className="icon"
+                            onClick={() =>
+                                window.open(
+                                    "https://m.facebook.com/BarberRafaMacedo/?ref=bookmarks",
+                                    "_blank"
+                                )
+                            }
+                        />
+                    </SocialIcons>
 
-            <BookButton>Agende seu corte</BookButton>
+                    <BookButton onClick={() => navigate("/services")}>
+                        Agende seu corte
+                    </BookButton>
+                </>
+            )}
+
+            {page === "services" && <About>{title}</About>}
+            {page === "schedule" && <About>Horários</About>}
+            {page === "contact-us" && <About>Contato</About>}
         </Container>
     );
 }

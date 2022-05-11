@@ -4,8 +4,8 @@ import ServicesSection from "../../components/ServicesSection";
 export default function ServicesPage() {
     return (
         <>
-            <HeaderSection />
-            <ServicesSection />;
+            <HeaderSection page={"services"} title="Serviços" />
+            <ServicesSection />
         </>
     );
 }
