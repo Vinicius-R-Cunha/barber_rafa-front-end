@@ -1,72 +1,76 @@
 import {
     Container,
     HeaderDiv,
+    NavButtons,
+    NavButton,
+    About,
+    SocialIcons,
     BookButton,
-    AboutDiv,
-    MobileMenu,
 } from "./style";
+// import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.jpg";
-import { Link } from "react-scroll";
-import { useState } from "react";
-import LeftSideMenu from "../LeftSideMenu";
-import RightSideMenu from "../RightSideMenu";
+import background from "../../assets/background.jpeg";
+import { BsPersonCircle } from "react-icons/bs";
+import { RiFacebookFill } from "react-icons/ri";
+import { AiOutlineInstagram } from "react-icons/ai";
+import HeaderTablet from "../HeaderTablet";
 
 export default function HeaderSection() {
-    const [openMenu, setOpenMenu] = useState(false);
+    const navigate = useNavigate();
 
     return (
         <Container>
-            {openMenu && (
-                <MobileMenu>
-                    <LeftSideMenu setOpenMenu={setOpenMenu} />
-                    <RightSideMenu setOpenMenu={setOpenMenu} />
-                </MobileMenu>
-            )}
+            <img className="background-image" src={background} alt="" />
+            <div className="background-darkness"></div>
 
-            <ion-icon
-                onClick={() => setOpenMenu(!openMenu)}
-                name="menu-outline"
-            ></ion-icon>
-            <div className="query-1250px">
-                <img className="logo-image-1250px" src={logo} alt="" />
-                <div className="nav-buttons">
-                    <LeftSideMenu />
-                    <RightSideMenu />
-                </div>
-            </div>
+            <HeaderTablet />
 
             <HeaderDiv>
-                <div className="left-right-side">
-                    <LeftSideMenu />
-                </div>
                 <img className="logo-image" src={logo} alt="" />
-                <div className="left-right-side">
-                    <RightSideMenu />
-                </div>
+                <NavButtons>
+                    <NavButton onClick={() => navigate("/")}>
+                        Página Inicial
+                    </NavButton>
+                    <NavButton>Horários</NavButton>
+                    <NavButton onClick={() => navigate("/services")}>
+                        Serviços
+                    </NavButton>
+                    <NavButton>Contato</NavButton>
+                    <NavButton>
+                        <BsPersonCircle className="login-button" />
+                        <NavButton>Entrar/Inscrever-se</NavButton>
+                    </NavButton>
+                </NavButtons>
             </HeaderDiv>
 
-            <BookButton>
-                <Link
-                    activeClass="active"
-                    className="nav-button"
-                    to="services"
-                    spy={true}
-                    smooth={true}
-                    duration={500}
-                >
-                    Agendar
-                </Link>
-            </BookButton>
+            <About>
+                Barbearia com ambiente
+                <br />
+                <span>para toda a família</span>
+            </About>
+            <SocialIcons>
+                <AiOutlineInstagram
+                    className="icon"
+                    onClick={() =>
+                        window.open(
+                            "https://www.instagram.com/barberafamacedo/",
+                            "_blank"
+                        )
+                    }
+                />
+                <RiFacebookFill
+                    className="icon"
+                    onClick={() =>
+                        window.open(
+                            "https://m.facebook.com/BarberRafaMacedo/?ref=bookmarks",
+                            "_blank"
+                        )
+                    }
+                />
+            </SocialIcons>
 
-            <AboutDiv>
-                <p className="about">
-                    Barbearia com ambiente <br /> para toda a familia
-                </p>
-                <p className="phone-number">(11) 98747-9047</p>
-                <p className="adress">
-                    Rua Itinguçu, 1085, 03658-010, São Paulo
-                </p>
-            </AboutDiv>
+            <BookButton>Agende seu corte</BookButton>
         </Container>
     );
 }

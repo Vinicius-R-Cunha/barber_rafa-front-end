@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import background from "../../assets/background.jpeg";
 
 const Container = styled.div`
     width: 100%;
-    height: 800px;
+    height: 100vh;
 
     display: flex;
     flex-direction: column;
@@ -11,134 +10,152 @@ const Container = styled.div`
 
     color: #ffffff;
 
-    background: #a73238;
-    background-image: url(${background});
-    background-size: 100%, 800px, cover;
-
+    background-color: rgba(0, 0, 0, 1);
     position: relative;
 
-    ion-icon {
-        display: none;
+    z-index: 1;
 
-        font-size: 40px;
+    .background-image {
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+
+        opacity: 0.6;
+
         position: absolute;
-        top: 5px;
-        left: 9px;
+        top: 0;
+        left: 0;
+
+        z-index: -3;
     }
 
-    .nav-button {
-        font-size: 17px;
-        letter-spacing: 2px;
-        font-weight: 700;
-        text-transform: uppercase;
+    .background-darkness {
+        width: 100%;
+        height: 100%;
 
-        margin: 0 16px;
+        background-color: rgba(0, 0, 0, 0.4);
 
-        cursor: pointer;
+        position: absolute;
+        top: 0;
+        left: 0;
 
-        :hover {
-            color: #a73238;
-            transition: 0.1s ease-in-out;
-        }
-    }
-
-    .query-1250px {
-        display: none;
-
-        .logo-image-1250px {
-            width: 230px;
-            height: 230px;
-
-            margin-top: 10px;
-            margin-bottom: 28px;
-
-            border-radius: 50%;
-            border: 2px dashed #ffffff;
-            box-shadow: -2px 5px 25px black;
-
-            cursor: pointer;
-        }
-
-        .nav-buttons {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            margin-top: 10px;
-        }
-    }
-
-    @media (max-width: 1249px) {
-        background-size: cover;
-
-        .query-1250px {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-    }
-
-    @media (max-width: 879px) {
-        .query-1250px {
-            .logo-image-1250px {
-                width: 180px;
-                height: 180px;
-
-                margin-top: 40px;
-            }
-
-            .nav-buttons {
-                display: none;
-            }
-        }
-
-        ion-icon {
-            display: flex;
-        }
-    }
-
-    @media (max-width: 629px) {
-        height: 540px;
-
-        .query-1250px {
-            .logo-image-1250px {
-                width: 140px;
-                height: 140px;
-
-                margin-top: 25px;
-            }
-        }
+        z-index: 0;
     }
 `;
 
 const HeaderDiv = styled.div`
+    width: 1200px;
+
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 
-    margin-top: 10px;
+    margin-top: 23px;
 
-    .left-right-side {
-        min-width: 410px;
-    }
+    z-index: 1;
 
     .logo-image {
-        width: 250px;
-        height: 250px;
+        width: 130px;
+        height: 130px;
 
-        margin-bottom: 50px;
-
-        margin: 0 60px;
+        margin-left: 28px;
 
         border-radius: 50%;
-        border: 2px dashed #ffffff;
         box-shadow: -2px 5px 25px black;
 
         cursor: pointer;
     }
 
-    @media (max-width: 1249px) {
+    @media (max-width: 1300px) {
+        width: 95%;
+    }
+
+    @media (max-width: 1100px) {
         display: none;
+    }
+`;
+
+const NavButtons = styled.div`
+    display: flex;
+    align-items: center;
+`;
+
+const NavButton = styled.div`
+    font-size: 1.163rem;
+    letter-spacing: 0px;
+    font-weight: 400;
+    line-height: 1.176em;
+
+    display: flex;
+    align-items: center;
+
+    margin: 0 30px;
+
+    cursor: pointer;
+
+    :hover {
+        color: #96885f;
+        transition: 0.1s ease-in-out;
+    }
+
+    :last-of-type {
+        margin-right: 0;
+    }
+
+    .login-button {
+        font-size: 2.3125rem;
+
+        margin-right: -20px;
+        margin-bottom: 2px;
+
+        cursor: pointer;
+    }
+`;
+
+const About = styled.div`
+    font-family: "Teko";
+    font-size: 5.625rem;
+    font-weight: 500;
+    line-height: 1em;
+    letter-spacing: 2.2px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #e1e1e1;
+
+    margin-top: 220px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    z-index: 1;
+
+    span {
+        color: #96885f;
+    }
+`;
+
+const SocialIcons = styled.div`
+    font-size: 2.025rem;
+    color: #e1e1e1;
+
+    margin-top: 35px;
+
+    display: flex;
+
+    gap: 15px;
+
+    z-index: 1;
+
+    .icon {
+        padding: 7px;
+
+        border-radius: 50%;
+
+        background-color: #96885f;
+
+        cursor: pointer;
     }
 `;
 
@@ -148,134 +165,38 @@ const BookButton = styled.button`
     width: 280px;
     height: 73px;
 
-    font-weight: 700;
-    font-size: 30px;
-    letter-spacing: 2px;
+    font-weight: 800;
+    font-size: 0.875rem;
+    line-height: 1em;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: #e1e1e1;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    margin: 60px 0 40px 0;
+    margin-top: 52px;
 
-    border-radius: 300px;
-    border: 3px solid #ffffff;
+    border-radius: 30px;
+    border: 5px solid #96885f;
+
+    z-index: 1;
 
     cursor: pointer;
 
     :hover {
-        transition: 0.1s linear;
-        color: #000000;
-        background-color: #ffffff;
-    }
-
-    @media (max-width: 1249px) {
-        width: 230px;
-        height: 63px;
-
-        margin: 55px 0 30px 0;
-    }
-
-    @media (max-width: 879px) {
-        margin: 30px 0;
-    }
-
-    @media (max-width: 629px) {
-        margin: 20px 0;
-
-        background-color: transparent;
+        transition: 0.3s ease-out;
+        background-color: #96885f;
     }
 `;
 
-const AboutDiv = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    .about {
-        font-size: 60px;
-        font-weight: 700;
-        line-height: 80px;
-        color: #b2353b;
-
-        text-align: center;
-
-        text-shadow: 0 6px 4px black;
-    }
-
-    .phone-number {
-        font-size: 45px;
-        font-weight: 700;
-
-        margin-top: 40px;
-
-        text-shadow: -2px 5px 25px black;
-    }
-
-    .adress {
-        font-size: 22px;
-        font-weight: 700;
-        color: #ffffff;
-
-        margin-top: 38px;
-
-        text-shadow: -2px 5px 25px black;
-    }
-
-    @media (max-width: 1249px) {
-        .about {
-            font-size: 50px;
-        }
-
-        .phone-number {
-            font-size: 40px;
-        }
-
-        .adress {
-            font-size: 20px;
-        }
-    }
-
-    @media (max-width: 639px) {
-        .about {
-            font-size: 32px;
-            line-height: 40px;
-        }
-
-        .phone-number {
-            font-size: 25px;
-
-            margin-top: 25px;
-        }
-
-        .adress {
-            font-size: 14px;
-
-            margin-top: 25px;
-        }
-    }
-`;
-
-const MobileMenu = styled.div`
-    width: 100%;
-    height: 100vh;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    gap: 50px;
-
-    background-color: #000;
-    opacity: 0.8;
-
-    position: fixed;
-    top: 0;
-
-    .nav-button {
-        font-size: 20px;
-    }
-`;
-
-export { Container, HeaderDiv, BookButton, AboutDiv, MobileMenu };
+export {
+    Container,
+    HeaderDiv,
+    BookButton,
+    About,
+    NavButtons,
+    NavButton,
+    SocialIcons,
+};
