@@ -32,9 +32,9 @@ export default function HeaderSection({ page, title }) {
                     <NavButton onClick={() => navigate("/")}>
                         Página Inicial
                     </NavButton>
-                    <NavButton onClick={() => navigate("/horarios")}>
+                    {/* <NavButton onClick={() => navigate("/horarios")}>
                         Horários
-                    </NavButton>
+                    </NavButton> */}
                     <NavButton onClick={() => navigate("/servicos")}>
                         Serviços
                     </NavButton>

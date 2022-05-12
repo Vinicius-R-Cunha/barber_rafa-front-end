@@ -1,139 +1,183 @@
 import styled from "styled-components";
 
-const ContactContainer = styled.div`
+const Container = styled.div`
     width: 100%;
 
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 
-    background-color: #f2f2f2;
+    padding-top: 112px;
+
+    background-color: #252525;
 `;
 
-const ContactUsDiv = styled.div`
+const InfosContainer = styled.div`
+    width: 79%;
+
+    display: flex;
+    justify-content: space-between;
+
+    padding-bottom: 112px;
+`;
+
+const Info = styled.div`
+    width: 370px;
+    height: 350px;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    padding: 80px 0;
+    background-color: #2c2c2c;
 
-    .contact-container {
-        width: 500px;
+    .title {
+        font-family: "Teko";
+        font-size: 2.188rem;
+        font-weight: 500;
+        line-height: 2em;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #e1e1e1;
 
-        .contact-title {
-            font-size: 40px;
-            font-weight: 700;
-            text-transform: uppercase;
+        margin-top: 15px;
+    }
 
-            margin-bottom: 42px;
-        }
+    .description {
+        height: 60px;
 
-        .button-phone-div {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
+        font-family: "Montserrat";
+        font-size: 1.125rem;
+        font-weight: 400;
+        line-height: 1.667em;
+        letter-spacing: 0;
+        color: #8d8d8d;
+        text-align: center;
 
-            margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+`;
 
-            .phone {
-                font-size: 30px;
-                line-height: 23px;
-                color: rgba(0, 0, 0, 0.7);
-            }
-        }
+const FormContainer = styled.div`
+    width: 79%;
 
-        .contact-about {
-            font-size: 20px;
-            line-height: 23px;
-            color: rgba(0, 0, 0, 0.59);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-            margin-bottom: 15px;
-        }
+    padding-bottom: 90px;
 
-        .whatsapp-button {
-            all: unset;
+    .form-title {
+        font-family: "Teko";
+        font-size: 4.375rem;
+        font-weight: 500;
+        line-height: 1em;
+        letter-spacing: 1.8px;
+        text-transform: uppercase;
+        color: #e1e1e1;
+    }
 
-            width: 190px;
-            height: 50px;
+    span {
+        color: #96885f;
+    }
 
-            font-size: 18px;
-            letter-spacing: 2px;
-            color: #ffffff;
+    .separator {
+        width: 80px;
+        height: 2px;
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        background-color: #454545;
 
-            margin: 20px 0;
+        margin: 40px 0;
+    }
 
-            background-color: #000000;
+    .form-description {
+        font-family: "Montserrat";
+        font-size: 1.125rem;
+        font-weight: 400;
+        line-height: 1.667em;
+        letter-spacing: 0;
+        color: #8d8d8d;
+        text-align: center;
 
-            border-radius: 300px;
+        margin-bottom: 40px;
+    }
+`;
 
-            cursor: pointer;
+const ContactForm = styled.form`
+    width: 100%;
 
-            img {
-                width: 30px;
-                height: 30px;
+    font-family: "Montserrat";
+    font-size: 0.875rem;
+    font-weight: 800;
+    line-height: 1em;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    color: #e1e1e1;
 
-                margin-left: 15px;
-            }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-            :hover {
-                background-color: rgba(0, 0, 0, 0.8);
-            }
+    gap: 28px;
+
+    input {
+        all: unset;
+
+        width: 100%;
+        height: 80px;
+
+        text-indent: 50px;
+
+        box-sizing: border-box;
+        border-radius: 4px;
+        border: 5px solid #454545;
+
+        ::placeholder {
+            color: #8d8d8d;
         }
     }
 
-    @media (max-width: 879px) {
-        .contact-container {
-            width: 500px;
+    textarea {
+        all: unset;
 
-            .contact-title {
-                font-size: 30px;
-            }
+        width: 100%;
 
-            .button-phone-div {
-                .phone {
-                    font-size: 25px;
-                }
-            }
+        overflow-wrap: break-word;
+        box-sizing: border-box;
 
-            .contact-about {
-                font-size: 17px;
-            }
+        padding: 30px 50px;
 
-            .whatsapp-button {
-                width: 190px;
-                height: 50px;
+        border-radius: 4px;
+        border: 5px solid #454545;
 
-                font-size: 15px;
-
-                img {
-                    width: 30px;
-                    height: 30px;
-                }
-            }
+        ::placeholder {
+            color: #8d8d8d;
         }
     }
 
-    @media (max-width: 629px) {
-        padding: 60px 0;
+    button {
+        all: unset;
 
-        .contact-container {
-            width: 90%;
+        width: 260px;
+        height: 70px;
 
-            .button-phone-div {
-                flex-direction: column;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-                .phone {
-                    font-size: 21px;
+        border-radius: 4px;
+        border: 5px solid #96885f;
 
-                    margin: 15px 0;
-                }
-            }
+        cursor: pointer;
+
+        :hover {
+            transition: 0.3s ease-out;
+            background-color: #96885f;
         }
     }
 `;
 
-export { ContactUsDiv, ContactContainer };
+export { Container, InfosContainer, Info, FormContainer, ContactForm };
