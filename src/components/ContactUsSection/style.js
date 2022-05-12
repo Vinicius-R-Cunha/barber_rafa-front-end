@@ -10,19 +10,33 @@ const Container = styled.div`
     padding-top: 112px;
 
     background-color: #252525;
+
+    @media (max-width: 768px) {
+        padding-top: 50px;
+    }
 `;
 
 const InfosContainer = styled.div`
-    width: 79%;
+    width: 1170px;
 
     display: flex;
     justify-content: space-between;
 
     padding-bottom: 112px;
+
+    @media (max-width: 1170px) {
+        width: 90%;
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+
+        gap: 30px;
+    }
 `;
 
 const Info = styled.div`
-    width: 370px;
+    width: 31.6%;
     height: 350px;
 
     display: flex;
@@ -58,6 +72,21 @@ const Info = styled.div`
         display: flex;
         flex-direction: column;
         justify-content: center;
+    }
+
+    @media (max-width: 768px) {
+        width: 100%;
+        height: auto;
+
+        padding: 15px 0;
+
+        .title {
+            font-size: 1.063rem;
+        }
+
+        .description {
+            font-size: 1rem;
+        }
     }
 `;
 
@@ -104,6 +133,16 @@ const FormContainer = styled.div`
 
         margin-bottom: 40px;
     }
+
+    @media (max-width: 768px) {
+        .form-title {
+            font-size: 2.375rem;
+        }
+
+        .form-description {
+            font-size: 1.125rem;
+        }
+    }
 `;
 
 const Button = styled.button`
@@ -137,6 +176,17 @@ const Button = styled.button`
         font-size: 1.875rem;
 
         margin-left: 10px;
+    }
+
+    @media (max-width: 768px) {
+        width: 200px;
+        height: 50px;
+
+        font-size: 0.775rem;
+
+        .whats-icon {
+            font-size: 1.475rem;
+        }
     }
 `;
 

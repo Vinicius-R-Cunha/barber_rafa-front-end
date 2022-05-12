@@ -47,10 +47,12 @@ export default function ContactUsSection() {
                 <div className="separator"></div>
                 <p className="form-description">Mande uma mensagem:</p>
                 <Button
-                    onClick={window.open(
-                        `https://api.whatsapp.com/send?phone=5511993457220`,
-                        "_blank"
-                    )}
+                    onClick={() =>
+                        window.open(
+                            `https://api.whatsapp.com/send?phone=5511993457220`,
+                            "_blank"
+                        )
+                    }
                 >
                     Enviar mensagem
                     <BsWhatsapp className="whats-icon" />

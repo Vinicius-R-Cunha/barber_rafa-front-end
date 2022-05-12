@@ -14,13 +14,21 @@ const Container = styled.footer`
     img {
         width: 150px;
 
-        margin-bottom: 30px;
+        margin-bottom: 10px;
+    }
+
+    @media (max-width: 768px) {
+        padding: 0 0 40px 0;
     }
 `;
 
 const NavButtons = styled.div`
+    width: 100%;
+
     display: flex;
+    justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 `;
 
 const NavButton = styled.div`
@@ -29,7 +37,7 @@ const NavButton = styled.div`
     font-size: 1.163rem;
     letter-spacing: 0px;
     font-weight: 400;
-    line-height: 1.176em;
+    line-height: 3.076em;
     color: #e1e1e1;
 
     display: flex;
@@ -43,6 +51,10 @@ const NavButton = styled.div`
     :hover {
         color: #96885f;
         transition: 0.1s ease-in-out;
+    }
+
+    @media (max-width: 768px) {
+        font-size: 0.963rem;
     }
 `;
 
