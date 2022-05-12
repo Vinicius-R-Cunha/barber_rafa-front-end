@@ -1,62 +1,58 @@
-import { ServicesDiv, Services, Service } from "./style";
-import React, { useEffect, useState } from "react";
-import * as api from "../../services/api";
+import { useState } from "react";
+import {
+    Container,
+    Category,
+    Services,
+    Service,
+    NamePrice,
+    Description,
+    ButtonContainer,
+    ReadMore,
+} from "./style";
 
-export default function ServicesSection() {
-    const [categoriesArray, setCategoriesArrayArray] = useState([]);
-
-    useEffect(() => {
-        renderPage();
-    }, []);
-
-    async function renderPage() {
-        const categories = await api.getCategories();
-        setCategoriesArrayArray(categories);
-    }
-
+export default function ServicesSection({ categoriesArray }) {
     function formatPrice(price) {
         const newPrice = price / 100;
         return newPrice.toFixed(2).replace(".", ",");
     }
 
-    if (categoriesArray.length === 0) {
-        return <h1>Carregando...</h1>;
-    }
-
     return (
-        <ServicesDiv name="services">
+        <Container>
             {categoriesArray?.map((category) => {
                 return (
-                    <React.Fragment key={category?._id}>
-                        <p className="services-title">{category?.title}</p>
+                    <Category key={category?._id}>
+                        <p className="category-title">{category?.title}</p>
                         <Services>
-                            {category?.services?.map((services) => {
+                            {category?.services?.map((service) => {
                                 return (
-                                    <Service key={services?._id}>
-                                        <div className="name-price-div">
-                                            <p className="service-name">
-                                                {services?.name}
+                                    <Service key={service?._id}>
+                                        <NamePrice>
+                                            <p className="name">
+                                                {service?.name}
                                             </p>
-                                            <p className="service-price">{`R$ ${formatPrice(
-                                                services?.price
+                                            <p className="price">{`R$ ${formatPrice(
+                                                service?.price
                                             )}`}</p>
-                                        </div>
-                                        <p className="description">
-                                            {services?.description}
-                                        </p>
-                                        <div className="button-div">
+                                        </NamePrice>
+                                        <Description>
+                                            {service?.description}
+                                        </Description>
+                                        {service?.description !== "" && (
+                                            <ReadMore>Ler mais...</ReadMore>
+                                        )}
+                                        <ButtonContainer>
                                             <p className="duration">
-                                                {services?.duration}
+                                                {service?.duration}
                                             </p>
                                             <button>Reservar</button>
-                                        </div>
+                                        </ButtonContainer>
                                     </Service>
                                 );
                             })}
                         </Services>
-                    </React.Fragment>
+                    </Category>
                 );
             })}
-        </ServicesDiv>
+        </Container>
     );
 }
