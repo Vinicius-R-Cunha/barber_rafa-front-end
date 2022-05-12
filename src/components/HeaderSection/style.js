@@ -92,6 +92,7 @@ const NavButton = styled.div`
     letter-spacing: 0px;
     font-weight: 400;
     line-height: 1.176em;
+    color: #e1e1e1;
 
     display: flex;
     align-items: center;
