@@ -195,7 +195,7 @@ const ButtonContainer = styled.div`
     button {
         all: unset;
 
-        padding: 5px 10px;
+        padding: 6px 10px;
 
         display: flex;
         justify-content: center;
