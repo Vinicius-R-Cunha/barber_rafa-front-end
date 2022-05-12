@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Container = styled.div`
     width: 100%;
-    height: ${(props) => (props.page === "home" ? "100vh" : "60vh")};
+    height: ${(props) => (props.page === "home" ? "960px" : "537px")};
 
     display: flex;
     flex-direction: column;
@@ -44,15 +44,27 @@ const Container = styled.div`
     }
 
     @media (max-width: 1100px) {
-        height: ${(props) => (props.page === "home" ? "570px" : "450px")};
+        height: ${(props) => (props.page === "home" ? "570px" : "302px")};
     }
 
-    @media (max-width: 768px) {
-        height: ${(props) => (props.page === "home" ? "500px" : "320px")};
+    @media (max-width: 767px) {
+        height: ${(props) => (props.page === "home" ? "500px" : "220px")};
     }
 
-    @media (max-width: 390px) {
-        height: ${(props) => (props.page === "home" ? "430px" : "300px")};
+    @media (max-width: 500px) {
+        height: ${(props) => (props.page === "home" ? "430px" : "220px")};
+    }
+
+    @media (max-width: 426px) {
+        height: ${(props) => (props.page === "home" ? "400px" : "220px")};
+    }
+
+    @media (max-width: 418px) {
+        height: ${(props) => (props.page === "home" ? "450px" : "220px")};
+    }
+
+    @media (max-width: 337px) {
+        height: ${(props) => (props.page === "home" ? "480px" : "220px")};
     }
 `;
 
@@ -130,7 +142,7 @@ const About = styled.div`
     text-transform: uppercase;
     color: #e1e1e1;
 
-    margin-top: ${(props) => (props.page === "home" ? "12%" : "9%")};
+    margin-top: ${(props) => (props.page === "home" ? "200px" : "95px")};
 
     display: flex;
     flex-direction: column;
@@ -145,23 +157,29 @@ const About = styled.div`
     @media (max-width: 1100px) {
         font-size: 4.375rem;
 
-        margin-top: ${(props) => (props.page === "home" ? "9%" : "15%")};
+        margin-top: ${(props) => (props.page === "home" ? "85px" : "45px")};
     }
 
-    @media (max-width: 768px) {
-        font-size: 2.825rem;
+    @media (max-width: 767px) {
+        font-size: 3.225rem;
 
-        margin-top: ${(props) => (props.page === "home" ? "9%" : "10%")};
+        margin-top: ${(props) => (props.page === "home" ? "75px" : "20px")};
     }
 
-    @media (max-width: 610px) {
-        font-size: 2.825rem;
+    @media (max-width: 500px) {
+        font-size: 2.7rem;
 
-        margin-top: ${(props) => (props.page === "home" ? "15%" : "15%")};
+        margin-top: ${(props) => (props.page === "home" ? "78px" : "20px")};
     }
 
-    @media (max-width: 390px) {
-        font-size: 2.125rem;
+    @media (max-width: 500px) {
+        font-size: 2.7rem;
+
+        margin-top: ${(props) => (props.page === "home" ? "78px" : "20px")};
+    }
+
+    @media (max-width: 426px) {
+        margin-top: ${(props) => (props.page === "home" ? "50px" : "20px")};
     }
 `;
 
@@ -193,14 +211,16 @@ const SocialIcons = styled.div`
         margin: 23px 0 38px;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 767px) {
         font-size: 1.225rem;
 
         margin: 20px 0 30px;
     }
 
-    @media (max-width: 390px) {
+    @media (max-width: 500px) {
         font-size: 1.025rem;
+
+        margin: 10px 0 19px;
     }
 `;
 
@@ -240,12 +260,12 @@ const BookButton = styled.button`
         border: 3px solid #96885f;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 767px) {
         width: 245px;
         height: 50px;
     }
 
-    @media (max-width: 390px) {
+    @media (max-width: 500px) {
         width: 205px;
         height: 40px;
 

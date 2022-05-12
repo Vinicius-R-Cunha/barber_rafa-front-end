@@ -3,9 +3,8 @@ import styled from "styled-components";
 const Container = styled.div`
     display: none;
 
-    height: 90px;
-
     width: 100%;
+    height: 90px;
 
     margin-top: 19px;
 
@@ -24,7 +23,7 @@ const Container = styled.div`
     @media (max-width: 1150px) {
         display: flex;
         justify-content: space-between;
-        align-items: center;
+
         .logo-image-tablet {
             height: 120px;
         }
@@ -48,9 +47,10 @@ const Icons = styled.div`
 
     display: flex;
 
-    margin-right: 6%;
+    margin-top: 10px;
+    margin-right: 35px;
 
-    gap: 2%;
+    gap: 14%;
 
     .tablet-icon {
         margin-left: 10px;
