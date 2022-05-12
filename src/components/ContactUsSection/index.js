@@ -3,11 +3,12 @@ import {
     Info,
     Container,
     FormContainer,
-    ContactForm,
+    Button,
 } from "./style";
 import contact from "../../assets/contact.png";
 import location from "../../assets/location.png";
 import schedule from "../../assets/schedule.png";
+import { BsWhatsapp } from "react-icons/bs";
 
 export default function ContactUsSection() {
     // lat: -23.525438021785874, lng: -46.50453847304112
@@ -45,16 +46,15 @@ export default function ContactUsSection() {
                 </p>
                 <div className="separator"></div>
                 <p className="form-description">Mande uma mensagem:</p>
-                <ContactForm>
-                    <input type="text" placeholder="nome" required />
-                    <textarea
-                        placeholder="mensagem"
-                        cols="30"
-                        rows="12"
-                        required
-                    ></textarea>
-                    <button>Enviar mensagem</button>
-                </ContactForm>
+                <Button
+                    onClick={window.open(
+                        `https://api.whatsapp.com/send?phone=5511993457220`,
+                        "_blank"
+                    )}
+                >
+                    Enviar mensagem
+                    <BsWhatsapp className="whats-icon" />
+                </Button>
             </FormContainer>
         </Container>
     );

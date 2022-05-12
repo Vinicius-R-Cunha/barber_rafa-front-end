@@ -68,7 +68,7 @@ const FormContainer = styled.div`
     flex-direction: column;
     align-items: center;
 
-    padding-bottom: 90px;
+    padding-bottom: 70px;
 
     .form-title {
         font-family: "Teko";
@@ -106,78 +106,38 @@ const FormContainer = styled.div`
     }
 `;
 
-const ContactForm = styled.form`
-    width: 100%;
+const Button = styled.button`
+    all: unset;
+
+    width: 260px;
+    height: 70px;
 
     font-family: "Montserrat";
     font-size: 0.875rem;
     font-weight: 800;
     line-height: 1em;
     letter-spacing: 0.7px;
-    text-transform: uppercase;
     color: #e1e1e1;
 
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
 
-    gap: 28px;
+    border-radius: 4px;
+    border: 5px solid #96885f;
 
-    input {
-        all: unset;
+    cursor: pointer;
 
-        width: 100%;
-        height: 80px;
-
-        text-indent: 50px;
-
-        box-sizing: border-box;
-        border-radius: 4px;
-        border: 5px solid #454545;
-
-        ::placeholder {
-            color: #8d8d8d;
-        }
+    :hover {
+        transition: 0.3s ease-out;
+        background-color: #96885f;
     }
 
-    textarea {
-        all: unset;
+    .whats-icon {
+        font-size: 1.875rem;
 
-        width: 100%;
-
-        overflow-wrap: break-word;
-        box-sizing: border-box;
-
-        padding: 30px 50px;
-
-        border-radius: 4px;
-        border: 5px solid #454545;
-
-        ::placeholder {
-            color: #8d8d8d;
-        }
-    }
-
-    button {
-        all: unset;
-
-        width: 260px;
-        height: 70px;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        border-radius: 4px;
-        border: 5px solid #96885f;
-
-        cursor: pointer;
-
-        :hover {
-            transition: 0.3s ease-out;
-            background-color: #96885f;
-        }
+        margin-left: 10px;
     }
 `;
 
-export { Container, InfosContainer, Info, FormContainer, ContactForm };
+export { Container, InfosContainer, Info, FormContainer, Button };
