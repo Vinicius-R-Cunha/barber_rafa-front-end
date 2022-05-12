@@ -156,7 +156,7 @@ const About = styled.div`
     @media (max-width: 610px) {
         font-size: 2.825rem;
 
-        margin-top: ${(props) => (props.page === "home" ? "9%" : "15%")};
+        margin-top: ${(props) => (props.page === "home" ? "15%" : "15%")};
     }
 
     @media (max-width: 390px) {

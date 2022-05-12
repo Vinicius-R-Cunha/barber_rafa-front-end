@@ -14,7 +14,9 @@ const Container = styled.div`
     .logo-image-tablet {
         height: 110px;
 
-        margin-left: 23px;
+        margin-left: 0;
+
+        object-fit: cover;
 
         cursor: pointer;
     }
@@ -23,6 +25,9 @@ const Container = styled.div`
         display: flex;
         justify-content: space-between;
         align-items: center;
+        .logo-image-tablet {
+            height: 120px;
+        }
     }
 
     @media (max-width: 450px) {
@@ -43,7 +48,7 @@ const Icons = styled.div`
 
     display: flex;
 
-    margin-right: 38px;
+    margin-right: 6%;
 
     gap: 2%;
 
