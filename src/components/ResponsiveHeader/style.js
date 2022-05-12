@@ -7,23 +7,19 @@ const Container = styled.div`
 
     width: 100%;
 
-    margin-top: 12px;
+    margin-top: 19px;
 
     z-index: 1;
 
     .logo-image-tablet {
-        width: 90px;
-        height: 90px;
+        height: 110px;
 
-        margin-left: 28px;
-
-        border-radius: 4px;
-        box-shadow: -2px 5px 25px black;
+        margin-left: 23px;
 
         cursor: pointer;
     }
 
-    @media (max-width: 1100px) {
+    @media (max-width: 1150px) {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -31,15 +27,13 @@ const Container = styled.div`
 
     @media (max-width: 450px) {
         .logo-image-tablet {
-            width: 20%;
-            height: auto;
+            height: 100%;
         }
     }
 
     @media (max-width: 330px) {
         .logo-image-tablet {
-            width: 23%;
-            height: auto;
+            height: 100%;
         }
     }
 `;

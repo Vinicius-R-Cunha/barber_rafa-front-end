@@ -68,13 +68,7 @@ const HeaderDiv = styled.div`
     z-index: 1;
 
     .logo-image {
-        width: 130px;
-        height: 130px;
-
-        margin-left: 28px;
-
-        border-radius: 4px;
-        box-shadow: -2px 5px 25px black;
+        height: 170px;
 
         cursor: pointer;
     }
@@ -83,7 +77,7 @@ const HeaderDiv = styled.div`
         width: 95%;
     }
 
-    @media (max-width: 1100px) {
+    @media (max-width: 1150px) {
         display: none;
     }
 `;
@@ -135,7 +129,7 @@ const About = styled.div`
     text-transform: uppercase;
     color: #e1e1e1;
 
-    margin-top: ${(props) => (props.page === "home" ? "15%" : "9%")};
+    margin-top: ${(props) => (props.page === "home" ? "12%" : "9%")};
 
     display: flex;
     flex-direction: column;

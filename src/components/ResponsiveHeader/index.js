@@ -1,7 +1,7 @@
 import { Container, Icons } from "./style";
 import { MdOutlineMenu } from "react-icons/md";
 import { BsPersonCircle } from "react-icons/bs";
-import logo from "../../assets/logo.jpg";
+import logo from "../../assets/logo.png";
 
 export default function ResponsiveHeader() {
     return (

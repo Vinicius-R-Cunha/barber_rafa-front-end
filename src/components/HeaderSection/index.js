@@ -9,7 +9,7 @@ import {
 } from "./style";
 // import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../../assets/logo.jpg";
+import logo from "../../assets/logo.png";
 import background from "../../assets/background.jpeg";
 import { BsPersonCircle } from "react-icons/bs";
 import { RiFacebookFill } from "react-icons/ri";
@@ -32,11 +32,15 @@ export default function HeaderSection({ page, title }) {
                     <NavButton onClick={() => navigate("/")}>
                         Página Inicial
                     </NavButton>
-                    <NavButton>Horários</NavButton>
-                    <NavButton onClick={() => navigate("/services")}>
+                    <NavButton onClick={() => navigate("/horarios")}>
+                        Horários
+                    </NavButton>
+                    <NavButton onClick={() => navigate("/servicos")}>
                         Serviços
                     </NavButton>
-                    <NavButton>Contato</NavButton>
+                    <NavButton onClick={() => navigate("/contato")}>
+                        Contato
+                    </NavButton>
                     <NavButton>
                         <BsPersonCircle className="login-icon" />
                         <NavButton>Entrar/Inscrever-se</NavButton>
@@ -72,7 +76,7 @@ export default function HeaderSection({ page, title }) {
                         />
                     </SocialIcons>
 
-                    <BookButton onClick={() => navigate("/services")}>
+                    <BookButton onClick={() => navigate("/servicos")}>
                         Agende seu corte
                     </BookButton>
                 </>
