@@ -108,7 +108,7 @@ const NamePrice = styled.div`
     justify-content: space-between;
     align-items: center;
 
-    padding-top: 35px;
+    padding-top: 16px;
 
     .name {
         width: 60%;

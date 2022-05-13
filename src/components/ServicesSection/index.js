@@ -18,6 +18,7 @@ export default function ServicesSection({ categoriesArray }) {
     function readMore(service) {
         setModalIsOpen(true);
         setServiceData(service);
+        document.body.style.overflow = "hidden";
     }
 
     function handleReservation(service) {
@@ -87,6 +88,7 @@ export default function ServicesSection({ categoriesArray }) {
                 modalIsOpen={modalIsOpen}
                 setModalIsOpen={setModalIsOpen}
                 serviceData={serviceData}
+                formatPrice={formatPrice}
             />
         </>
     );
