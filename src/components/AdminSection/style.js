@@ -4,7 +4,12 @@ const Container = styled.div`
     width: 100%;
     height: 100vh;
 
-    background-color: green;
+    display: flex;
+    justify-content: center;
+
+    padding-top: 112px;
+
+    background-color: #252525;
 `;
 
 export { Container };

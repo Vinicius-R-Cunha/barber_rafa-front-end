@@ -1,15 +1,17 @@
 import HeaderSection from "../../components/HeaderSection";
 import ServicesSection from "../../components/ServicesSection";
 import Footer from "../../components/Footer";
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import * as api from "../../services/api";
+import DataContext from "../../contexts/DataContext";
 
 export default function ServicesPage() {
-    const [categoriesArray, setCategoriesArray] = useState([]);
+    const { categoriesArray, setCategoriesArray } = useContext(DataContext);
 
     useEffect(() => {
         renderPage();
-    });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     async function renderPage() {
         const categories = await api.getCategories();

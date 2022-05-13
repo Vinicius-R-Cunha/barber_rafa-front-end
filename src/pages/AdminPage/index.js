@@ -1,9 +1,11 @@
-import { Container } from "./style";
+import AdminSection from "../../components/AdminSection";
+import Footer from "../../components/Footer";
 
 export default function AdminPage() {
     return (
-        <Container>
-            <div>teste</div>
-        </Container>
+        <>
+            <AdminSection />
+            <Footer />
+        </>
     );
 }
