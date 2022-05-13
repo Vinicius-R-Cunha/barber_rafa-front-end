@@ -31,12 +31,15 @@ export default function HeaderSection({ page, title }) {
                     <NavButton onClick={() => navigate("/servicos")}>
                         Serviços
                     </NavButton>
+                    <NavButton onClick={() => navigate("/sobre")}>
+                        Sobre
+                    </NavButton>
                     <NavButton onClick={() => navigate("/contato")}>
                         Contato
                     </NavButton>
                     <NavButton>
                         <BsPersonCircle className="login-icon" />
-                        <NavButton>Entrar/Inscrever-se</NavButton>
+                        <p>Entrar/Inscrever-se</p>
                     </NavButton>
                 </NavButtons>
             </HeaderDiv>
@@ -55,9 +58,7 @@ export default function HeaderSection({ page, title }) {
                 </>
             )}
 
-            {page === "services" && <About>{title}</About>}
-            {page === "schedule" && <About>Horários</About>}
-            {page === "contact-us" && <About>Contato</About>}
+            {page !== "home" && <About>{title}</About>}
         </Container>
     );
 }

@@ -8,7 +8,7 @@ const Container = styled.div`
 
     display: flex;
 
-    gap: 25px;
+    gap: 15px;
 
     z-index: 1;
 

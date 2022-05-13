@@ -1,13 +1,11 @@
 import HeaderSection from "../../components/HeaderSection";
-import AboutSection from "../../components/AboutSection";
-// import Footer from "../../components/Footer";
+import Footer from "../../components/Footer";
 
-export default function Home() {
+export default function HomePage() {
     return (
         <>
             <HeaderSection page={"home"} />
-            <AboutSection />
-            {/* <Footer /> */}
+            <Footer />
         </>
     );
 }

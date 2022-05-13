@@ -15,6 +15,7 @@ export default function Footer() {
                 <NavButton onClick={() => navigate("/servicos")}>
                     Serviços
                 </NavButton>
+                <NavButton onClick={() => navigate("/sobre")}>Sobre</NavButton>
                 <NavButton onClick={() => navigate("/contato")}>
                     Contato
                 </NavButton>

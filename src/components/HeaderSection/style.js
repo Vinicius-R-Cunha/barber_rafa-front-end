@@ -130,6 +130,10 @@ const NavButton = styled.div`
 
         cursor: pointer;
     }
+
+    p {
+        margin-left: 30px;
+    }
 `;
 
 const About = styled.div`
@@ -144,7 +148,7 @@ const About = styled.div`
 
     margin-top: ${(props) => (props.page === "home" ? "200px" : "95px")};
 
-    margin-bottom: 50px;
+    margin-bottom: 90px;
 
     display: flex;
     flex-direction: column;
@@ -160,6 +164,8 @@ const About = styled.div`
         font-size: 4.375rem;
 
         margin-top: ${(props) => (props.page === "home" ? "85px" : "45px")};
+
+        margin-bottom: 50px;
     }
 
     @media (max-width: 767px) {
