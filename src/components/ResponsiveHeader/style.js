@@ -8,7 +8,9 @@ const Container = styled.div`
 
     margin-top: 19px;
 
-    z-index: 1;
+    position: relative;
+
+    z-index: 2;
 
     .logo-image-tablet {
         height: 110px;
@@ -63,4 +65,26 @@ const Icons = styled.div`
     }
 `;
 
-export { Container, Icons };
+const MenuContainer = styled.div`
+    width: 100%;
+
+    background-color: #252525;
+
+    position: absolute;
+    top: 70px;
+
+    box-shadow: -2px 5px 15px rgba(0, 0, 0, 0.7);
+`;
+
+const NavButton = styled.div`
+    width: 100%;
+
+    font-family: "Montserrat";
+    font-size: 1rem;
+    font-weight: 400;
+    color: #e1e1e1;
+
+    padding: 15px;
+`;
+
+export { Container, Icons, MenuContainer, NavButton };
