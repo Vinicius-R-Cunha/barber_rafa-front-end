@@ -5,8 +5,11 @@ import logo from "../../assets/logo.png";
 import { useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import UserContext from "../../contexts/UserContext";
 
 export default function ResponsiveHeader() {
+    const { openAuthenticationModal } = useContext(UserContext);
     const [menuIsOpen, setMenuIsOpen] = useState(false);
 
     const navigate = useNavigate();
@@ -35,7 +38,10 @@ export default function ResponsiveHeader() {
                         className="tablet-icon"
                     />
                 )}
-                <BsPersonCircle className="tablet-icon" />
+                <BsPersonCircle
+                    onClick={() => openAuthenticationModal()}
+                    className="tablet-icon"
+                />
             </Icons>
 
             {menuIsOpen && (
@@ -51,9 +57,6 @@ export default function ResponsiveHeader() {
                     </NavButton>
                     <NavButton onClick={() => navigateToPage("/contato")}>
                         Contato
-                    </NavButton>
-                    <NavButton onClick={() => navigateToPage("/")}>
-                        Entrar/Inscrever-se
                     </NavButton>
                 </MenuContainer>
             )}

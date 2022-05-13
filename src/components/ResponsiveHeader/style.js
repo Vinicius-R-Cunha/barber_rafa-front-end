@@ -84,7 +84,7 @@ const NavButton = styled.div`
     font-weight: 400;
     color: #e1e1e1;
 
-    padding: 15px;
+    padding: 19px;
 `;
 
 export { Container, Icons, MenuContainer, NavButton };

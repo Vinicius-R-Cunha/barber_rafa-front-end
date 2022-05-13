@@ -1,8 +1,11 @@
 import { Container, NavButtons, NavButton } from "./style";
 import logo from "../../assets/logo.png";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import UserContext from "../../contexts/UserContext";
 
 export default function Footer() {
+    const { openAuthenticationModal } = useContext(UserContext);
     const navigate = useNavigate();
 
     return (
@@ -19,7 +22,7 @@ export default function Footer() {
                 <NavButton onClick={() => navigate("/contato")}>
                     Contato
                 </NavButton>
-                <NavButton onClick={() => navigate("/contato")}>
+                <NavButton onClick={() => openAuthenticationModal()}>
                     Entrar/Increver-se
                 </NavButton>
             </NavButtons>

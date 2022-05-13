@@ -11,8 +11,11 @@ import logo from "../../assets/logo.png";
 import background from "../../assets/background.jpeg";
 import { BsPersonCircle } from "react-icons/bs";
 import ResponsiveHeader from "../ResponsiveHeader";
+import { useContext } from "react";
+import UserContext from "../../contexts/UserContext";
 
 export default function HeaderSection({ page, title }) {
+    const { openAuthenticationModal } = useContext(UserContext);
     const navigate = useNavigate();
 
     return (
@@ -37,7 +40,7 @@ export default function HeaderSection({ page, title }) {
                     <NavButton onClick={() => navigate("/contato")}>
                         Contato
                     </NavButton>
-                    <NavButton>
+                    <NavButton onClick={() => openAuthenticationModal()}>
                         <BsPersonCircle className="login-icon" />
                         <p>Entrar/Inscrever-se</p>
                     </NavButton>
