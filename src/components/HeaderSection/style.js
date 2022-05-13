@@ -144,6 +144,8 @@ const About = styled.div`
 
     margin-top: ${(props) => (props.page === "home" ? "200px" : "95px")};
 
+    margin-bottom: 50px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -180,47 +182,6 @@ const About = styled.div`
 
     @media (max-width: 426px) {
         margin-top: ${(props) => (props.page === "home" ? "50px" : "20px")};
-    }
-`;
-
-const SocialIcons = styled.div`
-    font-size: 2.025rem;
-    color: #e1e1e1;
-
-    margin: 35px 0 52px;
-
-    display: flex;
-
-    gap: 15px;
-
-    z-index: 1;
-
-    .icon {
-        padding: 5px;
-
-        border-radius: 4px;
-
-        background-color: #96885f;
-
-        cursor: pointer;
-    }
-
-    @media (max-width: 1100px) {
-        font-size: 1.525rem;
-
-        margin: 23px 0 38px;
-    }
-
-    @media (max-width: 767px) {
-        font-size: 1.225rem;
-
-        margin: 20px 0 30px;
-    }
-
-    @media (max-width: 500px) {
-        font-size: 1.025rem;
-
-        margin: 10px 0 19px;
     }
 `;
 
@@ -273,12 +234,4 @@ const BookButton = styled.button`
     }
 `;
 
-export {
-    Container,
-    HeaderDiv,
-    BookButton,
-    About,
-    NavButtons,
-    NavButton,
-    SocialIcons,
-};
+export { Container, HeaderDiv, BookButton, About, NavButtons, NavButton };
