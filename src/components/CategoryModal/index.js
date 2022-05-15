@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import UserContext from "../../contexts/UserContext";
 import * as api from "../../services/api";
@@ -14,6 +14,13 @@ export default function CategoryModal({
     const { token } = useContext(UserContext);
 
     const [title, setTitle] = useState("");
+
+    useEffect(() => {
+        if (type === "edit") {
+            setTitle(categoryTitle);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [type, categoryModalIsOpen]);
 
     function closeModal() {
         document.body.style.overflow = "unset";

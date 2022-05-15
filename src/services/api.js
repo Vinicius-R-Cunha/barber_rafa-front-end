@@ -77,6 +77,43 @@ async function editCategory(token, title, data) {
     }
 }
 
+async function createService(token, categoryTitle, data) {
+    try {
+        const config = createConfig(token);
+        await axios.post(`${BASE_URL}/services/${categoryTitle}`, data, config);
+        return true;
+    } catch (error) {
+        console.log(error.response);
+    }
+}
+
+async function deleteService(token, categoryTitle, serviceTitle) {
+    try {
+        const config = createConfig(token);
+        await axios.delete(
+            `${BASE_URL}/services/${categoryTitle}/${serviceTitle}`,
+            config
+        );
+        return true;
+    } catch (error) {
+        console.log(error.response);
+    }
+}
+
+async function editService(token, categoryTitle, serviceTitle, data) {
+    try {
+        const config = createConfig(token);
+        await axios.put(
+            `${BASE_URL}/services/${categoryTitle}/${serviceTitle}`,
+            data,
+            config
+        );
+        return true;
+    } catch (error) {
+        console.log(error.response);
+    }
+}
+
 export {
     validateToken,
     signUp,
@@ -85,4 +122,7 @@ export {
     createCategory,
     deleteCategory,
     editCategory,
+    createService,
+    deleteService,
+    editService,
 };

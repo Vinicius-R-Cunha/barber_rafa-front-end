@@ -200,46 +200,14 @@ const Description = styled.div`
     width: 90%;
 
     font-family: "Montserrat";
-    font-size: 1.125rem;
+    font-size: 0.725rem;
     font-weight: 400;
     line-height: 1.167em;
     letter-spacing: 0;
     color: #8d8d8d;
 
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-
-    position: absolute;
-    bottom: 110px;
-
     @media (max-width: 1023px) {
-        font-size: 0.888rem;
-    }
-`;
-
-const ReadMore = styled.p`
-    width: 85%;
-
-    font-family: "Montserrat";
-    font-size: 0.875rem;
-    font-weight: 800;
-    line-height: 1em;
-    letter-spacing: 0.7px;
-    text-transform: uppercase;
-    color: #96885f;
-
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-
-    position: absolute;
-    bottom: 75px;
-
-    cursor: pointer;
-
-    @media (max-width: 1023px) {
-        font-size: 0.675rem;
+        font-size: 0.725rem;
     }
 `;
 
@@ -280,11 +248,6 @@ const ButtonContainer = styled.div`
         border: 4px solid #96885f;
 
         cursor: pointer;
-
-        :hover {
-            transition: 0.3s ease-out;
-            background-color: #96885f;
-        }
     }
 
     @media (max-width: 1023px) {
@@ -300,7 +263,6 @@ export {
     NamePrice,
     Description,
     ButtonContainer,
-    ReadMore,
     AdminCategory,
     AdminService,
 };

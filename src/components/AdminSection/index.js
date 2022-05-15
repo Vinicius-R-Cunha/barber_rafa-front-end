@@ -1,6 +1,6 @@
 import { useState } from "react";
-import ReadMoreModal from "../ReadMoreModal";
 import CategoryModal from "../CategoryModal";
+import ServiceModal from "../ServiceModal";
 import {
     Container,
     Category,
@@ -9,7 +9,6 @@ import {
     NamePrice,
     Description,
     ButtonContainer,
-    ReadMore,
     AdminCategory,
     AdminService,
 } from "./style";
@@ -17,13 +16,15 @@ import { AiFillEdit } from "react-icons/ai";
 import { FaTrashAlt } from "react-icons/fa";
 import { MdOutlineAddCircle } from "react-icons/md";
 
-export default function ServicesSection({ categoriesArray, renderPage }) {
-    const [readMoreIsOpen, setReadMoreIsOpen] = useState(false);
+export default function AdminSection({ categoriesArray, renderPage }) {
     const [serviceData, setServiceData] = useState();
 
     const [categoryTitle, setCategoryTitle] = useState();
-    const [modalType, setModalType] = useState("");
+    const [categoryModalType, setCategoryModalType] = useState("");
     const [categoryModalIsOpen, setCategoryModalIsOpen] = useState(false);
+
+    const [serviceModalType, setServiceModalType] = useState("");
+    const [serviceModalIsOpen, setServiceModalIsOpen] = useState(false);
 
     function editCategory(title) {
         setCategoryModalIsOpen(true);
@@ -31,14 +32,11 @@ export default function ServicesSection({ categoriesArray, renderPage }) {
         document.body.style.overflow = "hidden";
     }
 
-    function readMore(service) {
-        setReadMoreIsOpen(true);
-        setServiceData(service);
+    function editService(categoryTitle, serviceData) {
+        setServiceModalIsOpen(true);
+        setCategoryTitle(categoryTitle);
+        setServiceData(serviceData);
         document.body.style.overflow = "hidden";
-    }
-
-    function handleReservation(service) {
-        console.log(service);
     }
 
     function formatPrice(price) {
@@ -51,7 +49,7 @@ export default function ServicesSection({ categoriesArray, renderPage }) {
             <Container>
                 <button
                     onClick={() => {
-                        setModalType("create");
+                        setCategoryModalType("create");
                         editCategory("");
                     }}
                 >
@@ -67,15 +65,21 @@ export default function ServicesSection({ categoriesArray, renderPage }) {
                                 <div className="admin-category-icons">
                                     <AiFillEdit
                                         onClick={() => {
-                                            setModalType("edit");
+                                            setCategoryModalType("edit");
                                             editCategory(category?.title);
                                         }}
                                         className="cursor-pointer"
                                     />
-                                    <MdOutlineAddCircle className="cursor-pointer" />
+                                    <MdOutlineAddCircle
+                                        onClick={() => {
+                                            setServiceModalType("create");
+                                            editService(category?.title, "");
+                                        }}
+                                        className="cursor-pointer"
+                                    />
                                     <FaTrashAlt
                                         onClick={() => {
-                                            setModalType("delete");
+                                            setCategoryModalType("delete");
                                             editCategory(category?.title);
                                         }}
                                         className="cursor-pointer"
@@ -88,8 +92,30 @@ export default function ServicesSection({ categoriesArray, renderPage }) {
                                     return (
                                         <Service key={service?._id}>
                                             <AdminService>
-                                                <AiFillEdit className="edit-service" />
-                                                <FaTrashAlt className="delete-service" />
+                                                <AiFillEdit
+                                                    onClick={() => {
+                                                        setServiceModalType(
+                                                            "edit"
+                                                        );
+                                                        editService(
+                                                            category?.title,
+                                                            service
+                                                        );
+                                                    }}
+                                                    className="edit-service"
+                                                />
+                                                <FaTrashAlt
+                                                    onClick={() => {
+                                                        setServiceModalType(
+                                                            "delete"
+                                                        );
+                                                        editService(
+                                                            category?.title,
+                                                            service
+                                                        );
+                                                    }}
+                                                    className="delete-service"
+                                                />
                                             </AdminService>
 
                                             <NamePrice>
@@ -103,28 +129,12 @@ export default function ServicesSection({ categoriesArray, renderPage }) {
                                             <Description>
                                                 {service?.description}
                                             </Description>
-                                            {service?.description !== "" && (
-                                                <ReadMore
-                                                    onClick={() =>
-                                                        readMore(service)
-                                                    }
-                                                >
-                                                    Ler mais...
-                                                </ReadMore>
-                                            )}
+
                                             <ButtonContainer>
                                                 <p className="duration">
                                                     {service?.duration}
                                                 </p>
-                                                <button
-                                                    onClick={() =>
-                                                        handleReservation(
-                                                            service
-                                                        )
-                                                    }
-                                                >
-                                                    Reservar
-                                                </button>
+                                                <button>Reservar</button>
                                             </ButtonContainer>
                                         </Service>
                                     );
@@ -135,18 +145,20 @@ export default function ServicesSection({ categoriesArray, renderPage }) {
                 })}
             </Container>
 
-            <ReadMoreModal
-                modalIsOpen={readMoreIsOpen}
-                setModalIsOpen={setReadMoreIsOpen}
-                serviceData={serviceData}
-                formatPrice={formatPrice}
-            />
-
             <CategoryModal
                 categoryModalIsOpen={categoryModalIsOpen}
                 setCategoryModalIsOpen={setCategoryModalIsOpen}
                 categoryTitle={categoryTitle}
-                type={modalType}
+                type={categoryModalType}
+                renderPage={renderPage}
+            />
+
+            <ServiceModal
+                serviceModalIsOpen={serviceModalIsOpen}
+                setServiceModalIsOpen={setServiceModalIsOpen}
+                categoryTitle={categoryTitle}
+                serviceData={serviceData}
+                type={serviceModalType}
                 renderPage={renderPage}
             />
         </>
