@@ -2,13 +2,23 @@ import axios from "axios";
 
 const BASE_URL = process.env.REACT_APP_BACK_URL;
 
-// function createConfig(token) {
-//     return {
-//         headers: {
-//             Authorization: `Bearer ${token}`,
-//         },
-//     };
-// }
+function createConfig(token) {
+    return {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    };
+}
+
+export async function validateToken(token) {
+    try {
+        const config = createConfig(token);
+        await axios.post(`${BASE_URL}/token/validation`, {}, config);
+        return true;
+    } catch (error) {
+        console.log(error.response);
+    }
+}
 
 async function signUp(formData) {
     try {

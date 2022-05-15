@@ -9,7 +9,7 @@ import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 
 export default function ResponsiveHeader() {
-    const { openAuthenticationModal } = useContext(UserContext);
+    const { openAuthenticationModal, userIsLoggedIn } = useContext(UserContext);
     const [menuIsOpen, setMenuIsOpen] = useState(false);
 
     const navigate = useNavigate();
@@ -38,10 +38,17 @@ export default function ResponsiveHeader() {
                         className="tablet-icon"
                     />
                 )}
-                <BsPersonCircle
-                    onClick={() => openAuthenticationModal()}
-                    className="tablet-icon"
-                />
+                {userIsLoggedIn ? (
+                    <BsPersonCircle
+                        onClick={() => navigate("/perfil")}
+                        className="tablet-icon"
+                    />
+                ) : (
+                    <BsPersonCircle
+                        onClick={() => openAuthenticationModal()}
+                        className="tablet-icon"
+                    />
+                )}
             </Icons>
 
             {menuIsOpen && (

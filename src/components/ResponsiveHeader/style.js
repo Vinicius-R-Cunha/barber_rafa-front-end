@@ -84,6 +84,7 @@ const NavButton = styled.div`
     font-weight: 400;
     color: #e1e1e1;
 
+    box-sizing: border-box;
     padding: 19px;
 `;
 

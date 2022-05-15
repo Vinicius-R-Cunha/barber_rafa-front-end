@@ -15,7 +15,8 @@ import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 
 export default function HeaderSection({ page, title }) {
-    const { openAuthenticationModal } = useContext(UserContext);
+    const { openAuthenticationModal, userIsLoggedIn } = useContext(UserContext);
+
     const navigate = useNavigate();
 
     return (
@@ -40,10 +41,17 @@ export default function HeaderSection({ page, title }) {
                     <NavButton onClick={() => navigate("/contato")}>
                         Contato
                     </NavButton>
-                    <NavButton onClick={() => openAuthenticationModal()}>
-                        <BsPersonCircle className="login-icon" />
-                        <p>Entrar/Inscrever-se</p>
-                    </NavButton>
+                    {userIsLoggedIn ? (
+                        <NavButton onClick={() => navigate("/perfil")}>
+                            <BsPersonCircle className="login-icon" />
+                            <p>Perfil</p>
+                        </NavButton>
+                    ) : (
+                        <NavButton onClick={() => openAuthenticationModal()}>
+                            <BsPersonCircle className="login-icon" />
+                            <p>Entrar/Inscrever-se</p>
+                        </NavButton>
+                    )}
                 </NavButtons>
             </HeaderDiv>
 

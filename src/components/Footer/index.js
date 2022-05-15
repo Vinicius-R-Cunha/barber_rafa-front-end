@@ -5,7 +5,8 @@ import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 
 export default function Footer() {
-    const { openAuthenticationModal } = useContext(UserContext);
+    const { openAuthenticationModal, userIsLoggedIn } = useContext(UserContext);
+
     const navigate = useNavigate();
 
     return (
@@ -22,9 +23,15 @@ export default function Footer() {
                 <NavButton onClick={() => navigate("/contato")}>
                     Contato
                 </NavButton>
-                <NavButton onClick={() => openAuthenticationModal()}>
-                    Entrar/Increver-se
-                </NavButton>
+                {userIsLoggedIn ? (
+                    <NavButton onClick={() => navigate("/perfil")}>
+                        Perfil
+                    </NavButton>
+                ) : (
+                    <NavButton onClick={() => openAuthenticationModal()}>
+                        Entrar/Increver-se
+                    </NavButton>
+                )}
             </NavButtons>
         </Container>
     );

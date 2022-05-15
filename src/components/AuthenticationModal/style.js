@@ -264,6 +264,7 @@ const modalStyles = {
         padding: "110px",
         backgroundColor: "rgba(0, 0, 0, 0.7)",
         overflowY: "auto",
+        overflowX: "hidden",
     },
     content: {
         width: "520px",
