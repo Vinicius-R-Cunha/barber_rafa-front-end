@@ -48,6 +48,7 @@ export default function AdminSection({ categoriesArray, renderPage }) {
         <>
             <Container>
                 <button
+                    className="new-category-button"
                     onClick={() => {
                         setCategoryModalType("create");
                         editCategory("");

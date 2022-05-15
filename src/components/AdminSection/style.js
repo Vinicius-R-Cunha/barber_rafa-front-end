@@ -9,7 +9,35 @@ const Container = styled.div`
 
     background-color: #252525;
 
-    padding-bottom: 80px;
+    padding: 80px 0;
+
+    .new-category-button {
+        all: unset;
+
+        font-family: "Montserrat";
+        font-size: 0.835rem;
+        font-weight: 800;
+        line-height: 1em;
+        letter-spacing: 0.7px;
+        text-transform: uppercase;
+        color: #e1e1e1;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        padding: 12px 48px;
+
+        border-radius: 4px;
+        border: 5px solid #96885f;
+
+        cursor: pointer;
+
+        :hover {
+            transition: 0.3s ease-out;
+            background-color: #96885f;
+        }
+    }
 `;
 
 const Category = styled.div`
@@ -19,7 +47,7 @@ const Category = styled.div`
     flex-direction: column;
     align-items: center;
 
-    padding-top: 112px;
+    padding-top: 80px;
 
     .category-title {
         font-family: "Teko";

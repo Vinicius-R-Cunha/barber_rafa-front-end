@@ -68,7 +68,6 @@ export default function ServiceModal({
                 renderPage();
             }
         } else if (type === "edit") {
-            console.log(formData);
             const edit = await api.editService(
                 token,
                 categoryTitle,
