@@ -10,7 +10,7 @@ function createConfig(token) {
     };
 }
 
-export async function validateToken(token) {
+async function validateToken(token) {
     try {
         const config = createConfig(token);
         await axios.post(`${BASE_URL}/token/validation`, {}, config);
@@ -47,4 +47,42 @@ async function getCategories() {
     }
 }
 
-export { getCategories, signUp, signIn };
+async function createCategory(token, data) {
+    try {
+        const config = createConfig(token);
+        await axios.post(`${BASE_URL}/categories`, data, config);
+        return true;
+    } catch (error) {
+        console.log(error.response);
+    }
+}
+
+async function deleteCategory(token, title) {
+    try {
+        const config = createConfig(token);
+        await axios.delete(`${BASE_URL}/categories/${title}`, config);
+        return true;
+    } catch (error) {
+        console.log(error.response);
+    }
+}
+
+async function editCategory(token, title, data) {
+    try {
+        const config = createConfig(token);
+        await axios.put(`${BASE_URL}/categories/${title}`, data, config);
+        return true;
+    } catch (error) {
+        console.log(error.response);
+    }
+}
+
+export {
+    validateToken,
+    signUp,
+    signIn,
+    getCategories,
+    createCategory,
+    deleteCategory,
+    editCategory,
+};
