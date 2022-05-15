@@ -13,8 +13,12 @@ function createConfig(token) {
 async function validateToken(token) {
     try {
         const config = createConfig(token);
-        await axios.post(`${BASE_URL}/token/validation`, {}, config);
-        return true;
+        const isAdmin = await axios.post(
+            `${BASE_URL}/token/validation`,
+            {},
+            config
+        );
+        return isAdmin.data;
     } catch (error) {
         console.log(error.response);
     }

@@ -16,6 +16,7 @@ import "./styles/style.css";
 export default function App() {
     const [token, setToken] = useState(localStorage.getItem("token"));
     const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
+    const [userIsAdmin, setUserIsAdmin] = useState(false);
     const [authenticationIsOpen, setAuthenticationIsOpen] = useState(false);
     const [categoriesArray, setCategoriesArray] = useState([]);
 
@@ -27,12 +28,15 @@ export default function App() {
     async function validateToken(token) {
         const tokenIsValid = await api.validateToken(token);
 
-        if (!tokenIsValid) {
+        if (tokenIsValid === true) {
+            setUserIsAdmin(true);
+            setUserIsLoggedIn(true);
+        } else if (tokenIsValid === false) {
+            setUserIsLoggedIn(true);
+        } else {
             localStorage.removeItem("token");
             setToken(null);
             setUserIsLoggedIn(false);
-        } else {
-            setUserIsLoggedIn(true);
         }
     }
 
@@ -63,7 +67,9 @@ export default function App() {
                         {userIsLoggedIn && (
                             <Route path={"/perfil"} element={<ProfilePage />} />
                         )}
-                        <Route path={"/admin"} element={<AdminPage />} />
+                        {userIsLoggedIn && userIsAdmin && (
+                            <Route path={"/admin"} element={<AdminPage />} />
+                        )}
                     </Routes>
                 </BrowserRouter>
                 <AuthenticationModal />
