@@ -50,19 +50,19 @@ const Icons = styled.div`
     margin-top: 10px;
     margin-right: 35px;
 
-    gap: 14%;
-
     .tablet-icon {
-        font-size: 2.2125rem;
+        font-size: 2.0125rem;
 
-        margin-left: 10px;
+        margin-left: 20px;
 
         cursor: pointer;
     }
 
     @media (max-width: 768px) {
         .tablet-icon {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
+
+            margin-left: 15px;
         }
     }
 `;
