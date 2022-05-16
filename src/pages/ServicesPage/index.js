@@ -19,7 +19,7 @@ export default function ServicesPage() {
         setCategoriesArray(categories);
     }
 
-    if (categoriesArray.length === 0) {
+    if (categoriesArray?.length === 0 || !categoriesArray) {
         return <Loading />;
     }
 
