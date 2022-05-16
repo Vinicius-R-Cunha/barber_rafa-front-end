@@ -59,10 +59,6 @@ const Icons = styled.div`
 
         cursor: pointer;
     }
-
-    @media (max-width: 768px) {
-        font-size: 1.825rem;
-    }
 `;
 
 const MenuContainer = styled.div`
