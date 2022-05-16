@@ -22,7 +22,7 @@ export default function ServicesSection({ categoriesArray }) {
     }
 
     function handleReservation(service) {
-        console.log(service);
+        // console.log(service);
     }
 
     function formatPrice(price) {
