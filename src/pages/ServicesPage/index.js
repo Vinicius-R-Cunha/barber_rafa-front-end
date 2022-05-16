@@ -1,6 +1,7 @@
 import HeaderSection from "../../components/HeaderSection";
 import ServicesSection from "../../components/ServicesSection";
 import Footer from "../../components/Footer";
+import Loading from "../../components/Loading";
 import { useContext, useEffect } from "react";
 import * as api from "../../services/api";
 import DataContext from "../../contexts/DataContext";
@@ -19,7 +20,7 @@ export default function ServicesPage() {
     }
 
     if (categoriesArray.length === 0) {
-        return <h1>Carregando...</h1>;
+        return <Loading />;
     }
 
     return (

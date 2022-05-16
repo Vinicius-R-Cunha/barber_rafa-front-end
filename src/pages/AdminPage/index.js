@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import AdminSection from "../../components/AdminSection";
 import Footer from "../../components/Footer";
+import Loading from "../../components/Loading";
 import DataContext from "../../contexts/DataContext";
 import * as api from "../../services/api";
 
@@ -18,7 +19,7 @@ export default function AdminPage() {
     }
 
     if (categoriesArray.length === 0) {
-        return <h1>Carregando...</h1>;
+        return <Loading />;
     }
 
     return (
