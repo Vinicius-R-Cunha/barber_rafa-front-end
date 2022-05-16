@@ -30,6 +30,8 @@ export default function ServiceModal({
                 duration: serviceData.duration,
                 description: serviceData.description,
             });
+        } else {
+            setFormData({ name: "", price: "", duration: "", description: "" });
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [type, serviceModalIsOpen]);

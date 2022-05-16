@@ -18,6 +18,8 @@ export default function CategoryModal({
     useEffect(() => {
         if (type === "edit") {
             setTitle(categoryTitle);
+        } else {
+            setTitle("");
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [type, categoryModalIsOpen]);
