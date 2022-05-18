@@ -25,7 +25,12 @@ export default function ResponsiveHeader() {
 
     return (
         <Container>
-            <img className="logo-image-tablet" src={logo} alt="" />
+            <img
+                onClick={() => navigate("/")}
+                className="logo-image-tablet"
+                src={logo}
+                alt=""
+            />
             <Icons>
                 {menuIsOpen ? (
                     <IoClose

@@ -21,7 +21,12 @@ export default function HeaderSection({ page, title }) {
 
     return (
         <Container page={page}>
-            <img className="background-image" src={background} alt="" />
+            <img
+                onClick={() => navigate("/")}
+                className="background-image"
+                src={background}
+                alt=""
+            />
             <div className="background-darkness"></div>
 
             <ResponsiveHeader />

@@ -60,9 +60,7 @@ const Icons = styled.div`
 
     @media (max-width: 768px) {
         .tablet-icon {
-            font-size: 1.6rem;
-
-            margin-left: 15px;
+            font-size: 1.8rem;
         }
     }
 `;

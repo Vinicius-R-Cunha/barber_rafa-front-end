@@ -29,7 +29,7 @@ export default function Footer() {
                     </NavButton>
                 ) : (
                     <NavButton onClick={() => openAuthenticationModal()}>
-                        Entrar/Increver-se
+                        Entrar/Inscrever-se
                     </NavButton>
                 )}
             </NavButtons>
