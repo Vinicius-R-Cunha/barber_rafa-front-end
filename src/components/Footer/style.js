@@ -32,7 +32,7 @@ const NavButtons = styled.div`
 `;
 
 const NavButton = styled.div`
-    width: 166px;
+    width: 176px;
 
     font-size: 1.163rem;
     letter-spacing: 0px;
