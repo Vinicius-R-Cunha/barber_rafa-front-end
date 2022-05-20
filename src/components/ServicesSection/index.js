@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ReadMoreModal from "../ReadMoreModal";
+import CalendarModal from "../CalendarModal";
+import UserContext from "../../contexts/UserContext";
 import {
     Container,
     Category,
@@ -12,17 +14,28 @@ import {
 } from "./style";
 
 export default function ServicesSection({ categoriesArray }) {
-    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const { token, setAuthenticationIsOpen } = useContext(UserContext);
+    const [readMoreModalIsOpen, setReadMoreModalIsOpen] = useState(false);
     const [serviceData, setServiceData] = useState();
 
+    const [reservationModalIsOpen, setReservationModalIsOpen] = useState(false);
+    const [reservation, setReservation] = useState();
+
     function readMore(service) {
-        setModalIsOpen(true);
+        setReadMoreModalIsOpen(true);
         setServiceData(service);
         document.body.style.overflow = "hidden";
     }
 
     function handleReservation(service) {
-        // console.log(service);
+        setReservation(service);
+        if (!token) {
+            setAuthenticationIsOpen(true);
+            document.body.style.overflow = "hidden";
+        } else {
+            setReservationModalIsOpen(true);
+            document.body.style.overflow = "hidden";
+        }
     }
 
     function formatPrice(price) {
@@ -85,10 +98,19 @@ export default function ServicesSection({ categoriesArray }) {
             </Container>
 
             <ReadMoreModal
-                modalIsOpen={modalIsOpen}
-                setModalIsOpen={setModalIsOpen}
+                readMoreModalIsOpen={readMoreModalIsOpen}
+                setReadMoreModalIsOpen={setReadMoreModalIsOpen}
                 serviceData={serviceData}
                 formatPrice={formatPrice}
+                reservationModalIsOpen={reservationModalIsOpen}
+                setReservationModalIsOpen={setReservationModalIsOpen}
+                reservation={reservation}
+            />
+
+            <CalendarModal
+                reservationModalIsOpen={reservationModalIsOpen}
+                setReservationModalIsOpen={setReservationModalIsOpen}
+                reservation={reservation}
             />
         </>
     );
