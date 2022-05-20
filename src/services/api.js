@@ -118,7 +118,7 @@ async function editService(token, categoryTitle, serviceTitle, data) {
     }
 }
 
-async function freeBusy(token, data) {
+async function checkAvailability(token, data) {
     try {
         const config = createConfig(token);
         const response = await axios.post(
@@ -143,5 +143,5 @@ export {
     createService,
     deleteService,
     editService,
-    freeBusy,
+    checkAvailability,
 };

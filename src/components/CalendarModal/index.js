@@ -1,4 +1,4 @@
-import { StyledModal, ModalHeader, Button, modalStyles } from "./style";
+import { StyledModal, ModalHeader, modalStyles } from "./style";
 import "react-calendar/dist/Calendar.css";
 import Calendar from "react-calendar";
 import { IoClose } from "react-icons/io5";
@@ -23,11 +23,12 @@ export default function CalendarModal({
         const startTime = e.toISOString();
         const endTime = new Date(e.setUTCHours(23, 0, 0, 0)).toISOString();
 
-        const promise = await api.freeBusy(token, { startTime, endTime });
+        const schedule = await api.checkAvailability(token, {
+            startTime,
+            endTime,
+        });
 
-        console.log(startTime);
-        console.log(endTime);
-        console.log(promise);
+        setScheduleArray(schedule);
     }
 
     function handleDisabledTiles(e) {
@@ -54,6 +55,9 @@ export default function CalendarModal({
                 onClickDay={(e) => handleClick(e)}
                 tileDisabled={(e) => handleDisabledTiles(e)}
             />
+            {scheduleArray?.length === 0 && (
+                <p>Não temos horários disponíveis</p>
+            )}
         </StyledModal>
     );
 }

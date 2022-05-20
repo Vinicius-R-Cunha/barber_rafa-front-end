@@ -33,6 +33,7 @@ export default function ReadMoreModal({
             setReservationModalIsOpen(true);
             document.body.style.overflow = "hidden";
         }
+        closeModal();
     }
 
     return (

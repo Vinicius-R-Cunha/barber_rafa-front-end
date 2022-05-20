@@ -206,10 +206,13 @@ const modalStyles = {
         justifyContent: "center",
         paddingTop: "220px",
         backgroundColor: "rgba(0, 0, 0, 0.7)",
+        overflowY: "auto",
+        overflowX: "hidden",
     },
     content: {
         width: "650px",
         position: "fixed",
+        top: "150px",
         margin: "auto",
         display: "flex",
         flexDirection: "column",
