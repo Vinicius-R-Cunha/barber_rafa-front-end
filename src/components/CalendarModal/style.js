@@ -11,9 +11,20 @@ const ModalHeader = styled.div`
     width: 100%;
 
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
 
-    padding-bottom: 40px;
+    padding-bottom: 30px;
+    .modal-title {
+        width: 75%;
+
+        font-family: "Teko";
+        font-size: 1.888rem;
+        font-weight: 500;
+        line-height: 1em;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #e1e1e1;
+    }
 
     .close-icon {
         font-size: 1.888rem;
@@ -48,6 +59,95 @@ const ModalHeader = styled.div`
     }
 `;
 
+const DateStatus = styled.p`
+    font-family: "Montserrat";
+    font-size: 1.275rem;
+    font-weight: 800;
+    line-height: 1em;
+    letter-spacing: 0.7px;
+    color: #e1e1e1;
+
+    margin-top: 35px;
+`;
+
+const ScheduleContainer = styled.div`
+    width: 90%;
+
+    margin-top: 25px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    .scrollable-div {
+        width: 90%;
+        height: 100%;
+
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+
+        .inside-scroll {
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+
+            gap: 20px;
+        }
+    }
+
+    .nav-arrow-left {
+        font-size: 2rem;
+        color: #e1e1e1;
+
+        position: absolute;
+        left: -10px;
+
+        cursor: pointer;
+    }
+
+    .nav-arrow-right {
+        font-size: 2rem;
+        color: #e1e1e1;
+
+        position: absolute;
+        right: -10px;
+
+        cursor: pointer;
+    }
+`;
+
+const Timetable = styled.p`
+    width: 70px;
+
+    font-family: "Montserrat";
+    font-size: 1.075rem;
+    font-weight: 400;
+    line-height: 1em;
+    letter-spacing: 0.7px;
+    color: #e1e1e1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 auto;
+
+    padding: 12px 10px;
+
+    border-radius: 5px;
+    border: 2px solid #96885f;
+
+    cursor: pointer;
+
+    :hover {
+        transition: 0.3s ease-out;
+        background-color: #96885f;
+    }
+`;
+
 const modalStyles = {
     overlay: {
         position: "fixed",
@@ -78,4 +178,11 @@ const modalStyles = {
     },
 };
 
-export { StyledModal, ModalHeader, modalStyles };
+export {
+    StyledModal,
+    ModalHeader,
+    DateStatus,
+    ScheduleContainer,
+    Timetable,
+    modalStyles,
+};
