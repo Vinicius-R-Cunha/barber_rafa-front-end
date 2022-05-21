@@ -3,6 +3,7 @@ import {
     ModalHeader,
     DateStatus,
     ScheduleContainer,
+    ButtonContainer,
     Timetable,
     modalStyles,
 } from "./style";
@@ -13,37 +14,99 @@ import {
     BsFillArrowLeftCircleFill,
     BsFillArrowRightCircleFill,
 } from "react-icons/bs";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import * as api from "../../services/api";
 import UserContext from "../../contexts/UserContext";
-// import ScrollContainer from "react-indiana-drag-scroll";
+import ScrollContainer from "react-indiana-drag-scroll";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function CalendarModal({
     reservationModalIsOpen,
     setReservationModalIsOpen,
     reservation,
+    formatPrice,
 }) {
     const { token } = useContext(UserContext);
     const [scheduleArray, setScheduleArray] = useState(null);
     const [scrollX, setScrollX] = useState(0);
+    const [selectedTime, setSelectedTime] = useState("");
+    const [day, setDay] = useState();
+    const [viewWidth, setViewWidth] = useState(0);
+
+    useEffect(() => {
+        window.addEventListener("resize", setViewWidth(window.innerWidth));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [window.innerWidth]);
 
     function closeModal() {
         document.body.style.overflow = "unset";
         setReservationModalIsOpen(false);
         setScheduleArray(null);
+        setDay();
     }
 
     async function handleClick(e) {
-        const startTime = e.toISOString();
-        const endTime = new Date(e.setUTCHours(23, 0, 0, 0)).toISOString();
+        const startTime = new Date(e).toISOString();
+
+        const tomorrow = new Date(e);
+        tomorrow.setDate(e.getDate() + 1);
+
+        const endTime = new Date(
+            tomorrow.setUTCHours(2, 59, 0, 0)
+        ).toISOString();
+
+        const duration = reservation.duration;
 
         const schedule = await api.checkAvailability(token, {
             startTime,
             endTime,
+            duration,
+        });
+        setScheduleArray(schedule);
+        setDay(e);
+
+        setScrollX(0);
+        setSelectedTime("");
+    }
+
+    async function handleReservation() {
+        const reservationTime = selectedTime.split(":");
+        const startTime = new Date(day);
+        startTime.setHours(reservationTime[0] - 3, reservationTime[1], 0);
+
+        const resp = await api.createCalendarEvent(token, {
+            startTime: startTime.toISOString(),
+            duration: reservation.duration,
+            summary: reservation.name,
+            description: "teste",
         });
 
-        setScheduleArray(schedule);
-        setScrollX(0);
+        if (resp) {
+            toast.success("Horário agendado!", {
+                position: "bottom-left",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        } else {
+            toast.error(
+                "Erro ao agendar seu horário, por favor tente novamente.",
+                {
+                    position: "bottom-left",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                }
+            );
+        }
+        closeModal();
     }
 
     function handleDisabledTiles(e) {
@@ -52,6 +115,10 @@ export default function CalendarModal({
         yesterday.setDate(yesterday.getDate() - 1);
 
         return yesterday > e.date;
+    }
+
+    function handleTimeSelection(time) {
+        setSelectedTime(time);
     }
 
     function handleLeftArrow() {
@@ -64,6 +131,7 @@ export default function CalendarModal({
 
     function handleRightArrow() {
         let x = scrollX - 350;
+        //array size * (Timetable size + gap size) - last gap
         let listWidth = scheduleArray.length * 114 - 20;
 
         if (466 - listWidth > x) {
@@ -88,6 +156,7 @@ export default function CalendarModal({
                 className={["c1"]}
                 calendarType={"US"}
                 onClickDay={(e) => handleClick(e)}
+                tileClassName={"tile"}
                 tileDisabled={(e) => handleDisabledTiles(e)}
             />
             {scheduleArray === null && (
@@ -109,36 +178,61 @@ export default function CalendarModal({
                             className="nav-arrow-right"
                         />
                         <div className="scrollable-div">
-                            {/* <ScrollContainer
+                            {viewWidth < 1024 ? (
+                                <ScrollContainer className="inside-scroll">
+                                    {scheduleArray?.map((time) => {
+                                        return (
+                                            <Timetable
+                                                key={time}
+                                                onClick={() =>
+                                                    handleTimeSelection(time)
+                                                }
+                                            >
+                                                {time}
+                                            </Timetable>
+                                        );
+                                    })}
+                                </ScrollContainer>
+                            ) : (
+                                <div
                                     className="inside-scroll"
                                     style={{
                                         marginLeft: scrollX,
-                                        width: scheduleArray.length * 110 - 20,
+                                        width: scheduleArray?.length * 114 - 20,
                                         transition: "all ease 0.9s",
                                     }}
                                 >
                                     {scheduleArray?.map((time) => {
                                         return (
-                                            <Timetable key={time}>{time}</Timetable>
+                                            <Timetable
+                                                key={time}
+                                                onClick={() =>
+                                                    handleTimeSelection(time)
+                                                }
+                                            >
+                                                {time}
+                                            </Timetable>
                                         );
                                     })}
-                                </ScrollContainer> */}
-                            <div
-                                className="inside-scroll"
-                                style={{
-                                    marginLeft: scrollX,
-                                    width: scheduleArray.length * 114 - 20,
-                                    transition: "all ease 0.9s",
-                                }}
-                            >
-                                {scheduleArray?.map((time) => {
-                                    return (
-                                        <Timetable key={time}>{time}</Timetable>
-                                    );
-                                })}
-                            </div>
+                                </div>
+                            )}
                         </div>
                     </ScheduleContainer>
+                    {selectedTime !== "" && (
+                        <ButtonContainer>
+                            <div>
+                                <p className="price">{`R$ ${formatPrice(
+                                    reservation?.price
+                                )}`}</p>
+                                <p className="duration">
+                                    {reservation?.duration}
+                                </p>
+                            </div>
+                            <button
+                                onClick={() => handleReservation()}
+                            >{`Reservar horário - ${selectedTime}`}</button>
+                        </ButtonContainer>
+                    )}
                 </>
             )}
         </StyledModal>

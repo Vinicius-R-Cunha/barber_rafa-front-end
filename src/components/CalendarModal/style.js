@@ -5,6 +5,24 @@ const StyledModal = styled(Modal)`
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    .c1 {
+        box-sizing: unset;
+        padding: 10px;
+        border-radius: 8px;
+    }
+
+    .tile {
+        border-radius: 4px;
+    }
+
+    @media (max-width: 340px) {
+        .c1 {
+            width: 318px;
+
+            padding: 0;
+        }
+    }
 `;
 
 const ModalHeader = styled.div`
@@ -37,11 +55,11 @@ const ModalHeader = styled.div`
     }
 
     @media (max-width: 640px) {
-        width: 65%;
+        width: 90%;
     }
 
     @media (max-width: 424px) {
-        width: 59%;
+        width: 86%;
 
         .close-icon {
             margin-top: -5px;
@@ -50,7 +68,7 @@ const ModalHeader = styled.div`
     }
 
     @media (max-width: 340px) {
-        width: 50%;
+        width: 76%;
 
         .close-icon {
             margin-top: -5px;
@@ -68,6 +86,10 @@ const DateStatus = styled.p`
     color: #e1e1e1;
 
     margin-top: 35px;
+
+    @media (max-width: 640px) {
+        font-size: 1.075rem;
+    }
 `;
 
 const ScheduleContainer = styled.div`
@@ -104,7 +126,7 @@ const ScheduleContainer = styled.div`
         color: #e1e1e1;
 
         position: absolute;
-        left: -10px;
+        left: -20px;
 
         cursor: pointer;
     }
@@ -114,9 +136,35 @@ const ScheduleContainer = styled.div`
         color: #e1e1e1;
 
         position: absolute;
-        right: -10px;
+        right: -20px;
 
         cursor: pointer;
+    }
+
+    @media (max-width: 1023px) {
+        .nav-arrow-left {
+            display: none;
+        }
+
+        .nav-arrow-right {
+            display: none;
+        }
+    }
+
+    @media (max-width: 640px) {
+        width: 500px;
+    }
+
+    @media (max-width: 500px) {
+        width: 400px;
+    }
+
+    @media (max-width: 424px) {
+        width: 380px;
+    }
+
+    @media (max-width: 340px) {
+        width: 343px;
     }
 `;
 
@@ -146,6 +194,116 @@ const Timetable = styled.p`
         transition: 0.3s ease-out;
         background-color: #96885f;
     }
+
+    @media (max-width: 424px) {
+        font-size: 0.9rem;
+
+        padding: 10px 3px;
+    }
+`;
+
+const ButtonContainer = styled.div`
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-top: 40px;
+
+    .price {
+        font-family: "Teko";
+        font-size: 1.888rem;
+        font-weight: 500;
+        line-height: 1em;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #e1e1e1;
+    }
+
+    .duration {
+        font-family: "Montserrat";
+        font-size: 1.125rem;
+        font-weight: 400;
+        line-height: 1.167em;
+        letter-spacing: 0;
+        color: #8d8d8d;
+    }
+
+    button {
+        all: unset;
+
+        font-family: "Montserrat";
+        font-size: 1.275rem;
+        font-weight: 800;
+        line-height: 1em;
+        letter-spacing: 0.7px;
+        color: #e1e1e1;
+
+        padding: 23px 80px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        border-radius: 4px;
+        border: 4px solid #96885f;
+
+        cursor: pointer;
+
+        :hover {
+            transition: 0.3s ease-out;
+            background-color: #96885f;
+        }
+    }
+
+    @media (max-width: 640px) {
+        width: 90%;
+
+        .price {
+            font-size: 1.188rem;
+        }
+
+        .duration {
+            font-size: 0.825rem;
+        }
+
+        button {
+            font-size: 0.725rem;
+            padding: 17px 20px;
+        }
+    }
+
+    @media (max-width: 424px) {
+        width: 80%;
+
+        .price {
+            font-size: 1.288rem;
+        }
+
+        .duration {
+            font-size: 0.825rem;
+        }
+
+        button {
+            padding: 18px 15px;
+        }
+    }
+
+    @media (max-width: 340px) {
+        .price {
+            font-size: 1.188rem;
+        }
+
+        .duration {
+            font-size: 0.725rem;
+        }
+
+        button {
+            font-size: 0.625rem;
+            padding: 18px 15px;
+        }
+    }
 `;
 
 const modalStyles = {
@@ -173,7 +331,7 @@ const modalStyles = {
         background: "#2c2c2c",
         border: "hidden",
         boxSizing: "border-box",
-        padding: "20px 35px 60px 35px",
+        padding: "20px 35px 30px 35px",
         borderRadius: "4px",
     },
 };
@@ -183,6 +341,7 @@ export {
     ModalHeader,
     DateStatus,
     ScheduleContainer,
+    ButtonContainer,
     Timetable,
     modalStyles,
 };

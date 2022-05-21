@@ -68,6 +68,7 @@ export default function ReadMoreModal({
                 reservationModalIsOpen={reservationModalIsOpen}
                 setReservationModalIsOpen={setReservationModalIsOpen}
                 reservation={serviceData}
+                formatPrice={formatPrice}
             />
         </>
     );

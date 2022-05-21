@@ -132,6 +132,16 @@ async function checkAvailability(token, data) {
     }
 }
 
+async function createCalendarEvent(token, data) {
+    try {
+        const config = createConfig(token);
+        await axios.post(`${BASE_URL}/calendar/create-event`, data, config);
+        return true;
+    } catch (error) {
+        console.log(error.response);
+    }
+}
+
 export {
     validateToken,
     signUp,
@@ -144,4 +154,5 @@ export {
     deleteService,
     editService,
     checkAvailability,
+    createCalendarEvent,
 };
