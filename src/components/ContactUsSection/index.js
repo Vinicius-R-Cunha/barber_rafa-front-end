@@ -11,6 +11,7 @@ import schedule from "../../assets/schedule.png";
 import { BsWhatsapp } from "react-icons/bs";
 
 export default function ContactUsSection() {
+    const PHONE_NUMBER = "98747-9047";
     // lat: -23.525438021785874, lng: -46.50453847304112
 
     return (
@@ -28,7 +29,7 @@ export default function ContactUsSection() {
                 <Info>
                     <img src={contact} alt="" />
                     <p className="title">Contato</p>
-                    <p className="description">Tel: (11) 98747-9047</p>
+                    <p className="description">{`Tel: (11) ${PHONE_NUMBER}`}</p>
                 </Info>
                 <Info>
                     <img src={schedule} alt="" />
@@ -49,7 +50,10 @@ export default function ContactUsSection() {
                 <Button
                     onClick={() =>
                         window.open(
-                            `https://api.whatsapp.com/send?phone=5511993457220`,
+                            `https://api.whatsapp.com/send?phone=5511${PHONE_NUMBER.replace(
+                                "-",
+                                ""
+                            )}`,
                             "_blank"
                         )
                     }
