@@ -20,6 +20,7 @@ export default function App() {
     const [userIsAdmin, setUserIsAdmin] = useState(false);
     const [authenticationIsOpen, setAuthenticationIsOpen] = useState(false);
     const [categoriesArray, setCategoriesArray] = useState([]);
+    const [userData, setUserData] = useState();
 
     useEffect(() => {
         validateToken(token);
@@ -27,18 +28,22 @@ export default function App() {
     }, [token]);
 
     async function validateToken(token) {
-        const tokenIsValid = await api.validateToken(token);
+        const user = await api.validateToken(token);
 
-        if (tokenIsValid === true) {
-            setUserIsAdmin(true);
+        if (user.status === 200) {
             setUserIsLoggedIn(true);
-        } else if (tokenIsValid === false) {
-            setUserIsLoggedIn(true);
-        } else {
-            localStorage.removeItem("token");
-            setToken(null);
-            setUserIsLoggedIn(false);
+            setUserData(user.data);
+
+            if (user.isAdmin) setUserIsAdmin(true);
+
+            return;
         }
+
+        localStorage.removeItem("token");
+        setToken(null);
+        setUserIsLoggedIn(false);
+
+        return;
     }
 
     function openAuthenticationModal() {
@@ -57,6 +62,7 @@ export default function App() {
                     setToken,
                     userIsLoggedIn,
                     setUserIsLoggedIn,
+                    userData,
                 }}
             >
                 <BrowserRouter>
