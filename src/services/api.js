@@ -44,10 +44,10 @@ async function signIn(formData) {
 
 async function getCategories() {
     try {
-        const categories = await axios.get(`${BASE_URL}/categories`);
-        return categories.data;
+        const promise = await axios.get(`${BASE_URL}/categories`);
+        return promise;
     } catch (error) {
-        console.log(error.response);
+        return error.response;
     }
 }
 

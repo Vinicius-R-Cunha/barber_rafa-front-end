@@ -32,10 +32,11 @@ export default function ServicesSection({ categoriesArray }) {
         if (!token) {
             setAuthenticationIsOpen(true);
             document.body.style.overflow = "hidden";
-        } else {
-            setReservationModalIsOpen(true);
-            document.body.style.overflow = "hidden";
+            return;
         }
+        setReservationModalIsOpen(true);
+        document.body.style.overflow = "hidden";
+        return;
     }
 
     function formatPrice(price) {
@@ -101,10 +102,10 @@ export default function ServicesSection({ categoriesArray }) {
                 readMoreModalIsOpen={readMoreModalIsOpen}
                 setReadMoreModalIsOpen={setReadMoreModalIsOpen}
                 serviceData={serviceData}
-                formatPrice={formatPrice}
                 reservationModalIsOpen={reservationModalIsOpen}
                 setReservationModalIsOpen={setReservationModalIsOpen}
                 reservation={reservation}
+                formatPrice={formatPrice}
             />
 
             <CalendarModal
