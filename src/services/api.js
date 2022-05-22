@@ -26,19 +26,19 @@ async function validateToken(token) {
 
 async function signUp(formData) {
     try {
-        await axios.post(`${BASE_URL}/sign-up`, formData);
-        return true;
+        const promise = await axios.post(`${BASE_URL}/sign-up`, formData);
+        return promise;
     } catch (error) {
-        console.log(error.response);
+        return error.response;
     }
 }
 
 async function signIn(formData) {
     try {
         const promise = await axios.post(`${BASE_URL}/sign-in`, formData);
-        return promise.data;
+        return promise;
     } catch (error) {
-        console.log(error.response);
+        return error.response;
     }
 }
 

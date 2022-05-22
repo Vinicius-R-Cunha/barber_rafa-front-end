@@ -10,6 +10,7 @@ import ProfilePage from "./pages/ProfilePage";
 import AdminPage from "./pages/AdminPage";
 import AuthenticationModal from "./components/AuthenticationModal";
 import * as api from "./services/api";
+import { ToastContainer } from "react-toastify";
 import "./styles/reset.css";
 import "./styles/style.css";
 
@@ -73,6 +74,7 @@ export default function App() {
                     </Routes>
                 </BrowserRouter>
                 <AuthenticationModal />
+                <ToastContainer />
             </UserContext.Provider>
         </DataContext.Provider>
     );

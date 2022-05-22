@@ -12,7 +12,6 @@ import {
     ButtonContainer,
     ReadMore,
 } from "./style";
-import { ToastContainer } from "react-toastify";
 
 export default function ServicesSection({ categoriesArray }) {
     const { token, setAuthenticationIsOpen } = useContext(UserContext);
@@ -114,8 +113,6 @@ export default function ServicesSection({ categoriesArray }) {
                 reservation={reservation}
                 formatPrice={formatPrice}
             />
-
-            <ToastContainer />
         </>
     );
 }

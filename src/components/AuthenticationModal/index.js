@@ -4,12 +4,14 @@ import UserContext from "../../contexts/UserContext";
 import * as api from "../../services/api";
 import {
     StyledModal,
-    Spacer,
-    FacebookButton,
     InputsForm,
     LinkButtonDiv,
     modalStyles,
+    // Spacer,
+    // FacebookButton,
 } from "./style";
+import { ThreeDots } from "react-loader-spinner";
+import { toast } from "react-toastify";
 
 export default function AuthenticationModal() {
     const { authenticationIsOpen, setAuthenticationIsOpen, setToken } =
@@ -26,10 +28,12 @@ export default function AuthenticationModal() {
         password: "",
         passwordConfirmation: "",
     });
+    const [submitIsLoading, setSubmitIsLoading] = useState(false);
 
     function closeModal() {
         document.body.style.overflow = "unset";
         setAuthenticationIsOpen(false);
+
         setPage("entrar");
         setFormData({
             name: "",
@@ -48,23 +52,71 @@ export default function AuthenticationModal() {
 
     async function handleSubmit(e) {
         e.preventDefault();
+        setSubmitIsLoading(true);
 
         if (page === "inscrever-se") {
             const promise = await api.signUp(formData);
-            if (promise) {
-                closeModal();
+            setSubmitIsLoading(false);
+            if (promise.status === 201) {
+                toastSuccess("Cadastro realizado com sucesso!");
+                setPage("entrar");
+                return;
+            } else if (promise.status === 409) {
+                toastError(promise.data);
+                return;
+            } else if (promise.status === 422) {
+                toastError("Preencha todos os campos");
+                return;
             }
+            toastError("Erro no servidor, tente novamente em alguns momentos");
+            return;
         } else {
-            delete formData.name;
-            delete formData.phone;
-            delete formData.passwordConfirmation;
-            const token = await api.signIn(formData);
-            if (token) {
-                localStorage.setItem("token", token);
-                setToken(token);
+            const signInObject = {
+                email: formData.email,
+                password: formData.password,
+            };
+            const promise = await api.signIn(signInObject);
+            setSubmitIsLoading(false);
+            if (promise.status === 200) {
+                localStorage.setItem("token", promise.data);
+                setToken(promise);
                 closeModal();
+                toastSuccess("Login efetuado!");
+                return;
+            } else if (promise.status === 409) {
+                toastError(promise.data);
+                return;
+            } else if (promise.status === 422) {
+                toastError("Preencha todos os campos");
+                return;
             }
+            toastError("Erro no servidor, tente novamente em alguns momentos");
+            return;
         }
+    }
+
+    function toastError(message) {
+        return toast.error(message, {
+            position: "bottom-left",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+    }
+
+    function toastSuccess(message) {
+        return toast.success(message, {
+            position: "bottom-left",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
     }
 
     return (
@@ -175,28 +227,48 @@ export default function AuthenticationModal() {
                             <p onClick={() => setPage("entrar")}>
                                 Já possuo cadastro
                             </p>
-                            <button onClick={(e) => handleSubmit(e)}>
-                                cadastrar
-                            </button>
+                            {submitIsLoading ? (
+                                <button type="button">
+                                    <ThreeDots
+                                        color="#E1E1E1"
+                                        height={13}
+                                        width={51}
+                                    />
+                                </button>
+                            ) : (
+                                <button onClick={(e) => handleSubmit(e)}>
+                                    cadastrar
+                                </button>
+                            )}
                         </>
                     ) : (
                         <>
                             <p onClick={() => setPage("inscrever-se")}>
                                 Não possuo cadastro
                             </p>
-                            <button onClick={(e) => handleSubmit(e)}>
-                                entrar
-                            </button>
+                            {submitIsLoading ? (
+                                <button type="button">
+                                    <ThreeDots
+                                        color="#E1E1E1"
+                                        height={13}
+                                        width={51}
+                                    />
+                                </button>
+                            ) : (
+                                <button onClick={(e) => handleSubmit(e)}>
+                                    entrar
+                                </button>
+                            )}
                         </>
                     )}
                 </LinkButtonDiv>
 
-                <Spacer>
+                {/* <Spacer>
                     <div></div> ou <div></div>
                 </Spacer>
                 <FacebookButton type="button">
                     Entrar com o Facebook
-                </FacebookButton>
+                </FacebookButton> */}
             </InputsForm>
         </StyledModal>
     );
