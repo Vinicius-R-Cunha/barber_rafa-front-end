@@ -14,10 +14,6 @@ export default function ResponsiveHeader() {
 
     const navigate = useNavigate();
 
-    function toggleOpenNavMenu() {
-        setMenuIsOpen(!menuIsOpen);
-    }
-
     function navigateToPage(page) {
         setMenuIsOpen(false);
         navigate(page);
@@ -34,12 +30,12 @@ export default function ResponsiveHeader() {
             <Icons>
                 {menuIsOpen ? (
                     <IoClose
-                        onClick={() => toggleOpenNavMenu()}
+                        onClick={() => setMenuIsOpen(!menuIsOpen)}
                         className="tablet-icon"
                     />
                 ) : (
                     <MdOutlineMenu
-                        onClick={() => toggleOpenNavMenu()}
+                        onClick={() => setMenuIsOpen(!menuIsOpen)}
                         className="tablet-icon"
                     />
                 )}
