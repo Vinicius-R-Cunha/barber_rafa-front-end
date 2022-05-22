@@ -12,6 +12,7 @@ import {
 } from "./style";
 import { ThreeDots } from "react-loader-spinner";
 import { toast } from "react-toastify";
+import NumberFormat from "react-number-format";
 
 export default function AuthenticationModal() {
     const { authenticationIsOpen, setAuthenticationIsOpen, setToken } =
@@ -65,7 +66,7 @@ export default function AuthenticationModal() {
                 toastError(promise.data);
                 return;
             } else if (promise.status === 422) {
-                toastError("Preencha todos os campos");
+                toastError(promise.data.error);
                 return;
             }
             toastError("Erro no servidor, tente novamente em alguns momentos");
@@ -79,7 +80,7 @@ export default function AuthenticationModal() {
             setSubmitIsLoading(false);
             if (promise.status === 200) {
                 localStorage.setItem("token", promise.data);
-                setToken(promise);
+                setToken(promise.data);
                 closeModal();
                 toastSuccess("Login efetuado!");
                 return;
@@ -87,7 +88,7 @@ export default function AuthenticationModal() {
                 toastError(promise.data);
                 return;
             } else if (promise.status === 422) {
-                toastError("Preencha todos os campos");
+                toastError(promise.data.error);
                 return;
             }
             toastError("Erro no servidor, tente novamente em alguns momentos");
@@ -133,7 +134,7 @@ export default function AuthenticationModal() {
                     <input
                         name="name"
                         type="text"
-                        placeholder="Nome"
+                        placeholder="Nome completo"
                         onChange={(e) => handleFormData(e)}
                         value={formData.name}
                         required
@@ -150,11 +151,11 @@ export default function AuthenticationModal() {
                 />
 
                 {page === "inscrever-se" && (
-                    <input
+                    <NumberFormat
                         name="phone"
-                        type="tel"
-                        placeholder="Número de telefone"
+                        placeholder="Número do celular"
                         onChange={(e) => handleFormData(e)}
+                        format={"(##) #####-####"}
                         value={formData.phone}
                         required
                     />
