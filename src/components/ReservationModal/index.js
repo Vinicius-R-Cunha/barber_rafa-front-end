@@ -27,7 +27,7 @@ export default function ReservationModal({
     serviceData,
     formatPrice,
 }) {
-    const { token } = useContext(UserContext);
+    const { token, userData } = useContext(UserContext);
     const [scheduleArray, setScheduleArray] = useState(null);
     const [scrollX, setScrollX] = useState(0);
     const [selectedTime, setSelectedTime] = useState("");
@@ -58,16 +58,22 @@ export default function ReservationModal({
 
         const duration = serviceData.duration;
 
-        const schedule = await api.checkAvailability(token, {
+        const promise = await api.checkAvailability(token, {
             startTime,
             endTime,
             duration,
         });
-        setScheduleArray(schedule);
-        setDay(e);
 
+        setDay(e);
         setScrollX(0);
         setSelectedTime("");
+
+        if (promise.status === 200) {
+            setScheduleArray(promise.data);
+            return;
+        }
+        toastError("Erro ao carregar os horários, por favor tente novamente");
+        return;
     }
 
     async function handleReservation() {
@@ -75,38 +81,20 @@ export default function ReservationModal({
         const startTime = new Date(day);
         startTime.setHours(reservationTime[0] - 3, reservationTime[1], 0);
 
-        const resp = await api.createCalendarEvent(token, {
+        const promise = await api.createCalendarEvent(token, {
             startTime: startTime.toISOString(),
-            duration: serviceData.duration,
-            summary: serviceData.name,
-            description: "teste",
+            duration: serviceData?.duration,
+            summary: serviceData?.name,
+            description: `Cliente: ${userData?.name}, Telefone: ${userData?.phone}, e-mail: ${userData?.email}`,
         });
 
-        if (resp) {
-            toast.success("Horário agendado!", {
-                position: "bottom-left",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        } else {
-            toast.error(
-                "Erro ao agendar seu horário, por favor tente novamente.",
-                {
-                    position: "bottom-left",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                }
-            );
-        }
         closeModal();
+        if (promise.status === 201) {
+            toastSuccess("Horário agendado!");
+            return;
+        }
+        toastError("Erro ao agendar seu horário, por favor tente novamente.");
+        return;
     }
 
     function handleDisabledTiles(e) {
@@ -115,6 +103,30 @@ export default function ReservationModal({
         yesterday.setDate(yesterday.getDate() - 1);
 
         return yesterday > e.date;
+    }
+
+    function toastSuccess(message) {
+        toast.success(message, {
+            position: "bottom-left",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+    }
+
+    function toastError(message) {
+        toast.error(message, {
+            position: "bottom-left",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
     }
 
     function handleTimeSelection(time) {

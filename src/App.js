@@ -29,12 +29,11 @@ export default function App() {
 
     async function validateToken(token) {
         const user = await api.validateToken(token);
-
         if (user.status === 200) {
             setUserIsLoggedIn(true);
             setUserData(user.data);
 
-            if (user.isAdmin) setUserIsAdmin(true);
+            if (user.data.isAdmin) setUserIsAdmin(true);
 
             return;
         }

@@ -121,24 +121,28 @@ async function editService(token, categoryTitle, serviceTitle, data) {
 async function checkAvailability(token, data) {
     try {
         const config = createConfig(token);
-        const response = await axios.post(
+        const promise = await axios.post(
             `${BASE_URL}/calendar/check-availability`,
             data,
             config
         );
-        return response.data;
+        return promise;
     } catch (error) {
-        console.log(error.response);
+        return error.response;
     }
 }
 
 async function createCalendarEvent(token, data) {
     try {
         const config = createConfig(token);
-        await axios.post(`${BASE_URL}/calendar/create-event`, data, config);
-        return true;
+        const promise = await axios.post(
+            `${BASE_URL}/calendar/create-event`,
+            data,
+            config
+        );
+        return promise;
     } catch (error) {
-        console.log(error.response);
+        return error.response;
     }
 }
 
