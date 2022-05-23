@@ -11,6 +11,7 @@ import AdminPage from "./pages/AdminPage";
 import AuthenticationModal from "./components/AuthenticationModal";
 import * as api from "./services/api";
 import { ToastContainer } from "react-toastify";
+import ScrollToTop from "./components/ScrollToTop";
 import "./styles/reset.css";
 import "./styles/style.css";
 
@@ -65,6 +66,7 @@ export default function App() {
                 }}
             >
                 <BrowserRouter>
+                    <ScrollToTop />
                     <Routes>
                         <Route path={"/"} element={<HomePage />} />
                         <Route path={"/servicos"} element={<ServicesPage />} />
