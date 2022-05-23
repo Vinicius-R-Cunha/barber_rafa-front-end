@@ -21,10 +21,10 @@ import ScrollContainer from "react-indiana-drag-scroll";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function CalendarModal({
+export default function ReservationModal({
     reservationModalIsOpen,
     setReservationModalIsOpen,
-    reservation,
+    serviceData,
     formatPrice,
 }) {
     const { token } = useContext(UserContext);
@@ -56,7 +56,7 @@ export default function CalendarModal({
             tomorrow.setUTCHours(2, 59, 0, 0)
         ).toISOString();
 
-        const duration = reservation.duration;
+        const duration = serviceData.duration;
 
         const schedule = await api.checkAvailability(token, {
             startTime,
@@ -77,8 +77,8 @@ export default function CalendarModal({
 
         const resp = await api.createCalendarEvent(token, {
             startTime: startTime.toISOString(),
-            duration: reservation.duration,
-            summary: reservation.name,
+            duration: serviceData.duration,
+            summary: serviceData.name,
             description: "teste",
         });
 
@@ -149,7 +149,7 @@ export default function CalendarModal({
             style={modalStyles}
         >
             <ModalHeader>
-                <p className="modal-title">{reservation?.name}</p>
+                <p className="modal-title">{serviceData?.name}</p>
                 <IoClose className="close-icon" onClick={() => closeModal()} />
             </ModalHeader>
             <Calendar
@@ -222,10 +222,10 @@ export default function CalendarModal({
                         <ButtonContainer>
                             <div>
                                 <p className="price">{`R$ ${formatPrice(
-                                    reservation?.price
+                                    serviceData?.price
                                 )}`}</p>
                                 <p className="duration">
-                                    {reservation?.duration}
+                                    {serviceData?.duration}
                                 </p>
                             </div>
                             <button

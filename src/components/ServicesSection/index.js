@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import ReadMoreModal from "../ReadMoreModal";
-import CalendarModal from "../CalendarModal";
 import UserContext from "../../contexts/UserContext";
+import ReservationModal from "../ReservationModal";
 import {
     Container,
     Category,
@@ -16,10 +16,9 @@ import {
 export default function ServicesSection({ categoriesArray }) {
     const { token, setAuthenticationIsOpen } = useContext(UserContext);
     const [readMoreModalIsOpen, setReadMoreModalIsOpen] = useState(false);
-    const [serviceData, setServiceData] = useState();
 
+    const [serviceData, setServiceData] = useState();
     const [reservationModalIsOpen, setReservationModalIsOpen] = useState(false);
-    const [reservation, setReservation] = useState();
 
     function readMore(service) {
         setReadMoreModalIsOpen(true);
@@ -28,7 +27,7 @@ export default function ServicesSection({ categoriesArray }) {
     }
 
     function handleReservation(service) {
-        setReservation(service);
+        setServiceData(service);
         if (!token) {
             setAuthenticationIsOpen(true);
             document.body.style.overflow = "hidden";
@@ -102,16 +101,14 @@ export default function ServicesSection({ categoriesArray }) {
                 readMoreModalIsOpen={readMoreModalIsOpen}
                 setReadMoreModalIsOpen={setReadMoreModalIsOpen}
                 serviceData={serviceData}
-                reservationModalIsOpen={reservationModalIsOpen}
-                setReservationModalIsOpen={setReservationModalIsOpen}
-                reservation={reservation}
                 formatPrice={formatPrice}
+                setReservationModalIsOpen={setReservationModalIsOpen}
             />
 
-            <CalendarModal
+            <ReservationModal
                 reservationModalIsOpen={reservationModalIsOpen}
                 setReservationModalIsOpen={setReservationModalIsOpen}
-                reservation={reservation}
+                serviceData={serviceData}
                 formatPrice={formatPrice}
             />
         </>
