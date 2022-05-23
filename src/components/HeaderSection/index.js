@@ -10,7 +10,7 @@ import {
 } from "./style";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
-import background from "../../assets/background.jpeg";
+import background from "../../assets/background3.avif";
 import { BsPersonCircle } from "react-icons/bs";
 import ResponsiveHeader from "../ResponsiveHeader";
 import { useContext, useState } from "react";
