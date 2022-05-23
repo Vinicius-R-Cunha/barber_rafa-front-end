@@ -20,6 +20,7 @@ import UserContext from "../../contexts/UserContext";
 import ScrollContainer from "react-indiana-drag-scroll";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ThreeDots } from "react-loader-spinner";
 
 export default function ReservationModal({
     reservationModalIsOpen,
@@ -33,6 +34,7 @@ export default function ReservationModal({
     const [selectedTime, setSelectedTime] = useState("");
     const [day, setDay] = useState();
     const [viewWidth, setViewWidth] = useState(0);
+    const [loadingSchedule, setLoadingSchedule] = useState(false);
 
     useEffect(() => {
         window.addEventListener("resize", setViewWidth(window.innerWidth));
@@ -47,6 +49,7 @@ export default function ReservationModal({
     }
 
     async function handleClick(e) {
+        setLoadingSchedule(true);
         const startTime = new Date(e).toISOString();
 
         const tomorrow = new Date(e);
@@ -63,6 +66,7 @@ export default function ReservationModal({
             endTime,
             duration,
         });
+        setLoadingSchedule(false);
 
         setDay(e);
         setScrollX(0);
@@ -177,76 +181,90 @@ export default function ReservationModal({
             {scheduleArray?.length === 0 && (
                 <DateStatus>Não temos horários disponíveis</DateStatus>
             )}
-            {scheduleArray?.length !== 0 && scheduleArray !== null && (
-                <>
-                    <DateStatus>Selecione um horário :</DateStatus>
-                    <ScheduleContainer>
-                        <BsFillArrowLeftCircleFill
-                            onClick={handleLeftArrow}
-                            className="nav-arrow-left"
-                        />
-                        <BsFillArrowRightCircleFill
-                            onClick={handleRightArrow}
-                            className="nav-arrow-right"
-                        />
-                        <div className="scrollable-div">
-                            {viewWidth < 1024 ? (
-                                <ScrollContainer className="inside-scroll">
-                                    {scheduleArray?.map((time) => {
-                                        return (
-                                            <Timetable
-                                                key={time}
-                                                onClick={() =>
-                                                    handleTimeSelection(time)
-                                                }
-                                            >
-                                                {time}
-                                            </Timetable>
-                                        );
-                                    })}
-                                </ScrollContainer>
-                            ) : (
-                                <div
-                                    className="inside-scroll"
-                                    style={{
-                                        marginLeft: scrollX,
-                                        width: scheduleArray?.length * 114 - 20,
-                                        transition: "all ease 0.9s",
-                                    }}
-                                >
-                                    {scheduleArray?.map((time) => {
-                                        return (
-                                            <Timetable
-                                                key={time}
-                                                onClick={() =>
-                                                    handleTimeSelection(time)
-                                                }
-                                            >
-                                                {time}
-                                            </Timetable>
-                                        );
-                                    })}
-                                </div>
-                            )}
-                        </div>
-                    </ScheduleContainer>
-                    {selectedTime !== "" && (
-                        <ButtonContainer>
-                            <div>
-                                <p className="price">{`R$ ${formatPrice(
-                                    serviceData?.price
-                                )}`}</p>
-                                <p className="duration">
-                                    {serviceData?.duration}
-                                </p>
-                            </div>
-                            <button
-                                onClick={() => handleReservation()}
-                            >{`Reservar horário - ${selectedTime}`}</button>
-                        </ButtonContainer>
-                    )}
-                </>
+            {loadingSchedule && (
+                <DateStatus>
+                    <ThreeDots color="#E1E1E1" height={13} width={51} />
+                </DateStatus>
             )}
+            {scheduleArray?.length !== 0 &&
+                scheduleArray !== null &&
+                !loadingSchedule && (
+                    <>
+                        <DateStatus>Selecione um horário :</DateStatus>
+                        <ScheduleContainer>
+                            <BsFillArrowLeftCircleFill
+                                onClick={handleLeftArrow}
+                                className="nav-arrow-left"
+                            />
+                            <BsFillArrowRightCircleFill
+                                onClick={handleRightArrow}
+                                className="nav-arrow-right"
+                            />
+
+                            <div className="scrollable-div">
+                                {viewWidth < 1024 ? (
+                                    <ScrollContainer className="inside-scroll">
+                                        {scheduleArray?.map((time) => {
+                                            return (
+                                                <Timetable
+                                                    key={time}
+                                                    onClick={() =>
+                                                        handleTimeSelection(
+                                                            time
+                                                        )
+                                                    }
+                                                >
+                                                    {time}
+                                                </Timetable>
+                                            );
+                                        })}
+                                    </ScrollContainer>
+                                ) : (
+                                    <div
+                                        className="inside-scroll"
+                                        style={{
+                                            marginLeft: scrollX,
+                                            width:
+                                                scheduleArray?.length * 114 -
+                                                20,
+                                            transition: "all ease 0.9s",
+                                        }}
+                                    >
+                                        {scheduleArray?.map((time) => {
+                                            return (
+                                                <Timetable
+                                                    key={time}
+                                                    onClick={() =>
+                                                        handleTimeSelection(
+                                                            time
+                                                        )
+                                                    }
+                                                >
+                                                    {time}
+                                                </Timetable>
+                                            );
+                                        })}
+                                    </div>
+                                )}
+                            </div>
+                        </ScheduleContainer>
+                        {selectedTime !== "" && (
+                            <ButtonContainer>
+                                <div>
+                                    <p className="price">{`R$ ${formatPrice(
+                                        serviceData?.price
+                                    )}`}</p>
+                                    <p className="duration">
+                                        {serviceData?.duration}
+                                    </p>
+                                </div>
+                                <button
+                                    onClick={() => handleReservation()}
+                                >{`Reservar horário - ${selectedTime}`}</button>
+                            </ButtonContainer>
+                        )}
+                    </>
+                )}
         </StyledModal>
     );
 }
