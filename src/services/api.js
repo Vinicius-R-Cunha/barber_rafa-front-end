@@ -146,6 +146,16 @@ async function createCalendarEvent(token, data) {
     }
 }
 
+async function getReservations(token) {
+    try {
+        const config = createConfig(token);
+        const promise = await axios.get(`${BASE_URL}/reservations`, config);
+        return promise;
+    } catch (error) {
+        return error.response;
+    }
+}
+
 export {
     validateToken,
     signUp,
@@ -159,4 +169,5 @@ export {
     editService,
     checkAvailability,
     createCalendarEvent,
+    getReservations,
 };
