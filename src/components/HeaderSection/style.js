@@ -77,6 +77,8 @@ const HeaderDiv = styled.div`
 
     margin-top: 23px;
 
+    position: relative;
+
     z-index: 1;
 
     .logo-image {
@@ -240,4 +242,51 @@ const BookButton = styled.button`
     }
 `;
 
-export { Container, HeaderDiv, BookButton, About, NavButtons, NavButton };
+const MenuContainer = styled.div`
+    width: 120px;
+
+    background-color: #252525;
+
+    position: absolute;
+    top: 110px;
+    right: 0;
+
+    border-radius: 4px;
+    box-shadow: -2px 5px 15px rgba(0, 0, 0, 0.7);
+
+    z-index: 3;
+
+    cursor: pointer;
+
+    @media (max-width: 1150px) {
+        display: none;
+    }
+`;
+
+const ProfileButton = styled.div`
+    width: 100%;
+
+    font-family: "Montserrat";
+    font-size: 1rem;
+    font-weight: 400;
+    color: #e1e1e1;
+
+    display: flex;
+    justify-content: flex-end;
+
+    box-sizing: border-box;
+    padding: 19px;
+
+    cursor: pointer;
+`;
+
+export {
+    Container,
+    HeaderDiv,
+    BookButton,
+    About,
+    NavButtons,
+    NavButton,
+    MenuContainer,
+    ProfileButton,
+};

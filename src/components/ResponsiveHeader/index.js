@@ -8,7 +8,11 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 
-export default function ResponsiveHeader() {
+export default function ResponsiveHeader({
+    profileTabIsOpen,
+    setProfileTabIsOpen,
+    logout,
+}) {
     const { openAuthenticationModal, userIsLoggedIn } = useContext(UserContext);
     const [menuIsOpen, setMenuIsOpen] = useState(false);
 
@@ -41,7 +45,7 @@ export default function ResponsiveHeader() {
                 )}
                 {userIsLoggedIn ? (
                     <BsPersonCircle
-                        onClick={() => navigate("/perfil")}
+                        onClick={() => setProfileTabIsOpen(!profileTabIsOpen)}
                         className="tablet-icon"
                     />
                 ) : (
@@ -65,6 +69,20 @@ export default function ResponsiveHeader() {
                     </NavButton>
                     <NavButton onClick={() => navigateToPage("/contato")}>
                         Contato
+                    </NavButton>
+                </MenuContainer>
+            )}
+
+            {profileTabIsOpen && (
+                <MenuContainer>
+                    <NavButton
+                        className={"flex-end"}
+                        onClick={() => navigateToPage("/reservas")}
+                    >
+                        Reservas
+                    </NavButton>
+                    <NavButton className={"flex-end"} onClick={() => logout()}>
+                        Sair
                     </NavButton>
                 </MenuContainer>
             )}

@@ -74,6 +74,11 @@ const MenuContainer = styled.div`
     top: 70px;
 
     box-shadow: -2px 5px 15px rgba(0, 0, 0, 0.7);
+
+    .flex-end {
+        display: flex;
+        justify-content: flex-end;
+    }
 `;
 
 const NavButton = styled.div`

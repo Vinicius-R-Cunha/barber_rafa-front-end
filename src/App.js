@@ -71,7 +71,10 @@ export default function App() {
                         <Route path={"/sobre"} element={<AboutPage />} />
                         <Route path={"/contato"} element={<ContactUsPage />} />
                         {userIsLoggedIn && (
-                            <Route path={"/perfil"} element={<ProfilePage />} />
+                            <Route
+                                path={"/reservas"}
+                                element={<ProfilePage />}
+                            />
                         )}
                         {userIsLoggedIn && userIsAdmin && (
                             <Route path={"/admin"} element={<AdminPage />} />

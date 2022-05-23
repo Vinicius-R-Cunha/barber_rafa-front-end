@@ -24,8 +24,8 @@ export default function Footer() {
                     Contato
                 </NavButton>
                 {userIsLoggedIn ? (
-                    <NavButton onClick={() => navigate("/perfil")}>
-                        Perfil
+                    <NavButton onClick={() => navigate("/reservas")}>
+                        Reservas
                     </NavButton>
                 ) : (
                     <NavButton onClick={() => openAuthenticationModal()}>
