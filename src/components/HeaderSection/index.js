@@ -30,6 +30,7 @@ export default function HeaderSection({ page, title }) {
     }
 
     function logout() {
+        navigate("/");
         setProfileTabIsOpen(false);
         localStorage.removeItem("token");
         setToken(null);
