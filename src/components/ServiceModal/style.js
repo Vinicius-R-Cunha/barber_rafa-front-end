@@ -48,7 +48,7 @@ const InputsForm = styled.form`
     flex-direction: column;
     align-items: center;
 
-    input {
+    .classic-input {
         all: unset;
 
         width: 100%;
@@ -126,6 +126,29 @@ const InputsForm = styled.form`
 
     @media (max-width: 370px) {
         width: 265px;
+    }
+`;
+
+const RangeInput = styled.div`
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 15px;
+
+    p {
+        font-family: "Montserrat";
+        font-size: 0.855rem;
+        font-style: normal;
+        font-weight: 800;
+        letter-spacing: 0.7px;
+        color: #e1e1e1;
+    }
+
+    .range-input {
+        width: 65%;
     }
 `;
 
@@ -230,4 +253,4 @@ const modalStyles = {
     },
 };
 
-export { StyledModal, InputsForm, ActionButtons, modalStyles };
+export { StyledModal, InputsForm, ActionButtons, RangeInput, modalStyles };

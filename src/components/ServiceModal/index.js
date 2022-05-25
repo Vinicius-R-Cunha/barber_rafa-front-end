@@ -2,7 +2,13 @@ import { useContext, useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import UserContext from "../../contexts/UserContext";
 import * as api from "../../services/api";
-import { StyledModal, InputsForm, ActionButtons, modalStyles } from "./style";
+import {
+    StyledModal,
+    InputsForm,
+    ActionButtons,
+    RangeInput,
+    modalStyles,
+} from "./style";
 import NumberFormat from "react-number-format";
 
 export default function ServiceModal({
@@ -13,25 +19,42 @@ export default function ServiceModal({
     type,
     renderPage,
 }) {
+    const rangeInputValues = [
+        "15min",
+        "30min",
+        "45min",
+        "1h",
+        "1h15min",
+        "1h30min",
+        "1h45min",
+        "2h",
+        "2h15min",
+        "2h30min",
+        "2h45min",
+        "3h",
+    ];
+
     const { token } = useContext(UserContext);
 
     const [formData, setFormData] = useState({
         name: "",
         price: "",
-        duration: "",
         description: "",
     });
+
+    const [duration, setDuration] = useState("");
 
     useEffect(() => {
         if (type === "edit") {
             setFormData({
                 name: serviceData.name,
                 price: priceToText(serviceData.price),
-                duration: serviceData.duration,
                 description: serviceData.description,
             });
+            setDuration(serviceData.duration);
         } else {
-            setFormData({ name: "", price: "", duration: "", description: "" });
+            setFormData({ name: "", price: "", description: "" });
+            setDuration("15min");
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [type, serviceModalIsOpen]);
@@ -42,9 +65,9 @@ export default function ServiceModal({
         setFormData({
             name: "",
             price: "",
-            duration: "",
             description: "",
         });
+        setDuration("15min");
     }
 
     async function handleSubmit(e) {
@@ -53,6 +76,7 @@ export default function ServiceModal({
         if (type === "create") {
             const created = await api.createService(token, categoryTitle, {
                 ...formData,
+                duration,
                 price: priceToNumberInCents(formData.price),
             });
             if (created) {
@@ -74,7 +98,11 @@ export default function ServiceModal({
                 token,
                 categoryTitle,
                 serviceData.name,
-                { ...formData, price: priceToNumberInCents(formData.price) }
+                {
+                    ...formData,
+                    duration,
+                    price: priceToNumberInCents(formData.price),
+                }
             );
             if (edit) {
                 closeModal();
@@ -129,6 +157,7 @@ export default function ServiceModal({
                 {type !== "delete" && (
                     <>
                         <input
+                            className="classic-input"
                             name="name"
                             type="text"
                             placeholder="Título"
@@ -137,6 +166,7 @@ export default function ServiceModal({
                             required
                         />
                         <NumberFormat
+                            className="classic-input"
                             name="price"
                             placeholder="Preço"
                             decimalScale={2}
@@ -145,14 +175,24 @@ export default function ServiceModal({
                             onChange={(e) => handleFormData(e)}
                             value={formData.price}
                         />
-                        <input
-                            name="duration"
-                            type="text"
-                            placeholder="Duração"
-                            onChange={(e) => handleFormData(e)}
-                            value={formData.duration}
-                            required
-                        />
+                        <RangeInput>
+                            <p>Duração: {duration}</p>
+                            <input
+                                className="range-input"
+                                name="duration"
+                                type="range"
+                                min="0"
+                                max="11"
+                                placeholder="Duração"
+                                onChange={(e) =>
+                                    setDuration(
+                                        rangeInputValues[e.target.value]
+                                    )
+                                }
+                                value={rangeInputValues.indexOf(duration)}
+                                required
+                            />
+                        </RangeInput>
                         <textarea
                             name="description"
                             type="text"
