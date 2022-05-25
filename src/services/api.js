@@ -156,6 +156,19 @@ async function getReservations(token) {
     }
 }
 
+async function deleteReservation(token, reservationId) {
+    try {
+        const config = createConfig(token);
+        const promise = await axios.delete(
+            `${BASE_URL}/reservations/${reservationId}`,
+            config
+        );
+        return promise;
+    } catch (error) {
+        return error.response;
+    }
+}
+
 export {
     validateToken,
     signUp,
@@ -170,4 +183,5 @@ export {
     checkAvailability,
     createCalendarEvent,
     getReservations,
+    deleteReservation,
 };

@@ -77,12 +77,13 @@ const Services = styled.div`
 
 const Service = styled.div`
     width: 100%;
-    height: 150px;
+
+    padding: 30px 25px 15px 25px;
 
     font-family: "Montserrat";
     font-size: 1.275rem;
     font-weight: 500;
-    line-height: 1em;
+    line-height: 1.2em;
     letter-spacing: 0.7px;
 
     display: flex;
@@ -90,11 +91,30 @@ const Service = styled.div`
     justify-content: center;
     align-items: center;
 
+    box-sizing: border-box;
+
     background-color: #2c2c2c;
 
     position: relative;
 
+    .remove-icon {
+        font-size: 0.9rem;
+        color: #ff5a5a;
+
+        background-color: rgba(0, 0, 0, 0.2);
+
+        align-self: flex-end;
+
+        margin-top: 25px;
+        padding: 3px 8px;
+
+        border-radius: 4px;
+
+        cursor: pointer;
+    }
+
     .summary {
+        text-align: center;
         color: #96885f;
 
         margin-bottom: 15px;

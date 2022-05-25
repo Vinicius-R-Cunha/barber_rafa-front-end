@@ -49,7 +49,10 @@ export default function ProfilePage() {
     return (
         <>
             <HeaderSection page="profile" title="Reservas" />
-            <ProfileSection reservationsArray={reservationsArray} />
+            <ProfileSection
+                reservationsArray={reservationsArray}
+                renderPage={renderPage}
+            />
             <Footer />
         </>
     );

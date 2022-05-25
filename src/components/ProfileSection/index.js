@@ -1,8 +1,13 @@
 import { Container, Services, Service, Button } from "./style";
 import { BsWhatsapp } from "react-icons/bs";
+import { useState } from "react";
+import CancelReservationModal from "../CancelReservationModal";
 
-export default function ProfileSection({ reservationsArray }) {
+export default function ProfileSection({ reservationsArray, renderPage }) {
     const PHONE_NUMBER = "98747-9047";
+
+    const [confirmationIsOpen, setConfirmationIsOpen] = useState(false);
+    const [reservationId, setReservationId] = useState();
 
     function formatDate(startTime, endTime) {
         const newDate = new Date(startTime);
@@ -34,6 +39,15 @@ export default function ProfileSection({ reservationsArray }) {
                                 <p className="date-time">
                                     {formatDate(data?.startTime, data?.endTime)}
                                 </p>
+                                <div
+                                    className="remove-icon"
+                                    onClick={() => {
+                                        setConfirmationIsOpen(true);
+                                        setReservationId(data?._id);
+                                    }}
+                                >
+                                    Cancelar reserva
+                                </div>
                             </Service>
                         );
                     })}
@@ -57,6 +71,13 @@ export default function ProfileSection({ reservationsArray }) {
                 Enviar mensagem
                 <BsWhatsapp className="whats-icon" />
             </Button>
+
+            <CancelReservationModal
+                confirmationIsOpen={confirmationIsOpen}
+                setConfirmationIsOpen={setConfirmationIsOpen}
+                renderPage={renderPage}
+                reservationId={reservationId}
+            />
         </Container>
     );
 }
