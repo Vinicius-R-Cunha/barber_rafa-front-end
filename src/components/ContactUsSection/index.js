@@ -2,6 +2,7 @@ import {
     InfosContainer,
     Info,
     Container,
+    MapContainer,
     FormContainer,
     Button,
 } from "./style";
@@ -9,10 +10,10 @@ import contact from "../../assets/contact.png";
 import location from "../../assets/location.png";
 import schedule from "../../assets/schedule.png";
 import { BsWhatsapp } from "react-icons/bs";
+import PigeonMap from "../PigeonMap";
 
 export default function ContactUsSection() {
     const PHONE_NUMBER = "98747-9047";
-    // lat: -23.525438021785874, lng: -46.50453847304112
 
     return (
         <Container>
@@ -41,6 +42,11 @@ export default function ContactUsSection() {
                     </p>
                 </Info>
             </InfosContainer>
+
+            <MapContainer>
+                <PigeonMap />
+            </MapContainer>
+
             <FormContainer>
                 <p className="form-title">
                     Alguma <span>dúvida?</span>

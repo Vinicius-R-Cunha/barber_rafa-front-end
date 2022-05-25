@@ -22,7 +22,7 @@ const InfosContainer = styled.div`
     display: flex;
     justify-content: space-between;
 
-    padding-bottom: 112px;
+    padding-bottom: 50px;
 
     @media (max-width: 1170px) {
         width: 90%;
@@ -90,6 +90,14 @@ const Info = styled.div`
     }
 `;
 
+const MapContainer = styled.div`
+    width: 1170px;
+
+    @media (max-width: 1175px) {
+        width: 90%;
+    }
+`;
+
 const FormContainer = styled.div`
     width: 79%;
 
@@ -97,7 +105,7 @@ const FormContainer = styled.div`
     flex-direction: column;
     align-items: center;
 
-    padding-bottom: 70px;
+    padding: 70px 0;
 
     .form-title {
         font-family: "Teko";
@@ -190,4 +198,4 @@ const Button = styled.button`
     }
 `;
 
-export { Container, InfosContainer, Info, FormContainer, Button };
+export { Container, InfosContainer, Info, MapContainer, FormContainer, Button };
