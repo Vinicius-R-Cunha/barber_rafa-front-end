@@ -2,7 +2,6 @@ import {
     InfosContainer,
     Info,
     Container,
-    MapContainer,
     FormContainer,
     Button,
 } from "./style";
@@ -43,9 +42,7 @@ export default function ContactUsSection() {
                 </Info>
             </InfosContainer>
 
-            <MapContainer>
-                <PigeonMap />
-            </MapContainer>
+            <PigeonMap />
 
             <FormContainer>
                 <p className="form-title">

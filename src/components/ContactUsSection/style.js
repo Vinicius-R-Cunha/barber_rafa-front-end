@@ -90,14 +90,6 @@ const Info = styled.div`
     }
 `;
 
-const MapContainer = styled.div`
-    width: 1170px;
-
-    @media (max-width: 1175px) {
-        width: 90%;
-    }
-`;
-
 const FormContainer = styled.div`
     width: 79%;
 
@@ -198,4 +190,4 @@ const Button = styled.button`
     }
 `;
 
-export { Container, InfosContainer, Info, MapContainer, FormContainer, Button };
+export { Container, InfosContainer, Info, FormContainer, Button };
