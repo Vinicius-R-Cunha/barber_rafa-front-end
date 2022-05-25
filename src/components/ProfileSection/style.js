@@ -19,6 +19,8 @@ const Container = styled.div`
         letter-spacing: 0.7px;
         text-align: center;
         color: #e1e1e1;
+
+        margin-top: 50px;
     }
 
     .margin-top {

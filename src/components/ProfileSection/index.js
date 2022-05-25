@@ -7,7 +7,7 @@ export default function ProfileSection({ reservationsArray, renderPage }) {
     const PHONE_NUMBER = "98747-9047";
 
     const [confirmationIsOpen, setConfirmationIsOpen] = useState(false);
-    const [reservationId, setReservationId] = useState();
+    const [eventId, setEventId] = useState();
 
     function formatDate(startTime, endTime) {
         const newDate = new Date(startTime);
@@ -43,7 +43,7 @@ export default function ProfileSection({ reservationsArray, renderPage }) {
                                     className="remove-icon"
                                     onClick={() => {
                                         setConfirmationIsOpen(true);
-                                        setReservationId(data?._id);
+                                        setEventId(data?.eventId);
                                     }}
                                 >
                                     Cancelar reserva
@@ -76,7 +76,7 @@ export default function ProfileSection({ reservationsArray, renderPage }) {
                 confirmationIsOpen={confirmationIsOpen}
                 setConfirmationIsOpen={setConfirmationIsOpen}
                 renderPage={renderPage}
-                reservationId={reservationId}
+                eventId={eventId}
             />
         </Container>
     );

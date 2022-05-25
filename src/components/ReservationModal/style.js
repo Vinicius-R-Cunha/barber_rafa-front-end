@@ -77,7 +77,7 @@ const ModalHeader = styled.div`
     }
 `;
 
-const DateStatus = styled.p`
+const DateStatus = styled.div`
     font-family: "Montserrat";
     font-size: 1.275rem;
     font-weight: 800;

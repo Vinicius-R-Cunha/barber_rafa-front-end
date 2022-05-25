@@ -156,11 +156,11 @@ async function getReservations(token) {
     }
 }
 
-async function deleteReservation(token, reservationId) {
+async function deleteReservation(token, eventId) {
     try {
         const config = createConfig(token);
         const promise = await axios.delete(
-            `${BASE_URL}/reservations/${reservationId}`,
+            `${BASE_URL}/calendar/${eventId}`,
             config
         );
         return promise;

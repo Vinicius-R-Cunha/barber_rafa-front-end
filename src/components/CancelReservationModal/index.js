@@ -1,17 +1,20 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import UserContext from "../../contexts/UserContext";
 import { StyledModal, ActionButtons, modalStyles } from "./style";
 import * as api from "../../services/api";
 import { toast } from "react-toastify";
+import { ThreeDots } from "react-loader-spinner";
 
 export default function CancelReservationModal({
     confirmationIsOpen,
     setConfirmationIsOpen,
     renderPage,
-    reservationId,
+    eventId,
 }) {
     const { token } = useContext(UserContext);
+
+    const [isLoading, setIsLoading] = useState(false);
 
     function closeModal() {
         document.body.style.overflow = "unset";
@@ -19,7 +22,9 @@ export default function CancelReservationModal({
     }
 
     async function handleCancelReservation() {
-        const promise = await api.deleteReservation(token, reservationId);
+        setIsLoading(true);
+        const promise = await api.deleteReservation(token, eventId);
+        setIsLoading(false);
         closeModal();
         renderPage();
         if (promise.status === 200) {
@@ -56,12 +61,21 @@ export default function CancelReservationModal({
         >
             <IoClose className="close-button" onClick={() => closeModal()} />
             <p className="title">Tem certeza que quer excluir essa reserva?</p>
-            <ActionButtons>
-                <button onClick={() => closeModal()}>Cancelar</button>
-                <button onClick={() => handleCancelReservation()}>
-                    Confirmar
-                </button>
-            </ActionButtons>
+            {isLoading ? (
+                <ActionButtons>
+                    <button>Cancelar</button>
+                    <button>
+                        <ThreeDots color="#E1E1E1" height={13} width={51} />
+                    </button>
+                </ActionButtons>
+            ) : (
+                <ActionButtons>
+                    <button onClick={() => closeModal()}>Cancelar</button>
+                    <button onClick={() => handleCancelReservation()}>
+                        Confirmar
+                    </button>
+                </ActionButtons>
+            )}
         </StyledModal>
     );
 }
