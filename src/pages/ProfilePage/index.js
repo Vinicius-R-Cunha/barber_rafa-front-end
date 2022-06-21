@@ -8,52 +8,52 @@ import * as api from "../../services/api";
 import { toast } from "react-toastify";
 
 export default function ProfilePage() {
-    const { token } = useContext(UserContext);
-    const [reservationsArray, setReservationsArray] = useState();
+  const { token } = useContext(UserContext);
+  const [reservationsArray, setReservationsArray] = useState();
 
-    useEffect(() => {
-        renderPage();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+  useEffect(() => {
+    renderPage();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-    async function renderPage() {
-        const promise = await api.getReservations(token);
-        if (promise.status === 200) {
-            setReservationsArray(promise.data);
-            return;
-        }
-        return toast.error(
-            "Erro ao carregar serviços, por favor recarregue a página",
-            {
-                position: "bottom-left",
-                autoClose: false,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            }
-        );
+  async function renderPage() {
+    const promise = await api.getReservations(token);
+    if (promise.status === 200) {
+      setReservationsArray(promise.data);
+      return;
     }
-
-    if (!reservationsArray) {
-        return (
-            <>
-                <HeaderSection page="profile" title="Reservas" />
-                <Loading />
-                <Footer />
-            </>
-        );
-    }
-
-    return (
-        <>
-            <HeaderSection page="profile" title="Reservas" />
-            <ProfileSection
-                reservationsArray={reservationsArray}
-                renderPage={renderPage}
-            />
-            <Footer />
-        </>
+    return toast.error(
+      "Erro ao carregar serviços, por favor recarregue a página",
+      {
+        position: "bottom-left",
+        autoClose: false,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }
     );
+  }
+
+  if (!reservationsArray) {
+    return (
+      <>
+        <HeaderSection page="profile" title="Reservas" />
+        <Loading />
+        <Footer />
+      </>
+    );
+  }
+
+  return (
+    <>
+      <HeaderSection page="profile" title="Reservas" />
+      <ProfileSection
+        reservationsArray={reservationsArray}
+        renderPage={renderPage}
+      />
+      <Footer />
+    </>
+  );
 }

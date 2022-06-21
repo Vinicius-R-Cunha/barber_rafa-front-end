@@ -3,17 +3,15 @@ import { useNavigate } from "react-router-dom";
 import background from "../../assets/background2.avif";
 
 export default function HomeToContactUsSection() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    return (
-        <Container>
-            <img className="background-image" src={background} alt="" />
-            <div className="background-darkness"></div>
+  return (
+    <Container>
+      <img className="background-image" src={background} alt="" />
+      <div className="background-darkness"></div>
 
-            <p className="title">Onde nos encontrar?</p>
-            <Button onClick={() => navigate("/contato")}>
-                Página de contato
-            </Button>
-        </Container>
-    );
+      <p className="title">Onde nos encontrar?</p>
+      <Button onClick={() => navigate("/contato")}>Página de contato</Button>
+    </Container>
+  );
 }

@@ -4,12 +4,12 @@ import HomeToContactUsSection from "../../components/HomeToContactUsSection";
 import Footer from "../../components/Footer";
 
 export default function HomePage() {
-    return (
-        <>
-            <HeaderSection page={"home"} />
-            <HomeToAboutSection />
-            <HomeToContactUsSection />
-            <Footer />
-        </>
-    );
+  return (
+    <>
+      <HeaderSection page={"home"} />
+      <HomeToAboutSection />
+      <HomeToContactUsSection />
+      <Footer />
+    </>
+  );
 }

@@ -1,132 +1,132 @@
 import styled from "styled-components";
 
 const Container = styled.div`
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 112px 0;
+
+  background-color: #252525;
+
+  position: relative;
+
+  .background-image {
     width: 100%;
+    height: 100%;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    object-fit: cover;
 
-    padding: 112px 0;
+    opacity: 0.6;
 
-    background-color: #252525;
+    position: absolute;
+    top: 0;
+    left: 0;
 
-    position: relative;
+    z-index: 0;
+  }
 
-    .background-image {
-        width: 100%;
-        height: 100%;
+  .background-darkness {
+    width: 100%;
+    height: 100%;
 
-        object-fit: cover;
+    background-color: rgba(0, 0, 0, 0.7);
 
-        opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
 
-        position: absolute;
-        top: 0;
-        left: 0;
+    z-index: 0;
+  }
 
-        z-index: 0;
-    }
+  .title {
+    font-family: "Teko";
+    font-size: 4.375rem;
+    font-weight: 500;
+    line-height: 1em;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    color: #e1e1e1;
 
-    .background-darkness {
-        width: 100%;
-        height: 100%;
+    padding-bottom: 25px;
 
-        background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+  }
 
-        position: absolute;
-        top: 0;
-        left: 0;
-
-        z-index: 0;
-    }
+  @media (max-width: 767px) {
+    padding: 50px 0;
 
     .title {
-        font-family: "Teko";
-        font-size: 4.375rem;
-        font-weight: 500;
-        line-height: 1em;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        text-align: center;
-        color: #e1e1e1;
+      font-size: 3.563rem;
 
-        padding-bottom: 25px;
-
-        z-index: 1;
+      padding-top: 25px;
+      padding-bottom: 15px;
     }
+  }
 
-    @media (max-width: 767px) {
-        padding: 50px 0;
-
-        .title {
-            font-size: 3.563rem;
-
-            padding-top: 25px;
-            padding-bottom: 15px;
-        }
+  @media (max-width: 480px) {
+    .title {
+      font-size: 2.463rem;
     }
-
-    @media (max-width: 480px) {
-        .title {
-            font-size: 2.463rem;
-        }
-    }
+  }
 `;
 
 const Button = styled.button`
-    all: unset;
+  all: unset;
 
-    width: 280px;
-    height: 73px;
+  width: 280px;
+  height: 73px;
 
-    font-weight: 800;
-    font-size: 0.875rem;
-    line-height: 1em;
-    text-transform: uppercase;
-    letter-spacing: 0.7px;
-    color: #e1e1e1;
+  font-weight: 800;
+  font-size: 0.875rem;
+  line-height: 1em;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: #e1e1e1;
 
-    margin-top: 30px;
+  margin-top: 30px;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    border-radius: 4px;
-    border: 5px solid #96885f;
+  border-radius: 4px;
+  border: 5px solid #96885f;
 
-    z-index: 1;
+  z-index: 1;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    :hover {
-        transition: 0.3s ease-out;
-        background-color: #96885f;
-    }
+  :hover {
+    transition: 0.3s ease-out;
+    background-color: #96885f;
+  }
 
-    @media (max-width: 1100px) {
-        width: 260px;
-        height: 53px;
+  @media (max-width: 1100px) {
+    width: 260px;
+    height: 53px;
 
-        border: 3px solid #96885f;
-    }
+    border: 3px solid #96885f;
+  }
 
-    @media (max-width: 767px) {
-        width: 245px;
-        height: 50px;
+  @media (max-width: 767px) {
+    width: 245px;
+    height: 50px;
 
-        margin-top: 40px;
-    }
+    margin-top: 40px;
+  }
 
-    @media (max-width: 500px) {
-        width: 205px;
-        height: 40px;
+  @media (max-width: 500px) {
+    width: 205px;
+    height: 40px;
 
-        margin-top: 10px;
-        font-size: 0.675rem;
-    }
+    margin-top: 10px;
+    font-size: 0.675rem;
+  }
 `;
 
 export { Container, Button };

@@ -9,83 +9,81 @@ import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 
 export default function ResponsiveHeader({
-    profileTabIsOpen,
-    setProfileTabIsOpen,
-    logout,
+  profileTabIsOpen,
+  setProfileTabIsOpen,
+  logout,
 }) {
-    const { openAuthenticationModal, userIsLoggedIn } = useContext(UserContext);
-    const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const { openAuthenticationModal, userIsLoggedIn } = useContext(UserContext);
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    function navigateToPage(page) {
-        setMenuIsOpen(false);
-        navigate(page);
-    }
+  function navigateToPage(page) {
+    setMenuIsOpen(false);
+    navigate(page);
+  }
 
-    return (
-        <Container>
-            <img
-                onClick={() => navigate("/")}
-                className="logo-image-tablet"
-                src={logo}
-                alt=""
-            />
-            <Icons>
-                {menuIsOpen ? (
-                    <IoClose
-                        onClick={() => setMenuIsOpen(!menuIsOpen)}
-                        className="tablet-icon"
-                    />
-                ) : (
-                    <MdOutlineMenu
-                        onClick={() => setMenuIsOpen(!menuIsOpen)}
-                        className="tablet-icon"
-                    />
-                )}
-                {userIsLoggedIn ? (
-                    <BsPersonCircle
-                        onClick={() => setProfileTabIsOpen(!profileTabIsOpen)}
-                        className="tablet-icon"
-                    />
-                ) : (
-                    <BsPersonCircle
-                        onClick={() => openAuthenticationModal()}
-                        className="tablet-icon"
-                    />
-                )}
-            </Icons>
+  return (
+    <Container>
+      <img
+        onClick={() => navigate("/")}
+        className="logo-image-tablet"
+        src={logo}
+        alt=""
+      />
+      <Icons>
+        {menuIsOpen ? (
+          <IoClose
+            onClick={() => setMenuIsOpen(!menuIsOpen)}
+            className="tablet-icon"
+          />
+        ) : (
+          <MdOutlineMenu
+            onClick={() => setMenuIsOpen(!menuIsOpen)}
+            className="tablet-icon"
+          />
+        )}
+        {userIsLoggedIn ? (
+          <BsPersonCircle
+            onClick={() => setProfileTabIsOpen(!profileTabIsOpen)}
+            className="tablet-icon"
+          />
+        ) : (
+          <BsPersonCircle
+            onClick={() => openAuthenticationModal()}
+            className="tablet-icon"
+          />
+        )}
+      </Icons>
 
-            {menuIsOpen && (
-                <MenuContainer>
-                    <NavButton onClick={() => navigateToPage("/")}>
-                        Página Inicial
-                    </NavButton>
-                    <NavButton onClick={() => navigateToPage("/servicos")}>
-                        Serviços
-                    </NavButton>
-                    <NavButton onClick={() => navigateToPage("/sobre")}>
-                        Sobre
-                    </NavButton>
-                    <NavButton onClick={() => navigateToPage("/contato")}>
-                        Contato
-                    </NavButton>
-                </MenuContainer>
-            )}
+      {menuIsOpen && (
+        <MenuContainer>
+          <NavButton onClick={() => navigateToPage("/")}>
+            Página Inicial
+          </NavButton>
+          <NavButton onClick={() => navigateToPage("/servicos")}>
+            Serviços
+          </NavButton>
+          <NavButton onClick={() => navigateToPage("/sobre")}>Sobre</NavButton>
+          <NavButton onClick={() => navigateToPage("/contato")}>
+            Contato
+          </NavButton>
+        </MenuContainer>
+      )}
 
-            {profileTabIsOpen && (
-                <MenuContainer>
-                    <NavButton
-                        className={"flex-end"}
-                        onClick={() => navigateToPage("/reservas")}
-                    >
-                        Reservas
-                    </NavButton>
-                    <NavButton className={"flex-end"} onClick={() => logout()}>
-                        Sair
-                    </NavButton>
-                </MenuContainer>
-            )}
-        </Container>
-    );
+      {profileTabIsOpen && (
+        <MenuContainer>
+          <NavButton
+            className={"flex-end"}
+            onClick={() => navigateToPage("/reservas")}
+          >
+            Reservas
+          </NavButton>
+          <NavButton className={"flex-end"} onClick={() => logout()}>
+            Sair
+          </NavButton>
+        </MenuContainer>
+      )}
+    </Container>
+  );
 }

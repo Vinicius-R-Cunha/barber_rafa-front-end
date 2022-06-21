@@ -5,91 +5,89 @@ import * as api from "../../services/api";
 import { StyledModal, InputsForm, ActionButtons, modalStyles } from "./style";
 
 export default function CategoryModal({
-    categoryModalIsOpen,
-    setCategoryModalIsOpen,
-    categoryTitle,
-    type,
-    renderPage,
+  categoryModalIsOpen,
+  setCategoryModalIsOpen,
+  categoryTitle,
+  type,
+  renderPage,
 }) {
-    const { token } = useContext(UserContext);
+  const { token } = useContext(UserContext);
 
-    const [title, setTitle] = useState("");
+  const [title, setTitle] = useState("");
 
-    useEffect(() => {
-        if (type === "edit") {
-            setTitle(categoryTitle);
-        } else {
-            setTitle("");
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [type, categoryModalIsOpen]);
-
-    function closeModal() {
-        document.body.style.overflow = "unset";
-        setCategoryModalIsOpen(false);
-        setTitle("");
+  useEffect(() => {
+    if (type === "edit") {
+      setTitle(categoryTitle);
+    } else {
+      setTitle("");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [type, categoryModalIsOpen]);
 
-    async function handleSubmit(e) {
-        e.preventDefault();
+  function closeModal() {
+    document.body.style.overflow = "unset";
+    setCategoryModalIsOpen(false);
+    setTitle("");
+  }
 
-        if (type === "create") {
-            const created = await api.createCategory(token, { title });
-            if (created) {
-                closeModal();
-                renderPage();
-            }
-        } else if (type === "delete") {
-            const deleted = await api.deleteCategory(token, categoryTitle);
-            if (deleted) {
-                closeModal();
-                renderPage();
-            }
-        } else if (type === "edit") {
-            const edited = await api.editCategory(token, categoryTitle, {
-                title,
-            });
-            if (edited) {
-                closeModal();
-                renderPage();
-            }
-        }
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    if (type === "create") {
+      const created = await api.createCategory(token, { title });
+      if (created) {
+        closeModal();
+        renderPage();
+      }
+    } else if (type === "delete") {
+      const deleted = await api.deleteCategory(token, categoryTitle);
+      if (deleted) {
+        closeModal();
+        renderPage();
+      }
+    } else if (type === "edit") {
+      const edited = await api.editCategory(token, categoryTitle, {
+        title,
+      });
+      if (edited) {
+        closeModal();
+        renderPage();
+      }
     }
+  }
 
-    return (
-        <StyledModal
-            isOpen={categoryModalIsOpen}
-            ariaHideApp={false}
-            onRequestClose={() => closeModal()}
-            style={modalStyles}
-        >
-            <IoClose className="close-button" onClick={() => closeModal()} />
-            {type === "create" && <p className="title">Criar Categoria</p>}
-            {type === "edit" && <p className="title">Editar Categoria</p>}
-            {type === "delete" && (
-                <p className="title">
-                    Tem certeza que quer excluir essa categoria?
-                </p>
-            )}
-            <InputsForm>
-                {type !== "delete" && (
-                    <input
-                        name="title"
-                        type="text"
-                        placeholder="Título"
-                        onChange={(e) => setTitle(e.target.value)}
-                        value={title}
-                        required
-                    />
-                )}
+  return (
+    <StyledModal
+      isOpen={categoryModalIsOpen}
+      ariaHideApp={false}
+      onRequestClose={() => closeModal()}
+      style={modalStyles}
+    >
+      <IoClose className="close-button" onClick={() => closeModal()} />
+      {type === "create" && <p className="title">Criar Categoria</p>}
+      {type === "edit" && <p className="title">Editar Categoria</p>}
+      {type === "delete" && (
+        <p className="title">Tem certeza que quer excluir essa categoria?</p>
+      )}
+      <InputsForm>
+        {type !== "delete" && (
+          <input
+            name="title"
+            type="text"
+            placeholder="Título"
+            onChange={(e) => setTitle(e.target.value)}
+            value={title}
+            required
+          />
+        )}
 
-                <ActionButtons>
-                    <button type="button" onClick={() => closeModal()}>
-                        Cancelar
-                    </button>
-                    <button onClick={(e) => handleSubmit(e)}>Confirmar</button>
-                </ActionButtons>
-            </InputsForm>
-        </StyledModal>
-    );
+        <ActionButtons>
+          <button type="button" onClick={() => closeModal()}>
+            Cancelar
+          </button>
+          <button onClick={(e) => handleSubmit(e)}>Confirmar</button>
+        </ActionButtons>
+      </InputsForm>
+    </StyledModal>
+  );
 }
