@@ -1,14 +1,19 @@
 # Barber Rafa Macedo
 
 Barber Rafa Macedo is a Barber Shop website (both for desktop and mobile) where you can have an overview of all information about their service. 
-You can also book your haircut and many more services just by signing up and choosing the best time available for you!
+You can also schedule your haircut and many more services just by signing up and choosing the best time available for you!
+
+![BarberRafa](https://user-images.githubusercontent.com/92492685/175067771-13d7fefa-da7b-4e1c-8977-1c1de6fd3413.gif)
 
 Try it out now at https://barber-rafa.vercel.app
 
 ## About
 
 In this web application you will have the Home Page with some general information, an About section with more specific information about the barber, a Contact section where you can find all information to contact the Barber shop as well as a map for geographic recognition.
-And last and most important, you will have the Services section where you can check all of the available services, read their description and schedule the one of your preference!
+
+And last and most important, you will have the Services section where you can check all of the available services, read their description and schedule the one of your preference.
+
+Your schedule will go directely to the barber's Google Calendar!
 
 Below are listed some of the features as well:
 
