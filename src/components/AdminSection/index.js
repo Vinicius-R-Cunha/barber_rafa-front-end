@@ -39,11 +39,6 @@ export default function AdminSection({ categoriesArray, renderPage }) {
     document.body.style.overflow = "hidden";
   }
 
-  function formatPrice(price) {
-    const newPrice = price / 100;
-    return newPrice.toFixed(2).replace(".", ",");
-  }
-
   return (
     <>
       <Container>
@@ -109,9 +104,7 @@ export default function AdminSection({ categoriesArray, renderPage }) {
 
                       <NamePrice>
                         <p className="name">{service?.name}</p>
-                        <p className="price">{`R$ ${formatPrice(
-                          service?.price
-                        )}`}</p>
+                        <p className="price">{`R$ ${service?.price}`}</p>
                       </NamePrice>
                       <Description>{service?.description}</Description>
 

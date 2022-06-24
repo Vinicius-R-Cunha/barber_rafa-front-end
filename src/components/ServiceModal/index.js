@@ -9,7 +9,6 @@ import {
   RangeInput,
   modalStyles,
 } from "./style";
-import NumberFormat from "react-number-format";
 
 export default function ServiceModal({
   serviceModalIsOpen,
@@ -48,7 +47,7 @@ export default function ServiceModal({
     if (type === "edit") {
       setFormData({
         name: serviceData.name,
-        price: priceToText(serviceData.price),
+        price: serviceData.price,
         description: serviceData.description,
       });
       setDuration(serviceData.duration);
@@ -77,7 +76,6 @@ export default function ServiceModal({
       const created = await api.createService(token, categoryTitle, {
         ...formData,
         duration,
-        price: priceToNumberInCents(formData.price),
       });
       if (created) {
         closeModal();
@@ -101,7 +99,6 @@ export default function ServiceModal({
         {
           ...formData,
           duration,
-          price: priceToNumberInCents(formData.price),
         }
       );
       if (edit) {
@@ -123,19 +120,6 @@ export default function ServiceModal({
   function priceToText(price) {
     const aux = price / 100;
     return aux.toFixed(2).replace(".", ",");
-  }
-
-  function rightToLeftFormatter(value) {
-    if (!Number(value)) return "";
-
-    let amount = "";
-    if (amount.length > 2) {
-      amount = parseInt(value).toFixed(2).replace(".", ",");
-    } else {
-      amount = (parseInt(value) / 100).toFixed(2).replace(".", ",");
-    }
-
-    return `${amount}`;
   }
 
   return (
@@ -163,15 +147,14 @@ export default function ServiceModal({
               value={formData.name}
               required
             />
-            <NumberFormat
+            <input
               className="classic-input"
               name="price"
+              type="text"
               placeholder="Preço"
-              decimalScale={2}
-              maxLength={12}
-              format={rightToLeftFormatter}
               onChange={(e) => handleFormData(e)}
               value={formData.price}
+              required
             />
             <RangeInput>
               <p>Duração: {duration}</p>

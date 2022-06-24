@@ -56,9 +56,7 @@ export default function ServicesSection({ categoriesArray }) {
                     <Service key={service?._id}>
                       <NamePrice>
                         <p className="name">{service?.name}</p>
-                        <p className="price">{`R$ ${formatPrice(
-                          service?.price
-                        )}`}</p>
+                        <p className="price">{`R$ ${service?.price}`}</p>
                       </NamePrice>
                       <Description>{service?.description}</Description>
                       {service?.description !== "" && (
@@ -85,7 +83,6 @@ export default function ServicesSection({ categoriesArray }) {
         readMoreModalIsOpen={readMoreModalIsOpen}
         setReadMoreModalIsOpen={setReadMoreModalIsOpen}
         serviceData={serviceData}
-        formatPrice={formatPrice}
         setReservationModalIsOpen={setReservationModalIsOpen}
       />
 
@@ -93,7 +90,6 @@ export default function ServicesSection({ categoriesArray }) {
         reservationModalIsOpen={reservationModalIsOpen}
         setReservationModalIsOpen={setReservationModalIsOpen}
         serviceData={serviceData}
-        formatPrice={formatPrice}
       />
     </>
   );

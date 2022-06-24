@@ -14,7 +14,6 @@ export default function ReadMoreModal({
   setReadMoreModalIsOpen,
   serviceData,
   setReservationModalIsOpen,
-  formatPrice,
 }) {
   const { token, setAuthenticationIsOpen } = useContext(UserContext);
 
@@ -50,7 +49,7 @@ export default function ReadMoreModal({
         <Description>{serviceData?.description}</Description>
         <ButtonContainer>
           <div>
-            <p className="price">{`R$ ${formatPrice(serviceData?.price)}`}</p>
+            <p className="price">{`R$ ${serviceData?.price}`}</p>
             <p className="duration">{serviceData?.duration}</p>
           </div>
           <button onClick={() => handleReservation()}>Reservar</button>

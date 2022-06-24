@@ -26,7 +26,6 @@ export default function ReservationModal({
   reservationModalIsOpen,
   setReservationModalIsOpen,
   serviceData,
-  formatPrice,
 }) {
   const { token, userData } = useContext(UserContext);
   const [scheduleArray, setScheduleArray] = useState(null);
@@ -239,9 +238,7 @@ export default function ReservationModal({
             {selectedTime !== "" && (
               <ButtonContainer>
                 <div>
-                  <p className="price">{`R$ ${formatPrice(
-                    serviceData?.price
-                  )}`}</p>
+                  <p className="price">{`R$ ${serviceData?.price}`}</p>
                   <p className="duration">{serviceData?.duration}</p>
                 </div>
                 <button
