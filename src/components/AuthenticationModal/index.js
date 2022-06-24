@@ -20,14 +20,11 @@ export default function AuthenticationModal() {
 
   const [page, setPage] = useState("entrar");
   const [isShowingPassword, setIsShowingPassword] = useState(false);
-  const [isShowingConfirmationPassword, setIsShowingConfirmationPassword] =
-    useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     password: "",
-    passwordConfirmation: "",
   });
   const [submitIsLoading, setSubmitIsLoading] = useState(false);
 
@@ -41,10 +38,8 @@ export default function AuthenticationModal() {
       email: "",
       phone: "",
       password: "",
-      passwordConfirmation: "",
     });
     setIsShowingPassword(false);
-    setIsShowingConfirmationPassword(false);
   }
 
   function handleFormData(e) {
@@ -182,37 +177,6 @@ export default function AuthenticationModal() {
             />
           )}
         </div>
-        {page === "inscrever-se" && (
-          <div className="password">
-            <input
-              name="passwordConfirmation"
-              type={isShowingConfirmationPassword ? "text" : "password"}
-              placeholder="Confirme sua senha"
-              onChange={(e) => handleFormData(e)}
-              value={formData.passwordConfirmation}
-              required
-            />
-            {isShowingConfirmationPassword ? (
-              <IoEyeOff
-                onClick={() =>
-                  setIsShowingConfirmationPassword(
-                    !isShowingConfirmationPassword
-                  )
-                }
-                className="show-hide"
-              />
-            ) : (
-              <IoEye
-                onClick={() =>
-                  setIsShowingConfirmationPassword(
-                    !isShowingConfirmationPassword
-                  )
-                }
-                className="show-hide"
-              />
-            )}
-          </div>
-        )}
 
         <LinkButtonDiv>
           {page === "inscrever-se" ? (
