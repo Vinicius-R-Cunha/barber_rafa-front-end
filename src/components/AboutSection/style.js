@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Container = styled.div`
+export const Container = styled.div`
   width: 100%;
 
   display: flex;
@@ -15,7 +15,7 @@ const Container = styled.div`
   }
 `;
 
-const AboutContainer = styled.div`
+export const AboutContainer = styled.div`
   display: flex;
 
   gap: 80px;
@@ -33,7 +33,7 @@ const AboutContainer = styled.div`
   }
 `;
 
-const ProfileImage = styled.img`
+export const ProfileImage = styled.img`
   width: 430px;
   height: 590px;
 
@@ -57,7 +57,7 @@ const ProfileImage = styled.img`
   }
 `;
 
-const InfoContainer = styled.div`
+export const InfoContainer = styled.div`
   width: 700px;
 
   @media (max-width: 1270px) {
@@ -65,7 +65,7 @@ const InfoContainer = styled.div`
   }
 `;
 
-const BarberName = styled.p`
+export const BarberName = styled.p`
   font-family: "Teko";
   font-size: 3.125rem;
   font-weight: 500;
@@ -84,7 +84,7 @@ const BarberName = styled.p`
   }
 `;
 
-const AdressPhone = styled.div`
+export const AdressPhone = styled.div`
   font-family: "Montserrat";
   font-size: 1rem;
   font-weight: 400;
@@ -92,7 +92,7 @@ const AdressPhone = styled.div`
   color: #ffffff;
 `;
 
-const Description = styled.div`
+export const Description = styled.div`
   font-family: "Montserrat";
   font-size: 1rem;
   font-weight: 400;
@@ -106,13 +106,3 @@ const Description = styled.div`
     padding-bottom: 10px;
   }
 `;
-
-export {
-  Container,
-  ProfileImage,
-  AboutContainer,
-  InfoContainer,
-  BarberName,
-  AdressPhone,
-  Description,
-};

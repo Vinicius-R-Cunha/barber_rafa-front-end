@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import ScrollContainer from "react-indiana-drag-scroll";
 
-const Container = styled.div`
+export const Container = styled.div`
   width: 100%;
 
   background-color: #252525;
@@ -11,17 +11,16 @@ const Container = styled.div`
   overflow: hidden;
 `;
 
-const StyledScrollContainer = styled(ScrollContainer)`
+export const StyledScrollContainer = styled(ScrollContainer)`
   width: 100%;
   height: 100%;
 
   display: flex;
 
-  cursor: ${(props) =>
-    props.cursorStyle !== "" ? `${props.cursorStyle}` : "grab"};
+  cursor: ${(props) => props.cursorStyle};
 `;
 
-const Image = styled.img`
+export const Image = styled.img`
   width: 22%;
   height: 22%;
 
@@ -44,5 +43,3 @@ const Image = styled.img`
     height: 100%;
   }
 `;
-
-export { Container, StyledScrollContainer, Image };
