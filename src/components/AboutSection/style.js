@@ -10,36 +10,8 @@ const Container = styled.div`
 
   background-color: #252525;
 
-  .profile-image {
-    width: 430px;
-    height: 590px;
-
-    object-fit: cover;
-  }
-
-  @media (max-width: 899px) {
-    .profile-image {
-      width: 330px;
-      height: 490px;
-    }
-  }
-
   @media (max-width: 767px) {
     padding: 50px 0;
-
-    .profile-image {
-      width: 385px;
-      height: 545px;
-    }
-  }
-
-  @media (max-width: 424px) {
-    .profile-image {
-      width: 99%;
-      height: 370px;
-
-      object-fit: cover;
-    }
   }
 `;
 
@@ -61,32 +33,54 @@ const AboutContainer = styled.div`
   }
 `;
 
+const ProfileImage = styled.img`
+  width: 430px;
+  height: 590px;
+
+  object-fit: cover;
+
+  @media (max-width: 899px) {
+    width: 330px;
+    height: 490px;
+  }
+
+  @media (max-width: 767px) {
+    width: 385px;
+    height: 545px;
+  }
+
+  @media (max-width: 424px) {
+    width: 99%;
+    height: 370px;
+
+    object-fit: cover;
+  }
+`;
+
 const InfoContainer = styled.div`
   width: 700px;
-
-  .barber-name {
-    font-family: "Teko";
-    font-size: 3.125rem;
-    font-weight: 500;
-    line-height: 1em;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: #e1e1e1;
-
-    padding-bottom: 25px;
-  }
 
   @media (max-width: 1270px) {
     width: auto;
   }
+`;
+
+const BarberName = styled.p`
+  font-family: "Teko";
+  font-size: 3.125rem;
+  font-weight: 500;
+  line-height: 1em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #e1e1e1;
+
+  padding-bottom: 25px;
 
   @media (max-width: 767px) {
-    .barber-name {
-      font-size: 1.563rem;
+    font-size: 1.563rem;
 
-      padding-top: 25px;
-      padding-bottom: 15px;
-    }
+    padding-top: 25px;
+    padding-bottom: 15px;
   }
 `;
 
@@ -113,4 +107,12 @@ const Description = styled.div`
   }
 `;
 
-export { Container, AboutContainer, InfoContainer, AdressPhone, Description };
+export {
+  Container,
+  ProfileImage,
+  AboutContainer,
+  InfoContainer,
+  BarberName,
+  AdressPhone,
+  Description,
+};

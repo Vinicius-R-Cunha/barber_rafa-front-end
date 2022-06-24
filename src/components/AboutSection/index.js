@@ -1,7 +1,9 @@
 import {
   Container,
   AboutContainer,
+  ProfileImage,
   InfoContainer,
+  BarberName,
   AdressPhone,
   Description,
 } from "./style";
@@ -12,9 +14,10 @@ export default function AboutSection() {
   return (
     <Container>
       <AboutContainer>
-        <img className="profile-image" src={rafa} alt="" />
+        <ProfileImage src={rafa} alt="" />
         <InfoContainer>
-          <p className="barber-name">Rafa Macedo</p>
+          <BarberName>Rafa Macedo</BarberName>
+
           <AdressPhone>
             <p>Contato: (11) 98747-9047</p>
             <p>Rua Itinguçu, 1085, 03658-010, São Paulo</p>
