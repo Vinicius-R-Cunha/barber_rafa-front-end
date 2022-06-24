@@ -13,7 +13,7 @@ import {
 export default function ServiceModal({
   serviceModalIsOpen,
   setServiceModalIsOpen,
-  categoryTitle,
+  categoryData,
   serviceData,
   type,
   renderPage,
@@ -73,7 +73,7 @@ export default function ServiceModal({
     e.preventDefault();
 
     if (type === "create") {
-      const created = await api.createService(token, categoryTitle, {
+      const created = await api.createService(token, categoryData._id, {
         ...formData,
         duration,
       });
@@ -84,8 +84,8 @@ export default function ServiceModal({
     } else if (type === "delete") {
       const deleted = await api.deleteService(
         token,
-        categoryTitle,
-        serviceData.name
+        categoryData._id,
+        serviceData._id
       );
       if (deleted) {
         closeModal();
@@ -94,8 +94,8 @@ export default function ServiceModal({
     } else if (type === "edit") {
       const edit = await api.editService(
         token,
-        categoryTitle,
-        serviceData.name,
+        categoryData._id,
+        serviceData._id,
         {
           ...formData,
           duration,
@@ -110,16 +110,6 @@ export default function ServiceModal({
 
   function handleFormData(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  }
-
-  function priceToNumberInCents(price) {
-    const aux = price.replace(",", ".");
-    return +aux * 100;
-  }
-
-  function priceToText(price) {
-    const aux = price / 100;
-    return aux.toFixed(2).replace(".", ",");
   }
 
   return (

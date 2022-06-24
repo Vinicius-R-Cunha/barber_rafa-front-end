@@ -19,22 +19,22 @@ import { MdOutlineAddCircle } from "react-icons/md";
 export default function AdminSection({ categoriesArray, renderPage }) {
   const [serviceData, setServiceData] = useState();
 
-  const [categoryTitle, setCategoryTitle] = useState();
+  const [categoryData, setCategoryData] = useState();
   const [categoryModalType, setCategoryModalType] = useState("");
   const [categoryModalIsOpen, setCategoryModalIsOpen] = useState(false);
 
   const [serviceModalType, setServiceModalType] = useState("");
   const [serviceModalIsOpen, setServiceModalIsOpen] = useState(false);
 
-  function editCategory(title) {
+  function editCategory(category) {
     setCategoryModalIsOpen(true);
-    setCategoryTitle(title);
+    setCategoryData(category);
     document.body.style.overflow = "hidden";
   }
 
-  function editService(categoryTitle, serviceData) {
+  function editService(category, serviceData) {
     setServiceModalIsOpen(true);
-    setCategoryTitle(categoryTitle);
+    setCategoryData(category);
     setServiceData(serviceData);
     document.body.style.overflow = "hidden";
   }
@@ -60,21 +60,21 @@ export default function AdminSection({ categoriesArray, renderPage }) {
                   <AiFillEdit
                     onClick={() => {
                       setCategoryModalType("edit");
-                      editCategory(category?.title);
+                      editCategory(category);
                     }}
                     className="cursor-pointer"
                   />
                   <MdOutlineAddCircle
                     onClick={() => {
                       setServiceModalType("create");
-                      editService(category?.title, "");
+                      editService(category, "");
                     }}
                     className="cursor-pointer"
                   />
                   <FaTrashAlt
                     onClick={() => {
                       setCategoryModalType("delete");
-                      editCategory(category?.title);
+                      editCategory(category);
                     }}
                     className="cursor-pointer"
                   />
@@ -89,14 +89,14 @@ export default function AdminSection({ categoriesArray, renderPage }) {
                         <AiFillEdit
                           onClick={() => {
                             setServiceModalType("edit");
-                            editService(category?.title, service);
+                            editService(category, service);
                           }}
                           className="edit-service"
                         />
                         <FaTrashAlt
                           onClick={() => {
                             setServiceModalType("delete");
-                            editService(category?.title, service);
+                            editService(category, service);
                           }}
                           className="delete-service"
                         />
@@ -124,7 +124,7 @@ export default function AdminSection({ categoriesArray, renderPage }) {
       <CategoryModal
         categoryModalIsOpen={categoryModalIsOpen}
         setCategoryModalIsOpen={setCategoryModalIsOpen}
-        categoryTitle={categoryTitle}
+        categoryData={categoryData}
         type={categoryModalType}
         renderPage={renderPage}
       />
@@ -132,7 +132,7 @@ export default function AdminSection({ categoriesArray, renderPage }) {
       <ServiceModal
         serviceModalIsOpen={serviceModalIsOpen}
         setServiceModalIsOpen={setServiceModalIsOpen}
-        categoryTitle={categoryTitle}
+        categoryData={categoryData}
         serviceData={serviceData}
         type={serviceModalType}
         renderPage={renderPage}

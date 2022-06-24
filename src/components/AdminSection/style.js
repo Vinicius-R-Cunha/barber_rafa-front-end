@@ -59,17 +59,23 @@ const Category = styled.div`
     color: #96885f;
   }
 
-  @media (max-width: 750px) {
-    padding-top: 50px;
-
+  @media (max-width: 1200px) {
     .category-title {
       font-size: 2.575rem;
     }
   }
 
+  @media (max-width: 750px) {
+    padding-top: 50px;
+
+    .category-title {
+      font-size: 2.075rem;
+    }
+  }
+
   @media (max-width: 350px) {
     .category-title {
-      font-size: 2.275rem;
+      font-size: 1.875rem;
     }
   }
 `;
@@ -98,6 +104,15 @@ const AdminCategory = styled.div`
     }
   }
 
+  @media (max-width: 1200px) {
+    .admin-category-icons {
+      font-size: 1.575rem;
+
+      right: -130px;
+      bottom: 12px;
+    }
+  }
+
   @media (max-width: 750px) {
     padding-top: 50px;
 
@@ -107,10 +122,11 @@ const AdminCategory = styled.div`
       gap: 10px;
 
       right: -90px;
+      bottom: 22;
     }
   }
 
-  @media (max-width: 490px) {
+  @media (max-width: 600px) {
     padding-top: 50px;
 
     .admin-category-icons {

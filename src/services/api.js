@@ -61,41 +61,41 @@ async function createCategory(token, data) {
   }
 }
 
-async function deleteCategory(token, title) {
+async function deleteCategory(token, categoryId) {
   try {
     const config = createConfig(token);
-    await axios.delete(`${BASE_URL}/categories/${title}`, config);
+    await axios.delete(`${BASE_URL}/categories/${categoryId}`, config);
     return true;
   } catch (error) {
     console.log(error.response);
   }
 }
 
-async function editCategory(token, title, data) {
+async function editCategory(token, categoryId, data) {
   try {
     const config = createConfig(token);
-    await axios.put(`${BASE_URL}/categories/${title}`, data, config);
+    await axios.put(`${BASE_URL}/categories/${categoryId}`, data, config);
     return true;
   } catch (error) {
     console.log(error.response);
   }
 }
 
-async function createService(token, categoryTitle, data) {
+async function createService(token, categoryId, data) {
   try {
     const config = createConfig(token);
-    await axios.post(`${BASE_URL}/services/${categoryTitle}`, data, config);
+    await axios.post(`${BASE_URL}/services/${categoryId}`, data, config);
     return true;
   } catch (error) {
     console.log(error.response);
   }
 }
 
-async function deleteService(token, categoryTitle, serviceTitle) {
+async function deleteService(token, categoryId, serviceId) {
   try {
     const config = createConfig(token);
     await axios.delete(
-      `${BASE_URL}/services/${categoryTitle}/${serviceTitle}`,
+      `${BASE_URL}/services/${categoryId}/${serviceId}`,
       config
     );
     return true;
@@ -104,11 +104,11 @@ async function deleteService(token, categoryTitle, serviceTitle) {
   }
 }
 
-async function editService(token, categoryTitle, serviceTitle, data) {
+async function editService(token, categoryId, serviceId, data) {
   try {
     const config = createConfig(token);
     await axios.put(
-      `${BASE_URL}/services/${categoryTitle}/${serviceTitle}`,
+      `${BASE_URL}/services/${categoryId}/${serviceId}`,
       data,
       config
     );

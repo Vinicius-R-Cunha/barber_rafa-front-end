@@ -7,7 +7,7 @@ import { StyledModal, InputsForm, ActionButtons, modalStyles } from "./style";
 export default function CategoryModal({
   categoryModalIsOpen,
   setCategoryModalIsOpen,
-  categoryTitle,
+  categoryData,
   type,
   renderPage,
 }) {
@@ -17,7 +17,7 @@ export default function CategoryModal({
 
   useEffect(() => {
     if (type === "edit") {
-      setTitle(categoryTitle);
+      setTitle(categoryData.title);
     } else {
       setTitle("");
     }
@@ -40,13 +40,13 @@ export default function CategoryModal({
         renderPage();
       }
     } else if (type === "delete") {
-      const deleted = await api.deleteCategory(token, categoryTitle);
+      const deleted = await api.deleteCategory(token, categoryData._id);
       if (deleted) {
         closeModal();
         renderPage();
       }
     } else if (type === "edit") {
-      const edited = await api.editCategory(token, categoryTitle, {
+      const edited = await api.editCategory(token, categoryData._id, {
         title,
       });
       if (edited) {
