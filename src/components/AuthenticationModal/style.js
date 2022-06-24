@@ -276,7 +276,7 @@ const modalStyles = {
     background: "#2c2c2c",
     border: "hidden",
     boxSizing: "border-box",
-    padding: "35px",
+    padding: "35px 30px",
     borderRadius: "4px",
   },
 };
