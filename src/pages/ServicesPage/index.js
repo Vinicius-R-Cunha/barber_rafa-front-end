@@ -1,14 +1,22 @@
+import { useContext, useEffect, useState } from "react";
+import * as api from "../../services/api";
+import DataContext from "../../contexts/DataContext";
+import { toast } from "react-toastify";
+import UserContext from "../../contexts/UserContext";
 import HeaderSection from "../../components/HeaderSection";
 import ServicesSection from "../../components/ServicesSection";
 import Footer from "../../components/Footer";
 import Loading from "../../components/Loading";
-import { useContext, useEffect } from "react";
-import * as api from "../../services/api";
-import DataContext from "../../contexts/DataContext";
-import { toast } from "react-toastify";
+import ReadMoreModal from "../../components/ReadMoreModal";
+import ReservationModal from "../../components/ReservationModal";
 
 export default function ServicesPage() {
   const { categoriesArray, setCategoriesArray } = useContext(DataContext);
+  const { token, setAuthenticationIsOpen } = useContext(UserContext);
+
+  const [readMoreModalIsOpen, setReadMoreModalIsOpen] = useState(false);
+  const [serviceData, setServiceData] = useState();
+  const [reservationModalIsOpen, setReservationModalIsOpen] = useState(false);
 
   useEffect(() => {
     renderPage();
@@ -35,6 +43,24 @@ export default function ServicesPage() {
     );
   }
 
+  function readMore(service) {
+    setReadMoreModalIsOpen(true);
+    setServiceData(service);
+    document.body.style.overflow = "hidden";
+  }
+
+  function handleReservation(service) {
+    setServiceData(service);
+    if (!token) {
+      setAuthenticationIsOpen(true);
+      document.body.style.overflow = "hidden";
+      return;
+    }
+    setReservationModalIsOpen(true);
+    document.body.style.overflow = "hidden";
+    return;
+  }
+
   if (categoriesArray?.length === 0 || !categoriesArray) {
     return (
       <>
@@ -48,7 +74,22 @@ export default function ServicesPage() {
   return (
     <>
       <HeaderSection page={"services"} title="Serviços" />
-      <ServicesSection categoriesArray={categoriesArray} />
+      <ServicesSection
+        readMore={readMore}
+        handleReservation={handleReservation}
+      />
+      <ReadMoreModal
+        readMoreModalIsOpen={readMoreModalIsOpen}
+        setReadMoreModalIsOpen={setReadMoreModalIsOpen}
+        serviceData={serviceData}
+        setReservationModalIsOpen={setReservationModalIsOpen}
+      />
+
+      <ReservationModal
+        reservationModalIsOpen={reservationModalIsOpen}
+        setReservationModalIsOpen={setReservationModalIsOpen}
+        serviceData={serviceData}
+      />
       <Footer />
     </>
   );

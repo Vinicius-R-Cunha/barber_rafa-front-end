@@ -1,47 +1,21 @@
-import { useContext, useState } from "react";
-import ReadMoreModal from "../ReadMoreModal";
-import UserContext from "../../contexts/UserContext";
-import ReservationModal from "../ReservationModal";
+import { useContext } from "react";
+import DataContext from "../../contexts/DataContext";
 import {
   Container,
   Category,
+  Title,
   Services,
   Service,
   NamePrice,
   Description,
-  ButtonContainer,
   ReadMore,
+  ButtonContainer,
+  Duration,
+  Button,
 } from "./style";
 
-export default function ServicesSection({ categoriesArray }) {
-  const { token, setAuthenticationIsOpen } = useContext(UserContext);
-  const [readMoreModalIsOpen, setReadMoreModalIsOpen] = useState(false);
-
-  const [serviceData, setServiceData] = useState();
-  const [reservationModalIsOpen, setReservationModalIsOpen] = useState(false);
-
-  function readMore(service) {
-    setReadMoreModalIsOpen(true);
-    setServiceData(service);
-    document.body.style.overflow = "hidden";
-  }
-
-  function handleReservation(service) {
-    setServiceData(service);
-    if (!token) {
-      setAuthenticationIsOpen(true);
-      document.body.style.overflow = "hidden";
-      return;
-    }
-    setReservationModalIsOpen(true);
-    document.body.style.overflow = "hidden";
-    return;
-  }
-
-  function formatPrice(price) {
-    const newPrice = price / 100;
-    return newPrice.toFixed(2).replace(".", ",");
-  }
+export default function ServicesSection({ readMore, handleReservation }) {
+  const { categoriesArray } = useContext(DataContext);
 
   return (
     <>
@@ -49,14 +23,14 @@ export default function ServicesSection({ categoriesArray }) {
         {categoriesArray?.map((category) => {
           return (
             <Category key={category?._id}>
-              <p className="category-title">{category?.title}</p>
+              <Title>{category?.title}</Title>
               <Services>
                 {category?.services?.map((service) => {
                   return (
                     <Service key={service?._id}>
                       <NamePrice>
-                        <p className="name">{service?.name}</p>
-                        <p className="price">{`R$ ${service?.price}`}</p>
+                        <p>{service?.name}</p>
+                        <p>{`R$ ${service?.price}`}</p>
                       </NamePrice>
                       <Description>{service?.description}</Description>
                       {service?.description !== "" && (
@@ -65,10 +39,10 @@ export default function ServicesSection({ categoriesArray }) {
                         </ReadMore>
                       )}
                       <ButtonContainer>
-                        <p className="duration">{service?.duration}</p>
-                        <button onClick={() => handleReservation(service)}>
+                        <Duration>{service?.duration}</Duration>
+                        <Button onClick={() => handleReservation(service)}>
                           Reservar
-                        </button>
+                        </Button>
                       </ButtonContainer>
                     </Service>
                   );
@@ -78,19 +52,6 @@ export default function ServicesSection({ categoriesArray }) {
           );
         })}
       </Container>
-
-      <ReadMoreModal
-        readMoreModalIsOpen={readMoreModalIsOpen}
-        setReadMoreModalIsOpen={setReadMoreModalIsOpen}
-        serviceData={serviceData}
-        setReservationModalIsOpen={setReservationModalIsOpen}
-      />
-
-      <ReservationModal
-        reservationModalIsOpen={reservationModalIsOpen}
-        setReservationModalIsOpen={setReservationModalIsOpen}
-        serviceData={serviceData}
-      />
     </>
   );
 }

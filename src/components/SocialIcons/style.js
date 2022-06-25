@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Container = styled.div`
+export const Container = styled.div`
   font-size: 1.725rem;
   color: #e1e1e1;
 
@@ -44,5 +44,3 @@ const Container = styled.div`
     margin: 10px 0 19px;
   }
 `;
-
-export { Container };

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Container = styled.div`
+export const Container = styled.div`
   width: 100%;
 
   background-color: #252525;
@@ -8,7 +8,7 @@ const Container = styled.div`
   padding-bottom: 80px;
 `;
 
-const Category = styled.div`
+export const Category = styled.div`
   width: 100%;
 
   display: flex;
@@ -17,32 +17,30 @@ const Category = styled.div`
 
   padding-top: 112px;
 
-  .category-title {
-    font-family: "Teko";
-    font-size: 4.375rem;
-    font-weight: 500;
-    line-height: 1em;
-    letter-spacing: 1.8px;
-    text-transform: uppercase;
-    color: #96885f;
-  }
-
   @media (max-width: 750px) {
     padding-top: 50px;
-
-    .category-title {
-      font-size: 2.575rem;
-    }
-  }
-
-  @media (max-width: 350px) {
-    .category-title {
-      font-size: 2.275rem;
-    }
   }
 `;
 
-const Services = styled.div`
+export const Title = styled.p`
+  font-family: "Teko";
+  font-size: 4.375rem;
+  font-weight: 500;
+  line-height: 1em;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: #96885f;
+
+  @media (max-width: 750px) {
+    font-size: 2.575rem;
+  }
+
+  @media (max-width: 350px) {
+    font-size: 2.275rem;
+  }
+`;
+
+export const Services = styled.div`
   width: 1170px;
 
   display: grid;
@@ -73,7 +71,7 @@ const Services = styled.div`
   }
 `;
 
-const Service = styled.div`
+export const Service = styled.div`
   width: 100%;
   height: 230px;
 
@@ -92,7 +90,7 @@ const Service = styled.div`
   }
 `;
 
-const NamePrice = styled.div`
+export const NamePrice = styled.div`
   width: 90%;
   height: 100px;
 
@@ -110,8 +108,10 @@ const NamePrice = styled.div`
 
   padding-top: 16px;
 
-  .name {
-    width: 60%;
+  p {
+    :first-of-type {
+      width: 60%;
+    }
   }
 
   @media (max-width: 1023px) {
@@ -121,7 +121,7 @@ const NamePrice = styled.div`
   }
 `;
 
-const Description = styled.div`
+export const Description = styled.div`
   width: 90%;
 
   font-family: "Montserrat";
@@ -143,7 +143,7 @@ const Description = styled.div`
   }
 `;
 
-const ReadMore = styled.p`
+export const ReadMore = styled.p`
   width: 85%;
 
   font-family: "Montserrat";
@@ -168,15 +168,8 @@ const ReadMore = styled.p`
   }
 `;
 
-const ButtonContainer = styled.div`
+export const ButtonContainer = styled.div`
   width: 90%;
-
-  font-family: "Montserrat";
-  font-size: 0.875rem;
-  font-weight: 800;
-  line-height: 1em;
-  letter-spacing: 0.7px;
-  color: #e1e1e1;
 
   display: flex;
   justify-content: flex-end;
@@ -186,44 +179,44 @@ const ButtonContainer = styled.div`
 
   position: absolute;
   bottom: 15px;
+`;
 
-  .duration {
-    font-weight: 400;
-    color: #8d8d8d;
-  }
+export const Duration = styled.p`
+  font-family: "Montserrat";
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1em;
+  letter-spacing: 0.7px;
+  color: #8d8d8d;
+`;
 
-  button {
-    all: unset;
+export const Button = styled.button`
+  all: unset;
 
-    padding: 6px 10px;
+  font-family: "Montserrat";
+  font-size: 0.875rem;
+  font-weight: 800;
+  line-height: 1em;
+  letter-spacing: 0.7px;
+  color: #e1e1e1;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  padding: 6px 10px;
 
-    border-radius: 4px;
-    border: 4px solid #96885f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    cursor: pointer;
+  border-radius: 4px;
+  border: 4px solid #96885f;
 
-    :hover {
-      transition: 0.3s ease-out;
-      background-color: #96885f;
-    }
+  cursor: pointer;
+
+  :hover {
+    transition: 0.3s ease-out;
+    background-color: #96885f;
   }
 
   @media (max-width: 1023px) {
     font-size: 0.675rem;
   }
 `;
-
-export {
-  Container,
-  Category,
-  Services,
-  Service,
-  NamePrice,
-  Description,
-  ButtonContainer,
-  ReadMore,
-};

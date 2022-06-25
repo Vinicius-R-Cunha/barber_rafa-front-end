@@ -83,6 +83,8 @@ $ npm i
 ```bash
 REACT_APP_BACK_URL=http:localhost:5000/
 REACT_APP_PHONE_NUMBER=98747-9047
+REACT_APP_INSTAGRAM_LINK=https://www.instagram.com/barberafamacedo/
+REACT_APP_FACEBOOK_LINK=https://m.facebook.com/BarberRafaMacedo/?ref=bookmarks
 ```
 
 ### Follow the instructions to run back-end at https://github.com/Vinicius-R-Cunha/barber_rafa-back-end
