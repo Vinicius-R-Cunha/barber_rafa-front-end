@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Container = styled.footer`
+export const Container = styled.footer`
   width: 100%;
 
   padding: 20px 0 80px 0;
@@ -11,18 +11,18 @@ const Container = styled.footer`
 
   background-color: #252525;
 
-  img {
-    width: 150px;
-
-    margin-bottom: 10px;
-  }
-
   @media (max-width: 768px) {
     padding: 0 0 40px 0;
   }
 `;
 
-const NavButtons = styled.div`
+export const FooterLogo = styled.img`
+  width: 150px;
+
+  margin-bottom: 10px;
+`;
+
+export const NavButtons = styled.div`
   width: 100%;
 
   display: flex;
@@ -31,7 +31,7 @@ const NavButtons = styled.div`
   flex-wrap: wrap;
 `;
 
-const NavButton = styled.div`
+export const NavButton = styled.div`
   width: 176px;
 
   font-size: 1.163rem;
@@ -57,5 +57,3 @@ const NavButton = styled.div`
     font-size: 0.963rem;
   }
 `;
-
-export { Container, NavButtons, NavButton };

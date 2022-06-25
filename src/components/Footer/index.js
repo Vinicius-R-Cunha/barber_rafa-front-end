@@ -1,4 +1,4 @@
-import { Container, NavButtons, NavButton } from "./style";
+import { Container, FooterLogo, NavButtons, NavButton } from "./style";
 import logo from "../../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
@@ -11,12 +11,13 @@ export default function Footer() {
 
   return (
     <Container>
-      <img src={logo} alt="" />
+      <FooterLogo src={logo} alt="" />
       <NavButtons>
         <NavButton onClick={() => navigate("/")}>Página Inicial</NavButton>
         <NavButton onClick={() => navigate("/servicos")}>Serviços</NavButton>
         <NavButton onClick={() => navigate("/sobre")}>Sobre</NavButton>
         <NavButton onClick={() => navigate("/contato")}>Contato</NavButton>
+
         {userIsLoggedIn ? (
           <NavButton onClick={() => navigate("/reservas")}>Reservas</NavButton>
         ) : (

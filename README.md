@@ -1,6 +1,6 @@
 # Barber Rafa Macedo
 
-Barber Rafa Macedo is a Barber Shop website (both for desktop and mobile) where you can have an overview of all information about their service. 
+Barber Rafa Macedo is a Barber Shop website (both for desktop and mobile) where you can have an overview of all information about their service.
 You can also schedule your haircut and many more services just by signing up and choosing the best time available for you!
 
 ![Barber Rafa Desktop3](https://user-images.githubusercontent.com/92492685/175072676-c391d2c8-ba52-4d16-b5f5-1f7917f46a9d.gif)
@@ -31,9 +31,11 @@ Below are listed some of the features as well:
 - Cancel reservation button
 
 ## Technologies
+
 The following tools and frameworks were used in the construction of the project:<br>
 
 ### Front-end:
+
 <p>
   <img style='margin: 5px;' src='https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB'>
   <img style='margin: 5px;' src='https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white'>
@@ -45,6 +47,7 @@ The following tools and frameworks were used in the construction of the project:
 </p>
 
 ### Back-end:
+
 <p>
   <img style='margin: 5px;' src='https://img.shields.io/badge/Google%20Calendar-4285F4?style=for-the-badge&logo=google&logoColor=white'>
   <img style='margin: 5px;' src='https://img.shields.io/badge/nodejs%20-%2320232a.svg?&style=for-the-badge&color=blue&logo=javascript&logoColor=%2361DAFB%27'>
@@ -58,25 +61,36 @@ The following tools and frameworks were used in the construction of the project:
 ## How to run
 
 ### Clone this Repository
+
 ```bash
 $ git clone https://github.com/Vinicius-R-Cunha/barber_rafa-front-end.git
 ```
+
 ### Access the directory where you cloned it
+
 ```bash
 $ cd barber_rafa-front-end
 ```
+
 ### Install dependencies
+
 ```bash
 $ npm i
 ```
+
 ### Create an environment variables file in the project root (.env) and configure a variable with the name 'REACT_APP_BACK_URL' that contains the url where the backend will be running, Example:
+
 ```bash
 REACT_APP_BACK_URL=http:localhost:5000/
+REACT_APP_PHONE_NUMBER=98747-9047
 ```
+
 ### Follow the instructions to run back-end at https://github.com/Vinicius-R-Cunha/barber_rafa-back-end
 
 ### Run the front-end with
+
 ```bash
 $ npm start
 ```
+
 ### This command will open your favorite browser and access http://localhost:3000 by default

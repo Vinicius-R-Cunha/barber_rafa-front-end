@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import UserContext from "../../contexts/UserContext";
-import { StyledModal, ActionButtons, modalStyles } from "./style";
+import { StyledModal, Title, ActionButtons, modalStyles } from "./style";
 import * as api from "../../services/api";
 import { toast } from "react-toastify";
 import { ThreeDots } from "react-loader-spinner";
@@ -56,8 +56,8 @@ export default function CancelReservationModal({
       onRequestClose={() => closeModal()}
       style={modalStyles}
     >
-      <IoClose className="close-button" onClick={() => closeModal()} />
-      <p className="title">Tem certeza que quer excluir essa reserva?</p>
+      <IoClose className="close-icon" onClick={() => closeModal()} />
+      <Title>Tem certeza que quer excluir essa reserva?</Title>
       {isLoading ? (
         <ActionButtons>
           <button>Cancelar</button>

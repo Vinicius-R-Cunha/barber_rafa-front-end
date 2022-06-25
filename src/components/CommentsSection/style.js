@@ -38,7 +38,7 @@ export const Spacer = styled.div`
 
   background-color: #454545;
 
-  margin: 40px 0;
+  margin-top: 40px;
 
   @media (max-width: 800px) {
     margin-bottom: 0;
@@ -80,7 +80,7 @@ export const Quote = styled.img`
 `;
 
 export const Description = styled.p`
-  width: 80%;
+  width: 90%;
 
   font-family: "Montserrat";
   font-size: 1rem;

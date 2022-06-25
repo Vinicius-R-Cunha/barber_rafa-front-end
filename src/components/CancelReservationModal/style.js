@@ -1,15 +1,13 @@
 import styled from "styled-components";
 import Modal from "react-modal";
 
-const StyledModal = styled(Modal)`
-  /* width: fit-content; */
-
+export const StyledModal = styled(Modal)`
   display: flex;
   flex-direction: column;
   align-items: center;
 
   position: relative;
-  .close-button {
+  .close-icon {
     font-size: 2.4rem;
     color: black;
 
@@ -19,33 +17,28 @@ const StyledModal = styled(Modal)`
 
     cursor: pointer;
   }
+`;
 
-  .title {
-    font-family: "Teko";
-    font-size: 2.4rem;
-    font-weight: 500;
-    line-height: 1em;
-    letter-spacing: 1.8px;
-    text-transform: uppercase;
-    color: #96885f;
+export const Title = styled.p`
+  font-family: "Teko";
+  font-size: 2.4rem;
+  font-weight: 500;
+  line-height: 1em;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: #96885f;
 
-    text-align: center;
-  }
-
+  text-align: center;
   @media (max-width: 739px) {
-    .title {
-      font-size: 1.8rem;
-    }
+    font-size: 1.8rem;
   }
 
   @media (max-width: 424px) {
-    .title {
-      font-size: 1.5rem;
-    }
+    font-size: 1.5rem;
   }
 `;
 
-const ActionButtons = styled.div`
+export const ActionButtons = styled.div`
   width: 100%;
 
   display: flex;
@@ -106,7 +99,7 @@ const ActionButtons = styled.div`
   }
 `;
 
-const modalStyles = {
+export const modalStyles = {
   overlay: {
     position: "fixed",
     top: 0,
@@ -135,5 +128,3 @@ const modalStyles = {
     borderRadius: "4px",
   },
 };
-
-export { StyledModal, ActionButtons, modalStyles };

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Map, Marker, ZoomControl } from "pigeon-maps";
-import { Container } from "./style";
+import { Container, MapContainer } from "./style";
 
 export default function PigeonMap() {
   const lat = -23.525438021785874;
@@ -11,19 +11,21 @@ export default function PigeonMap() {
 
   return (
     <Container>
-      <Map
-        height={400}
-        center={center}
-        zoom={zoom}
-        onBoundsChanged={({ center, zoom }) => {
-          setCenter(center);
-          setZoom(zoom);
-        }}
-        style={{ padding: "0 60px" }}
-      >
-        <ZoomControl />
-        <Marker width={50} anchor={[lat, lon]} />
-      </Map>
+      <MapContainer>
+        <Map
+          height={400}
+          center={center}
+          zoom={zoom}
+          onBoundsChanged={({ center, zoom }) => {
+            setCenter(center);
+            setZoom(zoom);
+          }}
+          style={{ padding: "0 60px" }}
+        >
+          <ZoomControl />
+          <Marker width={50} anchor={[lat, lon]} />
+        </Map>
+      </MapContainer>
     </Container>
   );
 }
