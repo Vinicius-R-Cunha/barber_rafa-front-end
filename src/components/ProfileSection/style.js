@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Container = styled.div`
+export const Container = styled.div`
   width: 100%;
 
   display: flex;
@@ -10,43 +10,33 @@ const Container = styled.div`
   padding: 20px 0 50px 0;
 
   background-color: #252525;
+`;
 
-  .message {
-    font-family: "Montserrat";
-    font-size: 1.575rem;
-    font-weight: 800;
-    line-height: 1em;
-    letter-spacing: 0.7px;
-    text-align: center;
-    color: #e1e1e1;
+export const Message = styled.p`
+  font-family: "Montserrat";
+  font-size: 1.575rem;
+  font-weight: 800;
+  line-height: 1em;
+  letter-spacing: 0.7px;
+  text-align: center;
+  color: #e1e1e1;
 
-    margin-top: 50px;
-  }
-
-  .margin-top {
-    margin-top: 100px;
-  }
+  margin-top: ${(props) => (props.marginTop ? props.marginTop : "50px")};
 
   @media (max-width: 850px) {
-    .message {
-      font-size: 1.275rem;
-    }
+    font-size: 1.275rem;
   }
 
   @media (max-width: 660px) {
-    .message {
-      font-size: 1.225rem;
-    }
+    font-size: 1.225rem;
   }
 
   @media (max-width: 424px) {
-    .message {
-      font-size: 1.075rem;
-    }
+    font-size: 1.075rem;
   }
 `;
 
-const Services = styled.div`
+export const Services = styled.div`
   width: 1170px;
 
   display: grid;
@@ -77,16 +67,10 @@ const Services = styled.div`
   }
 `;
 
-const Service = styled.div`
+export const Service = styled.div`
   width: 100%;
 
   padding: 30px 25px 15px 25px;
-
-  font-family: "Montserrat";
-  font-size: 1.275rem;
-  font-weight: 500;
-  line-height: 1.2em;
-  letter-spacing: 0.7px;
 
   display: flex;
   flex-direction: column;
@@ -98,32 +82,22 @@ const Service = styled.div`
   background-color: #2c2c2c;
 
   position: relative;
+`;
 
-  .remove-icon {
-    font-size: 0.9rem;
-    color: #ff5a5a;
+export const Summary = styled.p`
+  font-family: "Montserrat";
+  font-size: 1.275rem;
+  font-weight: 500;
+  line-height: 1.2em;
+  letter-spacing: 0.7px;
+  text-align: center;
+  color: #96885f;
 
-    background-color: rgba(0, 0, 0, 0.2);
+  margin-bottom: 15px;
 
-    align-self: flex-end;
-
-    margin-top: 25px;
-    padding: 3px 8px;
-
-    border-radius: 4px;
-
-    cursor: pointer;
-  }
-
-  .summary {
-    text-align: center;
-    color: #96885f;
-
-    margin-bottom: 15px;
-  }
-
-  .date-time {
+  :last-of-type {
     color: #e1e1e1;
+    margin-bottom: 0;
   }
 
   @media (max-width: 1160px) {
@@ -139,7 +113,40 @@ const Service = styled.div`
   }
 `;
 
-const Button = styled.button`
+export const CancelButton = styled.div`
+  font-family: "Montserrat";
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.7px;
+  color: #ff5a5a;
+
+  align-self: flex-end;
+
+  background-color: rgba(0, 0, 0, 0.2);
+
+  margin-top: 25px;
+
+  box-sizing: border-box;
+  padding: 8px 8px;
+
+  border-radius: 4px;
+
+  cursor: pointer;
+
+  @media (max-width: 1160px) {
+    padding: 6px 8px;
+  }
+
+  @media (max-width: 1023px) {
+    padding: 5px 8px;
+  }
+
+  @media (max-width: 950px) {
+    padding: 4px 8px;
+  }
+`;
+
+export const Button = styled.button`
   all: unset;
 
   width: 260px;
@@ -185,5 +192,3 @@ const Button = styled.button`
     }
   }
 `;
-
-export { Container, Services, Service, Button };

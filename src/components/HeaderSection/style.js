@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Container = styled.div`
+export const Container = styled.div`
   width: 100%;
   height: ${(props) => (props.page === "home" ? "960px" : "537px")};
 
@@ -8,40 +8,10 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
 
-  color: #ffffff;
-
   background-color: rgba(0, 0, 0, 1);
   position: relative;
 
   z-index: 1;
-
-  .background-image {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    opacity: 0.6;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    z-index: -3;
-  }
-
-  .background-darkness {
-    width: 100%;
-    height: 100%;
-
-    background-color: rgba(0, 0, 0, 0.6);
-
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    z-index: 0;
-  }
 
   @media (max-width: 1100px) {
     height: ${(props) => (props.page === "home" ? "570px" : "302px")};
@@ -68,7 +38,35 @@ const Container = styled.div`
   }
 `;
 
-const HeaderDiv = styled.div`
+export const BackgroundImage = styled.img`
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  opacity: 0.6;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  z-index: -3;
+`;
+
+export const BackgroundDarkness = styled.div`
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.6);
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  z-index: 0;
+`;
+
+export const HeaderDiv = styled.div`
   width: 1200px;
 
   display: flex;
@@ -81,12 +79,6 @@ const HeaderDiv = styled.div`
 
   z-index: 1;
 
-  .logo-image {
-    height: 170px;
-
-    cursor: pointer;
-  }
-
   @media (max-width: 1300px) {
     width: 95%;
   }
@@ -96,12 +88,56 @@ const HeaderDiv = styled.div`
   }
 `;
 
-const NavButtons = styled.div`
+export const MenuContainer = styled.div`
+  width: 120px;
+
+  background-color: #252525;
+
+  position: absolute;
+  top: 110px;
+  right: 0;
+
+  border-radius: 4px;
+  box-shadow: -2px 5px 15px rgba(0, 0, 0, 0.7);
+
+  z-index: 3;
+
+  cursor: pointer;
+
+  @media (max-width: 1150px) {
+    display: none;
+  }
+`;
+
+export const ProfileButton = styled.div`
+  width: 100%;
+
+  font-family: "Montserrat";
+  font-size: 1rem;
+  font-weight: 400;
+  color: #e1e1e1;
+
+  display: flex;
+  justify-content: flex-end;
+
+  box-sizing: border-box;
+  padding: 19px;
+
+  cursor: pointer;
+`;
+
+export const LogoImage = styled.img`
+  height: 170px;
+
+  cursor: pointer;
+`;
+
+export const NavButtons = styled.div`
   display: flex;
   align-items: center;
 `;
 
-const NavButton = styled.div`
+export const NavButton = styled.div`
   font-size: 1.163rem;
   letter-spacing: 0px;
   font-weight: 400;
@@ -138,7 +174,7 @@ const NavButton = styled.div`
   }
 `;
 
-const About = styled.div`
+export const About = styled.div`
   font-family: "Teko";
   font-size: 5.625rem;
   font-weight: 500;
@@ -193,7 +229,7 @@ const About = styled.div`
   }
 `;
 
-const BookButton = styled.button`
+export const BookButton = styled.button`
   all: unset;
 
   width: 280px;
@@ -241,52 +277,3 @@ const BookButton = styled.button`
     font-size: 0.675rem;
   }
 `;
-
-const MenuContainer = styled.div`
-  width: 120px;
-
-  background-color: #252525;
-
-  position: absolute;
-  top: 110px;
-  right: 0;
-
-  border-radius: 4px;
-  box-shadow: -2px 5px 15px rgba(0, 0, 0, 0.7);
-
-  z-index: 3;
-
-  cursor: pointer;
-
-  @media (max-width: 1150px) {
-    display: none;
-  }
-`;
-
-const ProfileButton = styled.div`
-  width: 100%;
-
-  font-family: "Montserrat";
-  font-size: 1rem;
-  font-weight: 400;
-  color: #e1e1e1;
-
-  display: flex;
-  justify-content: flex-end;
-
-  box-sizing: border-box;
-  padding: 19px;
-
-  cursor: pointer;
-`;
-
-export {
-  Container,
-  HeaderDiv,
-  BookButton,
-  About,
-  NavButtons,
-  NavButton,
-  MenuContainer,
-  ProfileButton,
-};

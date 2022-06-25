@@ -2,8 +2,10 @@ import {
   Container,
   AboutContainer,
   InfoContainer,
+  Title,
   Description,
   Button,
+  ProfileImage,
 } from "./style";
 import haircut from "../../assets/haircut.jpeg";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +17,7 @@ export default function HomeToAboutSection() {
     <Container>
       <AboutContainer>
         <InfoContainer>
-          <p className="title">Prezamos pelo seu bom atendimento.</p>
+          <Title>Prezamos pelo seu bom atendimento.</Title>
           <Description>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
             cumque eum reprehenderit. Illum eos magnam, provident magni dolorum
@@ -23,7 +25,7 @@ export default function HomeToAboutSection() {
           </Description>
           <Button onClick={() => navigate("/sobre")}>Mais sobre nós</Button>
         </InfoContainer>
-        <img className="profile-image" src={haircut} alt="" />
+        <ProfileImage src={haircut} alt="" />
       </AboutContainer>
     </Container>
   );

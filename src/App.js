@@ -11,7 +11,7 @@ import AdminPage from "./pages/AdminPage";
 import AuthenticationModal from "./components/AuthenticationModal";
 import * as api from "./services/api";
 import { ToastContainer } from "react-toastify";
-import ScrollToTop from "./components/ScrollToTop";
+import ScrollToTop from "./utils/ScrollToTop";
 import "./styles/reset.css";
 import "./styles/style.css";
 

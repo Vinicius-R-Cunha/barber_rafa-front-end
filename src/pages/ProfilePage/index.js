@@ -1,15 +1,19 @@
-import HeaderSection from "../../components/HeaderSection";
-import Footer from "../../components/Footer";
-import ProfileSection from "../../components/ProfileSection";
-import Loading from "../../components/Loading";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../../contexts/UserContext";
 import * as api from "../../services/api";
 import { toast } from "react-toastify";
+import HeaderSection from "../../components/HeaderSection";
+import Footer from "../../components/Footer";
+import ProfileSection from "../../components/ProfileSection";
+import Loading from "../../components/Loading";
+import CancelReservationModal from "../../components/CancelReservationModal";
 
 export default function ProfilePage() {
   const { token } = useContext(UserContext);
   const [reservationsArray, setReservationsArray] = useState();
+
+  const [confirmationIsOpen, setConfirmationIsOpen] = useState(false);
+  const [eventId, setEventId] = useState();
 
   useEffect(() => {
     renderPage();
@@ -51,7 +55,15 @@ export default function ProfilePage() {
       <HeaderSection page="profile" title="Reservas" />
       <ProfileSection
         reservationsArray={reservationsArray}
+        setConfirmationIsOpen={setConfirmationIsOpen}
+        setEventId={setEventId}
+      />
+
+      <CancelReservationModal
+        confirmationIsOpen={confirmationIsOpen}
+        setConfirmationIsOpen={setConfirmationIsOpen}
         renderPage={renderPage}
+        eventId={eventId}
       />
       <Footer />
     </>

@@ -1,80 +1,81 @@
-import { Container, Services, Service, Button } from "./style";
+import {
+  Container,
+  Message,
+  Services,
+  Service,
+  Summary,
+  CancelButton,
+  Button,
+} from "./style";
 import { BsWhatsapp } from "react-icons/bs";
-import { useState } from "react";
-import CancelReservationModal from "../CancelReservationModal";
 
-export default function ProfileSection({ reservationsArray, renderPage }) {
-  const PHONE_NUMBER = "98747-9047";
-
-  const [confirmationIsOpen, setConfirmationIsOpen] = useState(false);
-  const [eventId, setEventId] = useState();
+export default function ProfileSection({
+  reservationsArray,
+  setConfirmationIsOpen,
+  setEventId,
+}) {
+  const PHONE_NUMBER = process.env.REACT_APP_PHONE_NUMBER.replace("-", "");
+  const whastAppLink = `https://api.whatsapp.com/send?phone=5511${PHONE_NUMBER}`;
 
   function formatDate(startTime, endTime) {
-    const newDate = new Date(startTime);
-    const endDate = new Date(endTime);
-    const day = newDate.getDate().toString().padStart(2, "0");
-    const month = newDate.getMonth().toString().padStart(2, "0");
-    const year = newDate.getFullYear().toString().padStart(2, "0");
-    const startHour = newDate.getUTCHours().toString().padStart(2, "0");
-    const startMinutes = newDate.getUTCMinutes().toString().padStart(2, "0");
-    const endHour = endDate.getHours().toString().padStart(2, "0");
-    const endMinutes = endDate.getMinutes().toString().padStart(2, "0");
+    const start = convertTimePlusThree(startTime);
+    const end = new Date(endTime);
 
-    return `${day}/${month}/${year} - ${startHour}:${startMinutes} até ${endHour}:${endMinutes}`;
+    return `${getDay(start)} - ${getHour(start)} até ${getHour(end)}`;
+  }
+
+  function convertTimePlusThree(date) {
+    const newDate = new Date(date);
+    return new Date(newDate.setTime(newDate.getTime() + 3 * 60 * 60 * 1000));
+  }
+
+  function getDay(date) {
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = date.getMonth().toString().padStart(2, "0");
+    const year = date.getFullYear().toString().padStart(2, "0");
+
+    return `${day}/${month}/${year}`;
+  }
+
+  function getHour(date) {
+    const startHour = date.getHours().toString().padStart(2, "0");
+    const startMinutes = date.getMinutes().toString().padStart(2, "0");
+
+    return `${startHour}:${startMinutes}`;
   }
 
   return (
     <Container>
       {reservationsArray.length === 0 ? (
-        <p className="message">Você não tem nenhuma reserva ativa</p>
+        <Message>Você não tem nenhuma reserva ativa</Message>
       ) : (
         <Services>
           {reservationsArray?.map((data) => {
             return (
               <Service key={data?._id}>
-                <p className="summary">{data?.summary}</p>
-                <p className="date-time">
-                  {formatDate(data?.startTime, data?.endTime)}
-                </p>
-                <div
-                  className="remove-icon"
+                <Summary>{data?.summary}</Summary>
+                <Summary>{formatDate(data?.startTime, data?.endTime)}</Summary>
+                <CancelButton
                   onClick={() => {
                     setConfirmationIsOpen(true);
                     setEventId(data?.eventId);
                   }}
                 >
                   Cancelar reserva
-                </div>
+                </CancelButton>
               </Service>
             );
           })}
         </Services>
       )}
-      <p className="message margin-top">
-        Deseja cancelar alguma reserva? Entre em contato:
-      </p>
+      <Message marginTop={"100px"}>
+        Problemas com alguma reserva? Entre em contato:
+      </Message>
 
-      <Button
-        onClick={() =>
-          window.open(
-            `https://api.whatsapp.com/send?phone=5511${PHONE_NUMBER.replace(
-              "-",
-              ""
-            )}`,
-            "_blank"
-          )
-        }
-      >
+      <Button onClick={() => window.open(whastAppLink, "_blank")}>
         Enviar mensagem
         <BsWhatsapp className="whats-icon" />
       </Button>
-
-      <CancelReservationModal
-        confirmationIsOpen={confirmationIsOpen}
-        setConfirmationIsOpen={setConfirmationIsOpen}
-        renderPage={renderPage}
-        eventId={eventId}
-      />
     </Container>
   );
 }

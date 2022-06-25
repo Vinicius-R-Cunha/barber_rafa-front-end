@@ -1,5 +1,7 @@
 import {
   Container,
+  BackgroundImage,
+  BackgroundDarkness,
   HeaderDiv,
   NavButtons,
   NavButton,
@@ -7,6 +9,7 @@ import {
   BookButton,
   MenuContainer,
   ProfileButton,
+  LogoImage,
 } from "./style";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
@@ -38,8 +41,8 @@ export default function HeaderSection({ page, title }) {
 
   return (
     <Container page={page}>
-      <img className="background-image" src={background} alt="" />
-      <div className="background-darkness"></div>
+      <BackgroundImage src={background} alt="" />
+      <BackgroundDarkness />
 
       <ResponsiveHeader
         profileTabIsOpen={profileTabIsOpen}
@@ -56,12 +59,7 @@ export default function HeaderSection({ page, title }) {
             <ProfileButton onClick={() => logout()}>Sair</ProfileButton>
           </MenuContainer>
         )}
-        <img
-          onClick={() => navigate("/")}
-          className="logo-image"
-          src={logo}
-          alt=""
-        />
+        <LogoImage onClick={() => navigate("/")} src={logo} alt="" />
         <NavButtons>
           <NavButton onClick={() => navigate("/")}>Página Inicial</NavButton>
           <NavButton onClick={() => navigate("/servicos")}>Serviços</NavButton>
@@ -81,7 +79,7 @@ export default function HeaderSection({ page, title }) {
         </NavButtons>
       </HeaderDiv>
 
-      {page === "home" && (
+      {page === "home" ? (
         <>
           <About page={page}>
             Barbearia com ambiente
@@ -93,9 +91,9 @@ export default function HeaderSection({ page, title }) {
             Agende seu corte
           </BookButton>
         </>
+      ) : (
+        <About>{title}</About>
       )}
-
-      {page !== "home" && <About>{title}</About>}
     </Container>
   );
 }

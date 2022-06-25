@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Container = styled.div`
+export const Container = styled.div`
   width: 100%;
 
   display: flex;
@@ -14,68 +14,66 @@ const Container = styled.div`
 
   position: relative;
 
-  .background-image {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    opacity: 0.6;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    z-index: 0;
-  }
-
-  .background-darkness {
-    width: 100%;
-    height: 100%;
-
-    background-color: rgba(0, 0, 0, 0.7);
-
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    z-index: 0;
-  }
-
-  .title {
-    font-family: "Teko";
-    font-size: 4.375rem;
-    font-weight: 500;
-    line-height: 1em;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    text-align: center;
-    color: #e1e1e1;
-
-    padding-bottom: 25px;
-
-    z-index: 1;
-  }
-
   @media (max-width: 767px) {
     padding: 50px 0;
-
-    .title {
-      font-size: 3.563rem;
-
-      padding-top: 25px;
-      padding-bottom: 15px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .title {
-      font-size: 2.463rem;
-    }
   }
 `;
 
-const Button = styled.button`
+export const BackgroundImage = styled.img`
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  opacity: 0.6;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  z-index: 0;
+`;
+
+export const BackgroundDarkness = styled.div`
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.7);
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  z-index: 0;
+`;
+
+export const Title = styled.p`
+  font-family: "Teko";
+  font-size: 4.375rem;
+  font-weight: 500;
+  line-height: 1em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+  color: #e1e1e1;
+
+  padding-bottom: 25px;
+
+  z-index: 1;
+
+  @media (max-width: 767px) {
+    font-size: 3.563rem;
+
+    padding-top: 25px;
+    padding-bottom: 15px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 2.463rem;
+  }
+`;
+
+export const Button = styled.button`
   all: unset;
 
   width: 280px;
@@ -128,5 +126,3 @@ const Button = styled.button`
     font-size: 0.675rem;
   }
 `;
-
-export { Container, Button };

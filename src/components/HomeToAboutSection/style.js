@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Container = styled.div`
+export const Container = styled.div`
   width: 100%;
 
   display: flex;
@@ -9,50 +9,9 @@ const Container = styled.div`
   padding: 112px 0;
 
   background-color: #252525;
-
-  .profile-image {
-    width: 590px;
-    height: 590px;
-
-    object-fit: cover;
-  }
-
-  @media (max-width: 1416px) {
-    .profile-image {
-      width: 400px;
-      height: 400px;
-    }
-  }
-
-  @media (max-width: 767px) {
-    padding: 50px 0;
-
-    .profile-image {
-      width: 545px;
-      height: 545px;
-    }
-  }
-
-  @media (max-width: 578px) {
-    .profile-image {
-      width: 99%;
-      height: 370px;
-
-      object-fit: cover;
-    }
-  }
-
-  @media (max-width: 424px) {
-    .profile-image {
-      width: 99%;
-      height: 370px;
-
-      object-fit: cover;
-    }
-  }
 `;
 
-const AboutContainer = styled.div`
+export const AboutContainer = styled.div`
   display: flex;
 
   gap: 80px;
@@ -71,7 +30,7 @@ const AboutContainer = styled.div`
   }
 `;
 
-const InfoContainer = styled.div`
+export const InfoContainer = styled.div`
   width: 700px;
 
   display: flex;
@@ -79,38 +38,36 @@ const InfoContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  .title {
-    font-family: "Teko";
-    font-size: 4.375rem;
-    font-weight: 500;
-    line-height: 1em;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    text-align: center;
-    color: #e1e1e1;
-
-    padding-bottom: 25px;
-  }
-
   @media (max-width: 1270px) {
-    .title {
-      font-size: 2.063rem;
-    }
-
     width: auto;
-  }
-
-  @media (max-width: 767px) {
-    .title {
-      font-size: 2.563rem;
-
-      padding-top: 25px;
-      padding-bottom: 15px;
-    }
   }
 `;
 
-const Description = styled.div`
+export const Title = styled.p`
+  font-family: "Teko";
+  font-size: 4.375rem;
+  font-weight: 500;
+  line-height: 1em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+  color: #e1e1e1;
+
+  padding-bottom: 25px;
+
+  @media (max-width: 1270px) {
+    font-size: 2.063rem;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 2.563rem;
+
+    padding-top: 25px;
+    padding-bottom: 15px;
+  }
+`;
+
+export const Description = styled.div`
   font-family: "Montserrat";
   font-size: 1rem;
   font-weight: 400;
@@ -123,7 +80,7 @@ const Description = styled.div`
   }
 `;
 
-const Button = styled.button`
+export const Button = styled.button`
   all: unset;
 
   width: 280px;
@@ -176,4 +133,35 @@ const Button = styled.button`
   }
 `;
 
-export { Container, AboutContainer, InfoContainer, Description, Button };
+export const ProfileImage = styled.img`
+  width: 590px;
+  height: 590px;
+
+  object-fit: cover;
+
+  @media (max-width: 1416px) {
+    width: 400px;
+    height: 400px;
+  }
+
+  @media (max-width: 767px) {
+    width: 545px;
+    height: 545px;
+
+    padding: 50px 0;
+  }
+
+  @media (max-width: 578px) {
+    width: 99%;
+    height: 370px;
+
+    object-fit: cover;
+  }
+
+  @media (max-width: 424px) {
+    width: 99%;
+    height: 370px;
+
+    object-fit: cover;
+  }
+`;
