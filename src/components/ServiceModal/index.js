@@ -2,12 +2,18 @@ import { useContext, useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import UserContext from "../../contexts/UserContext";
 import * as api from "../../services/api";
+import { toast } from "react-toastify";
 import {
   StyledModal,
+  Title,
   InputsForm,
+  Input,
   ActionButtons,
   RangeInput,
+  Textarea,
+  Button,
   modalStyles,
+  toastStyles,
 } from "./style";
 
 export default function ServiceModal({
@@ -41,7 +47,7 @@ export default function ServiceModal({
     description: "",
   });
 
-  const [duration, setDuration] = useState("");
+  const [duration, setDuration] = useState("15min");
 
   useEffect(() => {
     if (type === "edit") {
@@ -69,43 +75,64 @@ export default function ServiceModal({
     setDuration("15min");
   }
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
 
-    if (type === "create") {
-      const created = await api.createService(token, categoryData._id, {
+    if (type === "create") return createService();
+    if (type === "delete") return deleteService();
+    if (type === "edit") return editService();
+  }
+
+  async function createService() {
+    const response = await api.createService(token, categoryData._id, {
+      ...formData,
+      duration,
+    });
+    if (response.status === 201) return handleSuccess("Serviço criado!");
+
+    return handleError(response.data);
+  }
+
+  async function deleteService() {
+    const response = await api.deleteService(
+      token,
+      categoryData._id,
+      serviceData._id
+    );
+    if (response.status === 200) return handleSuccess("Serviço excluído!");
+
+    return handleError(response.data);
+  }
+
+  async function editService() {
+    const response = await api.editService(
+      token,
+      categoryData._id,
+      serviceData._id,
+      {
         ...formData,
         duration,
-      });
-      if (created) {
-        closeModal();
-        renderPage();
       }
-    } else if (type === "delete") {
-      const deleted = await api.deleteService(
-        token,
-        categoryData._id,
-        serviceData._id
-      );
-      if (deleted) {
-        closeModal();
-        renderPage();
-      }
-    } else if (type === "edit") {
-      const edit = await api.editService(
-        token,
-        categoryData._id,
-        serviceData._id,
-        {
-          ...formData,
-          duration,
-        }
-      );
-      if (edit) {
-        closeModal();
-        renderPage();
-      }
-    }
+    );
+    if (response.status === 200) return handleSuccess("Serviço editado!");
+
+    return handleError(response.data);
+  }
+
+  function handleSuccess(message) {
+    closeModal();
+    renderPage();
+
+    return toast.success(message, toastStyles);
+  }
+
+  function handleError(responseData) {
+    if (responseData) return toast.error(responseData, toastStyles);
+
+    return toast.error(
+      "Erro no servidor, tente novamente em alguns momentos",
+      toastStyles
+    );
   }
 
   function handleFormData(e) {
@@ -120,16 +147,15 @@ export default function ServiceModal({
       style={modalStyles}
     >
       <IoClose className="close-button" onClick={() => closeModal()} />
-      {type === "create" && <p className="title">Criar Serviço</p>}
-      {type === "edit" && <p className="title">Editar Serviço</p>}
+      {type === "create" && <Title>Criar Serviço</Title>}
+      {type === "edit" && <Title>Editar Serviço</Title>}
       {type === "delete" && (
-        <p className="title">Tem certeza que quer excluir esse serviço?</p>
+        <Title>Tem certeza que quer excluir esse serviço?</Title>
       )}
       <InputsForm>
         {type !== "delete" && (
           <>
-            <input
-              className="classic-input"
+            <Input
               name="name"
               type="text"
               placeholder="Título"
@@ -137,8 +163,7 @@ export default function ServiceModal({
               value={formData.name}
               required
             />
-            <input
-              className="classic-input"
+            <Input
               name="price"
               type="text"
               placeholder="Preço"
@@ -149,7 +174,6 @@ export default function ServiceModal({
             <RangeInput>
               <p>Duração: {duration}</p>
               <input
-                className="range-input"
                 name="duration"
                 type="range"
                 min="0"
@@ -160,7 +184,7 @@ export default function ServiceModal({
                 required
               />
             </RangeInput>
-            <textarea
+            <Textarea
               name="description"
               type="text"
               placeholder="Descrição"
@@ -172,10 +196,10 @@ export default function ServiceModal({
         )}
 
         <ActionButtons>
-          <button type="button" onClick={() => closeModal()}>
+          <Button type="button" onClick={() => closeModal()}>
             Cancelar
-          </button>
-          <button onClick={(e) => handleSubmit(e)}>Confirmar</button>
+          </Button>
+          <Button onClick={(e) => handleSubmit(e)}>Confirmar</Button>
         </ActionButtons>
       </InputsForm>
     </StyledModal>
