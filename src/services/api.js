@@ -91,37 +91,41 @@ async function editCategory(token, categoryId, data) {
 async function createService(token, categoryId, data) {
   try {
     const config = createConfig(token);
-    await axios.post(`${BASE_URL}/services/${categoryId}`, data, config);
-    return true;
+    const promise = await axios.post(
+      `${BASE_URL}/services/${categoryId}`,
+      data,
+      config
+    );
+    return promise;
   } catch (error) {
-    console.log(error.response);
+    return error.response;
   }
 }
 
 async function deleteService(token, categoryId, serviceId) {
   try {
     const config = createConfig(token);
-    await axios.delete(
+    const promise = await axios.delete(
       `${BASE_URL}/services/${categoryId}/${serviceId}`,
       config
     );
-    return true;
+    return promise;
   } catch (error) {
-    console.log(error.response);
+    return error.response;
   }
 }
 
 async function editService(token, categoryId, serviceId, data) {
   try {
     const config = createConfig(token);
-    await axios.put(
+    const promise = await axios.put(
       `${BASE_URL}/services/${categoryId}/${serviceId}`,
       data,
       config
     );
-    return true;
+    return promise;
   } catch (error) {
-    console.log(error.response);
+    return error.response;
   }
 }
 
