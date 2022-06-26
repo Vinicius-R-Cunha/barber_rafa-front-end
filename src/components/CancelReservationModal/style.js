@@ -46,56 +46,45 @@ export const ActionButtons = styled.div`
   align-items: center;
 
   margin-top: 12px;
+`;
 
-  button {
-    all: unset;
+export const Button = styled.button`
+  all: unset;
+  font-family: "Montserrat";
+  font-size: 0.835rem;
+  font-weight: 800;
+  line-height: 1em;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: #e1e1e1;
 
-    font-family: "Montserrat";
-    font-size: 0.835rem;
-    font-weight: 800;
-    line-height: 1em;
-    letter-spacing: 0.7px;
-    text-transform: uppercase;
-    color: #e1e1e1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  padding: 12px 58px;
 
-    padding: 12px 58px;
+  border-radius: 4px;
+  border: 4px solid #96885f;
 
-    border-radius: 4px;
-    border: 4px solid #96885f;
+  cursor: pointer;
 
-    cursor: pointer;
-
-    :hover {
-      transition: 0.3s ease-out;
-      background-color: #96885f;
-    }
+  :hover {
+    transition: 0.3s ease-out;
+    background-color: #96885f;
   }
 
   @media (max-width: 739px) {
-    button {
-      padding: 12px 43px;
-    }
+    padding: 12px 43px;
   }
 
   @media (max-width: 457px) {
-    button {
-      padding: 10px 25px;
-    }
+    padding: 10px 25px;
   }
 
   @media (max-width: 370px) {
-    p {
-      font-size: 0.695rem;
-    }
-
-    button {
-      font-size: 0.635rem;
-      padding: 10px 20px;
-    }
+    font-size: 0.635rem;
+    padding: 10px 20px;
   }
 `;
 
@@ -127,4 +116,14 @@ export const modalStyles = {
     padding: "35px",
     borderRadius: "4px",
   },
+};
+
+export const toastStyles = {
+  position: "bottom-left",
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
 };

@@ -1,8 +1,12 @@
 import {
   StyledModal,
   ModalHeader,
+  Title,
   Description,
   ButtonContainer,
+  Price,
+  Duration,
+  Button,
   modalStyles,
 } from "./style";
 import { IoClose } from "react-icons/io5";
@@ -43,16 +47,16 @@ export default function ReadMoreModal({
         style={modalStyles}
       >
         <ModalHeader>
-          <p className="modal-title">{serviceData?.name}</p>
+          <Title>{serviceData?.name}</Title>
           <IoClose className="close-icon" onClick={() => closeModal()} />
         </ModalHeader>
         <Description>{serviceData?.description}</Description>
         <ButtonContainer>
           <div>
-            <p className="price">{`R$ ${serviceData?.price}`}</p>
-            <p className="duration">{serviceData?.duration}</p>
+            <Price>{`R$ ${serviceData?.price}`}</Price>
+            <Duration>{serviceData?.duration}</Duration>
           </div>
-          <button onClick={() => handleReservation()}>Reservar</button>
+          <Button onClick={() => handleReservation()}>Reservar</Button>
         </ButtonContainer>
       </StyledModal>
     </>

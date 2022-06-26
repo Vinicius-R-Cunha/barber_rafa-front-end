@@ -1,7 +1,14 @@
 import { useContext, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import UserContext from "../../contexts/UserContext";
-import { StyledModal, Title, ActionButtons, modalStyles } from "./style";
+import {
+  StyledModal,
+  Title,
+  ActionButtons,
+  Button,
+  modalStyles,
+  toastStyles,
+} from "./style";
 import * as api from "../../services/api";
 import { toast } from "react-toastify";
 import { ThreeDots } from "react-loader-spinner";
@@ -27,26 +34,14 @@ export default function CancelReservationModal({
     setIsLoading(false);
     closeModal();
     renderPage();
+
     if (promise.status === 200) {
-      return toast.success("Reserva cancelada com sucesso", {
-        position: "bottom-left",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      return toast.success("Reserva cancelada com sucesso", toastStyles);
     }
-    return toast.error("Erro ao cancelar reserva, por favor tente mais tarde", {
-      position: "bottom-left",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    return toast.error(
+      "Erro ao cancelar reserva, por favor tente mais tarde",
+      toastStyles
+    );
   }
 
   return (
@@ -60,15 +55,15 @@ export default function CancelReservationModal({
       <Title>Tem certeza que quer excluir essa reserva?</Title>
       {isLoading ? (
         <ActionButtons>
-          <button>Cancelar</button>
-          <button>
+          <Button>Cancelar</Button>
+          <Button>
             <ThreeDots color="#E1E1E1" height={13} width={51} />
-          </button>
+          </Button>
         </ActionButtons>
       ) : (
         <ActionButtons>
-          <button onClick={() => closeModal()}>Cancelar</button>
-          <button onClick={() => handleCancelReservation()}>Confirmar</button>
+          <Button onClick={() => closeModal()}>Cancelar</Button>
+          <Button onClick={() => handleCancelReservation()}>Confirmar</Button>
         </ActionButtons>
       )}
     </StyledModal>

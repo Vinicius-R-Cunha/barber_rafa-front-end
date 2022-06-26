@@ -54,6 +54,8 @@ export const Info = styled.div`
   }
 `;
 
+export const Image = styled.img``;
+
 export const Title = styled.p`
   font-family: "Teko";
   font-size: 2.188rem;

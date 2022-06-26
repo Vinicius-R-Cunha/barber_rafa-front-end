@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Container = styled.div`
+export const Container = styled.div`
   display: none;
 
   width: 100%;
@@ -12,39 +12,31 @@ const Container = styled.div`
 
   z-index: 2;
 
-  .logo-image-tablet {
-    height: 110px;
-
-    margin-left: 0;
-
-    object-fit: cover;
-
-    cursor: pointer;
-  }
-
   @media (max-width: 1150px) {
     display: flex;
     justify-content: space-between;
-
-    .logo-image-tablet {
-      height: 120px;
-    }
-  }
-
-  @media (max-width: 450px) {
-    .logo-image-tablet {
-      height: 100%;
-    }
-  }
-
-  @media (max-width: 330px) {
-    .logo-image-tablet {
-      height: 100%;
-    }
   }
 `;
 
-const Icons = styled.div`
+export const Image = styled.img`
+  height: 110px;
+
+  margin-left: 0;
+
+  object-fit: cover;
+
+  cursor: pointer;
+
+  @media (max-width: 1150px) {
+    height: 120px;
+  }
+
+  @media (max-width: 450px) {
+    height: 100%;
+  }
+`;
+
+export const Icons = styled.div`
   display: flex;
 
   margin-top: 10px;
@@ -52,6 +44,7 @@ const Icons = styled.div`
 
   .tablet-icon {
     font-size: 2.0125rem;
+    color: #e1e1e1;
 
     margin-left: 20px;
 
@@ -65,13 +58,14 @@ const Icons = styled.div`
   }
 `;
 
-const MenuContainer = styled.div`
+export const MenuContainer = styled.div`
   width: 100%;
 
   background-color: #252525;
 
   position: absolute;
   top: 70px;
+  right: 0;
 
   box-shadow: -2px 5px 15px rgba(0, 0, 0, 0.7);
 
@@ -81,7 +75,7 @@ const MenuContainer = styled.div`
   }
 `;
 
-const NavButton = styled.div`
+export const NavButton = styled.div`
   width: 100%;
 
   font-family: "Montserrat";
@@ -92,5 +86,3 @@ const NavButton = styled.div`
   box-sizing: border-box;
   padding: 19px;
 `;
-
-export { Container, Icons, MenuContainer, NavButton };

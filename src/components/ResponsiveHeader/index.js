@@ -1,4 +1,4 @@
-import { Container, Icons, MenuContainer, NavButton } from "./style";
+import { Container, Image, Icons, MenuContainer, NavButton } from "./style";
 import { MdOutlineMenu } from "react-icons/md";
 import { BsPersonCircle } from "react-icons/bs";
 import logo from "../../assets/logo.png";
@@ -25,12 +25,7 @@ export default function ResponsiveHeader({
 
   return (
     <Container>
-      <img
-        onClick={() => navigate("/")}
-        className="logo-image-tablet"
-        src={logo}
-        alt=""
-      />
+      <Image src={logo} onClick={() => navigate("/")} alt="" />
       <Icons>
         {menuIsOpen ? (
           <IoClose
@@ -74,12 +69,12 @@ export default function ResponsiveHeader({
       {profileTabIsOpen && (
         <MenuContainer>
           <NavButton
-            className={"flex-end"}
+            className="flex-end"
             onClick={() => navigateToPage("/reservas")}
           >
             Reservas
           </NavButton>
-          <NavButton className={"flex-end"} onClick={() => logout()}>
+          <NavButton className="flex-end" onClick={() => logout()}>
             Sair
           </NavButton>
         </MenuContainer>

@@ -1,4 +1,11 @@
-import { Container, InfosContainer, Info, Title, Description } from "./style";
+import {
+  Container,
+  InfosContainer,
+  Info,
+  Image,
+  Title,
+  Description,
+} from "./style";
 import contact from "../../assets/contact.png";
 import location from "../../assets/location.png";
 import schedule from "../../assets/schedule.png";
@@ -10,7 +17,7 @@ export default function ContactInfo() {
     <Container>
       <InfosContainer>
         <Info>
-          <img src={location} alt="" />
+          <Image src={location} alt="" />
           <Title>Localização</Title>
           <Description>
             Rua Itinguçu, 1085,
@@ -19,12 +26,12 @@ export default function ContactInfo() {
           </Description>
         </Info>
         <Info>
-          <img src={contact} alt="" />
+          <Image src={contact} alt="" />
           <Title>Contato</Title>
           <Description>{`Tel: (11) ${PHONE_NUMBER}`}</Description>
         </Info>
         <Info>
-          <img src={schedule} alt="" />
+          <Image src={schedule} alt="" />
           <Title>Horário Normal</Title>
           <Description>
             Ter - Sex: 9:00 - 20:00
