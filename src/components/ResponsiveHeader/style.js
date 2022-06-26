@@ -37,24 +37,18 @@ export const Image = styled.img`
 `;
 
 export const Icons = styled.div`
+  font-size: 2.0125rem;
+  color: #e1e1e1;
+
   display: flex;
 
   margin-top: 10px;
   margin-right: 35px;
 
-  .tablet-icon {
-    font-size: 2.0125rem;
-    color: #e1e1e1;
-
-    margin-left: 20px;
-
-    cursor: pointer;
-  }
+  gap: 20px;
 
   @media (max-width: 768px) {
-    .tablet-icon {
-      font-size: 1.8rem;
-    }
+    font-size: 1.8rem;
   }
 `;
 

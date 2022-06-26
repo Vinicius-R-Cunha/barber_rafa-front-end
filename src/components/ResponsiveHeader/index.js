@@ -28,26 +28,16 @@ export default function ResponsiveHeader({
       <Image src={logo} onClick={() => navigate("/")} alt="" />
       <Icons>
         {menuIsOpen ? (
-          <IoClose
-            onClick={() => setMenuIsOpen(!menuIsOpen)}
-            className="tablet-icon"
-          />
+          <IoClose onClick={() => setMenuIsOpen(!menuIsOpen)} />
         ) : (
-          <MdOutlineMenu
-            onClick={() => setMenuIsOpen(!menuIsOpen)}
-            className="tablet-icon"
-          />
+          <MdOutlineMenu onClick={() => setMenuIsOpen(!menuIsOpen)} />
         )}
         {userIsLoggedIn ? (
           <BsPersonCircle
             onClick={() => setProfileTabIsOpen(!profileTabIsOpen)}
-            className="tablet-icon"
           />
         ) : (
-          <BsPersonCircle
-            onClick={() => openAuthenticationModal()}
-            className="tablet-icon"
-          />
+          <BsPersonCircle onClick={() => openAuthenticationModal()} />
         )}
       </Icons>
 
