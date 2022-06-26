@@ -6,7 +6,7 @@ import {
   Button,
 } from "./style";
 import { useNavigate } from "react-router-dom";
-import background from "../../assets/background2.avif";
+import background from "../../assets/find_us_background.jpg";
 
 export default function HomeToContactUsSection() {
   const navigate = useNavigate();
