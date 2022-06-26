@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Container = styled.div`
+export const Container = styled.div`
   width: 100%;
 
   display: flex;
@@ -10,37 +10,37 @@ const Container = styled.div`
   background-color: #252525;
 
   padding: 80px 0;
+`;
 
-  .new-category-button {
-    all: unset;
+export const CreateCategoryButton = styled.button`
+  all: unset;
 
-    font-family: "Montserrat";
-    font-size: 0.835rem;
-    font-weight: 800;
-    line-height: 1em;
-    letter-spacing: 0.7px;
-    text-transform: uppercase;
-    color: #e1e1e1;
+  font-family: "Montserrat";
+  font-size: 0.835rem;
+  font-weight: 800;
+  line-height: 1em;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: #e1e1e1;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    padding: 12px 48px;
+  padding: 12px 48px;
 
-    border-radius: 4px;
-    border: 5px solid #96885f;
+  border-radius: 4px;
+  border: 5px solid #96885f;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    :hover {
-      transition: 0.3s ease-out;
-      background-color: #96885f;
-    }
+  :hover {
+    transition: 0.3s ease-out;
+    background-color: #96885f;
   }
 `;
 
-const Category = styled.div`
+export const Category = styled.div`
   width: 100%;
 
   display: flex;
@@ -49,38 +49,12 @@ const Category = styled.div`
 
   padding-top: 80px;
 
-  .category-title {
-    font-family: "Teko";
-    font-size: 4.375rem;
-    font-weight: 500;
-    line-height: 1em;
-    letter-spacing: 1.8px;
-    text-transform: uppercase;
-    color: #96885f;
-  }
-
-  @media (max-width: 1200px) {
-    .category-title {
-      font-size: 2.575rem;
-    }
-  }
-
   @media (max-width: 750px) {
     padding-top: 50px;
-
-    .category-title {
-      font-size: 2.075rem;
-    }
-  }
-
-  @media (max-width: 350px) {
-    .category-title {
-      font-size: 1.875rem;
-    }
   }
 `;
 
-const AdminCategory = styled.div`
+export const AdminCategory = styled.div`
   display: flex;
   align-items: center;
 
@@ -88,80 +62,69 @@ const AdminCategory = styled.div`
 
   z-index: 2;
 
-  .admin-category-icons {
-    font-size: 2rem;
-    color: #ffffff;
-
-    display: flex;
-
-    gap: 15px;
-
-    position: absolute;
-    right: -150px;
-
-    .cursor-pointer {
-      cursor: pointer;
-    }
+  @media (max-width: 750px) {
+    padding-top: 50px;
   }
+`;
+
+export const Title = styled.p`
+  font-family: "Teko";
+  font-size: 4.375rem;
+  font-weight: 500;
+  line-height: 1em;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: #96885f;
 
   @media (max-width: 1200px) {
-    .admin-category-icons {
-      font-size: 1.575rem;
-
-      right: -130px;
-      bottom: 12px;
-    }
+    font-size: 2.575rem;
   }
 
   @media (max-width: 750px) {
-    padding-top: 50px;
+    font-size: 2.075rem;
+  }
 
-    .admin-category-icons {
-      font-size: 1.275rem;
+  @media (max-width: 350px) {
+    font-size: 1.875rem;
+  }
+`;
 
-      gap: 10px;
+export const AdminCategoryIcons = styled.div`
+  font-size: 2rem;
+  color: #ffffff;
 
-      right: -90px;
-      bottom: 22;
-    }
+  display: flex;
+
+  gap: 15px;
+
+  position: absolute;
+  right: -150px;
+
+  cursor: pointer;
+
+  @media (max-width: 1200px) {
+    font-size: 1.575rem;
+
+    right: -130px;
+    bottom: 12px;
+  }
+
+  @media (max-width: 750px) {
+    font-size: 1.275rem;
+
+    gap: 10px;
+
+    right: -90px;
+    bottom: 22;
   }
 
   @media (max-width: 600px) {
-    padding-top: 50px;
-
-    .admin-category-icons {
-      font-size: 1.275rem;
-
-      gap: 10px;
-
-      right: 0px;
-      bottom: -22px;
-    }
+    right: 0px;
+    bottom: -22px;
   }
 `;
 
-const AdminService = styled.div`
-  font-size: 1.3rem;
-  color: #ffffff;
-
-  position: absolute;
-  bottom: 15px;
-  left: 20px;
-
-  z-index: 2;
-
-  .edit-service {
-    margin-right: 10px;
-
-    cursor: pointer;
-  }
-
-  .delete-service {
-    cursor: pointer;
-  }
-`;
-
-const Services = styled.div`
+export const Services = styled.div`
   width: 1170px;
 
   display: grid;
@@ -192,7 +155,7 @@ const Services = styled.div`
   }
 `;
 
-const Service = styled.div`
+export const Service = styled.div`
   width: 100%;
   height: 230px;
 
@@ -211,7 +174,23 @@ const Service = styled.div`
   }
 `;
 
-const NamePrice = styled.div`
+export const AdminService = styled.div`
+  font-size: 1.3rem;
+  color: #ffffff;
+
+  display: flex;
+  gap: 10px;
+
+  position: absolute;
+  bottom: 15px;
+  left: 20px;
+
+  cursor: pointer;
+
+  z-index: 2;
+`;
+
+export const NamePrice = styled.div`
   width: 90%;
   height: 100px;
 
@@ -229,8 +208,10 @@ const NamePrice = styled.div`
 
   padding-top: 16px;
 
-  .name {
-    width: 60%;
+  p {
+    :first-of-type {
+      width: 60%;
+    }
   }
 
   @media (max-width: 1023px) {
@@ -240,7 +221,7 @@ const NamePrice = styled.div`
   }
 `;
 
-const Description = styled.div`
+export const Description = styled.div`
   width: 90%;
 
   font-family: "Montserrat";
@@ -255,15 +236,15 @@ const Description = styled.div`
   }
 `;
 
-const ButtonContainer = styled.div`
+export const Duration = styled.p`
   width: 90%;
 
   font-family: "Montserrat";
   font-size: 0.875rem;
-  font-weight: 800;
+  font-weight: 400;
   line-height: 1em;
   letter-spacing: 0.7px;
-  color: #e1e1e1;
+  color: #8d8d8d;
 
   display: flex;
   justify-content: flex-end;
@@ -274,39 +255,7 @@ const ButtonContainer = styled.div`
   position: absolute;
   bottom: 15px;
 
-  .duration {
-    font-weight: 400;
-    color: #8d8d8d;
-  }
-
-  button {
-    all: unset;
-
-    padding: 6px 10px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    border-radius: 4px;
-    border: 4px solid #96885f;
-
-    cursor: pointer;
-  }
-
   @media (max-width: 1023px) {
     font-size: 0.675rem;
   }
 `;
-
-export {
-  Container,
-  Category,
-  Services,
-  Service,
-  NamePrice,
-  Description,
-  ButtonContainer,
-  AdminCategory,
-  AdminService,
-};

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Modal from "react-modal";
 
-const StyledModal = styled(Modal)`
+export const StyledModal = styled(Modal)`
   width: fit-content;
 
   display: flex;
@@ -19,86 +19,23 @@ const StyledModal = styled(Modal)`
 
     cursor: pointer;
   }
-
-  .title {
-    font-family: "Teko";
-    font-size: 2.4rem;
-    font-weight: 500;
-    line-height: 1em;
-    letter-spacing: 1.8px;
-    text-transform: uppercase;
-    color: #96885f;
-  }
-
-  @media (max-width: 424px) {
-    .title {
-      font-size: 1.9rem;
-    }
-  }
 `;
 
-const FacebookButton = styled.button`
-  all: unset;
-
-  width: 100%;
-  height: 40px;
-
-  font-family: "Montserrat";
-  font-size: 0.735rem;
-  font-weight: 800;
+export const Title = styled.p`
+  font-family: "Teko";
+  font-size: 2.4rem;
+  font-weight: 500;
   line-height: 1em;
-  letter-spacing: 0.7px;
+  letter-spacing: 1.8px;
   text-transform: uppercase;
-  color: #e1e1e1;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  margin-top: 24px;
-
-  background-color: #4267b2;
-
-  border-radius: 4px;
-
-  cursor: pointer;
+  color: #96885f;
 
   @media (max-width: 424px) {
-    margin-top: 14px;
+    font-size: 1.9rem;
   }
 `;
 
-const Spacer = styled.div`
-  width: 99%;
-
-  font-family: "Montserrat";
-  font-size: 0.8rem;
-  font-style: normal;
-  font-weight: 800;
-  letter-spacing: 0.15px;
-  color: #e1e1e1;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  margin-top: 30px;
-
-  div {
-    width: 44%;
-    height: 3px;
-
-    background-color: #454545;
-
-    border-radius: 4px;
-  }
-
-  @media (max-width: 494px) {
-    margin-top: 15px;
-  }
-`;
-
-const InputsForm = styled.form`
+export const InputsForm = styled.form`
   width: 100%;
 
   margin-top: 30px;
@@ -106,23 +43,6 @@ const InputsForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  .password {
-    width: 100%;
-
-    position: relative;
-
-    .show-hide {
-      font-size: 1.325rem;
-      color: #e1e1e1;
-
-      position: absolute;
-      top: 17px;
-      right: 23px;
-
-      cursor: pointer;
-    }
-  }
 
   input {
     all: unset;
@@ -174,7 +94,24 @@ const InputsForm = styled.form`
   }
 `;
 
-const LinkButtonDiv = styled.div`
+export const PasswordContainer = styled.div`
+  width: 100%;
+
+  position: relative;
+
+  .show-hide {
+    font-size: 1.325rem;
+    color: #e1e1e1;
+
+    position: absolute;
+    top: 17px;
+    right: 23px;
+
+    cursor: pointer;
+  }
+`;
+
+export const LinkButtonDiv = styled.div`
   width: 100%;
 
   display: flex;
@@ -251,7 +188,68 @@ const LinkButtonDiv = styled.div`
   }
 `;
 
-const modalStyles = {
+export const Spacer = styled.div`
+  width: 99%;
+
+  font-family: "Montserrat";
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: 0.15px;
+  color: #e1e1e1;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 30px;
+
+  div {
+    width: 44%;
+    height: 3px;
+
+    background-color: #454545;
+
+    border-radius: 4px;
+  }
+
+  @media (max-width: 494px) {
+    margin-top: 15px;
+  }
+`;
+
+export const FacebookButton = styled.button`
+  all: unset;
+
+  width: 100%;
+  height: 40px;
+
+  font-family: "Montserrat";
+  font-size: 0.735rem;
+  font-weight: 800;
+  line-height: 1em;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: #e1e1e1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 24px;
+
+  background-color: #4267b2;
+
+  border-radius: 4px;
+
+  cursor: pointer;
+
+  @media (max-width: 424px) {
+    margin-top: 14px;
+  }
+`;
+
+export const modalStyles = {
   overlay: {
     position: "fixed",
     top: 0,
@@ -281,11 +279,12 @@ const modalStyles = {
   },
 };
 
-export {
-  StyledModal,
-  Spacer,
-  FacebookButton,
-  InputsForm,
-  LinkButtonDiv,
-  modalStyles,
+export const toastStyles = {
+  position: "bottom-left",
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
 };

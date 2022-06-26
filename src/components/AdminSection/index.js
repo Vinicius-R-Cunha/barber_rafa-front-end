@@ -1,84 +1,77 @@
-import { useState } from "react";
-import CategoryModal from "../CategoryModal";
-import ServiceModal from "../ServiceModal";
 import {
   Container,
+  CreateCategoryButton,
   Category,
+  AdminCategory,
+  Title,
+  AdminCategoryIcons,
   Services,
   Service,
+  AdminService,
   NamePrice,
   Description,
-  ButtonContainer,
-  AdminCategory,
-  AdminService,
+  Duration,
 } from "./style";
 import { AiFillEdit } from "react-icons/ai";
 import { FaTrashAlt } from "react-icons/fa";
 import { MdOutlineAddCircle } from "react-icons/md";
 
-export default function AdminSection({ categoriesArray, renderPage }) {
-  const [serviceData, setServiceData] = useState();
+export default function AdminSection({
+  categoriesArray,
+  setServiceData,
+  setCategoryData,
+  setCategoryModalType,
+  setCategoryModalIsOpen,
+  setServiceModalType,
+  setServiceModalIsOpen,
+}) {
+  function handleCategoryAction(category, action) {
+    setCategoryModalType(action);
+    openCategoryModal(category);
+  }
 
-  const [categoryData, setCategoryData] = useState();
-  const [categoryModalType, setCategoryModalType] = useState("");
-  const [categoryModalIsOpen, setCategoryModalIsOpen] = useState(false);
+  function handleServiceAction(category, service, action) {
+    setServiceModalType(action);
+    openServiceModal(category, service);
+  }
 
-  const [serviceModalType, setServiceModalType] = useState("");
-  const [serviceModalIsOpen, setServiceModalIsOpen] = useState(false);
-
-  function editCategory(category) {
+  function openCategoryModal(category) {
     setCategoryModalIsOpen(true);
     setCategoryData(category);
     document.body.style.overflow = "hidden";
   }
 
-  function editService(category, serviceData) {
+  function openServiceModal(category, service) {
     setServiceModalIsOpen(true);
     setCategoryData(category);
-    setServiceData(serviceData);
+    setServiceData(service);
     document.body.style.overflow = "hidden";
   }
 
   return (
     <>
       <Container>
-        <button
-          className="new-category-button"
-          onClick={() => {
-            setCategoryModalType("create");
-            editCategory("");
-          }}
+        <CreateCategoryButton
+          onClick={() => handleCategoryAction("", "create")}
         >
           Criar nova categoria
-        </button>
+        </CreateCategoryButton>
         {categoriesArray?.map((category) => {
           return (
             <Category key={category?._id}>
               <AdminCategory>
-                <p className="category-title">{category?.title}</p>
-                <div className="admin-category-icons">
+                <Title>{category?.title}</Title>
+                <AdminCategoryIcons>
                   <AiFillEdit
-                    onClick={() => {
-                      setCategoryModalType("edit");
-                      editCategory(category);
-                    }}
-                    className="cursor-pointer"
+                    onClick={() => handleCategoryAction(category, "edit")}
                   />
                   <MdOutlineAddCircle
-                    onClick={() => {
-                      setServiceModalType("create");
-                      editService(category, "");
-                    }}
-                    className="cursor-pointer"
+                    onClick={() => handleServiceAction(category, "", "create")}
                   />
                   <FaTrashAlt
-                    onClick={() => {
-                      setCategoryModalType("delete");
-                      editCategory(category);
-                    }}
-                    className="cursor-pointer"
+                    onClick={() => handleCategoryAction(category, "delete")}
                   />
-                </div>
+                </AdminCategoryIcons>
               </AdminCategory>
 
               <Services>
@@ -87,31 +80,24 @@ export default function AdminSection({ categoriesArray, renderPage }) {
                     <Service key={service?._id}>
                       <AdminService>
                         <AiFillEdit
-                          onClick={() => {
-                            setServiceModalType("edit");
-                            editService(category, service);
-                          }}
-                          className="edit-service"
+                          onClick={() =>
+                            handleServiceAction(category, service, "edit")
+                          }
                         />
                         <FaTrashAlt
-                          onClick={() => {
-                            setServiceModalType("delete");
-                            editService(category, service);
-                          }}
-                          className="delete-service"
+                          onClick={() =>
+                            handleServiceAction(category, service, "delete")
+                          }
                         />
                       </AdminService>
 
                       <NamePrice>
-                        <p className="name">{service?.name}</p>
-                        <p className="price">{`R$ ${service?.price}`}</p>
+                        <p>{service?.name}</p>
+                        <p>{`R$ ${service?.price}`}</p>
                       </NamePrice>
-                      <Description>{service?.description}</Description>
 
-                      <ButtonContainer>
-                        <p className="duration">{service?.duration}</p>
-                        <button>Reservar</button>
-                      </ButtonContainer>
+                      <Description>{service?.description}</Description>
+                      <Duration>{service?.duration}</Duration>
                     </Service>
                   );
                 })}
@@ -120,23 +106,6 @@ export default function AdminSection({ categoriesArray, renderPage }) {
           );
         })}
       </Container>
-
-      <CategoryModal
-        categoryModalIsOpen={categoryModalIsOpen}
-        setCategoryModalIsOpen={setCategoryModalIsOpen}
-        categoryData={categoryData}
-        type={categoryModalType}
-        renderPage={renderPage}
-      />
-
-      <ServiceModal
-        serviceModalIsOpen={serviceModalIsOpen}
-        setServiceModalIsOpen={setServiceModalIsOpen}
-        categoryData={categoryData}
-        serviceData={serviceData}
-        type={serviceModalType}
-        renderPage={renderPage}
-      />
     </>
   );
 }

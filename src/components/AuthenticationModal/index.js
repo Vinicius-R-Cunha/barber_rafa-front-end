@@ -4,9 +4,12 @@ import UserContext from "../../contexts/UserContext";
 import * as api from "../../services/api";
 import {
   StyledModal,
+  Title,
   InputsForm,
+  PasswordContainer,
   LinkButtonDiv,
   modalStyles,
+  toastStyles,
   // Spacer,
   // FacebookButton,
 } from "./style";
@@ -46,73 +49,69 @@ export default function AuthenticationModal() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
     setSubmitIsLoading(true);
 
-    if (page === "inscrever-se") {
-      const promise = await api.signUp(formData);
-      setSubmitIsLoading(false);
-      if (promise.status === 201) {
-        toastSuccess("Cadastro realizado com sucesso!");
-        setPage("entrar");
-        return;
-      } else if (promise.status === 409) {
-        toastError(promise.data);
-        return;
-      } else if (promise.status === 422) {
-        toastError(promise.data.error);
-        return;
-      }
-      toastError("Erro no servidor, tente novamente em alguns momentos");
-      return;
-    } else {
-      const signInObject = {
-        email: formData.email,
-        password: formData.password,
-      };
-      const promise = await api.signIn(signInObject);
-      setSubmitIsLoading(false);
-      if (promise.status === 200) {
-        localStorage.setItem("token", promise.data);
-        setToken(promise.data);
-        closeModal();
-        toastSuccess("Login efetuado!");
-        return;
-      } else if (promise.status === 409) {
-        toastError(promise.data);
-        return;
-      } else if (promise.status === 422) {
-        toastError(promise.data.error);
-        return;
-      }
-      toastError("Erro no servidor, tente novamente em alguns momentos");
+    if (page === "inscrever-se") return signUp();
+
+    if (page === "entrar") return signIn();
+  }
+
+  async function signUp() {
+    const response = await api.signUp(formData);
+    setSubmitIsLoading(false);
+
+    if (response.status === 201) {
+      toast.success("Cadastro realizado com sucesso!", toastStyles);
+      setPage("entrar");
       return;
     }
+
+    handleResponseErrors(response);
+    return;
   }
 
-  function toastError(message) {
-    return toast.error(message, {
-      position: "bottom-left",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+  async function signIn() {
+    const signInObject = {
+      email: formData.email,
+      password: formData.password,
+    };
+    const response = await api.signIn(signInObject);
+    setSubmitIsLoading(false);
+
+    if (response.status === 200) {
+      localStorage.setItem("token", response.data);
+      setToken(response.data);
+      closeModal();
+      toast.success("Login efetuado!", toastStyles);
+      return;
+    }
+
+    handleResponseErrors(response);
+    return;
   }
 
-  function toastSuccess(message) {
-    return toast.success(message, {
-      position: "bottom-left",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+  function handleResponseErrors(response) {
+    if (response.status === 409) {
+      toast.error(response.data, toastStyles);
+      return;
+    }
+
+    if (response.status === 422) {
+      toast.error(response.data.error, toastStyles);
+      return;
+    }
+
+    return toast.error(
+      "Erro no servidor, tente novamente em alguns momentos",
+      toastStyles
+    );
+  }
+
+  function changePage() {
+    if (page === "inscrever-se") return setPage("entrar");
+    if (page === "entrar") return setPage("inscrever-se");
   }
 
   return (
@@ -123,7 +122,7 @@ export default function AuthenticationModal() {
       style={modalStyles}
     >
       <IoClose className="close-button" onClick={() => closeModal()} />
-      <p className="title">{page}</p>
+      <Title>{page}</Title>
       <InputsForm>
         {page === "inscrever-se" && (
           <input
@@ -156,7 +155,7 @@ export default function AuthenticationModal() {
           />
         )}
 
-        <div className="password">
+        <PasswordContainer>
           <input
             name="password"
             type={isShowingPassword ? "text" : "password"}
@@ -165,6 +164,7 @@ export default function AuthenticationModal() {
             value={formData.password}
             required
           />
+
           {isShowingPassword ? (
             <IoEyeOff
               onClick={() => setIsShowingPassword(!isShowingPassword)}
@@ -176,31 +176,21 @@ export default function AuthenticationModal() {
               className="show-hide"
             />
           )}
-        </div>
+        </PasswordContainer>
 
         <LinkButtonDiv>
-          {page === "inscrever-se" ? (
-            <>
-              <p onClick={() => setPage("entrar")}>Já possuo cadastro</p>
-              {submitIsLoading ? (
-                <button type="button">
-                  <ThreeDots color="#E1E1E1" height={13} width={51} />
-                </button>
-              ) : (
-                <button onClick={(e) => handleSubmit(e)}>cadastrar</button>
-              )}
-            </>
+          <p onClick={changePage}>
+            {page === "entrar" ? "Não" : "Já"} possuo cadastro
+          </p>
+
+          {submitIsLoading ? (
+            <button type="button" disabled>
+              <ThreeDots color="#E1E1E1" height={13} width={51} />
+            </button>
           ) : (
-            <>
-              <p onClick={() => setPage("inscrever-se")}>Não possuo cadastro</p>
-              {submitIsLoading ? (
-                <button type="button">
-                  <ThreeDots color="#E1E1E1" height={13} width={51} />
-                </button>
-              ) : (
-                <button onClick={(e) => handleSubmit(e)}>entrar</button>
-              )}
-            </>
+            <button onClick={(e) => handleSubmit(e)}>
+              {page === "entrar" ? "entrar" : "cadastrar"}
+            </button>
           )}
         </LinkButtonDiv>
 

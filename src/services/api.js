@@ -54,30 +54,37 @@ async function getCategories() {
 async function createCategory(token, data) {
   try {
     const config = createConfig(token);
-    await axios.post(`${BASE_URL}/categories`, data, config);
-    return true;
+    const promise = await axios.post(`${BASE_URL}/categories`, data, config);
+    return promise;
   } catch (error) {
-    console.log(error.response);
+    return error.response;
   }
 }
 
 async function deleteCategory(token, categoryId) {
   try {
     const config = createConfig(token);
-    await axios.delete(`${BASE_URL}/categories/${categoryId}`, config);
-    return true;
+    const promise = await axios.delete(
+      `${BASE_URL}/categories/${categoryId}`,
+      config
+    );
+    return promise;
   } catch (error) {
-    console.log(error.response);
+    return error.response;
   }
 }
 
 async function editCategory(token, categoryId, data) {
   try {
     const config = createConfig(token);
-    await axios.put(`${BASE_URL}/categories/${categoryId}`, data, config);
-    return true;
+    const promise = await axios.put(
+      `${BASE_URL}/categories/${categoryId}`,
+      data,
+      config
+    );
+    return promise;
   } catch (error) {
-    console.log(error.response);
+    return error.response;
   }
 }
 

@@ -1,8 +1,18 @@
 import { useContext, useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
+import { toast } from "react-toastify";
 import UserContext from "../../contexts/UserContext";
 import * as api from "../../services/api";
-import { StyledModal, InputsForm, ActionButtons, modalStyles } from "./style";
+import {
+  StyledModal,
+  Title,
+  InputsForm,
+  Input,
+  ActionButtons,
+  Button,
+  modalStyles,
+  toastStyles,
+} from "./style";
 
 export default function CategoryModal({
   categoryModalIsOpen,
@@ -30,30 +40,51 @@ export default function CategoryModal({
     setTitle("");
   }
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
 
-    if (type === "create") {
-      const created = await api.createCategory(token, { title });
-      if (created) {
-        closeModal();
-        renderPage();
-      }
-    } else if (type === "delete") {
-      const deleted = await api.deleteCategory(token, categoryData._id);
-      if (deleted) {
-        closeModal();
-        renderPage();
-      }
-    } else if (type === "edit") {
-      const edited = await api.editCategory(token, categoryData._id, {
-        title,
-      });
-      if (edited) {
-        closeModal();
-        renderPage();
-      }
-    }
+    if (type === "create") return createCategory();
+    if (type === "delete") return deleteCategory();
+    if (type === "edit") return editCategory();
+  }
+
+  async function createCategory() {
+    const response = await api.createCategory(token, { title });
+    if (response.status === 201) return handleSuccess("Categoria criada!");
+
+    return handleError(response.data);
+  }
+
+  async function deleteCategory() {
+    const response = await api.deleteCategory(token, categoryData._id);
+    if (response.status === 200) return handleSuccess("Categoria excluída!");
+
+    return handleError(response.data);
+  }
+
+  async function editCategory() {
+    const response = await api.editCategory(token, categoryData._id, {
+      title,
+    });
+    if (response.status === 200) return handleSuccess("Categoria editada!");
+
+    return handleError(response.data);
+  }
+
+  function handleSuccess(message) {
+    closeModal();
+    renderPage();
+
+    return toast.success(message, toastStyles);
+  }
+
+  function handleError(responseData) {
+    if (responseData) return toast.error(responseData, toastStyles);
+
+    return toast.error(
+      "Erro no servidor, tente novamente em alguns momentos",
+      toastStyles
+    );
   }
 
   return (
@@ -63,15 +94,15 @@ export default function CategoryModal({
       onRequestClose={() => closeModal()}
       style={modalStyles}
     >
-      <IoClose className="close-button" onClick={() => closeModal()} />
-      {type === "create" && <p className="title">Criar Categoria</p>}
-      {type === "edit" && <p className="title">Editar Categoria</p>}
+      <IoClose className="close-icon" onClick={() => closeModal()} />
+      {type === "create" && <Title>Criar Categoria</Title>}
+      {type === "edit" && <Title>Editar Categoria</Title>}
       {type === "delete" && (
-        <p className="title">Tem certeza que quer excluir essa categoria?</p>
+        <Title>Tem certeza que quer excluir essa categoria?</Title>
       )}
       <InputsForm>
         {type !== "delete" && (
-          <input
+          <Input
             name="title"
             type="text"
             placeholder="Título"
@@ -82,10 +113,10 @@ export default function CategoryModal({
         )}
 
         <ActionButtons>
-          <button type="button" onClick={() => closeModal()}>
+          <Button type="button" onClick={() => closeModal()}>
             Cancelar
-          </button>
-          <button onClick={(e) => handleSubmit(e)}>Confirmar</button>
+          </Button>
+          <Button onClick={(e) => handleSubmit(e)}>Confirmar</Button>
         </ActionButtons>
       </InputsForm>
     </StyledModal>
