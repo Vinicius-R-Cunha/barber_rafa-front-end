@@ -1,4 +1,4 @@
-import { Container, Image, Icons, MenuContainer, NavButton } from "./style";
+import { Container, Logo, Icons, MenuContainer, NavButton } from "./style";
 import { MdOutlineMenu } from "react-icons/md";
 import { BsPersonCircle } from "react-icons/bs";
 import logo from "../../assets/logo.png";
@@ -25,7 +25,7 @@ export default function ResponsiveHeader({
 
   return (
     <Container>
-      <Image src={logo} onClick={() => navigate("/")} alt="" />
+      <Logo src={logo} onClick={() => navigate("/")} alt="" />
       <Icons>
         {menuIsOpen ? (
           <IoClose onClick={() => setMenuIsOpen(!menuIsOpen)} />
