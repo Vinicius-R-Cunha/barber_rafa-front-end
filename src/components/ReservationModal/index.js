@@ -1,11 +1,17 @@
 import {
   StyledModal,
   ModalHeader,
+  Title,
   DateStatus,
   ScheduleContainer,
+  ScrollableDiv,
   ButtonContainer,
   Timetable,
+  Price,
+  Duration,
+  Button,
   modalStyles,
+  toastStyles,
 } from "./style";
 import "react-calendar/dist/Calendar.css";
 import Calendar from "react-calendar";
@@ -49,15 +55,8 @@ export default function ReservationModal({
 
   async function handleClick(e) {
     setLoadingSchedule(true);
-    const startTime = new Date(e).toISOString();
 
-    const tomorrow = new Date(e);
-    tomorrow.setDate(e.getDate() + 1);
-
-    const endTime = new Date(tomorrow.setUTCHours(2, 59, 0, 0)).toISOString();
-
-    const duration = serviceData.duration;
-
+    const { startTime, endTime, duration } = getTimes(e);
     const promise = await api.checkAvailability(token, {
       startTime,
       endTime,
@@ -69,12 +68,24 @@ export default function ReservationModal({
     setScrollX(0);
     setSelectedTime("");
 
-    if (promise.status === 200) {
-      setScheduleArray(promise.data);
-      return;
-    }
-    toastError("Erro ao carregar os horários, por favor tente novamente");
-    return;
+    if (promise.status === 200) return setScheduleArray(promise.data);
+
+    return toast.error(
+      "Erro ao carregar os horários, por favor tente novamente",
+      toastStyles
+    );
+  }
+
+  function getTimes(date) {
+    const startTime = new Date(date).toISOString();
+    const tomorrow = new Date(date);
+    tomorrow.setDate(date.getDate() + 1);
+
+    const endTime = new Date(tomorrow.setUTCHours(2, 59, 0, 0)).toISOString();
+
+    const duration = serviceData.duration;
+
+    return { startTime, endTime, duration };
   }
 
   async function handleReservation() {
@@ -82,20 +93,21 @@ export default function ReservationModal({
     const startTime = new Date(day);
     startTime.setHours(reservationTime[0] - 3, reservationTime[1], 0);
 
-    const promise = await api.createCalendarEvent(token, {
+    const response = await api.createCalendarEvent(token, {
       startTime: startTime.toISOString(),
       duration: serviceData?.duration,
       summary: serviceData?.name,
       description: `Cliente: ${userData?.name}, Telefone: ${userData?.phone}, e-mail: ${userData?.email}`,
     });
-
     closeModal();
-    if (promise.status === 201) {
-      toastSuccess("Horário agendado!");
-      return;
-    }
-    toastError("Erro ao agendar seu horário, por favor tente novamente.");
-    return;
+
+    if (response.status === 201)
+      return toast.success("Horário agendado!", toastStyles);
+
+    return toast.error(
+      "Erro ao agendar seu horário, por favor tente novamente.",
+      toastStyles
+    );
   }
 
   function handleDisabledTiles(e) {
@@ -106,52 +118,24 @@ export default function ReservationModal({
     return yesterday > e.date;
   }
 
-  function toastSuccess(message) {
-    toast.success(message, {
-      position: "bottom-left",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  }
-
-  function toastError(message) {
-    toast.error(message, {
-      position: "bottom-left",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  }
-
-  function handleTimeSelection(time) {
-    setSelectedTime(time);
-  }
-
   function handleLeftArrow() {
-    let x = scrollX + 350;
-    if (x > 0) {
-      x = 0;
+    let margin = scrollX + 350;
+    if (margin > 0) {
+      margin = 0;
     }
-    setScrollX(x);
+    setScrollX(margin);
   }
 
   function handleRightArrow() {
-    let x = scrollX - 350;
+    let margin = scrollX - 350;
     //array size * (Timetable size + gap size) - last gap
-    let listWidth = scheduleArray.length * 114 - 20;
+    let listWidth = scheduleArray.length * (94 + 20) - 20;
+    const ScrollableDivSize = 469.797;
 
-    if (466 - listWidth > x) {
-      x = 466 - listWidth;
+    if (ScrollableDivSize - listWidth > margin) {
+      margin = ScrollableDivSize - listWidth;
     }
-
-    setScrollX(x);
+    setScrollX(margin);
   }
 
   return (
@@ -162,7 +146,7 @@ export default function ReservationModal({
       style={modalStyles}
     >
       <ModalHeader>
-        <p className="modal-title">{serviceData?.name}</p>
+        <Title>{serviceData?.name}</Title>
         <IoClose className="close-icon" onClick={() => closeModal()} />
       </ModalHeader>
       <Calendar
@@ -171,6 +155,8 @@ export default function ReservationModal({
         onClickDay={(e) => handleClick(e)}
         tileClassName={"tile"}
         tileDisabled={(e) => handleDisabledTiles(e)}
+        minDate={new Date()}
+        maxDate={new Date(new Date().setMonth(new Date().getMonth() + 2))}
       />
       {scheduleArray === null && (
         <DateStatus>Selecione uma data para reserva</DateStatus>
@@ -198,14 +184,14 @@ export default function ReservationModal({
                 className="nav-arrow-right"
               />
 
-              <div className="scrollable-div">
+              <ScrollableDiv>
                 {viewWidth < 1024 ? (
                   <ScrollContainer className="inside-scroll">
                     {scheduleArray?.map((time) => {
                       return (
                         <Timetable
                           key={time}
-                          onClick={() => handleTimeSelection(time)}
+                          onClick={() => setSelectedTime(time)}
                         >
                           {time}
                         </Timetable>
@@ -225,7 +211,7 @@ export default function ReservationModal({
                       return (
                         <Timetable
                           key={time}
-                          onClick={() => handleTimeSelection(time)}
+                          onClick={() => setSelectedTime(time)}
                         >
                           {time}
                         </Timetable>
@@ -233,17 +219,18 @@ export default function ReservationModal({
                     })}
                   </div>
                 )}
-              </div>
+              </ScrollableDiv>
             </ScheduleContainer>
+
             {selectedTime !== "" && (
               <ButtonContainer>
                 <div>
-                  <p className="price">{`R$ ${serviceData?.price}`}</p>
-                  <p className="duration">{serviceData?.duration}</p>
+                  <Price>{`R$ ${serviceData?.price}`}</Price>
+                  <Duration>{serviceData?.duration}</Duration>
                 </div>
-                <button
+                <Button
                   onClick={() => handleReservation()}
-                >{`Reservar horário - ${selectedTime}`}</button>
+                >{`Reservar horário - ${selectedTime}`}</Button>
               </ButtonContainer>
             )}
           </>

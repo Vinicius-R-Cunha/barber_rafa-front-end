@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Modal from "react-modal";
 
-const StyledModal = styled(Modal)`
+export const StyledModal = styled(Modal)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,37 +12,26 @@ const StyledModal = styled(Modal)`
     border-radius: 8px;
   }
 
-  .tile {
-    border-radius: 4px;
+  @media (max-width: 372px) {
+    .c1 {
+      width: 318px;
+    }
   }
 
   @media (max-width: 340px) {
     .c1 {
-      width: 318px;
-
-      padding: 0;
+      width: 298px;
     }
   }
 `;
 
-const ModalHeader = styled.div`
+export const ModalHeader = styled.div`
   width: 100%;
 
   display: flex;
   justify-content: space-between;
 
   padding-bottom: 30px;
-  .modal-title {
-    width: 75%;
-
-    font-family: "Teko";
-    font-size: 1.888rem;
-    font-weight: 500;
-    line-height: 1em;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: #e1e1e1;
-  }
 
   .close-icon {
     font-size: 1.888rem;
@@ -77,7 +66,19 @@ const ModalHeader = styled.div`
   }
 `;
 
-const DateStatus = styled.div`
+export const Title = styled.p`
+  width: 75%;
+
+  font-family: "Teko";
+  font-size: 1.888rem;
+  font-weight: 500;
+  line-height: 1em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #e1e1e1;
+`;
+
+export const DateStatus = styled.div`
   font-family: "Montserrat";
   font-size: 1.275rem;
   font-weight: 800;
@@ -92,7 +93,7 @@ const DateStatus = styled.div`
   }
 `;
 
-const ScheduleContainer = styled.div`
+export const ScheduleContainer = styled.div`
   width: 90%;
 
   margin-top: 25px;
@@ -102,24 +103,6 @@ const ScheduleContainer = styled.div`
   align-items: center;
 
   position: relative;
-
-  .scrollable-div {
-    width: 90%;
-    height: 100%;
-
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-
-    .inside-scroll {
-      width: 100%;
-      height: 100%;
-
-      display: flex;
-
-      gap: 20px;
-    }
-  }
 
   .nav-arrow-left {
     font-size: 2rem;
@@ -168,7 +151,41 @@ const ScheduleContainer = styled.div`
   }
 `;
 
-const Timetable = styled.p`
+export const ScrollableDiv = styled.div`
+  width: 90%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  .inside-scroll {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    gap: 20px;
+  }
+
+  @media (max-width: 1023px) {
+    width: 100%;
+  }
+
+  @media (max-width: 550px) {
+    width: 90%;
+  }
+
+  @media (max-width: 500px) {
+    width: 100%;
+  }
+
+  @media (max-width: 380px) {
+    width: 90%;
+  }
+`;
+
+export const Timetable = styled.p`
   width: 70px;
 
   font-family: "Montserrat";
@@ -202,7 +219,7 @@ const Timetable = styled.p`
   }
 `;
 
-const ButtonContainer = styled.div`
+export const ButtonContainer = styled.div`
   width: 100%;
 
   display: flex;
@@ -211,102 +228,99 @@ const ButtonContainer = styled.div`
 
   padding-top: 40px;
 
-  .price {
-    font-family: "Teko";
-    font-size: 1.888rem;
-    font-weight: 500;
-    line-height: 1em;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: #e1e1e1;
-  }
-
-  .duration {
-    font-family: "Montserrat";
-    font-size: 1.125rem;
-    font-weight: 400;
-    line-height: 1.167em;
-    letter-spacing: 0;
-    color: #8d8d8d;
-  }
-
-  button {
-    all: unset;
-
-    font-family: "Montserrat";
-    font-size: 1.275rem;
-    font-weight: 800;
-    line-height: 1em;
-    letter-spacing: 0.7px;
-    color: #e1e1e1;
-
-    padding: 23px 80px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    border-radius: 4px;
-    border: 4px solid #96885f;
-
-    cursor: pointer;
-
-    :hover {
-      transition: 0.3s ease-out;
-      background-color: #96885f;
-    }
-  }
-
   @media (max-width: 640px) {
     width: 90%;
-
-    .price {
-      font-size: 1.188rem;
-    }
-
-    .duration {
-      font-size: 0.825rem;
-    }
-
-    button {
-      font-size: 0.725rem;
-      padding: 17px 20px;
-    }
   }
 
   @media (max-width: 424px) {
     width: 80%;
-
-    .price {
-      font-size: 1.288rem;
-    }
-
-    .duration {
-      font-size: 0.825rem;
-    }
-
-    button {
-      padding: 18px 15px;
-    }
-  }
-
-  @media (max-width: 340px) {
-    .price {
-      font-size: 1.188rem;
-    }
-
-    .duration {
-      font-size: 0.725rem;
-    }
-
-    button {
-      font-size: 0.625rem;
-      padding: 18px 15px;
-    }
   }
 `;
 
-const modalStyles = {
+export const Price = styled.p`
+  font-family: "Teko";
+  font-size: 1.888rem;
+  font-weight: 500;
+  line-height: 1em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #e1e1e1;
+
+  @media (max-width: 640px) {
+    font-size: 1.188rem;
+  }
+
+  @media (max-width: 424px) {
+    font-size: 1.288rem;
+  }
+
+  @media (max-width: 340px) {
+    font-size: 1.188rem;
+  }
+`;
+
+export const Duration = styled.p`
+  font-family: "Montserrat";
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.167em;
+  letter-spacing: 0;
+  color: #8d8d8d;
+
+  @media (max-width: 640px) {
+    font-size: 0.825rem;
+  }
+
+  @media (max-width: 424px) {
+    font-size: 0.825rem;
+  }
+
+  @media (max-width: 340px) {
+    font-size: 0.725rem;
+  }
+`;
+
+export const Button = styled.button`
+  all: unset;
+
+  font-family: "Montserrat";
+  font-size: 1.275rem;
+  font-weight: 800;
+  line-height: 1em;
+  letter-spacing: 0.7px;
+  color: #e1e1e1;
+
+  padding: 23px 80px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 4px;
+  border: 4px solid #96885f;
+
+  cursor: pointer;
+
+  :hover {
+    transition: 0.3s ease-out;
+    background-color: #96885f;
+  }
+
+  @media (max-width: 640px) {
+    font-size: 0.725rem;
+    padding: 17px 20px;
+  }
+
+  @media (max-width: 424px) {
+    padding: 18px 15px;
+  }
+
+  @media (max-width: 340px) {
+    font-size: 0.625rem;
+  }
+`;
+
+export const modalStyles = {
   overlay: {
     position: "fixed",
     top: 0,
@@ -336,12 +350,12 @@ const modalStyles = {
   },
 };
 
-export {
-  StyledModal,
-  ModalHeader,
-  DateStatus,
-  ScheduleContainer,
-  ButtonContainer,
-  Timetable,
-  modalStyles,
+export const toastStyles = {
+  position: "bottom-left",
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
 };
