@@ -8,6 +8,7 @@ import AboutPage from "./pages/AboutPage";
 import ContactUsPage from "./pages/ContactUsPage";
 import ProfilePage from "./pages/ProfilePage";
 import AdminPage from "./pages/AdminPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 import AuthenticationModal from "./components/AuthenticationModal";
 import * as api from "./services/api";
 import { ToastContainer } from "react-toastify";
@@ -78,6 +79,10 @@ export default function App() {
             {userIsLoggedIn && userIsAdmin && (
               <Route path={"/admin"} element={<AdminPage />} />
             )}
+            <Route
+              path={"/reset-password/:hash"}
+              element={<ResetPasswordPage />}
+            />
           </Routes>
         </BrowserRouter>
         <AuthenticationModal />

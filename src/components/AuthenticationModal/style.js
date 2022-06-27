@@ -35,6 +35,18 @@ export const Title = styled.p`
   }
 `;
 
+export const Description = styled.p`
+  font-family: "Montserrat";
+  font-size: 0.855rem;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: 0.7px;
+  text-align: center;
+  color: #e1e1e1;
+
+  margin-top: 15px;
+`;
+
 export const InputsForm = styled.form`
   width: 100%;
 
@@ -116,75 +128,105 @@ export const LinkButtonDiv = styled.div`
 
   display: flex;
   justify-content: space-between;
-  align-items: center;
 
   margin-top: 12px;
 
-  p {
-    font-family: "Montserrat";
-    font-size: 0.905rem;
-    font-style: normal;
-    font-weight: 500;
-    letter-spacing: 0.15px;
-    text-decoration-line: underline;
-    color: #96885f;
+  position: relative;
+`;
 
-    cursor: pointer;
-  }
+export const NavigationText = styled.div`
+  font-family: "Montserrat";
+  font-size: 0.905rem;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.15px;
+  text-decoration-line: underline;
+  color: #96885f;
 
-  button {
-    all: unset;
+  margin-top: 22px;
 
-    font-family: "Montserrat";
-    font-size: 0.835rem;
-    font-weight: 800;
-    line-height: 1em;
-    letter-spacing: 0.7px;
-    text-transform: uppercase;
+  cursor: pointer;
+
+  :hover {
     color: #e1e1e1;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 12px 23px;
-
-    border-radius: 4px;
-    border: 5px solid #96885f;
-
-    cursor: pointer;
-
-    :hover {
-      transition: 0.3s ease-out;
-      background-color: #96885f;
-    }
-  }
-
-  @media (max-width: 494px) {
-    button {
-      font-size: 0.735rem;
-    }
   }
 
   @media (max-width: 424px) {
-    p {
-      font-size: 0.855rem;
-    }
+    font-size: 0.855rem;
 
-    button {
-      padding: 10px 20px;
-    }
+    margin-top: 18px;
   }
 
   @media (max-width: 370px) {
-    p {
-      font-size: 0.695rem;
-    }
+    font-size: 0.695rem;
+  }
+`;
 
-    button {
-      font-size: 0.635rem;
-      padding: 10px 20px;
-    }
+export const ForgotPassword = styled.p`
+  font-family: "Montserrat";
+  font-size: 0.82rem;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.15px;
+  text-decoration-line: underline;
+  color: #96885f;
+
+  position: absolute;
+  top: -18px;
+
+  cursor: pointer;
+
+  :hover {
+    color: #e1e1e1;
+  }
+
+  @media (max-width: 424px) {
+    font-size: 0.77rem;
+  }
+
+  @media (max-width: 370px) {
+    font-size: 0.62rem;
+  }
+`;
+
+export const Button = styled.button`
+  all: unset;
+
+  font-family: "Montserrat";
+  font-size: 0.835rem;
+  font-weight: 800;
+  line-height: 1em;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: #e1e1e1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 12px 23px;
+
+  border-radius: 4px;
+  border: 5px solid #96885f;
+
+  cursor: pointer;
+
+  :hover {
+    transition: 0.3s ease-out;
+    background-color: #96885f;
+  }
+
+  @media (max-width: 494px) {
+    font-size: 0.735rem;
+  }
+
+  @media (max-width: 424px) {
+    padding: 10px 20px;
+  }
+
+  @media (max-width: 370px) {
+    font-size: 0.635rem;
+    padding: 10px 20px;
   }
 `;
 

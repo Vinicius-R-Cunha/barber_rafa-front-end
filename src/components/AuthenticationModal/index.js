@@ -5,9 +5,13 @@ import * as api from "../../services/api";
 import {
   StyledModal,
   Title,
+  Description,
   InputsForm,
   PasswordContainer,
   LinkButtonDiv,
+  NavigationText,
+  ForgotPassword,
+  Button,
   modalStyles,
   toastStyles,
   // Spacer,
@@ -54,8 +58,8 @@ export default function AuthenticationModal() {
     setSubmitIsLoading(true);
 
     if (page === "inscrever-se") return signUp();
-
     if (page === "entrar") return signIn();
+    if (page === "redefinir senha") return sendRecuperationEmail();
   }
 
   async function signUp() {
@@ -92,6 +96,21 @@ export default function AuthenticationModal() {
     return;
   }
 
+  async function sendRecuperationEmail() {
+    const { email } = formData;
+    const response = await api.sendRecuperationEmail(email);
+    setSubmitIsLoading(false);
+
+    if (response.status === 200) {
+      toast.success(`Email de recuperação enviado para ${email}`, toastStyles);
+      closeModal();
+      return;
+    }
+
+    handleResponseErrors(response);
+    return;
+  }
+
   function handleResponseErrors(response) {
     if (response.status === 409) {
       toast.error(response.data, toastStyles);
@@ -109,8 +128,9 @@ export default function AuthenticationModal() {
     );
   }
 
-  function changePage() {
-    if (page === "inscrever-se") return setPage("entrar");
+  function togglePage() {
+    if (page === "inscrever-se" || page === "redefinir senha")
+      return setPage("entrar");
     if (page === "entrar") return setPage("inscrever-se");
   }
 
@@ -123,6 +143,13 @@ export default function AuthenticationModal() {
     >
       <IoClose className="close-button" onClick={() => closeModal()} />
       <Title>{page}</Title>
+
+      {page === "redefinir senha" && (
+        <Description>
+          Insira seu email cadastrado para recuperar sua senha
+        </Description>
+      )}
+
       <InputsForm>
         {page === "inscrever-se" && (
           <input
@@ -155,42 +182,50 @@ export default function AuthenticationModal() {
           />
         )}
 
-        <PasswordContainer>
-          <input
-            name="password"
-            type={isShowingPassword ? "text" : "password"}
-            placeholder="Senha"
-            onChange={(e) => handleFormData(e)}
-            value={formData.password}
-            required
-          />
+        {page !== "redefinir senha" && (
+          <PasswordContainer>
+            <input
+              name="password"
+              type={isShowingPassword ? "text" : "password"}
+              placeholder="Senha"
+              onChange={(e) => handleFormData(e)}
+              value={formData.password}
+              required
+            />
 
-          {isShowingPassword ? (
-            <IoEyeOff
-              onClick={() => setIsShowingPassword(!isShowingPassword)}
-              className="show-hide"
-            />
-          ) : (
-            <IoEye
-              onClick={() => setIsShowingPassword(!isShowingPassword)}
-              className="show-hide"
-            />
-          )}
-        </PasswordContainer>
+            {isShowingPassword ? (
+              <IoEyeOff
+                onClick={() => setIsShowingPassword(!isShowingPassword)}
+                className="show-hide"
+              />
+            ) : (
+              <IoEye
+                onClick={() => setIsShowingPassword(!isShowingPassword)}
+                className="show-hide"
+              />
+            )}
+          </PasswordContainer>
+        )}
 
         <LinkButtonDiv>
-          <p onClick={changePage}>
+          <NavigationText onClick={togglePage}>
             {page === "entrar" ? "Não" : "Já"} possuo cadastro
-          </p>
+          </NavigationText>
+
+          <ForgotPassword onClick={() => setPage("redefinir senha")}>
+            {page === "entrar" && "Esqueceu sua senha?"}
+          </ForgotPassword>
 
           {submitIsLoading ? (
-            <button type="button" disabled>
+            <Button type="button" disabled>
               <ThreeDots color="#E1E1E1" height={13} width={51} />
-            </button>
+            </Button>
           ) : (
-            <button onClick={(e) => handleSubmit(e)}>
-              {page === "entrar" ? "entrar" : "cadastrar"}
-            </button>
+            <Button onClick={(e) => handleSubmit(e)}>
+              {page === "entrar" && "entrar"}
+              {page === "inscrever-se" && "cadastrar"}
+              {page === "redefinir senha" && "enviar"}
+            </Button>
           )}
         </LinkButtonDiv>
 

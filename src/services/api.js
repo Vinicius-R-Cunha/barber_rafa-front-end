@@ -180,6 +180,39 @@ async function deleteReservation(token, eventId) {
   }
 }
 
+async function validateHash(hash) {
+  try {
+    const promise = await axios.post(`${BASE_URL}/hash-validation/${hash}`, {});
+    return promise;
+  } catch (error) {
+    return error.response;
+  }
+}
+
+async function sendRecuperationEmail(email) {
+  try {
+    const promise = await axios.post(
+      `${BASE_URL}/generate-reset-url/${email}`,
+      {}
+    );
+    return promise;
+  } catch (error) {
+    return error.response;
+  }
+}
+
+async function resetPassword(hash, data) {
+  try {
+    const promise = await axios.post(
+      `${BASE_URL}/reset-password/${hash}`,
+      data
+    );
+    return promise;
+  } catch (error) {
+    return error.response;
+  }
+}
+
 export {
   validateToken,
   signUp,
@@ -195,4 +228,7 @@ export {
   createCalendarEvent,
   getReservations,
   deleteReservation,
+  validateHash,
+  sendRecuperationEmail,
+  resetPassword,
 };
