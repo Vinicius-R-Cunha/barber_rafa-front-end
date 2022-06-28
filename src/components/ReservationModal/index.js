@@ -96,8 +96,8 @@ export default function ReservationModal({
     const response = await api.createCalendarEvent(token, {
       startTime: startTime.toISOString(),
       duration: serviceData?.duration,
-      summary: serviceData?.name,
-      description: `Cliente: ${userData?.name}, Telefone: ${userData?.phone}, e-mail: ${userData?.email}, horário: ${selectedTime}, duração: ${serviceData?.duration}`,
+      summary: userData?.name,
+      description: `Serviço: ${serviceData?.name}, Telefone: ${userData?.phone}, e-mail: ${userData?.email}, horário: ${selectedTime}, duração: ${serviceData?.duration}`,
     });
     closeModal();
 
