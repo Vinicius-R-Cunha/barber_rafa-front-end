@@ -20,7 +20,7 @@ import { useContext, useState } from "react";
 import UserContext from "../../contexts/UserContext";
 
 export default function HeaderSection({ page, title }) {
-  const { setToken, openAuthenticationModal, userIsLoggedIn } =
+  const { setToken, openAuthenticationModal, userIsLoggedIn, userIsAdmin } =
     useContext(UserContext);
 
   const [profileTabIsOpen, setProfileTabIsOpen] = useState(false);
@@ -53,6 +53,11 @@ export default function HeaderSection({ page, title }) {
       <HeaderDiv>
         {profileTabIsOpen && (
           <MenuContainer>
+            {userIsAdmin && (
+              <ProfileButton onClick={() => navigateToPage("/admin")}>
+                Administração
+              </ProfileButton>
+            )}
             <ProfileButton onClick={() => navigateToPage("/reservas")}>
               Reservas
             </ProfileButton>

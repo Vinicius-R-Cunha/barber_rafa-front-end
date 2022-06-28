@@ -63,6 +63,7 @@ export default function App() {
           setToken,
           userIsLoggedIn,
           setUserIsLoggedIn,
+          userIsAdmin,
           userData,
         }}
       >

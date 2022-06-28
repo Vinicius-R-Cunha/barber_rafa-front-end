@@ -89,7 +89,7 @@ export const HeaderDiv = styled.div`
 `;
 
 export const MenuContainer = styled.div`
-  width: 120px;
+  width: 160px;
 
   background-color: #252525;
 
@@ -124,6 +124,10 @@ export const ProfileButton = styled.div`
   padding: 19px;
 
   cursor: pointer;
+
+  :hover {
+    color: #96885f;
+  }
 `;
 
 export const LogoImage = styled.img`

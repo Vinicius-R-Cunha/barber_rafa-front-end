@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import DataContext from "../../contexts/DataContext";
 import * as api from "../../services/api";
 import { toast } from "react-toastify";
+import HeaderSection from "../../components/HeaderSection";
 import AdminSection from "../../components/AdminSection";
 import Footer from "../../components/Footer";
 import Loading from "../../components/Loading";
@@ -51,6 +52,7 @@ export default function AdminPage() {
 
   return (
     <>
+      <HeaderSection page="admin" title="Administração" />
       <AdminSection
         categoriesArray={categoriesArray}
         setServiceData={setServiceData}
