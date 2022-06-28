@@ -97,7 +97,7 @@ export default function ReservationModal({
       startTime: startTime.toISOString(),
       duration: serviceData?.duration,
       summary: serviceData?.name,
-      description: `Cliente: ${userData?.name}, Telefone: ${userData?.phone}, e-mail: ${userData?.email}`,
+      description: `Cliente: ${userData?.name}, Telefone: ${userData?.phone}, e-mail: ${userData?.email}, horário: ${selectedTime}, duração: ${serviceData?.duration}`,
     });
     closeModal();
 
