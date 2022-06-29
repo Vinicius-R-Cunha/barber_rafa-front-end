@@ -24,24 +24,21 @@ export const AboutContainer = styled.div`
     width: 90%;
   }
 
-  @media (max-width: 899px) {
-    gap: 50px;
-  }
-
-  @media (max-width: 767px) {
+  @media (max-width: 1200px) {
     display: unset;
+    gap: 50px;
   }
 `;
 
 export const ProfileImage = styled.img`
-  width: 430px;
-  height: 590px;
+  width: 480px;
+  height: 700px;
 
   object-fit: cover;
 
   @media (max-width: 899px) {
     width: 330px;
-    height: 490px;
+    height: 540px;
   }
 
   @media (max-width: 767px) {
@@ -76,6 +73,10 @@ export const BarberName = styled.p`
 
   padding-bottom: 25px;
 
+  @media (max-width: 1200px) {
+    padding-top: 25px;
+  }
+
   @media (max-width: 767px) {
     font-size: 1.563rem;
 
@@ -97,12 +98,22 @@ export const Description = styled.div`
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.75em;
+  text-align: justify;
+  text-justify: inter-word;
   color: #8d8d8d;
 
-  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+
+  gap: 15px;
+
+  padding-top: 20px;
 
   @media (max-width: 767px) {
-    padding-top: 30px;
     padding-bottom: 10px;
   }
+`;
+
+export const Paragraph = styled.p`
+  text-indent: 40px;
 `;
