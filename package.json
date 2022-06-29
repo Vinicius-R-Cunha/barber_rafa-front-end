@@ -7,6 +7,7 @@
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
+    "dayjs": "^1.11.3",
     "pigeon-maps": "^0.21.0",
     "react": "^17.0.2",
     "react-calendar": "^3.7.0",

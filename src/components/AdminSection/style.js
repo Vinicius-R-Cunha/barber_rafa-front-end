@@ -12,7 +12,22 @@ export const Container = styled.div`
   padding: 80px 0;
 `;
 
-export const CreateCategoryButton = styled.button`
+export const Buttons = styled.div`
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+
+  gap: 45px;
+
+  @media (max-width: 720px) {
+    width: auto;
+
+    flex-direction: column;
+  }
+`;
+
+export const Button = styled.button`
   all: unset;
 
   font-family: "Montserrat";
@@ -21,6 +36,7 @@ export const CreateCategoryButton = styled.button`
   line-height: 1em;
   letter-spacing: 0.7px;
   text-transform: uppercase;
+  text-align: center;
   color: #e1e1e1;
 
   display: flex;

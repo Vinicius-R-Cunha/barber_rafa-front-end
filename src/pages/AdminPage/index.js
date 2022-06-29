@@ -8,6 +8,7 @@ import Footer from "../../components/Footer";
 import Loading from "../../components/Loading";
 import CategoryModal from "../../components/CategoryModal";
 import ServiceModal from "../../components/ServiceModal";
+import BusinessHoursModal from "../../components/BusinessHoursModal";
 
 export default function AdminPage() {
   const { categoriesArray, setCategoriesArray } = useContext(DataContext);
@@ -21,16 +22,26 @@ export default function AdminPage() {
   const [serviceModalType, setServiceModalType] = useState("");
   const [serviceModalIsOpen, setServiceModalIsOpen] = useState(false);
 
+  const [businessHoursModalIsOpen, setBusinessHoursModalIsOpen] =
+    useState(false);
+  const [schedulesArray, setSchedulesArray] = useState();
+
   useEffect(() => {
     renderPage();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  async function renderPage() {
-    const promise = await api.getCategories();
-    if (promise.status === 200) {
-      setCategoriesArray(promise.data);
-      return;
+  function renderPage() {
+    getCategories();
+    getSchedules();
+
+    return;
+  }
+
+  async function getCategories() {
+    const response = await api.getCategories();
+    if (response.status === 200) {
+      return setCategoriesArray(response.data);
     }
     return toast.error(
       "Erro ao carregar serviços, por favor recarregue a página",
@@ -46,7 +57,31 @@ export default function AdminPage() {
     );
   }
 
-  if (categoriesArray?.length === 0 || !categoriesArray) {
+  async function getSchedules() {
+    const response = await api.getSchedules();
+    if (response.status === 200) {
+      return setSchedulesArray(response.data);
+    }
+    return toast.error(
+      "Erro ao carregar serviços, por favor recarregue a página",
+      {
+        position: "bottom-left",
+        autoClose: false,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }
+    );
+  }
+
+  if (
+    categoriesArray?.length === 0 ||
+    !categoriesArray ||
+    schedulesArray?.length === 0 ||
+    !schedulesArray
+  ) {
     return <Loading />;
   }
 
@@ -61,6 +96,14 @@ export default function AdminPage() {
         setCategoryModalIsOpen={setCategoryModalIsOpen}
         setServiceModalType={setServiceModalType}
         setServiceModalIsOpen={setServiceModalIsOpen}
+        setBusinessHoursModalIsOpen={setBusinessHoursModalIsOpen}
+      />
+
+      <BusinessHoursModal
+        businessHoursModalIsOpen={businessHoursModalIsOpen}
+        setBusinessHoursModalIsOpen={setBusinessHoursModalIsOpen}
+        schedulesArray={schedulesArray}
+        renderPage={renderPage}
       />
 
       <CategoryModal

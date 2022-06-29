@@ -213,6 +213,29 @@ async function resetPassword(hash, data) {
   }
 }
 
+async function getSchedules() {
+  try {
+    const promise = await axios.get(`${BASE_URL}/schedules`);
+    return promise;
+  } catch (error) {
+    return error.response;
+  }
+}
+
+async function editSchedule(token, weekId, data) {
+  try {
+    const config = createConfig(token);
+    const promise = await axios.post(
+      `${BASE_URL}/schedule/${weekId}`,
+      data,
+      config
+    );
+    return promise;
+  } catch (error) {
+    return error.response;
+  }
+}
+
 export {
   validateToken,
   signUp,
@@ -231,4 +254,6 @@ export {
   validateHash,
   sendRecuperationEmail,
   resetPassword,
+  getSchedules,
+  editSchedule,
 };

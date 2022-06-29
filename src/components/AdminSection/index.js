@@ -1,6 +1,7 @@
 import {
   Container,
-  CreateCategoryButton,
+  Buttons,
+  Button,
   Category,
   AdminCategory,
   Title,
@@ -24,6 +25,7 @@ export default function AdminSection({
   setCategoryModalIsOpen,
   setServiceModalType,
   setServiceModalIsOpen,
+  setBusinessHoursModalIsOpen,
 }) {
   function handleCategoryAction(category, action) {
     setCategoryModalType(action);
@@ -48,14 +50,22 @@ export default function AdminSection({
     document.body.style.overflow = "hidden";
   }
 
+  function openBusinessHoursModal() {
+    setBusinessHoursModalIsOpen(true);
+    document.body.style.overflow = "hidden";
+  }
+
   return (
     <>
       <Container>
-        <CreateCategoryButton
-          onClick={() => handleCategoryAction("", "create")}
-        >
-          Criar nova categoria
-        </CreateCategoryButton>
+        <Buttons>
+          <Button onClick={() => openBusinessHoursModal()}>
+            Horário de funcionamento
+          </Button>
+          <Button onClick={() => handleCategoryAction("", "create")}>
+            Criar nova categoria
+          </Button>
+        </Buttons>
         {categoriesArray?.map((category) => {
           return (
             <Category key={category?._id}>
