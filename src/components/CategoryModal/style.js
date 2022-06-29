@@ -12,7 +12,7 @@ export const StyledModal = styled(Modal)`
 
   .close-icon {
     font-size: 2.4rem;
-    color: black;
+    color: #e1e1e1;
 
     position: absolute;
     top: 7px;

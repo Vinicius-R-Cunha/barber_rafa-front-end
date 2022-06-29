@@ -73,7 +73,7 @@ export default function BusinessHoursModal({
   }
 
   function handleSuccess(message) {
-    closeModal();
+    setSelectionTab(true);
     renderPage();
 
     return toast.success(message, toastStyles);
