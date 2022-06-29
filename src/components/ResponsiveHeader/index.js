@@ -13,7 +13,8 @@ export default function ResponsiveHeader({
   setProfileTabIsOpen,
   logout,
 }) {
-  const { openAuthenticationModal, userIsLoggedIn } = useContext(UserContext);
+  const { openAuthenticationModal, userIsLoggedIn, userIsAdmin } =
+    useContext(UserContext);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   const navigate = useNavigate();
@@ -58,6 +59,14 @@ export default function ResponsiveHeader({
 
       {profileTabIsOpen && (
         <MenuContainer>
+          {userIsAdmin && (
+            <NavButton
+              className="flex-end"
+              onClick={() => navigateToPage("/admin")}
+            >
+              Administração
+            </NavButton>
+          )}
           <NavButton
             className="flex-end"
             onClick={() => navigateToPage("/reservas")}
