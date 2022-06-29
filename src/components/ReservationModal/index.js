@@ -63,6 +63,7 @@ export default function ReservationModal({
       duration,
     });
     setLoadingSchedule(false);
+    scrollToBottom();
 
     setDay(e);
     setScrollX(0);
@@ -74,6 +75,12 @@ export default function ReservationModal({
       "Erro ao carregar os horários, por favor tente novamente",
       toastStyles
     );
+  }
+
+  function scrollToBottom() {
+    const modal = document.getElementById("reservation-modal").parentElement;
+    modal.style.scrollBehavior = "smooth";
+    modal.scrollTo(0, modal.scrollHeight);
   }
 
   function getTimes(date) {
@@ -140,6 +147,7 @@ export default function ReservationModal({
 
   return (
     <StyledModal
+      id="reservation-modal"
       isOpen={reservationModalIsOpen}
       ariaHideApp={false}
       onRequestClose={() => closeModal()}
