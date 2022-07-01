@@ -13,7 +13,7 @@ import {
 } from "./style";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
-import background from "../../assets/black_white_lion.png";
+import background from "../../assets/colored_lion.png";
 import { BsPersonCircle } from "react-icons/bs";
 import ResponsiveHeader from "../ResponsiveHeader";
 import { useContext, useState } from "react";
