@@ -72,6 +72,8 @@ export const Description = styled.div`
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.75em;
+  text-align: justify;
+  text-justify: inter-word;
   color: #8d8d8d;
 
   @media (max-width: 767px) {
