@@ -20,8 +20,13 @@ import { useContext, useState } from "react";
 import UserContext from "../../contexts/UserContext";
 
 export default function HeaderSection({ page, title }) {
-  const { setToken, openAuthenticationModal, userIsLoggedIn, userIsAdmin } =
-    useContext(UserContext);
+  const {
+    setToken,
+    openAuthenticationModal,
+    loadingUserValidation,
+    userIsLoggedIn,
+    userIsAdmin,
+  } = useContext(UserContext);
 
   const [profileTabIsOpen, setProfileTabIsOpen] = useState(false);
 
@@ -71,12 +76,20 @@ export default function HeaderSection({ page, title }) {
           <NavButton onClick={() => navigate("/sobre")}>Sobre</NavButton>
           <NavButton onClick={() => navigate("/contato")}>Contato</NavButton>
           {userIsLoggedIn ? (
-            <NavButton onClick={() => setProfileTabIsOpen(!profileTabIsOpen)}>
+            <NavButton
+              onClick={() =>
+                !loadingUserValidation && setProfileTabIsOpen(!profileTabIsOpen)
+              }
+            >
               <BsPersonCircle className="login-icon" />
               <p>Perfil</p>
             </NavButton>
           ) : (
-            <NavButton onClick={() => openAuthenticationModal()}>
+            <NavButton
+              onClick={() =>
+                !loadingUserValidation && openAuthenticationModal()
+              }
+            >
               <BsPersonCircle className="login-icon" />
               <p>Entrar/Inscrever-se</p>
             </NavButton>

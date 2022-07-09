@@ -13,8 +13,12 @@ export default function ResponsiveHeader({
   setProfileTabIsOpen,
   logout,
 }) {
-  const { openAuthenticationModal, userIsLoggedIn, userIsAdmin } =
-    useContext(UserContext);
+  const {
+    openAuthenticationModal,
+    loadingUserValidation,
+    userIsLoggedIn,
+    userIsAdmin,
+  } = useContext(UserContext);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   const navigate = useNavigate();
@@ -35,10 +39,14 @@ export default function ResponsiveHeader({
         )}
         {userIsLoggedIn ? (
           <BsPersonCircle
-            onClick={() => setProfileTabIsOpen(!profileTabIsOpen)}
+            onClick={() =>
+              !loadingUserValidation && setProfileTabIsOpen(!profileTabIsOpen)
+            }
           />
         ) : (
-          <BsPersonCircle onClick={() => openAuthenticationModal()} />
+          <BsPersonCircle
+            onClick={() => !loadingUserValidation && openAuthenticationModal()}
+          />
         )}
       </Icons>
 

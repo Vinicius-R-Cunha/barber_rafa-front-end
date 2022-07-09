@@ -18,6 +18,7 @@ import "./styles/style.css";
 
 export default function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
+  const [loadingUserValidation, setLoadingUserValidation] = useState(false);
   const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
   const [userIsAdmin, setUserIsAdmin] = useState(false);
   const [authenticationIsOpen, setAuthenticationIsOpen] = useState(false);
@@ -31,8 +32,10 @@ export default function App() {
 
   async function validateToken(token) {
     const user = await api.validateToken(token);
+    setLoadingUserValidation(true);
     if (user.status === 200) {
       setUserIsLoggedIn(true);
+      setLoadingUserValidation(false);
       setUserData(user.data);
 
       if (user.data.isAdmin) setUserIsAdmin(true);
@@ -43,6 +46,7 @@ export default function App() {
     localStorage.removeItem("token");
     setToken(null);
     setUserIsLoggedIn(false);
+    setLoadingUserValidation(false);
 
     return;
   }
@@ -61,6 +65,7 @@ export default function App() {
           openAuthenticationModal,
           token,
           setToken,
+          loadingUserValidation,
           userIsLoggedIn,
           setUserIsLoggedIn,
           userIsAdmin,
