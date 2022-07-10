@@ -19,9 +19,8 @@ export default function HomeToAboutSection() {
         <InfoContainer>
           <Title>Prezamos pelo seu bom atendimento.</Title>
           <Description>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
-            cumque eum reprehenderit. Illum eos magnam, provident magni dolorum
-            perferendis molestias voluptas et eum obcaecati inventore!
+            Somos uma barbearia que preza muito pelo conforto cliente! Sinta-se
+            livre para conhecer!
           </Description>
           <Button onClick={() => navigate("/sobre")}>Mais sobre nós</Button>
         </InfoContainer>
