@@ -51,10 +51,11 @@ export default function UpdateNewUserModal() {
       return;
     }
 
-    return toast.error(
+    toast.error(
       "Erro no servidor, tente novamente em alguns momentos",
       toastStyles
     );
+    return;
   }
 
   return (
