@@ -129,12 +129,16 @@ export default function AuthenticationModal() {
   }
 
   async function responseFacebook(facebookResponse) {
+    if (facebookResponse.status === "unknown") return;
+
     const response = await api.facebookOAuth({
       id: facebookResponse.id,
       name: facebookResponse.name,
-      email: `facebook${facebookResponse.id}.email.com`,
+      email:
+        facebookResponse?.email || `facebook${facebookResponse.id}.email.com`,
       phone: "",
     });
+
     if (response.status === 200) {
       localStorage.setItem("token", response.data.token);
       setToken(response.data.token);
