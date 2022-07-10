@@ -83,6 +83,37 @@ export const InputsForm = styled.form`
     }
   }
 
+  span {
+    width: 100%;
+  }
+
+  .facebook-button {
+    all: unset;
+
+    width: 100%;
+    height: 40px;
+
+    font-family: "Montserrat";
+    font-size: 0.735rem;
+    font-weight: 800;
+    line-height: 1em;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    color: #e1e1e1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 15px;
+
+    background-color: #4267b2;
+
+    border-radius: 4px;
+
+    cursor: pointer;
+  }
+
   @media (max-width: 739px) {
     width: 400px;
   }
@@ -98,6 +129,10 @@ export const InputsForm = styled.form`
 
     input {
       font-size: 0.755rem;
+    }
+
+    .facebook-button {
+      margin-top: 14px;
     }
   }
 
@@ -244,7 +279,7 @@ export const Spacer = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  margin-top: 30px;
+  margin-top: 15px;
 
   div {
     width: 44%;
@@ -257,37 +292,6 @@ export const Spacer = styled.div`
 
   @media (max-width: 494px) {
     margin-top: 15px;
-  }
-`;
-
-export const FacebookButton = styled.button`
-  all: unset;
-
-  width: 100%;
-  height: 40px;
-
-  font-family: "Montserrat";
-  font-size: 0.735rem;
-  font-weight: 800;
-  line-height: 1em;
-  letter-spacing: 0.7px;
-  text-transform: uppercase;
-  color: #e1e1e1;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  margin-top: 24px;
-
-  background-color: #4267b2;
-
-  border-radius: 4px;
-
-  cursor: pointer;
-
-  @media (max-width: 424px) {
-    margin-top: 14px;
   }
 `;
 
