@@ -194,17 +194,6 @@ export default function ReservationModal({
         minDate={new Date()}
         maxDate={new Date(new Date().setMonth(new Date().getMonth() + 2))}
       />
-      <AddCancelServices>
-        <button onClick={() => closeModal()}>Cancelar</button>
-        <button
-          onClick={() => {
-            setIsChoosingMoreServices(true);
-            closeModal(false);
-          }}
-        >
-          Adicionar serviço
-        </button>
-      </AddCancelServices>
       {scheduleArray === null && (
         <DateStatus>Selecione uma data para reserva</DateStatus>
       )}
@@ -282,6 +271,17 @@ export default function ReservationModal({
             )}
           </>
         )}
+      <AddCancelServices>
+        <button onClick={() => closeModal()}>Cancelar</button>
+        <button
+          onClick={() => {
+            setIsChoosingMoreServices(true);
+            closeModal(false);
+          }}
+        >
+          Adicionar outro serviço
+        </button>
+      </AddCancelServices>
     </StyledModal>
   );
 }

@@ -68,13 +68,13 @@ export const Title = styled.p`
 
 export const AddCancelServices = styled.div`
   width: 80%;
-  height: 45px;
+  height: 55px;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  margin-top: 25px;
+  margin-top: 35px;
 
   button {
     all: unset;
@@ -86,12 +86,9 @@ export const AddCancelServices = styled.div`
     font-size: 1rem;
     font-weight: 400;
     line-height: 1em;
+    text-align: center;
     letter-spacing: 0.4px;
     color: #e1e1e1;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
     border-radius: 4px;
     border: 4px solid #96885f;
