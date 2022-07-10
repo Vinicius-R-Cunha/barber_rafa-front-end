@@ -1,6 +1,7 @@
 import {
   StyledModal,
   ModalHeader,
+  AddCancelServices,
   Title,
   DateStatus,
   ScheduleContainer,
@@ -27,11 +28,18 @@ import ScrollContainer from "react-indiana-drag-scroll";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ThreeDots } from "react-loader-spinner";
+import {
+  displayServiceNames,
+  sumDurations,
+  sumPrices,
+} from "./convertionFunctions";
 
 export default function ReservationModal({
   reservationModalIsOpen,
   setReservationModalIsOpen,
-  serviceData,
+  wantedReservations,
+  setWantedReservations,
+  setIsChoosingMoreServices,
 }) {
   const { token, userData } = useContext(UserContext);
   const [scheduleArray, setScheduleArray] = useState(null);
@@ -46,18 +54,22 @@ export default function ReservationModal({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [window.innerWidth]);
 
-  function closeModal() {
+  function closeModal(resetReservations = true) {
     document.body.style.overflow = "unset";
     setReservationModalIsOpen(false);
     setScheduleArray(null);
     setDay();
+    if (resetReservations) {
+      setWantedReservations([]);
+      setIsChoosingMoreServices(false);
+    }
   }
 
-  async function handleClick(e) {
+  async function handleCalendarClick(e) {
     setLoadingSchedule(true);
 
     const { startTime, endTime, duration } = getTimes(e);
-    const promise = await api.checkAvailability(token, {
+    const response = await api.checkAvailability(token, {
       startTime,
       endTime,
       duration,
@@ -69,7 +81,7 @@ export default function ReservationModal({
     setScrollX(0);
     setSelectedTime("");
 
-    if (promise.status === 200) return setScheduleArray(promise.data);
+    if (response.status === 200) return setScheduleArray(response.data);
 
     return toast.error(
       "Erro ao carregar os horários, por favor tente novamente",
@@ -90,7 +102,7 @@ export default function ReservationModal({
 
     const endTime = new Date(tomorrow.setUTCHours(2, 59, 0, 0)).toISOString();
 
-    const duration = serviceData.duration;
+    const duration = sumDurations(wantedReservations);
 
     return { startTime, endTime, duration };
   }
@@ -102,9 +114,15 @@ export default function ReservationModal({
 
     const response = await api.createCalendarEvent(token, {
       startTime: startTime.toISOString(),
-      duration: serviceData?.duration,
+      duration: sumDurations(wantedReservations),
       summary: userData?.name,
-      description: `Serviço: ${serviceData?.name}, Telefone: ${userData?.phone}, horário: ${selectedTime}, duração: ${serviceData?.duration}`,
+      description: `Serviço(s): ${displayServiceNames(
+        wantedReservations
+      )}, Telefone: ${
+        userData?.phone
+      }, horário: ${selectedTime}, duração: ${sumDurations(
+        wantedReservations
+      )}`,
     });
     closeModal();
 
@@ -153,19 +171,40 @@ export default function ReservationModal({
       onRequestClose={() => closeModal()}
       style={modalStyles}
     >
+      <IoClose className="close-icon" onClick={() => closeModal()} />
       <ModalHeader>
-        <Title>{serviceData?.name}</Title>
-        <IoClose className="close-icon" onClick={() => closeModal()} />
+        {wantedReservations.length === 1 ? (
+          <Title key={wantedReservations[0]?._id}>
+            {wantedReservations[0]?.name}
+          </Title>
+        ) : (
+          wantedReservations.map((data, index, arr) => (
+            <Title key={index}>
+              {index !== arr.length - 1 ? `${data?.name} + ` : data?.name}
+            </Title>
+          ))
+        )}
       </ModalHeader>
       <Calendar
         className={["c1"]}
         calendarType={"US"}
-        onClickDay={(e) => handleClick(e)}
+        onClickDay={(e) => handleCalendarClick(e)}
         tileClassName={"tile"}
         tileDisabled={(e) => handleDisabledTiles(e)}
         minDate={new Date()}
         maxDate={new Date(new Date().setMonth(new Date().getMonth() + 2))}
       />
+      <AddCancelServices>
+        <button onClick={() => closeModal()}>Cancelar</button>
+        <button
+          onClick={() => {
+            setIsChoosingMoreServices(true);
+            closeModal(false);
+          }}
+        >
+          Adicionar serviço
+        </button>
+      </AddCancelServices>
       {scheduleArray === null && (
         <DateStatus>Selecione uma data para reserva</DateStatus>
       )}
@@ -233,8 +272,8 @@ export default function ReservationModal({
             {selectedTime !== "" && (
               <ButtonContainer>
                 <div>
-                  <Price>{`R$ ${serviceData?.price}`}</Price>
-                  <Duration>{serviceData?.duration}</Duration>
+                  <Price>{`R$ ${sumPrices(wantedReservations)}`}</Price>
+                  <Duration>{sumDurations(wantedReservations)}</Duration>
                 </div>
                 <Button
                   onClick={() => handleReservation()}

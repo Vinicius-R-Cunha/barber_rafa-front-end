@@ -14,7 +14,11 @@ import {
   Button,
 } from "./style";
 
-export default function ServicesSection({ readMore, handleReservation }) {
+export default function ServicesSection({
+  readMore,
+  handleReservation,
+  isChoosingMoreServices,
+}) {
   const { categoriesArray } = useContext(DataContext);
 
   return (
@@ -41,7 +45,7 @@ export default function ServicesSection({ readMore, handleReservation }) {
                       <ButtonContainer>
                         <Duration>{service?.duration}</Duration>
                         <Button onClick={() => handleReservation(service)}>
-                          Reservar
+                          {isChoosingMoreServices ? "Adicionar" : "Reservar"}
                         </Button>
                       </ButtonContainer>
                     </Service>

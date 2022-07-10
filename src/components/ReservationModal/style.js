@@ -6,10 +6,29 @@ export const StyledModal = styled(Modal)`
   flex-direction: column;
   align-items: center;
 
+  position: relative;
+
   .c1 {
     box-sizing: unset;
     padding: 10px;
     border-radius: 8px;
+  }
+
+  .close-icon {
+    font-size: 1.888rem;
+    color: #e1e1e1;
+
+    position: absolute;
+    top: 15px;
+    right: 20px;
+
+    cursor: pointer;
+  }
+
+  @media (max-width: 424px) {
+    .close-icon {
+      right: 34px;
+    }
   }
 
   @media (max-width: 372px) {
@@ -26,49 +45,18 @@ export const StyledModal = styled(Modal)`
 `;
 
 export const ModalHeader = styled.div`
-  width: 100%;
+  width: 90%;
 
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 5px;
 
-  padding-bottom: 30px;
+  align-self: flex-start;
 
-  .close-icon {
-    font-size: 1.888rem;
-    color: #e1e1e1;
-
-    margin-top: -5px;
-    margin-right: -14px;
-
-    cursor: pointer;
-  }
-
-  @media (max-width: 640px) {
-    width: 90%;
-  }
-
-  @media (max-width: 424px) {
-    width: 86%;
-
-    .close-icon {
-      margin-top: -5px;
-      margin-right: -6px;
-    }
-  }
-
-  @media (max-width: 340px) {
-    width: 76%;
-
-    .close-icon {
-      margin-top: -5px;
-      margin-right: -6px;
-    }
-  }
+  margin-bottom: 30px;
 `;
 
 export const Title = styled.p`
-  width: 75%;
-
   font-family: "Teko";
   font-size: 1.888rem;
   font-weight: 500;
@@ -78,12 +66,68 @@ export const Title = styled.p`
   color: #e1e1e1;
 `;
 
+export const AddCancelServices = styled.div`
+  width: 80%;
+  height: 45px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 25px;
+
+  button {
+    all: unset;
+
+    width: 45%;
+    height: 100%;
+
+    font-family: "Montserrat";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1em;
+    letter-spacing: 0.4px;
+    color: #e1e1e1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 4px;
+    border: 4px solid #96885f;
+
+    cursor: pointer;
+
+    :hover {
+      transition: 0.3s ease-out;
+      background-color: #96885f;
+    }
+  }
+
+  @media (max-width: 550px) {
+    width: 372px;
+  }
+
+  @media (max-width: 372px) {
+    width: 340px;
+  }
+
+  @media (max-width: 340px) {
+    width: 318px;
+
+    button {
+      font-size: 0.8rem;
+    }
+  }
+`;
+
 export const DateStatus = styled.div`
   font-family: "Montserrat";
   font-size: 1.275rem;
   font-weight: 800;
   line-height: 1em;
   letter-spacing: 0.7px;
+  text-align: center;
   color: #e1e1e1;
 
   margin-top: 35px;

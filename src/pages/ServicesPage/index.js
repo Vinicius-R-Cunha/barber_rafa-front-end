@@ -16,7 +16,9 @@ export default function ServicesPage() {
 
   const [readMoreModalIsOpen, setReadMoreModalIsOpen] = useState(false);
   const [serviceData, setServiceData] = useState();
+  const [wantedReservations, setWantedReservations] = useState([]);
   const [reservationModalIsOpen, setReservationModalIsOpen] = useState(false);
+  const [isChoosingMoreServices, setIsChoosingMoreServices] = useState(false);
 
   useEffect(() => {
     renderPage();
@@ -50,7 +52,8 @@ export default function ServicesPage() {
   }
 
   function handleReservation(service) {
-    setServiceData(service);
+    setWantedReservations([...wantedReservations, service]);
+    setServiceData(service); //TEMP
     if (!token) {
       setAuthenticationIsOpen(true);
       document.body.style.overflow = "hidden";
@@ -77,6 +80,7 @@ export default function ServicesPage() {
       <ServicesSection
         readMore={readMore}
         handleReservation={handleReservation}
+        isChoosingMoreServices={isChoosingMoreServices}
       />
       <ReadMoreModal
         readMoreModalIsOpen={readMoreModalIsOpen}
@@ -88,7 +92,9 @@ export default function ServicesPage() {
       <ReservationModal
         reservationModalIsOpen={reservationModalIsOpen}
         setReservationModalIsOpen={setReservationModalIsOpen}
-        serviceData={serviceData}
+        wantedReservations={wantedReservations}
+        setWantedReservations={setWantedReservations}
+        setIsChoosingMoreServices={setIsChoosingMoreServices}
       />
       <Footer />
     </>
