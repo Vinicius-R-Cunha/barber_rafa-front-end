@@ -14,12 +14,12 @@ import {
   Button,
   modalStyles,
   toastStyles,
-  // Spacer,
-  // FacebookButton,
+  Spacer,
 } from "./style";
 import { ThreeDots } from "react-loader-spinner";
 import { toast } from "react-toastify";
 import NumberFormat from "react-number-format";
+import FacebookLogin from "react-facebook-login";
 
 export default function AuthenticationModal() {
   const { authenticationIsOpen, setAuthenticationIsOpen, setToken } =
@@ -128,6 +128,28 @@ export default function AuthenticationModal() {
     );
   }
 
+  async function responseFacebook(facebookResponse) {
+    const response = await api.facebookOAuth({
+      id: facebookResponse.id,
+      name: facebookResponse.name,
+      email: `facebook${facebookResponse.id}.email.com`,
+      phone: "",
+    });
+    if (response.status === 200) {
+      localStorage.setItem("token", response.data.token);
+      setToken(response.data.token);
+      closeModal();
+      if (response.data.newUser) {
+        closeModal();
+        console.log("novo usuário");
+      }
+      return;
+    }
+
+    handleResponseErrors(response);
+    return;
+  }
+
   function togglePage() {
     if (page === "inscrever-se" || page === "redefinir senha")
       return setPage("entrar");
@@ -161,7 +183,6 @@ export default function AuthenticationModal() {
             required
           />
         )}
-
         <input
           name="email"
           type="email"
@@ -170,7 +191,6 @@ export default function AuthenticationModal() {
           value={formData.email}
           required
         />
-
         {page === "inscrever-se" && (
           <NumberFormat
             name="phone"
@@ -181,7 +201,6 @@ export default function AuthenticationModal() {
             required
           />
         )}
-
         {page !== "redefinir senha" && (
           <PasswordContainer>
             <input
@@ -206,7 +225,6 @@ export default function AuthenticationModal() {
             )}
           </PasswordContainer>
         )}
-
         <LinkButtonDiv>
           <NavigationText onClick={togglePage}>
             {page === "entrar" ? "Não" : "Já"} possuo cadastro
@@ -229,12 +247,18 @@ export default function AuthenticationModal() {
           )}
         </LinkButtonDiv>
 
-        {/* <Spacer>
-                    <div></div> ou <div></div>
-                </Spacer>
-                <FacebookButton type="button">
-                    Entrar com o Facebook
-                </FacebookButton> */}
+        <Spacer>
+          <div></div> ou <div></div>
+        </Spacer>
+
+        <FacebookLogin
+          cssClass="facebook-button"
+          appId={process.env.REACT_APP_FACEBOOK_APP_ID}
+          fields="name,email,picture"
+          callback={responseFacebook}
+          textButton="Entrar com Facebook"
+          language="pt_BR"
+        />
       </InputsForm>
     </StyledModal>
   );
