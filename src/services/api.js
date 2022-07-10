@@ -42,6 +42,25 @@ async function signIn(formData) {
   }
 }
 
+async function facebookOAuth(formData) {
+  try {
+    const promise = await axios.post(`${BASE_URL}/oAuth/facebook`, formData);
+    return promise;
+  } catch (error) {
+    return error.response;
+  }
+}
+
+async function updateUser(token, data) {
+  try {
+    const config = createConfig(token);
+    const promise = await axios.put(`${BASE_URL}/update-user`, data, config);
+    return promise;
+  } catch (error) {
+    return error.response;
+  }
+}
+
 async function getCategories() {
   try {
     const promise = await axios.get(`${BASE_URL}/categories`);
@@ -240,6 +259,8 @@ export {
   validateToken,
   signUp,
   signIn,
+  facebookOAuth,
+  updateUser,
   getCategories,
   createCategory,
   deleteCategory,
