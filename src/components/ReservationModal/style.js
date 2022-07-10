@@ -67,7 +67,7 @@ export const Title = styled.p`
 `;
 
 export const AddCancelServices = styled.div`
-  width: 80%;
+  width: 100%;
   height: 55px;
 
   display: flex;
@@ -79,30 +79,38 @@ export const AddCancelServices = styled.div`
   button {
     all: unset;
 
-    width: 45%;
+    width: 46%;
     height: 100%;
 
     font-family: "Montserrat";
-    font-size: 1rem;
-    font-weight: 400;
+    font-size: 0.9rem;
+    font-weight: 800;
     line-height: 1em;
     text-align: center;
     letter-spacing: 0.4px;
     color: #e1e1e1;
 
     border-radius: 4px;
-    border: 4px solid #96885f;
+
+    :first-of-type {
+      border: 4px solid #70927b;
+
+      :hover {
+        transition: 0.3s ease-out;
+        background-color: #70927b;
+      }
+    }
+
+    :last-of-type {
+      border: 4px solid #70927b;
+
+      :hover {
+        transition: 0.3s ease-out;
+        background-color: #70927b;
+      }
+    }
 
     cursor: pointer;
-
-    :hover {
-      transition: 0.3s ease-out;
-      background-color: #96885f;
-    }
-  }
-
-  @media (max-width: 550px) {
-    width: 372px;
   }
 
   @media (max-width: 372px) {
