@@ -1,7 +1,6 @@
 export function sumDurations(reservations) {
   const durationsArray = reservations.map((obj) => obj.duration);
   const minutesArray = transformDurationsToMinutes(durationsArray);
-  console.log(minutesArray);
   const sum = minutesArray.reduce((a, b) => a + b, 0);
 
   return transformMinutesToString(sum);
