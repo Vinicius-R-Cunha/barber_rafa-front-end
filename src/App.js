@@ -10,6 +10,7 @@ import ProfilePage from "./pages/ProfilePage";
 import AdminPage from "./pages/AdminPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import AuthenticationModal from "./components/AuthenticationModal";
+import UpdateNewUserModal from "./components/UpdateNewUserModal";
 import * as api from "./services/api";
 import { ToastContainer } from "react-toastify";
 import ScrollToTop from "./utils/ScrollToTop";
@@ -21,6 +22,7 @@ export default function App() {
   const [loadingUserValidation, setLoadingUserValidation] = useState(false);
   const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
   const [userIsAdmin, setUserIsAdmin] = useState(false);
+  const [userIsNewUser, setUserIsNewUser] = useState(false);
   const [authenticationIsOpen, setAuthenticationIsOpen] = useState(false);
   const [categoriesArray, setCategoriesArray] = useState([]);
   const [userData, setUserData] = useState();
@@ -38,6 +40,7 @@ export default function App() {
       setLoadingUserValidation(false);
       setUserData(user.data);
 
+      if (user.data.newUser) setUserIsNewUser(true);
       if (user.data.isAdmin) setUserIsAdmin(true);
 
       return;
@@ -69,6 +72,8 @@ export default function App() {
           userIsLoggedIn,
           setUserIsLoggedIn,
           userIsAdmin,
+          userIsNewUser,
+          setUserIsNewUser,
           userData,
         }}
       >
@@ -92,6 +97,7 @@ export default function App() {
           </Routes>
         </BrowserRouter>
         <AuthenticationModal />
+        <UpdateNewUserModal />
         <ToastContainer />
       </UserContext.Provider>
     </DataContext.Provider>
