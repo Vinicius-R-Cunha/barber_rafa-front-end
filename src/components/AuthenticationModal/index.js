@@ -139,10 +139,6 @@ export default function AuthenticationModal() {
       localStorage.setItem("token", response.data.token);
       setToken(response.data.token);
       closeModal();
-      if (response.data.newUser) {
-        closeModal();
-        console.log("novo usuário");
-      }
       return;
     }
 
