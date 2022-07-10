@@ -3,6 +3,7 @@ import UserContext from "../../contexts/UserContext";
 import NumberFormat from "react-number-format";
 import * as api from "../../services/api";
 import { toast } from "react-toastify";
+import { ThreeDots } from "react-loader-spinner";
 import {
   StyledModal,
   Title,
@@ -17,6 +18,7 @@ export default function UpdateNewUserModal() {
     useContext(UserContext);
 
   const [phone, setPhone] = useState("");
+  const [submitIsLoading, setSubmitIsLoading] = useState(false);
 
   function closeModal() {
     document.body.style.overflow = "unset";
@@ -25,17 +27,20 @@ export default function UpdateNewUserModal() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setSubmitIsLoading(true);
 
     const response = await api.updateUser(token, { phone });
     if (response.status === 200) {
       localStorage.setItem("token", response.data);
       setToken(response.data);
+      setSubmitIsLoading(false);
       closeModal();
       toast.success("Login efetuado!", toastStyles);
       return;
     }
 
     handleResponseErrors(response);
+    setSubmitIsLoading(false);
     return;
   }
 
@@ -72,7 +77,13 @@ export default function UpdateNewUserModal() {
           required
         />
 
-        <Button onClick={(e) => handleSubmit(e)}>Confirmar</Button>
+        {submitIsLoading ? (
+          <Button type="button" disabled>
+            <ThreeDots color="#E1E1E1" height={13} width={51} />
+          </Button>
+        ) : (
+          <Button onClick={(e) => handleSubmit(e)}>Confirmar</Button>
+        )}
       </InputsForm>
     </StyledModal>
   );
