@@ -40,6 +40,8 @@ function transformMinutesToString(value) {
   const hour = Math.floor(value / 60);
   const min = value % 60;
 
+  if (min === 0) return `${hour}h`;
+
   return `${hour}h${min}min`;
 }
 
