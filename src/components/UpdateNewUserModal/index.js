@@ -40,7 +40,6 @@ export default function UpdateNewUserModal() {
   }
 
   function handleResponseErrors(response) {
-    closeModal();
     if (response.status === 409) {
       toast.error(response.data, toastStyles);
       return;
