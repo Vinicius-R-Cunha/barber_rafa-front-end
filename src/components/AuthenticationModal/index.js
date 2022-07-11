@@ -258,6 +258,7 @@ export default function AuthenticationModal() {
           callback={responseFacebook}
           textButton="Entrar com Facebook"
           language="pt_BR"
+          redirectUri="https://www.barberafamacedo.com.br/"
         />
       </InputsForm>
     </StyledModal>
