@@ -129,6 +129,7 @@ export default function AuthenticationModal() {
   }
 
   async function responseFacebook(facebookResponse) {
+    console.log(facebookResponse);
     if (facebookResponse.status === "unknown") return;
 
     console.log("before request");
