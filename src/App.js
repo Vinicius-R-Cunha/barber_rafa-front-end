@@ -29,14 +29,6 @@ export default function App() {
 
   useEffect(() => {
     validateToken(token);
-
-    async function facebook() {
-      await window.FB.getLoginStatus(function (response) {
-        console.log(response);
-      });
-    }
-    facebook();
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
