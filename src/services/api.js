@@ -51,10 +51,14 @@ async function facebookOAuth(formData) {
   }
 }
 
-async function updateUser(token, data) {
+async function updateUser(token, data, type) {
   try {
     const config = createConfig(token);
-    const promise = await axios.put(`${BASE_URL}/update-user`, data, config);
+    const promise = await axios.put(
+      `${BASE_URL}/update-user?type=${type}`,
+      data,
+      config
+    );
     return promise;
   } catch (error) {
     return error.response;

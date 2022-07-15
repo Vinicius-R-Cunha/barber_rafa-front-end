@@ -29,7 +29,7 @@ export default function UpdateNewUserModal() {
     e.preventDefault();
     setSubmitIsLoading(true);
 
-    const response = await api.updateUser(token, { phone });
+    const response = await api.updateUser(token, { phone }, "phone");
     if (response.status === 200) {
       localStorage.setItem("token", response.data);
       setToken(response.data);
