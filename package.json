@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@greatsumini/react-facebook-login": "^3.2.1",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
@@ -13,7 +14,6 @@
     "react": "^17.0.2",
     "react-calendar": "^3.7.0",
     "react-dom": "^17.0.2",
-    "react-facebook-login": "^4.1.1",
     "react-google-login": "^5.2.2",
     "react-icons": "^4.3.1",
     "react-indiana-drag-scroll": "^2.1.0",

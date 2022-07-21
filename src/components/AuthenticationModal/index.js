@@ -15,11 +15,12 @@ import {
   modalStyles,
   toastStyles,
   Spacer,
+  facebookButtonStyle,
 } from "./style";
 import { ThreeDots } from "react-loader-spinner";
 import { toast } from "react-toastify";
 import NumberFormat from "react-number-format";
-import FacebookLogin from "react-facebook-login";
+import FacebookLogin from "@greatsumini/react-facebook-login";
 
 export default function AuthenticationModal() {
   const { authenticationIsOpen, setAuthenticationIsOpen, setToken } =
@@ -112,6 +113,8 @@ export default function AuthenticationModal() {
   }
 
   function handleResponseErrors(response) {
+    if (response.status === "loginCancelled") return;
+
     if (response.status === 409) {
       toast.error(response.data, toastStyles);
       return;
@@ -132,7 +135,6 @@ export default function AuthenticationModal() {
     console.log(facebookResponse);
     if (facebookResponse.status === "unknown") return;
 
-    console.log("before request");
     const response = await api.facebookOAuth({
       id: facebookResponse.id,
       name: facebookResponse.name,
@@ -140,18 +142,10 @@ export default function AuthenticationModal() {
         facebookResponse?.email || `facebook${facebookResponse.id}.email.com`,
       phone: "",
     });
-    console.log("after request");
 
-    if (response.status === 200) {
-      console.log("request response");
-      localStorage.setItem("token", response.data.token);
-      setToken(response.data.token);
-      closeModal();
-      return;
-    }
-
-    console.log("request error");
-    handleResponseErrors(response);
+    localStorage.setItem("token", response.data.token);
+    setToken(response.data.token);
+    closeModal();
     return;
   }
 
@@ -257,13 +251,14 @@ export default function AuthenticationModal() {
         </Spacer>
 
         <FacebookLogin
-          cssClass="facebook-button"
+          style={facebookButtonStyle}
           appId={process.env.REACT_APP_FACEBOOK_APP_ID}
           fields="name,email,picture"
-          callback={responseFacebook}
-          textButton="Entrar com Facebook"
+          onProfileSuccess={responseFacebook}
+          onFail={(response) => handleResponseErrors(response)}
+          children="Entrar com Facebook"
           language="pt_BR"
-          redirectUri="https://www.barberafamacedo.com.br/"
+          useRedirect="https://www.barberafamacedo.com.br/"
         />
       </InputsForm>
     </StyledModal>
