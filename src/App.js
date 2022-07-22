@@ -20,7 +20,7 @@ import axios from "axios";
 
 export default function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const [loadingUserValidation, setLoadingUserValidation] = useState(false);
+  const [loadingUserValidation, setLoadingUserValidation] = useState(true);
   const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
   const [userIsAdmin, setUserIsAdmin] = useState(false);
   const [userIsNewUser, setUserIsNewUser] = useState(false);
@@ -31,25 +31,25 @@ export default function App() {
   const url = window.location.href;
 
   useEffect(() => {
-    validateToken(token);
+    validations();
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token]);
+    async function validations() {
+      await validateToken(token);
 
-  useEffect(() => {
-    if (url.includes("?code=")) {
-      getAccessToken();
+      if (url.includes("?code=")) {
+        await facebookLogin();
+      }
+
+      setLoadingUserValidation(false);
+      return;
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [url]);
+  }, [token, url]);
 
   async function validateToken(token) {
     const user = await api.validateToken(token);
-    setLoadingUserValidation(true);
     if (user.status === 200) {
       setUserIsLoggedIn(true);
-      setLoadingUserValidation(false);
       setUserData(user.data);
 
       if (user.data.newUser) setUserIsNewUser(true);
@@ -61,7 +61,6 @@ export default function App() {
     localStorage.removeItem("token");
     setToken(null);
     setUserIsLoggedIn(false);
-    setLoadingUserValidation(false);
 
     return;
   }
@@ -71,14 +70,29 @@ export default function App() {
     document.body.style.overflow = "hidden";
   }
 
-  async function getAccessToken() {
+  async function facebookLogin() {
+    const userData = await getUserData();
+
+    const response = await api.facebookOAuth({
+      id: userData.id,
+      name: userData.name,
+      email: userData?.email || `facebook${userData.id}.email.com`,
+      phone: "",
+    });
+
+    window.location.replace(process.env.REACT_APP_REDIRECT_URI);
+    localStorage.setItem("token", response.data.token);
+    setToken(response.data.token);
+    return;
+  }
+
+  async function getUserData() {
     const code = url.split("?code=")[1].split("&")[0];
     const id = process.env.REACT_APP_FACEBOOK_APP_ID;
     const uri = process.env.REACT_APP_REDIRECT_URI;
     const secret = process.env.REACT_APP_CLIENT_SECRET;
 
     try {
-      setLoadingUserValidation(true);
       const response = await axios.get(
         `https://graph.facebook.com/v14.0/oauth/access_token?client_id=${id}&redirect_uri=${uri}&client_secret=${secret}&code=${code}`
       );
@@ -89,25 +103,11 @@ export default function App() {
         `https://graph.facebook.com/me?fields=name,email,picture&access_token=${accessToken}`
       );
 
-      facebookLogin(userData.data);
+      return userData.data;
+    } catch (error) {
       setLoadingUserValidation(false);
       return;
-    } catch (error) {
-      return;
     }
-  }
-
-  async function facebookLogin(userData) {
-    const response = await api.facebookOAuth({
-      id: userData.id,
-      name: userData.name,
-      email: userData?.email || `facebook${userData.id}.email.com`,
-      phone: "",
-    });
-
-    localStorage.setItem("token", response.data.token);
-    setToken(response.data.token);
-    return;
   }
 
   return (
