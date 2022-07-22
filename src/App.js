@@ -82,7 +82,7 @@ export default function App() {
 
     localStorage.setItem("token", response.data.token);
     setToken(response.data.token);
-    window.location.replace(process.env.REACT_APP_REDIRECT_URI);
+    // window.location.replace(process.env.REACT_APP_REDIRECT_URI);
     return;
   }
 
