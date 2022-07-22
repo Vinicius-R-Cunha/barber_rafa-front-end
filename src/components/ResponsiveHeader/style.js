@@ -37,10 +37,13 @@ export const Logo = styled.img`
 `;
 
 export const Icons = styled.div`
+  height: fit-content;
+
   font-size: 2.0125rem;
   color: #e1e1e1;
 
   display: flex;
+  align-items: center;
 
   margin-top: 10px;
   margin-right: 35px;

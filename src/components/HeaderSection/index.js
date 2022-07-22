@@ -18,6 +18,7 @@ import { BsPersonCircle } from "react-icons/bs";
 import ResponsiveHeader from "../ResponsiveHeader";
 import { useContext, useState } from "react";
 import UserContext from "../../contexts/UserContext";
+import { ThreeDots } from "react-loader-spinner";
 
 export default function HeaderSection({ page, title }) {
   const {
@@ -75,24 +76,27 @@ export default function HeaderSection({ page, title }) {
           <NavButton onClick={() => navigate("/servicos")}>Serviços</NavButton>
           <NavButton onClick={() => navigate("/sobre")}>Sobre</NavButton>
           <NavButton onClick={() => navigate("/contato")}>Contato</NavButton>
-          {userIsLoggedIn ? (
-            <NavButton
-              onClick={() =>
-                !loadingUserValidation && setProfileTabIsOpen(!profileTabIsOpen)
-              }
-            >
-              <BsPersonCircle className="login-icon" />
-              <p>Perfil</p>
+
+          {loadingUserValidation ? (
+            <NavButton>
+              <ThreeDots color="#E1E1E1" height={13} width={51} />
             </NavButton>
           ) : (
-            <NavButton
-              onClick={() =>
-                !loadingUserValidation && openAuthenticationModal()
-              }
-            >
-              <BsPersonCircle className="login-icon" />
-              <p>Entrar/Inscrever-se</p>
-            </NavButton>
+            <>
+              {userIsLoggedIn ? (
+                <NavButton
+                  onClick={() => setProfileTabIsOpen(!profileTabIsOpen)}
+                >
+                  <BsPersonCircle className="login-icon" />
+                  <p>Perfil</p>
+                </NavButton>
+              ) : (
+                <NavButton onClick={() => openAuthenticationModal()}>
+                  <BsPersonCircle className="login-icon" />
+                  <p>Entrar/Inscrever-se</p>
+                </NavButton>
+              )}
+            </>
           )}
         </NavButtons>
       </HeaderDiv>

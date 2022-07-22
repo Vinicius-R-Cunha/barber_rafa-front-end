@@ -7,6 +7,7 @@ import { IoClose } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
+import { ThreeDots } from "react-loader-spinner";
 
 export default function ResponsiveHeader({
   profileTabIsOpen,
@@ -37,16 +38,19 @@ export default function ResponsiveHeader({
         ) : (
           <MdOutlineMenu onClick={() => setMenuIsOpen(!menuIsOpen)} />
         )}
-        {userIsLoggedIn ? (
-          <BsPersonCircle
-            onClick={() =>
-              !loadingUserValidation && setProfileTabIsOpen(!profileTabIsOpen)
-            }
-          />
+
+        {loadingUserValidation ? (
+          <ThreeDots color="#E1E1E1" height={13} width={51} />
         ) : (
-          <BsPersonCircle
-            onClick={() => !loadingUserValidation && openAuthenticationModal()}
-          />
+          <>
+            {userIsLoggedIn ? (
+              <BsPersonCircle
+                onClick={() => setProfileTabIsOpen(!profileTabIsOpen)}
+              />
+            ) : (
+              <BsPersonCircle onClick={() => openAuthenticationModal()} />
+            )}
+          </>
         )}
       </Icons>
 
