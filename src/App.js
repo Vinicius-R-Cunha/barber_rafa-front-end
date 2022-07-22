@@ -80,9 +80,9 @@ export default function App() {
       phone: "",
     });
 
-    window.location.replace(process.env.REACT_APP_REDIRECT_URI);
     localStorage.setItem("token", response.data.token);
     setToken(response.data.token);
+    window.location.replace(process.env.REACT_APP_REDIRECT_URI);
     return;
   }
 
