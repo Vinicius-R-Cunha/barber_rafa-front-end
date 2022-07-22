@@ -14,9 +14,7 @@ import UpdateNewUserModal from "./components/UpdateNewUserModal";
 import * as api from "./services/api";
 import { ToastContainer } from "react-toastify";
 import ScrollToTop from "./utils/ScrollToTop";
-import FacebookLogin, {
-  FacebookLoginClient,
-} from "@greatsumini/react-facebook-login";
+// import { FacebookLoginClient } from "@greatsumini/react-facebook-login";
 import "./styles/reset.css";
 import "./styles/style.css";
 
@@ -32,21 +30,9 @@ export default function App() {
 
   useEffect(() => {
     validateToken(token);
-    initFacebook();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
-
-  async function initFacebook() {
-    await FacebookLoginClient.init({
-      appId: "725424095177424",
-      version: "v14.0",
-    });
-
-    await FacebookLoginClient.getLoginStatus((res) => {
-      console.log(res.status);
-    });
-  }
 
   async function validateToken(token) {
     const user = await api.validateToken(token);

@@ -258,7 +258,7 @@ export default function AuthenticationModal() {
           onFail={(response) => handleResponseErrors(response)}
           children="Entrar com Facebook"
           language="pt_BR"
-          useRedirect="https://www.barberafamacedo.com.br/"
+          // useRedirect={true}
         />
       </InputsForm>
     </StyledModal>
