@@ -14,9 +14,9 @@ import UpdateNewUserModal from "./components/UpdateNewUserModal";
 import * as api from "./services/api";
 import { ToastContainer } from "react-toastify";
 import ScrollToTop from "./utils/ScrollToTop";
-// import { FacebookLoginClient } from "@greatsumini/react-facebook-login";
 import "./styles/reset.css";
 import "./styles/style.css";
+import axios from "axios";
 
 export default function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -28,11 +28,21 @@ export default function App() {
   const [categoriesArray, setCategoriesArray] = useState([]);
   const [userData, setUserData] = useState();
 
+  const url = window.location.href;
+
   useEffect(() => {
     validateToken(token);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
+
+  useEffect(() => {
+    if (url.includes("?code=")) {
+      getAccessToken();
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [url]);
 
   async function validateToken(token) {
     const user = await api.validateToken(token);
@@ -59,6 +69,43 @@ export default function App() {
   function openAuthenticationModal() {
     setAuthenticationIsOpen(true);
     document.body.style.overflow = "hidden";
+  }
+
+  async function getAccessToken() {
+    const code = url.split("?code=")[1].split("&")[0];
+    const id = process.env.REACT_APP_FACEBOOK_APP_ID;
+    const uri = process.env.REACT_APP_REDIRECT_URI;
+    const secret = process.env.REACT_APP_CLIENT_SECRET;
+
+    try {
+      const response = await axios.get(
+        `https://graph.facebook.com/v14.0/oauth/access_token?client_id=${id}&redirect_uri=${uri}&client_secret=${secret}&code=${code}`
+      );
+
+      const accessToken = response.data.access_token;
+
+      const userData = await axios.get(
+        `https://graph.facebook.com/me?fields=name,email,picture&access_token=${accessToken}`
+      );
+
+      facebookLogin(userData.data);
+      return;
+    } catch (error) {
+      return;
+    }
+  }
+
+  async function facebookLogin(userData) {
+    const response = await api.facebookOAuth({
+      id: userData.id,
+      name: userData.name,
+      email: userData?.email || `facebook${userData.id}.email.com`,
+      phone: "",
+    });
+
+    localStorage.setItem("token", response.data.token);
+    setToken(response.data.token);
+    return;
   }
 
   return (

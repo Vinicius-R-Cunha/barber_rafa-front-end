@@ -131,24 +131,6 @@ export default function AuthenticationModal() {
     );
   }
 
-  async function responseFacebook(facebookResponse) {
-    console.log(facebookResponse);
-    if (facebookResponse.status === "unknown") return;
-
-    const response = await api.facebookOAuth({
-      id: facebookResponse.id,
-      name: facebookResponse.name,
-      email:
-        facebookResponse?.email || `facebook${facebookResponse.id}.email.com`,
-      phone: "",
-    });
-
-    localStorage.setItem("token", response.data.token);
-    setToken(response.data.token);
-    closeModal();
-    return;
-  }
-
   function togglePage() {
     if (page === "inscrever-se" || page === "redefinir senha")
       return setPage("entrar");
@@ -254,11 +236,9 @@ export default function AuthenticationModal() {
           style={facebookButtonStyle}
           appId={process.env.REACT_APP_FACEBOOK_APP_ID}
           fields="name,email,picture"
-          onProfileSuccess={responseFacebook}
-          onFail={(response) => handleResponseErrors(response)}
           children="Entrar com Facebook"
           language="pt_BR"
-          // useRedirect={true}
+          useRedirect={true}
         />
       </InputsForm>
     </StyledModal>

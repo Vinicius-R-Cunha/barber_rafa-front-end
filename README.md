@@ -85,6 +85,9 @@ REACT_APP_BACK_URL=http:localhost:5000/
 REACT_APP_PHONE_NUMBER=98747-9047
 REACT_APP_INSTAGRAM_LINK=https://www.instagram.com/barberafamacedo/
 REACT_APP_FACEBOOK_LINK=https://facebook.com/BarberRafaMacedo/?ref=bookmarks
+REACT_APP_FACEBOOK_APP_ID=app_id
+REACT_APP_REDIRECT_URI=http://localhost:3000/
+REACT_APP_CLIENT_SECRET=client_secret
 ```
 
 ### Follow the instructions to run back-end at https://github.com/Vinicius-R-Cunha/barber_rafa-back-end
