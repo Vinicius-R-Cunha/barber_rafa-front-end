@@ -78,6 +78,7 @@ export default function App() {
     const secret = process.env.REACT_APP_CLIENT_SECRET;
 
     try {
+      setLoadingUserValidation(true);
       const response = await axios.get(
         `https://graph.facebook.com/v14.0/oauth/access_token?client_id=${id}&redirect_uri=${uri}&client_secret=${secret}&code=${code}`
       );
@@ -89,6 +90,7 @@ export default function App() {
       );
 
       facebookLogin(userData.data);
+      setLoadingUserValidation(false);
       return;
     } catch (error) {
       return;
