@@ -127,6 +127,7 @@ export const ProfileButton = styled.div`
 
   :hover {
     color: #96885f;
+    transition: 0.1s ease-in-out;
   }
 `;
 
