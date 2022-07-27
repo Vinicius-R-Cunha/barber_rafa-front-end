@@ -21,7 +21,6 @@ import {
 import { ThreeDots } from "react-loader-spinner";
 import { toast } from "react-toastify";
 import NumberFormat from "react-number-format";
-// import FacebookLogin from "@greatsumini/react-facebook-login";
 import { signInWithGoogle, signInWithFacebook } from "../../services/Firebase";
 
 export default function AuthenticationModal() {
