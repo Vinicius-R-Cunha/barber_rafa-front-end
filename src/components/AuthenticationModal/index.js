@@ -239,11 +239,7 @@ export default function AuthenticationModal() {
 
         <GoogleLogin
           onClick={() =>
-            signInWithGoogle(
-              setToken,
-              setAuthenticationIsOpen,
-              setLoadingUserValidation
-            )
+            signInWithGoogle(setToken, closeModal, setLoadingUserValidation)
           }
         >
           Entrar com Google
@@ -251,11 +247,7 @@ export default function AuthenticationModal() {
 
         <FacebookLogin
           onClick={() =>
-            signInWithFacebook(
-              setToken,
-              setAuthenticationIsOpen,
-              setLoadingUserValidation
-            )
+            signInWithFacebook(setToken, closeModal, setLoadingUserValidation)
           }
         >
           Entrar com Facebook

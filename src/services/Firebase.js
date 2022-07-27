@@ -24,7 +24,7 @@ const facebookProvider = new FacebookAuthProvider();
 
 export async function signInWithGoogle(
   setToken,
-  setModalIsOpen,
+  closeModal,
   setLoadingUserValidation
 ) {
   try {
@@ -34,7 +34,7 @@ export async function signInWithGoogle(
     persistToken(
       response.data.token,
       setToken,
-      setModalIsOpen,
+      closeModal,
       setLoadingUserValidation
     );
 
@@ -47,7 +47,7 @@ export async function signInWithGoogle(
 
 export async function signInWithFacebook(
   setToken,
-  setModalIsOpen,
+  closeModal,
   setLoadingUserValidation
 ) {
   try {
@@ -57,7 +57,7 @@ export async function signInWithFacebook(
     persistToken(
       response.data.token,
       setToken,
-      setModalIsOpen,
+      closeModal,
       setLoadingUserValidation
     );
 
@@ -81,15 +81,10 @@ function getUserData(result) {
   };
 }
 
-function persistToken(
-  token,
-  setToken,
-  setModalIsOpen,
-  setLoadingUserValidation
-) {
+function persistToken(token, setToken, closeModal, setLoadingUserValidation) {
   localStorage.setItem("token", token);
   setToken(token);
-  setModalIsOpen(false);
+  closeModal();
   setLoadingUserValidation(false);
   return;
 }
