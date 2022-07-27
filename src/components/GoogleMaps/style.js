@@ -12,8 +12,6 @@ export const Container = styled.div`
 export const MapContainer = styled.div`
   width: 1170px;
 
-  background-color: #2c2c2c;
-
   cursor: pointer;
   @media (max-width: 1175px) {
     width: 90%;

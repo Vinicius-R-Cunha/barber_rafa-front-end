@@ -41,7 +41,6 @@ The following tools and frameworks were used in the construction of the project:
   <img style='margin: 5px;' src='https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white'>
   <img style='margin: 5px;' src='https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white'>
   <img style='margin: 5px;' src='https://img.shields.io/badge/axios%20-%2320232a.svg?&style=for-the-badge&color=informational'>
-  <img style='margin: 5px;' src='https://img.shields.io/badge/Pigeon%20Map-007FFF?style=for-the-badge&logo=mui&logoColor=white'>
   <img style='margin: 5px;' src='https://img.shields.io/badge/React%20Calendar-E1E1E1?style=for-the-badge&logo=react&logoColor=000000'>
   <img style='margin: 5px;' src='https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E'>
 </p>
@@ -85,9 +84,6 @@ REACT_APP_BACK_URL=http:localhost:5000/
 REACT_APP_PHONE_NUMBER=98747-9047
 REACT_APP_INSTAGRAM_LINK=https://www.instagram.com/barberafamacedo/
 REACT_APP_FACEBOOK_LINK=https://facebook.com/BarberRafaMacedo/?ref=bookmarks
-REACT_APP_FACEBOOK_APP_ID=app_id
-REACT_APP_REDIRECT_URI=http://localhost:3000/
-REACT_APP_CLIENT_SECRET=client_secret
 ```
 
 ### Follow the instructions to run back-end at https://github.com/Vinicius-R-Cunha/barber_rafa-back-end
