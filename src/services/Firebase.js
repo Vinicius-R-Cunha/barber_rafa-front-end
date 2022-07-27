@@ -1,5 +1,10 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+  getAuth,
+  FacebookAuthProvider,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import * as api from "../services/api";
 
 const firebaseConfig = {
@@ -14,28 +19,49 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-const provider = new GoogleAuthProvider();
+const googleProvider = new GoogleAuthProvider();
+const facebookProvider = new FacebookAuthProvider();
 
 export async function signInWithGoogle(setToken, setModalIsOpen) {
   try {
-    const result = await signInWithPopup(auth, provider);
+    const result = await signInWithPopup(auth, googleProvider);
+    const response = await api.googleOAuth(getUserData(result));
+    persistToken(response.data.token, setToken, setModalIsOpen);
 
-    const id = result.user.uid;
-    const name = result.user.displayName;
-    const email = result.user.email;
-
-    const response = await api.googleOAuth({
-      id: id,
-      name: name,
-      email: email || `google${id}.gmail.com`,
-      phone: "",
-    });
-
-    localStorage.setItem("token", response.data.token);
-    setToken(response.data.token);
-    setModalIsOpen(false);
     return;
   } catch (error) {
     console.log(error);
   }
+}
+
+export async function signInWithFacebook(setToken, setModalIsOpen) {
+  try {
+    const result = await signInWithPopup(auth, facebookProvider);
+    const response = await api.facebookOAuth(getUserData(result));
+    persistToken(response.data.token, setToken, setModalIsOpen);
+
+    return;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+function getUserData(result) {
+  const id = result.user.uid;
+  const name = result.user.displayName;
+  const email = result.user.email;
+
+  return {
+    id: id,
+    name: name,
+    email: email || `${id}.gmail.com`,
+    phone: "",
+  };
+}
+
+function persistToken(token, setToken, setModalIsOpen) {
+  localStorage.setItem("token", token);
+  setToken(token);
+  setModalIsOpen(false);
+  return;
 }

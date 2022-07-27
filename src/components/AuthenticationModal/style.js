@@ -291,6 +291,33 @@ export const GoogleLogin = styled.div`
   cursor: pointer;
 `;
 
+export const FacebookLogin = styled.div`
+  all: unset;
+
+  width: 100%;
+  height: 40px;
+
+  font-family: "Montserrat";
+  font-size: 0.735rem;
+  font-weight: 800;
+  line-height: 1em;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: #e1e1e1;
+
+  background-color: #4267b2;
+
+  margin-top: 15px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 4px;
+
+  cursor: pointer;
+`;
+
 export const modalStyles = {
   overlay: {
     position: "fixed",
@@ -329,24 +356,4 @@ export const toastStyles = {
   pauseOnHover: true,
   draggable: true,
   progress: undefined,
-};
-
-export const facebookButtonStyle = {
-  all: "unset",
-  width: "100%",
-  height: "40px",
-  fontFamily: "Montserrat",
-  fontSize: "0.735rem",
-  fontWeight: "800",
-  lineHeight: "1em",
-  letterSpacing: "0.7px",
-  textTransform: "uppercase",
-  color: "#e1e1e1",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  marginTop: "15px",
-  backgroundColor: "#4267b2",
-  borderRadius: "4px",
-  cursor: "pointer",
 };

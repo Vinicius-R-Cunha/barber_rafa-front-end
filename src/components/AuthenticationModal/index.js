@@ -16,13 +16,13 @@ import {
   toastStyles,
   Spacer,
   GoogleLogin,
-  facebookButtonStyle,
+  FacebookLogin,
 } from "./style";
 import { ThreeDots } from "react-loader-spinner";
 import { toast } from "react-toastify";
 import NumberFormat from "react-number-format";
-import FacebookLogin from "@greatsumini/react-facebook-login";
-import { signInWithGoogle } from "../../services/Firebase";
+// import FacebookLogin from "@greatsumini/react-facebook-login";
+import { signInWithGoogle, signInWithFacebook } from "../../services/Firebase";
 
 export default function AuthenticationModal() {
   const { authenticationIsOpen, setAuthenticationIsOpen, setToken } =
@@ -241,13 +241,10 @@ export default function AuthenticationModal() {
         </GoogleLogin>
 
         <FacebookLogin
-          style={facebookButtonStyle}
-          appId={process.env.REACT_APP_FACEBOOK_APP_ID}
-          fields="name,email,picture"
-          children="Entrar com Facebook"
-          language="pt_BR"
-          useRedirect={true}
-        />
+          onClick={() => signInWithFacebook(setToken, setAuthenticationIsOpen)}
+        >
+          Entrar com Facebook
+        </FacebookLogin>
       </InputsForm>
     </StyledModal>
   );
