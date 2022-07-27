@@ -42,6 +42,7 @@ export default function App() {
       if (user.data.newUser) setUserIsNewUser(true);
       if (user.data.isAdmin) setUserIsAdmin(true);
 
+      setLoadingUserValidation(false);
       return;
     }
 
@@ -68,6 +69,7 @@ export default function App() {
           token,
           setToken,
           loadingUserValidation,
+          setLoadingUserValidation,
           userIsLoggedIn,
           setUserIsLoggedIn,
           userIsAdmin,

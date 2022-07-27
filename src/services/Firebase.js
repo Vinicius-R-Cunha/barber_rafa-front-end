@@ -22,27 +22,39 @@ const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
 
-export async function signInWithGoogle(setToken, setModalIsOpen) {
+export async function signInWithGoogle(
+  setToken,
+  setModalIsOpen,
+  setLoadingUserValidation
+) {
   try {
+    setLoadingUserValidation(true);
     const result = await signInWithPopup(auth, googleProvider);
     const response = await api.googleOAuth(getUserData(result));
     persistToken(response.data.token, setToken, setModalIsOpen);
 
     return;
   } catch (error) {
-    console.log(error);
+    setLoadingUserValidation(false);
+    return;
   }
 }
 
-export async function signInWithFacebook(setToken, setModalIsOpen) {
+export async function signInWithFacebook(
+  setToken,
+  setModalIsOpen,
+  setLoadingUserValidation
+) {
   try {
+    setLoadingUserValidation(true);
     const result = await signInWithPopup(auth, facebookProvider);
     const response = await api.facebookOAuth(getUserData(result));
     persistToken(response.data.token, setToken, setModalIsOpen);
 
     return;
   } catch (error) {
-    console.log(error);
+    setLoadingUserValidation(false);
+    return;
   }
 }
 
@@ -63,5 +75,6 @@ function persistToken(token, setToken, setModalIsOpen) {
   localStorage.setItem("token", token);
   setToken(token);
   setModalIsOpen(false);
+  setLoadingUserValidation(false);
   return;
 }

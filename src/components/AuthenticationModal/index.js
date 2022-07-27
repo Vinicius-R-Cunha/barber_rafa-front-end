@@ -12,11 +12,11 @@ import {
   NavigationText,
   ForgotPassword,
   Button,
-  modalStyles,
-  toastStyles,
   Spacer,
   GoogleLogin,
   FacebookLogin,
+  modalStyles,
+  toastStyles,
 } from "./style";
 import { ThreeDots } from "react-loader-spinner";
 import { toast } from "react-toastify";
@@ -24,8 +24,12 @@ import NumberFormat from "react-number-format";
 import { signInWithGoogle, signInWithFacebook } from "../../services/Firebase";
 
 export default function AuthenticationModal() {
-  const { authenticationIsOpen, setAuthenticationIsOpen, setToken } =
-    useContext(UserContext);
+  const {
+    authenticationIsOpen,
+    setAuthenticationIsOpen,
+    setToken,
+    setLoadingUserValidation,
+  } = useContext(UserContext);
 
   const [page, setPage] = useState("entrar");
   const [isShowingPassword, setIsShowingPassword] = useState(false);
@@ -234,13 +238,25 @@ export default function AuthenticationModal() {
         </Spacer>
 
         <GoogleLogin
-          onClick={() => signInWithGoogle(setToken, setAuthenticationIsOpen)}
+          onClick={() =>
+            signInWithGoogle(
+              setToken,
+              setAuthenticationIsOpen,
+              setLoadingUserValidation
+            )
+          }
         >
           Entrar com Google
         </GoogleLogin>
 
         <FacebookLogin
-          onClick={() => signInWithFacebook(setToken, setAuthenticationIsOpen)}
+          onClick={() =>
+            signInWithFacebook(
+              setToken,
+              setAuthenticationIsOpen,
+              setLoadingUserValidation
+            )
+          }
         >
           Entrar com Facebook
         </FacebookLogin>
