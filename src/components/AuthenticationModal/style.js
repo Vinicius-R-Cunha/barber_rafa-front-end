@@ -264,6 +264,33 @@ export const Spacer = styled.div`
   }
 `;
 
+export const GoogleLogin = styled.div`
+  all: unset;
+
+  width: 100%;
+  height: 40px;
+
+  font-family: "Montserrat";
+  font-size: 0.735rem;
+  font-weight: 800;
+  line-height: 1em;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: #000000;
+
+  background-color: #ffffff;
+
+  margin-top: 15px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 4px;
+
+  cursor: pointer;
+`;
+
 export const modalStyles = {
   overlay: {
     position: "fixed",

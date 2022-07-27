@@ -15,12 +15,14 @@ import {
   modalStyles,
   toastStyles,
   Spacer,
+  GoogleLogin,
   facebookButtonStyle,
 } from "./style";
 import { ThreeDots } from "react-loader-spinner";
 import { toast } from "react-toastify";
 import NumberFormat from "react-number-format";
 import FacebookLogin from "@greatsumini/react-facebook-login";
+import { signInWithGoogle } from "../../services/Firebase";
 
 export default function AuthenticationModal() {
   const { authenticationIsOpen, setAuthenticationIsOpen, setToken } =
@@ -231,6 +233,12 @@ export default function AuthenticationModal() {
         <Spacer>
           <div></div> ou <div></div>
         </Spacer>
+
+        <GoogleLogin
+          onClick={() => signInWithGoogle(setToken, setAuthenticationIsOpen)}
+        >
+          Entrar com Google
+        </GoogleLogin>
 
         <FacebookLogin
           style={facebookButtonStyle}

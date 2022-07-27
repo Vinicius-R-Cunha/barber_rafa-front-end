@@ -51,6 +51,15 @@ async function facebookOAuth(formData) {
   }
 }
 
+async function googleOAuth(formData) {
+  try {
+    const promise = await axios.post(`${BASE_URL}/oAuth/google`, formData);
+    return promise;
+  } catch (error) {
+    return error.response;
+  }
+}
+
 async function updateUser(token, data, type) {
   try {
     const config = createConfig(token);
@@ -264,6 +273,7 @@ export {
   signUp,
   signIn,
   facebookOAuth,
+  googleOAuth,
   updateUser,
   getCategories,
   createCategory,
