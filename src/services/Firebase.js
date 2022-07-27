@@ -31,7 +31,12 @@ export async function signInWithGoogle(
     setLoadingUserValidation(true);
     const result = await signInWithPopup(auth, googleProvider);
     const response = await api.googleOAuth(getUserData(result));
-    persistToken(response.data.token, setToken, setModalIsOpen);
+    persistToken(
+      response.data.token,
+      setToken,
+      setModalIsOpen,
+      setLoadingUserValidation
+    );
 
     return;
   } catch (error) {
@@ -49,7 +54,12 @@ export async function signInWithFacebook(
     setLoadingUserValidation(true);
     const result = await signInWithPopup(auth, facebookProvider);
     const response = await api.facebookOAuth(getUserData(result));
-    persistToken(response.data.token, setToken, setModalIsOpen);
+    persistToken(
+      response.data.token,
+      setToken,
+      setModalIsOpen,
+      setLoadingUserValidation
+    );
 
     return;
   } catch (error) {
@@ -71,7 +81,12 @@ function getUserData(result) {
   };
 }
 
-function persistToken(token, setToken, setModalIsOpen) {
+function persistToken(
+  token,
+  setToken,
+  setModalIsOpen,
+  setLoadingUserValidation
+) {
   localStorage.setItem("token", token);
   setToken(token);
   setModalIsOpen(false);
