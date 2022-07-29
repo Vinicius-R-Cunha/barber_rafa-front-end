@@ -19,7 +19,6 @@ export default function ProfileConfigSection() {
 
   const [change, setChange] = useState("");
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -35,13 +34,6 @@ export default function ProfileConfigSection() {
         return;
       }
 
-      if (field === "email") {
-        const response = await api.updateUser(token, { email }, "email");
-        if (response.status === 200) setUserData({ ...userData, email });
-        handleResponse(response);
-        return;
-      }
-
       if (field === "phone") {
         const response = await api.updateUser(token, { phone }, "phone");
         if (response.status === 200) setUserData({ ...userData, phone });
@@ -53,7 +45,6 @@ export default function ProfileConfigSection() {
     }
 
     setName("");
-    setEmail("");
     setPhone("");
     setChange(field);
   }
@@ -76,7 +67,6 @@ export default function ProfileConfigSection() {
   function handleResponse(response) {
     setIsLoading(false);
     setName("");
-    setEmail("");
     setPhone("");
     if (response.status === 200) {
       toast.success("Alterado com sucesso!", toastStyles);
@@ -113,26 +103,6 @@ export default function ProfileConfigSection() {
         />
         <Action onClick={() => changeInformation("name")}>
           {change === "name" ? (
-            isLoading ? (
-              <ThreeDots color="#E1E1E1" height={13} width={51} />
-            ) : (
-              "Salvar"
-            )
-          ) : (
-            "Alterar"
-          )}
-        </Action>
-      </InputContainer>
-      <InputContainer>
-        <FieldName>E-mail</FieldName>
-        <Input
-          placeholder={change === "email" ? "" : userData?.email}
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-          disabled={change === "email" && !isLoading ? false : true}
-        />
-        <Action onClick={() => changeInformation("email")}>
-          {change === "email" ? (
             isLoading ? (
               <ThreeDots color="#E1E1E1" height={13} width={51} />
             ) : (
