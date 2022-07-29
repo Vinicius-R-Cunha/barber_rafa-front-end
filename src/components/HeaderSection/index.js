@@ -39,7 +39,7 @@ export default function HeaderSection({ page, title }) {
   }
 
   function logout() {
-    window.location.replace("/");
+    navigate("/");
     setProfileTabIsOpen(false);
     localStorage.removeItem("token");
     setToken(null);
