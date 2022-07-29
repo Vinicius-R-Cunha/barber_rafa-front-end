@@ -6,7 +6,8 @@ import HomePage from "./pages/HomePage";
 import ServicesPage from "./pages/ServicesPage";
 import AboutPage from "./pages/AboutPage";
 import ContactUsPage from "./pages/ContactUsPage";
-import ProfilePage from "./pages/ProfilePage";
+import ProfileReservationsPage from "./pages/ProfileReservationsPage";
+import ProfileConfigPage from "./pages/ProfileConfigPage";
 import AdminPage from "./pages/AdminPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import AuthenticationModal from "./components/AuthenticationModal";
@@ -76,6 +77,7 @@ export default function App() {
           userIsNewUser,
           setUserIsNewUser,
           userData,
+          setUserData,
         }}
       >
         <BrowserRouter>
@@ -86,7 +88,13 @@ export default function App() {
             <Route path={"/sobre"} element={<AboutPage />} />
             <Route path={"/contato"} element={<ContactUsPage />} />
             {userIsLoggedIn && (
-              <Route path={"/reservas"} element={<ProfilePage />} />
+              <>
+                <Route
+                  path={"/reservas"}
+                  element={<ProfileReservationsPage />}
+                />
+                <Route path={"/config"} element={<ProfileConfigPage />} />
+              </>
             )}
             {userIsLoggedIn && userIsAdmin && (
               <Route path={"/admin"} element={<AdminPage />} />

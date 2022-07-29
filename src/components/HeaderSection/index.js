@@ -64,6 +64,9 @@ export default function HeaderSection({ page, title }) {
                 Administração
               </ProfileButton>
             )}
+            <ProfileButton onClick={() => navigateToPage("/config")}>
+              Configurações
+            </ProfileButton>
             <ProfileButton onClick={() => navigateToPage("/reservas")}>
               Reservas
             </ProfileButton>

@@ -9,7 +9,7 @@ import {
 } from "./style";
 import { BsWhatsapp } from "react-icons/bs";
 
-export default function ProfileSection({
+export default function ProfileReservationsSection({
   reservationsArray,
   setConfirmationIsOpen,
   setEventId,

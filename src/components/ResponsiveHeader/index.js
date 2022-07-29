@@ -81,6 +81,12 @@ export default function ResponsiveHeader({
           )}
           <NavButton
             className="flex-end"
+            onClick={() => navigateToPage("/config")}
+          >
+            Configurações
+          </NavButton>
+          <NavButton
+            className="flex-end"
             onClick={() => navigateToPage("/reservas")}
           >
             Reservas

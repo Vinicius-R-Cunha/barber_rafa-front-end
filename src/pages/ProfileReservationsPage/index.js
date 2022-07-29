@@ -4,11 +4,11 @@ import * as api from "../../services/api";
 import { toast } from "react-toastify";
 import HeaderSection from "../../components/HeaderSection";
 import Footer from "../../components/Footer";
-import ProfileSection from "../../components/ProfileSection";
+import ProfileReservationsSection from "../../components/ProfileReservationsSection";
 import Loading from "../../components/Loading";
 import CancelReservationModal from "../../components/CancelReservationModal";
 
-export default function ProfilePage() {
+export default function ProfileReservationsPage() {
   const { token } = useContext(UserContext);
   const [reservationsArray, setReservationsArray] = useState();
 
@@ -53,7 +53,7 @@ export default function ProfilePage() {
   return (
     <>
       <HeaderSection page="profile" title="Reservas" />
-      <ProfileSection
+      <ProfileReservationsSection
         reservationsArray={reservationsArray}
         setConfirmationIsOpen={setConfirmationIsOpen}
         setEventId={setEventId}
