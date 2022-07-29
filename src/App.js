@@ -77,6 +77,7 @@ export default function App() {
           userIsNewUser,
           setUserIsNewUser,
           userData,
+          setUserData,
         }}
       >
         <BrowserRouter>
