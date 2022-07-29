@@ -6,9 +6,7 @@ export default function ProfileConfigPage() {
   return (
     <>
       <HeaderSection page="profile" title="Configurações" />
-
       <ProfileConfigSection />
-
       <Footer />
     </>
   );
