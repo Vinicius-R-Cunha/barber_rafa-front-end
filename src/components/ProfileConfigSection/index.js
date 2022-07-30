@@ -11,10 +11,11 @@ import {
   Input,
   StyledNumberFormat,
   Action,
+  DeleteAccount,
   toastStyles,
 } from "./style";
 
-export default function ProfileConfigSection() {
+export default function ProfileConfigSection({ setDeleteAccountModalIsOpen }) {
   const { userData, setUserData, token } = useContext(UserContext);
 
   const [change, setChange] = useState("");
@@ -90,6 +91,11 @@ export default function ProfileConfigSection() {
     return;
   }
 
+  function openConfirmation() {
+    setDeleteAccountModalIsOpen(true);
+    document.body.style.overflow = "hidden";
+  }
+
   return (
     <Container>
       <Title>Detalhes da conta</Title>
@@ -138,6 +144,12 @@ export default function ProfileConfigSection() {
         <FieldName>Senha</FieldName>
         <Input placeholder="Alterar senha" disabled />
         <Action onClick={() => sendRecuperationEmail()}>Alterar</Action>
+      </InputContainer>
+
+      <InputContainer>
+        <DeleteAccount onClick={() => openConfirmation()}>
+          Excluir conta
+        </DeleteAccount>
       </InputContainer>
     </Container>
   );

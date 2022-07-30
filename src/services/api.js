@@ -268,6 +268,16 @@ async function editSchedule(token, weekId, data) {
   }
 }
 
+async function deleteAccount(token) {
+  try {
+    const config = createConfig(token);
+    const promise = await axios.delete(`${BASE_URL}/delete-user`, config);
+    return promise;
+  } catch (error) {
+    return error.response;
+  }
+}
+
 export {
   validateToken,
   signUp,
@@ -291,4 +301,5 @@ export {
   resetPassword,
   getSchedules,
   editSchedule,
+  deleteAccount,
 };

@@ -6,6 +6,8 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import * as api from "../services/api";
+import { toast } from "react-toastify";
+import { toastStyles } from "../components/AuthenticationModal/style";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBnyLKvrtUZGud6UOn6kNY3Y3-cQsr9OeU",
@@ -29,15 +31,12 @@ export async function signInWithGoogle(
 ) {
   try {
     setLoadingUserValidation(true);
+    closeModal();
     const result = await signInWithPopup(auth, googleProvider);
     const response = await api.googleOAuth(getUserData(result));
-    persistToken(
-      response.data.token,
-      setToken,
-      closeModal,
-      setLoadingUserValidation
-    );
+    persistToken(response.data.token, setToken, setLoadingUserValidation);
 
+    toast.success("Login efetuado!", toastStyles);
     return;
   } catch (error) {
     setLoadingUserValidation(false);
@@ -52,15 +51,12 @@ export async function signInWithFacebook(
 ) {
   try {
     setLoadingUserValidation(true);
+    closeModal();
     const result = await signInWithPopup(auth, facebookProvider);
     const response = await api.facebookOAuth(getUserData(result));
-    persistToken(
-      response.data.token,
-      setToken,
-      closeModal,
-      setLoadingUserValidation
-    );
+    persistToken(response.data.token, setToken, setLoadingUserValidation);
 
+    toast.success("Login efetuado!", toastStyles);
     return;
   } catch (error) {
     setLoadingUserValidation(false);
@@ -81,10 +77,9 @@ function getUserData(result) {
   };
 }
 
-function persistToken(token, setToken, closeModal, setLoadingUserValidation) {
+function persistToken(token, setToken, setLoadingUserValidation) {
   localStorage.setItem("token", token);
   setToken(token);
-  closeModal();
   setLoadingUserValidation(false);
   return;
 }

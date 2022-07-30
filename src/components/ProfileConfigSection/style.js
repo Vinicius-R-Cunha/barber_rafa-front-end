@@ -128,6 +128,19 @@ export const Action = styled.div`
   cursor: pointer;
 `;
 
+export const DeleteAccount = styled.p`
+  font-family: "Montserrat";
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.7px;
+  color: #ff5a5a;
+
+  padding-left: 15px;
+  margin-top: 20px;
+
+  cursor: pointer;
+`;
+
 export const toastStyles = {
   position: "bottom-left",
   autoClose: 5000,
