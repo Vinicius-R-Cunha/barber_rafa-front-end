@@ -14,14 +14,15 @@ import {
   Button,
   Spacer,
   GoogleLogin,
-  FacebookLogin,
+  // FacebookLogin,
   modalStyles,
   toastStyles,
 } from "./style";
 import { ThreeDots } from "react-loader-spinner";
 import { toast } from "react-toastify";
 import NumberFormat from "react-number-format";
-import { signInWithGoogle, signInWithFacebook } from "../../services/Firebase";
+import { signInWithGoogle } from "../../services/Firebase";
+// import { signInWithGoogle, signInWithFacebook } from "../../services/Firebase";
 
 export default function AuthenticationModal() {
   const {
@@ -245,13 +246,13 @@ export default function AuthenticationModal() {
           Entrar com Google
         </GoogleLogin>
 
-        <FacebookLogin
+        {/* <FacebookLogin
           onClick={() =>
             signInWithFacebook(setToken, closeModal, setLoadingUserValidation)
           }
         >
           Entrar com Facebook
-        </FacebookLogin>
+        </FacebookLogin> */}
       </InputsForm>
     </StyledModal>
   );
