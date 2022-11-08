@@ -52,13 +52,13 @@ export default function ServicesPage() {
   }
 
   function handleReservation(service) {
-    setWantedReservations([...wantedReservations, service]);
-    setServiceData(service); //TEMP
     if (!token) {
       setAuthenticationIsOpen(true);
       document.body.style.overflow = "hidden";
       return;
     }
+    setWantedReservations([...wantedReservations, service]);
+    setServiceData(service); //TEMP
     setReservationModalIsOpen(true);
     document.body.style.overflow = "hidden";
     return;
