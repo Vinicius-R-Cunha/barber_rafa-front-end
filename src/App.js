@@ -11,51 +11,20 @@ import AdminPage from "./pages/AdminPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import AuthenticationModal from "./components/AuthenticationModal";
 import UpdateNewUserModal from "./components/UpdateNewUserModal";
-import * as api from "./services/api";
 import { ToastContainer } from "react-toastify";
 import ScrollToTop from "./utils/ScrollToTop";
 import "./styles/reset.css";
 import "./styles/style.css";
 
 export default function App() {
-  const {
-    token,
-    setToken,
-    setLoadingUserValidation,
-    userIsLoggedIn,
-    setUserIsLoggedIn,
-    userIsAdmin,
-    setUserIsAdmin,
-    setUserIsNewUser,
-    setUserData,
-  } = useUserContext();
+  const { token, validateToken, userIsLoggedIn, userIsAdmin } =
+    useUserContext();
 
   useEffect(() => {
     validateToken(token);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
-
-  async function validateToken(token) {
-    const user = await api.validateToken(token);
-    if (user.status === 200) {
-      setUserIsLoggedIn(true);
-      setUserData(user.data);
-
-      if (user.data.newUser) setUserIsNewUser(true);
-      if (user.data.isAdmin) setUserIsAdmin(true);
-
-      setLoadingUserValidation(false);
-      return;
-    }
-
-    localStorage.removeItem("token");
-    setToken(null);
-    setUserIsLoggedIn(false);
-    setLoadingUserValidation(false);
-
-    return;
-  }
 
   return (
     <>

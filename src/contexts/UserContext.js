@@ -1,4 +1,5 @@
 import { useState, createContext, useContext } from "react";
+import * as api from "../services/api";
 
 const UserContext = createContext();
 
@@ -16,12 +17,34 @@ export function UserContextProvider(props) {
     document.body.style.overflow = "hidden";
   }
 
+  async function validateToken(token) {
+    const user = await api.validateToken(token);
+    if (user.status === 200) {
+      setUserIsLoggedIn(true);
+      setUserData(user.data);
+
+      if (user.data.newUser) setUserIsNewUser(true);
+      if (user.data.isAdmin) setUserIsAdmin(true);
+
+      setLoadingUserValidation(false);
+      return;
+    }
+
+    localStorage.removeItem("token");
+    setToken(null);
+    setUserIsLoggedIn(false);
+    setLoadingUserValidation(false);
+
+    return;
+  }
+
   return (
     <UserContext.Provider
       value={{
         authenticationIsOpen,
         setAuthenticationIsOpen,
         openAuthenticationModal,
+        validateToken,
         token,
         setToken,
         loadingUserValidation,
