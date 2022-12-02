@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import * as api from "../../services/api";
 import { useDataContext } from "../../contexts/DataContext";
 import { toast } from "react-toastify";
-import UserContext from "../../contexts/UserContext";
+import { useUserContext } from "../../contexts/UserContext";
 import HeaderSection from "../../components/HeaderSection";
 import ServicesSection from "../../components/ServicesSection";
 import Footer from "../../components/Footer";
@@ -12,7 +12,7 @@ import ReservationModal from "../../components/ReservationModal";
 
 export default function ServicesPage() {
   const { categoriesArray, setCategoriesArray } = useDataContext();
-  const { token, setAuthenticationIsOpen } = useContext(UserContext);
+  const { token, setAuthenticationIsOpen } = useUserContext();
 
   const [readMoreModalIsOpen, setReadMoreModalIsOpen] = useState(false);
   const [serviceData, setServiceData] = useState();

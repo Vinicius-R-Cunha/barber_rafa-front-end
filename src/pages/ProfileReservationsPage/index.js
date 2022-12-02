@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import UserContext from "../../contexts/UserContext";
+import { useUserContext } from "../../contexts/UserContext";
 import * as api from "../../services/api";
 import { toast } from "react-toastify";
 import HeaderSection from "../../components/HeaderSection";
@@ -9,7 +9,7 @@ import Loading from "../../components/Loading";
 import CancelReservationModal from "../../components/CancelReservationModal";
 
 export default function ProfileReservationsPage() {
-  const { token } = useContext(UserContext);
+  const { token } = useUserContext();
   const [reservationsArray, setReservationsArray] = useState();
 
   const [confirmationIsOpen, setConfirmationIsOpen] = useState(false);

@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { IoClose } from "react-icons/io5";
-import UserContext from "../../contexts/UserContext";
+import { useUserContext } from "../../contexts/UserContext";
 import {
   StyledModal,
   Title,
@@ -19,7 +19,7 @@ export default function CancelReservationModal({
   renderPage,
   eventId,
 }) {
-  const { token } = useContext(UserContext);
+  const { token } = useUserContext();
 
   const [isLoading, setIsLoading] = useState(false);
 

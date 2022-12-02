@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import UserContext from "../../contexts/UserContext";
+import { useUserContext } from "../../contexts/UserContext";
 import * as api from "../../services/api";
 import { toast } from "react-toastify";
 import { ThreeDots } from "react-loader-spinner";
@@ -16,7 +16,7 @@ import {
 } from "./style";
 
 export default function ProfileConfigSection({ setDeleteAccountModalIsOpen }) {
-  const { userData, setUserData, token } = useContext(UserContext);
+  const { userData, setUserData, token } = useUserContext();
 
   const [change, setChange] = useState("");
   const [name, setName] = useState("");

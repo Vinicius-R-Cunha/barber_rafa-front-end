@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import UserContext from "../../contexts/UserContext";
+import { useUserContext } from "../../contexts/UserContext";
 import NumberFormat from "react-number-format";
 import * as api from "../../services/api";
 import { toast } from "react-toastify";
@@ -14,8 +14,7 @@ import {
 } from "./style";
 
 export default function UpdateNewUserModal() {
-  const { token, setToken, userIsNewUser, setUserIsNewUser } =
-    useContext(UserContext);
+  const { token, setToken, userIsNewUser, setUserIsNewUser } = useUserContext();
 
   const [phone, setPhone] = useState("");
   const [submitIsLoading, setSubmitIsLoading] = useState(false);

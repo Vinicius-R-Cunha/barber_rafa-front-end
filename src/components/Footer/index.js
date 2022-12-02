@@ -2,12 +2,12 @@ import { Container, FooterLogo, NavButtons, NavButton } from "./style";
 import logo from "../../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import UserContext from "../../contexts/UserContext";
+import { useUserContext } from "../../contexts/UserContext";
 import { ThreeDots } from "react-loader-spinner";
 
 export default function Footer() {
   const { openAuthenticationModal, loadingUserValidation, userIsLoggedIn } =
-    useContext(UserContext);
+    useUserContext();
 
   const navigate = useNavigate();
 

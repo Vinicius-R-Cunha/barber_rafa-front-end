@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { toast } from "react-toastify";
-import UserContext from "../../contexts/UserContext";
+import { useUserContext } from "../../contexts/UserContext";
 import * as api from "../../services/api";
 import {
   StyledModal,
@@ -21,7 +21,7 @@ export default function CategoryModal({
   type,
   renderPage,
 }) {
-  const { token } = useContext(UserContext);
+  const { token } = useUserContext();
 
   const [title, setTitle] = useState("");
 

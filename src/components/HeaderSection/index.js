@@ -17,7 +17,7 @@ import background from "../../assets/colored_lion.png";
 import { BsPersonCircle } from "react-icons/bs";
 import ResponsiveHeader from "../ResponsiveHeader";
 import { useContext, useState } from "react";
-import UserContext from "../../contexts/UserContext";
+import { useUserContext } from "../../contexts/UserContext";
 import { ThreeDots } from "react-loader-spinner";
 
 export default function HeaderSection({ page, title }) {
@@ -27,7 +27,7 @@ export default function HeaderSection({ page, title }) {
     loadingUserValidation,
     userIsLoggedIn,
     userIsAdmin,
-  } = useContext(UserContext);
+  } = useUserContext();
 
   const [profileTabIsOpen, setProfileTabIsOpen] = useState(false);
 

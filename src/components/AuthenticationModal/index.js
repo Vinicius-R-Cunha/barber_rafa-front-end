@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { IoEye, IoEyeOff, IoClose } from "react-icons/io5";
-import UserContext from "../../contexts/UserContext";
+import { useUserContext } from "../../contexts/UserContext";
 import * as api from "../../services/api";
 import {
   StyledModal,
@@ -30,7 +30,7 @@ export default function AuthenticationModal() {
     setAuthenticationIsOpen,
     setToken,
     setLoadingUserValidation,
-  } = useContext(UserContext);
+  } = useUserContext();
 
   const [page, setPage] = useState("entrar");
   const [isShowingPassword, setIsShowingPassword] = useState(false);

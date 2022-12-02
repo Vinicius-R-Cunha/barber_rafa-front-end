@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
-import UserContext from "../../contexts/UserContext";
+import { useUserContext } from "../../contexts/UserContext";
 import * as api from "../../services/api";
 import { toast } from "react-toastify";
 import {
@@ -39,7 +39,7 @@ export default function ServiceModal({
     "3h",
   ];
 
-  const { token } = useContext(UserContext);
+  const { token } = useUserContext();
 
   const [formData, setFormData] = useState({
     name: "",

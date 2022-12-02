@@ -18,7 +18,7 @@ import {
 } from "../../data/BusinessHoursModal";
 import { useState } from "react";
 import { useContext } from "react";
-import UserContext from "../../contexts/UserContext";
+import { useUserContext } from "../../contexts/UserContext";
 
 export default function BusinessHoursModal({
   businessHoursModalIsOpen,
@@ -26,7 +26,7 @@ export default function BusinessHoursModal({
   schedulesArray,
   renderPage,
 }) {
-  const { token } = useContext(UserContext);
+  const { token } = useUserContext();
 
   const [selectionTab, setSelectionTab] = useState(true);
   const [selectedWeekday, setSelectedWeekday] = useState();

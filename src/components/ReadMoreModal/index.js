@@ -11,7 +11,7 @@ import {
 } from "./style";
 import { IoClose } from "react-icons/io5";
 import { useContext } from "react";
-import UserContext from "../../contexts/UserContext";
+import { useUserContext } from "../../contexts/UserContext";
 
 export default function ReadMoreModal({
   readMoreModalIsOpen,
@@ -19,7 +19,7 @@ export default function ReadMoreModal({
   serviceData,
   setReservationModalIsOpen,
 }) {
-  const { token, setAuthenticationIsOpen } = useContext(UserContext);
+  const { token, setAuthenticationIsOpen } = useUserContext();
 
   function closeModal() {
     document.body.style.overflow = "unset";

@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import UserContext from "../../contexts/UserContext";
+import { useUserContext } from "../../contexts/UserContext";
 import * as api from "../../services/api";
 import {
   StyledModal,
@@ -17,7 +17,7 @@ export default function DeleteAccountModal({
   deleteAccountModalIsOpen,
   setDeleteAccountModalIsOpen,
 }) {
-  const { token, setToken } = useContext(UserContext);
+  const { token, setToken } = useUserContext();
 
   const navigate = useNavigate();
 

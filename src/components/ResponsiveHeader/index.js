@@ -6,7 +6,7 @@ import { useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import UserContext from "../../contexts/UserContext";
+import { useUserContext } from "../../contexts/UserContext";
 import { ThreeDots } from "react-loader-spinner";
 
 export default function ResponsiveHeader({
@@ -19,7 +19,7 @@ export default function ResponsiveHeader({
     loadingUserValidation,
     userIsLoggedIn,
     userIsAdmin,
-  } = useContext(UserContext);
+  } = useUserContext();
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   const navigate = useNavigate();

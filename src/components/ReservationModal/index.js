@@ -23,7 +23,7 @@ import {
 } from "react-icons/bs";
 import { useContext, useEffect, useState } from "react";
 import * as api from "../../services/api";
-import UserContext from "../../contexts/UserContext";
+import { useUserContext } from "../../contexts/UserContext";
 import ScrollContainer from "react-indiana-drag-scroll";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -41,7 +41,7 @@ export default function ReservationModal({
   setWantedReservations,
   setIsChoosingMoreServices,
 }) {
-  const { token, userData } = useContext(UserContext);
+  const { token, userData } = useUserContext();
   const [scheduleArray, setScheduleArray] = useState(null);
   const [scrollX, setScrollX] = useState(0);
   const [selectedTime, setSelectedTime] = useState("");

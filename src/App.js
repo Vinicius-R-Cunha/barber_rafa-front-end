@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState, useEffect, useContext } from "react";
-import { DataContextProvider } from "./contexts/DataContext";
-import UserContext from "./contexts/UserContext";
+import { useEffect } from "react";
+import { useUserContext } from "./contexts/UserContext";
 import HomePage from "./pages/HomePage";
 import ServicesPage from "./pages/ServicesPage";
 import AboutPage from "./pages/AboutPage";
@@ -19,13 +18,17 @@ import "./styles/reset.css";
 import "./styles/style.css";
 
 export default function App() {
-  const [token, setToken] = useState(localStorage.getItem("token"));
-  const [loadingUserValidation, setLoadingUserValidation] = useState(true);
-  const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
-  const [userIsAdmin, setUserIsAdmin] = useState(false);
-  const [userIsNewUser, setUserIsNewUser] = useState(false);
-  const [authenticationIsOpen, setAuthenticationIsOpen] = useState(false);
-  const [userData, setUserData] = useState();
+  const {
+    token,
+    setToken,
+    setLoadingUserValidation,
+    userIsLoggedIn,
+    setUserIsLoggedIn,
+    userIsAdmin,
+    setUserIsAdmin,
+    setUserIsNewUser,
+    setUserData,
+  } = useUserContext();
 
   useEffect(() => {
     validateToken(token);
@@ -54,60 +57,33 @@ export default function App() {
     return;
   }
 
-  function openAuthenticationModal() {
-    setAuthenticationIsOpen(true);
-    document.body.style.overflow = "hidden";
-  }
-
   return (
-    <DataContextProvider>
-      <UserContext.Provider
-        value={{
-          authenticationIsOpen,
-          setAuthenticationIsOpen,
-          openAuthenticationModal,
-          token,
-          setToken,
-          loadingUserValidation,
-          setLoadingUserValidation,
-          userIsLoggedIn,
-          setUserIsLoggedIn,
-          userIsAdmin,
-          userIsNewUser,
-          setUserIsNewUser,
-          userData,
-          setUserData,
-        }}
-      >
-        <BrowserRouter>
-          <ScrollToTop />
-          <Routes>
-            <Route path={"/"} element={<HomePage />} />
-            <Route path={"/servicos"} element={<ServicesPage />} />
-            <Route path={"/sobre"} element={<AboutPage />} />
-            <Route path={"/contato"} element={<ContactUsPage />} />
-            {userIsLoggedIn && (
-              <>
-                <Route
-                  path={"/reservas"}
-                  element={<ProfileReservationsPage />}
-                />
-                <Route path={"/config"} element={<ProfileConfigPage />} />
-              </>
-            )}
-            {userIsLoggedIn && userIsAdmin && (
-              <Route path={"/admin"} element={<AdminPage />} />
-            )}
-            <Route
-              path={"/reset-password/:hash"}
-              element={<ResetPasswordPage />}
-            />
-          </Routes>
-        </BrowserRouter>
-        <AuthenticationModal />
-        <UpdateNewUserModal />
-        <ToastContainer />
-      </UserContext.Provider>
-    </DataContextProvider>
+    <>
+      <BrowserRouter>
+        <ScrollToTop />
+        <Routes>
+          <Route path={"/"} element={<HomePage />} />
+          <Route path={"/servicos"} element={<ServicesPage />} />
+          <Route path={"/sobre"} element={<AboutPage />} />
+          <Route path={"/contato"} element={<ContactUsPage />} />
+          {userIsLoggedIn && (
+            <>
+              <Route path={"/reservas"} element={<ProfileReservationsPage />} />
+              <Route path={"/config"} element={<ProfileConfigPage />} />
+            </>
+          )}
+          {userIsLoggedIn && userIsAdmin && (
+            <Route path={"/admin"} element={<AdminPage />} />
+          )}
+          <Route
+            path={"/reset-password/:hash"}
+            element={<ResetPasswordPage />}
+          />
+        </Routes>
+      </BrowserRouter>
+      <AuthenticationModal />
+      <UpdateNewUserModal />
+      <ToastContainer />
+    </>
   );
 }
