@@ -11,6 +11,7 @@ import AdminPage from "./pages/AdminPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import AuthenticationModal from "./components/AuthenticationModal";
 import UpdateNewUserModal from "./components/UpdateNewUserModal";
+import NotFoundPage from "./pages/NotFoundPage";
 import { ToastContainer } from "react-toastify";
 import ScrollToTop from "./utils/ScrollToTop";
 import "./styles/reset.css";
@@ -48,6 +49,7 @@ export default function App() {
             path={"/reset-password/:hash"}
             element={<ResetPasswordPage />}
           />
+          <Route path={"*"} element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
       <AuthenticationModal />
