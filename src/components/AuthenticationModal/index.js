@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { IoEye, IoEyeOff, IoClose } from "react-icons/io5";
 import { useUserContext } from "../../contexts/UserContext";
 import * as api from "../../services/api";
