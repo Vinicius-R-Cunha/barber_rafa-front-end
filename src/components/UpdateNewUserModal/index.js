@@ -1,17 +1,10 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useUserContext } from "../../contexts/UserContext";
 import NumberFormat from "react-number-format";
 import * as api from "../../services/api";
-import { toast } from "react-toastify";
+import renderToast from "../../utils/renderToast";
 import { ThreeDots } from "react-loader-spinner";
-import {
-  StyledModal,
-  Title,
-  InputsForm,
-  Button,
-  modalStyles,
-  toastStyles,
-} from "./style";
+import { StyledModal, Title, InputsForm, Button, modalStyles } from "./style";
 
 export default function UpdateNewUserModal() {
   const { token, setToken, userIsNewUser, setUserIsNewUser } = useUserContext();
@@ -34,7 +27,7 @@ export default function UpdateNewUserModal() {
       setToken(response.data);
       setSubmitIsLoading(false);
       closeModal();
-      toast.success("Login efetuado!", toastStyles);
+      renderToast("success", "Login efetuado!");
       return;
     }
 
@@ -45,18 +38,18 @@ export default function UpdateNewUserModal() {
 
   function handleResponseErrors(response) {
     if (response.status === 409) {
-      toast.error(response.data, toastStyles);
+      renderToast("error", response.data);
       return;
     }
 
     if (response.status === 422) {
-      toast.error(response.data.error, toastStyles);
+      renderToast("error", response.data.error);
       return;
     }
 
-    toast.error(
-      "Erro no servidor, tente novamente em alguns momentos",
-      toastStyles
+    renderToast(
+      "error",
+      "Erro no servidor, tente novamente em alguns momentos"
     );
     return;
   }

@@ -1,7 +1,7 @@
 import { IoClose } from "react-icons/io5";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import * as api from "../../services/api";
-import { toast } from "react-toastify";
+import renderToast from "../../utils/renderToast";
 import {
   StyledModal,
   Title,
@@ -10,14 +10,12 @@ import {
   Schedule,
   Button,
   modalStyles,
-  toastStyles,
 } from "./style";
 import {
   scheduleArray as rangeInputValues,
   weekdays,
 } from "../../data/BusinessHoursModal";
 import { useState } from "react";
-import { useContext } from "react";
 import { useUserContext } from "../../contexts/UserContext";
 
 export default function BusinessHoursModal({
@@ -76,18 +74,18 @@ export default function BusinessHoursModal({
     setSelectionTab(true);
     renderPage();
 
-    return toast.success(message, toastStyles);
+    return renderToast("success", message);
   }
 
   function handleError(response) {
     if (response.status === 422)
-      return toast.error(response.data.error, toastStyles);
+      return renderToast("error", response.data.error);
 
-    if (response.data) return toast.error(response.data, toastStyles);
+    if (response.data) return renderToast("error", response.data);
 
-    return toast.error(
-      "Erro no servidor, tente novamente em alguns momentos",
-      toastStyles
+    return renderToast(
+      "error",
+      "Erro no servidor, tente novamente em alguns momentos"
     );
   }
 

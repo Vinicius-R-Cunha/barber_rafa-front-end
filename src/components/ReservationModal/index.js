@@ -12,7 +12,6 @@ import {
   Duration,
   Button,
   modalStyles,
-  toastStyles,
 } from "./style";
 import "react-calendar/dist/Calendar.css";
 import Calendar from "react-calendar";
@@ -21,11 +20,11 @@ import {
   BsFillArrowLeftCircleFill,
   BsFillArrowRightCircleFill,
 } from "react-icons/bs";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import * as api from "../../services/api";
 import { useUserContext } from "../../contexts/UserContext";
 import ScrollContainer from "react-indiana-drag-scroll";
-import { toast } from "react-toastify";
+import renderToast from "../../utils/renderToast";
 import "react-toastify/dist/ReactToastify.css";
 import { ThreeDots } from "react-loader-spinner";
 import {
@@ -83,9 +82,9 @@ export default function ReservationModal({
 
     if (response.status === 200) return setScheduleArray(response.data);
 
-    return toast.error(
-      "Erro ao carregar os horários, por favor tente novamente",
-      toastStyles
+    return renderToast(
+      "error",
+      "Erro ao carregar os horários, por favor tente novamente"
     );
   }
 
@@ -127,11 +126,11 @@ export default function ReservationModal({
     closeModal();
 
     if (response.status === 201)
-      return toast.success("Horário agendado!", toastStyles);
+      return renderToast("success", "Horário agendado!");
 
-    return toast.error(
-      "Erro ao agendar seu horário, por favor tente novamente.",
-      toastStyles
+    return renderToast(
+      "error",
+      "Erro ao agendar seu horário, por favor tente novamente."
     );
   }
 

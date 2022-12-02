@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDataContext } from "../../contexts/DataContext";
 import * as api from "../../services/api";
-import { toast } from "react-toastify";
+import renderToast from "../../utils/renderToast";
 import HeaderSection from "../../components/HeaderSection";
 import AdminSection from "../../components/AdminSection";
 import Footer from "../../components/Footer";
@@ -43,17 +43,9 @@ export default function AdminPage() {
     if (response.status === 200) {
       return setCategoriesArray(response.data);
     }
-    return toast.error(
-      "Erro ao carregar serviços, por favor recarregue a página",
-      {
-        position: "bottom-left",
-        autoClose: false,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      }
+    return renderToast(
+      "error",
+      "Erro ao carregar serviços, por favor recarregue a página"
     );
   }
 
@@ -62,17 +54,9 @@ export default function AdminPage() {
     if (response.status === 200) {
       return setSchedulesArray(response.data);
     }
-    return toast.error(
-      "Erro ao carregar serviços, por favor recarregue a página",
-      {
-        position: "bottom-left",
-        autoClose: false,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      }
+    return renderToast(
+      "error",
+      "Erro ao carregar serviços, por favor recarregue a página"
     );
   }
 

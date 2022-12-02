@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { useUserContext } from "../../contexts/UserContext";
 import {
@@ -7,10 +7,9 @@ import {
   ActionButtons,
   Button,
   modalStyles,
-  toastStyles,
 } from "./style";
 import * as api from "../../services/api";
-import { toast } from "react-toastify";
+import renderToast from "../../utils/renderToast";
 import { ThreeDots } from "react-loader-spinner";
 
 export default function CancelReservationModal({
@@ -36,11 +35,11 @@ export default function CancelReservationModal({
     renderPage();
 
     if (promise.status === 200) {
-      return toast.success("Reserva cancelada com sucesso", toastStyles);
+      return renderToast("success", "Reserva cancelada com sucesso");
     }
-    return toast.error(
-      "Erro ao cancelar reserva, por favor tente mais tarde",
-      toastStyles
+    return renderToast(
+      "error",
+      "Erro ao cancelar reserva, por favor tente mais tarde"
     );
   }
 

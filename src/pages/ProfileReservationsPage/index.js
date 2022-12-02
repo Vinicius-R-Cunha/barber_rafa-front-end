@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useUserContext } from "../../contexts/UserContext";
 import * as api from "../../services/api";
-import { toast } from "react-toastify";
+import renderToast from "../../utils/renderToast";
 import HeaderSection from "../../components/HeaderSection";
 import Footer from "../../components/Footer";
 import ProfileReservationsSection from "../../components/ProfileReservationsSection";
@@ -26,17 +26,9 @@ export default function ProfileReservationsPage() {
       setReservationsArray(promise.data);
       return;
     }
-    return toast.error(
-      "Erro ao carregar serviços, por favor recarregue a página",
-      {
-        position: "bottom-left",
-        autoClose: false,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      }
+    return renderToast(
+      "error",
+      "Erro ao carregar serviços, por favor recarregue a página"
     );
   }
 

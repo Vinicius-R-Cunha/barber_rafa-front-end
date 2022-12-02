@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import * as api from "../../services/api";
 import { useDataContext } from "../../contexts/DataContext";
-import { toast } from "react-toastify";
+import renderToast from "../../utils/renderToast";
 import { useUserContext } from "../../contexts/UserContext";
 import HeaderSection from "../../components/HeaderSection";
 import ServicesSection from "../../components/ServicesSection";
@@ -31,17 +31,9 @@ export default function ServicesPage() {
       setCategoriesArray(promise.data);
       return;
     }
-    return toast.error(
-      "Erro ao carregar serviços, por favor recarregue a página",
-      {
-        position: "bottom-left",
-        autoClose: false,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      }
+    return renderToast(
+      "error",
+      "Erro ao carregar serviços, por favor recarregue a página"
     );
   }
 

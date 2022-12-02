@@ -5,7 +5,6 @@ import logo from "../../assets/logo.png";
 import { useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
 import { useUserContext } from "../../contexts/UserContext";
 import { ThreeDots } from "react-loader-spinner";
 

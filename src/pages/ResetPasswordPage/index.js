@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ResetPasswordForm from "../../components/ResetPasswordForm";
 import * as api from "../../services/api";
-import { toast } from "react-toastify";
 
-export default function ResetPasswordPage({ setShowResetPasswordPage }) {
+export default function ResetPasswordPage() {
   const { hash } = useParams();
 
   const [showPage, setShowPage] = useState(false);

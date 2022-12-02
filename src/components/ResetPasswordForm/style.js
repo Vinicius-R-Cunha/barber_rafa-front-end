@@ -128,13 +128,3 @@ export const Button = styled.button`
     padding: 10px 20px;
   }
 `;
-
-export const toastStyles = {
-  position: "bottom-left",
-  autoClose: 5000,
-  hideProgressBar: false,
-  closeOnClick: true,
-  pauseOnHover: true,
-  draggable: true,
-  progress: undefined,
-};

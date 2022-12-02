@@ -1,7 +1,6 @@
-import { useContext, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import renderToast from "../../utils/renderToast";
 import { useUserContext } from "../../contexts/UserContext";
 import * as api from "../../services/api";
 import {
@@ -10,7 +9,6 @@ import {
   ActionButtons,
   Button,
   modalStyles,
-  toastStyles,
 } from "./style";
 
 export default function DeleteAccountModal({
@@ -37,18 +35,18 @@ export default function DeleteAccountModal({
       closeModal();
       clearToken();
       navigate("/");
-      return toast.success("Conta excluída com sucesso", toastStyles);
+      return renderToast("success", "Conta excluída com sucesso");
     }
 
     return handleError(response.data);
   }
 
   function handleError(responseData) {
-    if (responseData) return toast.error(responseData, toastStyles);
+    if (responseData) return renderToast("error", responseData);
 
-    return toast.error(
-      "Erro no servidor, tente novamente em alguns momentos",
-      toastStyles
+    return renderToast(
+      "error",
+      "Erro no servidor, tente novamente em alguns momentos"
     );
   }
 

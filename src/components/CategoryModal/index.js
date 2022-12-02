@@ -1,6 +1,6 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
-import { toast } from "react-toastify";
+import renderToast from "../../utils/renderToast";
 import { useUserContext } from "../../contexts/UserContext";
 import * as api from "../../services/api";
 import {
@@ -11,7 +11,6 @@ import {
   ActionButtons,
   Button,
   modalStyles,
-  toastStyles,
 } from "./style";
 
 export default function CategoryModal({
@@ -75,15 +74,15 @@ export default function CategoryModal({
     closeModal();
     renderPage();
 
-    return toast.success(message, toastStyles);
+    return renderToast("success", message);
   }
 
   function handleError(responseData) {
-    if (responseData) return toast.error(responseData, toastStyles);
+    if (responseData) return renderToast("error", responseData);
 
-    return toast.error(
-      "Erro no servidor, tente novamente em alguns momentos",
-      toastStyles
+    return renderToast(
+      "error",
+      "Erro no servidor, tente novamente em alguns momentos"
     );
   }
 

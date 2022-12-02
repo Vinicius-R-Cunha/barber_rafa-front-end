@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { IoEye, IoEyeOff } from "react-icons/io5";
-import { toast } from "react-toastify";
+import renderToast from "../../utils/renderToast";
 import { ThreeDots } from "react-loader-spinner";
 import {
   Container,
@@ -9,7 +9,6 @@ import {
   PasswordContainer,
   Input,
   Button,
-  toastStyles,
 } from "./style";
 import * as api from "../../services/api";
 import { useNavigate } from "react-router-dom";
@@ -41,7 +40,7 @@ export default function ResetPasswordForm({ hash }) {
 
     if (response.status === 200) {
       navigate("/");
-      toast.success("Senha alterada com sucesso!", toastStyles);
+      renderToast("success", "Senha alterada com sucesso!");
       return;
     }
 
@@ -51,12 +50,12 @@ export default function ResetPasswordForm({ hash }) {
 
   function handleResponseErrors(response) {
     if (response.status === 422) {
-      toast.error(response.data.error, toastStyles);
+      renderToast("error", response.data.error);
       return;
     }
 
     if (response.data) {
-      toast.error(response.data, toastStyles);
+      renderToast("error", response.data);
       return;
     }
 

@@ -6,8 +6,8 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import * as api from "../services/api";
-import { toast } from "react-toastify";
-import { toastStyles } from "../components/AuthenticationModal/style";
+import renderToast from "../utils/renderToast";
+import {} from "../components/AuthenticationModal/style";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBnyLKvrtUZGud6UOn6kNY3Y3-cQsr9OeU",
@@ -36,7 +36,7 @@ export async function signInWithGoogle(
     const response = await api.googleOAuth(getUserData(result));
     persistToken(response.data.token, setToken, setLoadingUserValidation);
 
-    toast.success("Login efetuado!", toastStyles);
+    renderToast("success", "Login efetuado!");
     return;
   } catch (error) {
     setLoadingUserValidation(false);
@@ -56,7 +56,7 @@ export async function signInWithFacebook(
     const response = await api.facebookOAuth(getUserData(result));
     persistToken(response.data.token, setToken, setLoadingUserValidation);
 
-    toast.success("Login efetuado!", toastStyles);
+    renderToast("success", "Login efetuado!");
     return;
   } catch (error) {
     setLoadingUserValidation(false);

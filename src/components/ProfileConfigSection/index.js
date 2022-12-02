@@ -1,7 +1,7 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useUserContext } from "../../contexts/UserContext";
 import * as api from "../../services/api";
-import { toast } from "react-toastify";
+import renderToast from "../../utils/renderToast";
 import { ThreeDots } from "react-loader-spinner";
 import {
   Container,
@@ -12,7 +12,6 @@ import {
   StyledNumberFormat,
   Action,
   DeleteAccount,
-  toastStyles,
 } from "./style";
 
 export default function ProfileConfigSection({ setDeleteAccountModalIsOpen }) {
@@ -54,9 +53,9 @@ export default function ProfileConfigSection({ setDeleteAccountModalIsOpen }) {
     const response = await api.sendRecuperationEmail(userData?.email);
 
     if (response.status === 200) {
-      toast.success(
-        `Email de recuperação enviado para ${userData?.email}`,
-        toastStyles
+      renderToast(
+        "success",
+        `Email de recuperação enviado para ${userData?.email}`
       );
       return;
     }
@@ -70,23 +69,23 @@ export default function ProfileConfigSection({ setDeleteAccountModalIsOpen }) {
     setName("");
     setPhone("");
     if (response.status === 200) {
-      toast.success("Alterado com sucesso!", toastStyles);
+      renderToast("success", "Alterado com sucesso!");
       return;
     }
 
     if (response.status === 409) {
-      toast.error(response.data, toastStyles);
+      renderToast("error", response.data);
       return;
     }
 
     if (response.status === 422) {
-      toast.error(response.data.error, toastStyles);
+      renderToast("error", response.data.error);
       return;
     }
 
-    toast.error(
-      "Erro no servidor, tente novamente em alguns momentos",
-      toastStyles
+    renderToast(
+      "error",
+      "Erro no servidor, tente novamente em alguns momentos"
     );
     return;
   }

@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { useUserContext } from "../../contexts/UserContext";
 import * as api from "../../services/api";
-import { toast } from "react-toastify";
+import renderToast from "../../utils/renderToast";
 import {
   StyledModal,
   Title,
@@ -13,7 +13,6 @@ import {
   Textarea,
   Button,
   modalStyles,
-  toastStyles,
 } from "./style";
 
 export default function ServiceModal({
@@ -123,15 +122,15 @@ export default function ServiceModal({
     closeModal();
     renderPage();
 
-    return toast.success(message, toastStyles);
+    return renderToast("success", message);
   }
 
   function handleError(responseData) {
-    if (responseData) return toast.error(responseData, toastStyles);
+    if (responseData) return renderToast("error", responseData);
 
-    return toast.error(
-      "Erro no servidor, tente novamente em alguns momentos",
-      toastStyles
+    return renderToast(
+      "error",
+      "Erro no servidor, tente novamente em alguns momentos"
     );
   }
 

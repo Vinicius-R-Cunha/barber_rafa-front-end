@@ -16,12 +16,11 @@ import {
   GoogleLogin,
   // FacebookLogin,
   modalStyles,
-  toastStyles,
 } from "./style";
 import { ThreeDots } from "react-loader-spinner";
-import { toast } from "react-toastify";
 import NumberFormat from "react-number-format";
 import { signInWithGoogle } from "../../services/Firebase";
+import renderToast from "../../utils/renderToast";
 // import { signInWithGoogle, signInWithFacebook } from "../../services/Firebase";
 
 export default function AuthenticationModal() {
@@ -74,7 +73,7 @@ export default function AuthenticationModal() {
     setSubmitIsLoading(false);
 
     if (response.status === 201) {
-      toast.success("Cadastro realizado com sucesso!", toastStyles);
+      renderToast("success", "Cadastro realizado com sucesso!");
       setPage("entrar");
       return;
     }
@@ -95,7 +94,7 @@ export default function AuthenticationModal() {
       localStorage.setItem("token", response.data);
       setToken(response.data);
       closeModal();
-      toast.success("Login efetuado!", toastStyles);
+      renderToast("success", "Login efetuado!");
       return;
     }
 
@@ -109,7 +108,7 @@ export default function AuthenticationModal() {
     setSubmitIsLoading(false);
 
     if (response.status === 200) {
-      toast.success(`Email de recuperação enviado para ${email}`, toastStyles);
+      renderToast("success", `Email de recuperação enviado para ${email}`);
       closeModal();
       return;
     }
@@ -122,18 +121,18 @@ export default function AuthenticationModal() {
     if (response.status === "loginCancelled") return;
 
     if (response.status === 409) {
-      toast.error(response.data, toastStyles);
+      renderToast("error", response.data);
       return;
     }
 
     if (response.status === 422) {
-      toast.error(response.data.error, toastStyles);
+      renderToast("error", response.data.error);
       return;
     }
 
-    return toast.error(
-      "Erro no servidor, tente novamente em alguns momentos",
-      toastStyles
+    return renderToast(
+      "error",
+      "Erro no servidor, tente novamente em alguns momentos"
     );
   }
 
