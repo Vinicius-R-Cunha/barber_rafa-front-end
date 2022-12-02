@@ -26,7 +26,7 @@ import { useUserContext } from "../../contexts/UserContext";
 import ScrollContainer from "react-indiana-drag-scroll";
 import renderToast from "../../utils/renderToast";
 import "react-toastify/dist/ReactToastify.css";
-import { ThreeDots } from "react-loader-spinner";
+import { renderDotsLoading } from "../../utils/renderDotsLoading";
 import {
   displayServiceNames,
   sumDurations,
@@ -199,11 +199,7 @@ export default function ReservationModal({
       {scheduleArray?.length === 0 && (
         <DateStatus>Não temos horários disponíveis</DateStatus>
       )}
-      {loadingSchedule && (
-        <DateStatus>
-          <ThreeDots color="#E1E1E1" height={13} width={51} />
-        </DateStatus>
-      )}
+      {loadingSchedule && <DateStatus>{renderDotsLoading()}</DateStatus>}
       {scheduleArray?.length !== 0 &&
         scheduleArray !== null &&
         !loadingSchedule && (

@@ -16,9 +16,9 @@ import logo from "../../assets/logo.png";
 import background from "../../assets/colored_lion.png";
 import { BsPersonCircle } from "react-icons/bs";
 import ResponsiveHeader from "../ResponsiveHeader";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useUserContext } from "../../contexts/UserContext";
-import { ThreeDots } from "react-loader-spinner";
+import { renderDotsLoading } from "../../utils/renderDotsLoading";
 
 export default function HeaderSection({ page, title }) {
   const {
@@ -81,9 +81,7 @@ export default function HeaderSection({ page, title }) {
           <NavButton onClick={() => navigate("/contato")}>Contato</NavButton>
 
           {loadingUserValidation ? (
-            <NavButton>
-              <ThreeDots color="#E1E1E1" height={13} width={51} />
-            </NavButton>
+            <NavButton>{renderDotsLoading()}</NavButton>
           ) : (
             <>
               {userIsLoggedIn ? (

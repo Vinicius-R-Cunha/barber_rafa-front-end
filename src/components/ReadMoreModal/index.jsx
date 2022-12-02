@@ -10,7 +10,6 @@ import {
   modalStyles,
 } from "./style";
 import { IoClose } from "react-icons/io5";
-import { useContext } from "react";
 import { useUserContext } from "../../contexts/UserContext";
 
 export default function ReadMoreModal({

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useUserContext } from "../../contexts/UserContext";
 import * as api from "../../services/api";
 import renderToast from "../../utils/renderToast";
-import { ThreeDots } from "react-loader-spinner";
+import { renderDotsLoading } from "../../utils/renderDotsLoading";
 import {
   Container,
   Title,
@@ -107,15 +107,11 @@ export default function ProfileConfigSection({ setDeleteAccountModalIsOpen }) {
           disabled={change === "name" && !isLoading ? false : true}
         />
         <Action onClick={() => changeInformation("name")}>
-          {change === "name" ? (
-            isLoading ? (
-              <ThreeDots color="#E1E1E1" height={13} width={51} />
-            ) : (
-              "Salvar"
-            )
-          ) : (
-            "Alterar"
-          )}
+          {change === "name"
+            ? isLoading
+              ? renderDotsLoading()
+              : "Salvar"
+            : "Alterar"}
         </Action>
       </InputContainer>
       <InputContainer>
@@ -128,15 +124,11 @@ export default function ProfileConfigSection({ setDeleteAccountModalIsOpen }) {
           disabled={change === "phone" && !isLoading ? false : true}
         />
         <Action onClick={() => changeInformation("phone")}>
-          {change === "phone" ? (
-            isLoading ? (
-              <ThreeDots color="#E1E1E1" height={13} width={51} />
-            ) : (
-              "Salvar"
-            )
-          ) : (
-            "Alterar"
-          )}
+          {change === "phone"
+            ? isLoading
+              ? renderDotsLoading()
+              : "Salvar"
+            : "Alterar"}
         </Action>
       </InputContainer>
       <InputContainer>

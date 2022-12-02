@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import renderToast from "../../utils/renderToast";
-import { ThreeDots } from "react-loader-spinner";
+import { renderDotsLoading } from "../../utils/renderDotsLoading";
 import {
   Container,
   Title,
@@ -122,7 +122,7 @@ export default function ResetPasswordForm({ hash }) {
 
         {submitIsLoading ? (
           <Button type="button" disabled>
-            <ThreeDots color="#E1E1E1" height={13} width={51} />
+            {renderDotsLoading()}
           </Button>
         ) : (
           <Button onClick={(e) => handleSubmit(e)}>Recuperar</Button>

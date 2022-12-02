@@ -10,7 +10,7 @@ import {
 } from "./style";
 import * as api from "../../services/api";
 import renderToast from "../../utils/renderToast";
-import { ThreeDots } from "react-loader-spinner";
+import { renderDotsLoading } from "../../utils/renderDotsLoading";
 
 export default function CancelReservationModal({
   confirmationIsOpen,
@@ -55,9 +55,7 @@ export default function CancelReservationModal({
       {isLoading ? (
         <ActionButtons>
           <Button>Cancelar</Button>
-          <Button>
-            <ThreeDots color="#E1E1E1" height={13} width={51} />
-          </Button>
+          <Button>{renderDotsLoading()}</Button>
         </ActionButtons>
       ) : (
         <ActionButtons>

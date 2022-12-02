@@ -17,10 +17,10 @@ import {
   // FacebookLogin,
   modalStyles,
 } from "./style";
-import { ThreeDots } from "react-loader-spinner";
 import NumberFormat from "react-number-format";
 import { signInWithGoogle } from "../../services/Firebase";
 import renderToast from "../../utils/renderToast";
+import { renderDotsLoading } from "../../utils/renderDotsLoading";
 // import { signInWithGoogle, signInWithFacebook } from "../../services/Firebase";
 
 export default function AuthenticationModal() {
@@ -222,7 +222,7 @@ export default function AuthenticationModal() {
 
           {submitIsLoading ? (
             <Button type="button" disabled>
-              <ThreeDots color="#E1E1E1" height={13} width={51} />
+              {renderDotsLoading()}
             </Button>
           ) : (
             <Button onClick={(e) => handleSubmit(e)}>

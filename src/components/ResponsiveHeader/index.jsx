@@ -6,7 +6,7 @@ import { useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../../contexts/UserContext";
-import { ThreeDots } from "react-loader-spinner";
+import { renderDotsLoading } from "../../utils/renderDotsLoading";
 
 export default function ResponsiveHeader({
   profileTabIsOpen,
@@ -39,7 +39,7 @@ export default function ResponsiveHeader({
         )}
 
         {loadingUserValidation ? (
-          <ThreeDots color="#E1E1E1" height={13} width={51} />
+          renderDotsLoading()
         ) : (
           <>
             {userIsLoggedIn ? (

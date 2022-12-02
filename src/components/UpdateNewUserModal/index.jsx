@@ -3,7 +3,7 @@ import { useUserContext } from "../../contexts/UserContext";
 import NumberFormat from "react-number-format";
 import * as api from "../../services/api";
 import renderToast from "../../utils/renderToast";
-import { ThreeDots } from "react-loader-spinner";
+import { renderDotsLoading } from "../../utils/renderDotsLoading";
 import { StyledModal, Title, InputsForm, Button, modalStyles } from "./style";
 
 export default function UpdateNewUserModal() {
@@ -71,7 +71,7 @@ export default function UpdateNewUserModal() {
 
         {submitIsLoading ? (
           <Button type="button" disabled>
-            <ThreeDots color="#E1E1E1" height={13} width={51} />
+            {renderDotsLoading()}
           </Button>
         ) : (
           <Button onClick={(e) => handleSubmit(e)}>Confirmar</Button>
