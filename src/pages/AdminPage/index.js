@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from "react";
-import DataContext from "../../contexts/DataContext";
+import { useEffect, useState } from "react";
+import { useDataContext } from "../../contexts/DataContext";
 import * as api from "../../services/api";
 import { toast } from "react-toastify";
 import HeaderSection from "../../components/HeaderSection";
@@ -11,7 +11,7 @@ import ServiceModal from "../../components/ServiceModal";
 import BusinessHoursModal from "../../components/BusinessHoursModal";
 
 export default function AdminPage() {
-  const { categoriesArray, setCategoriesArray } = useContext(DataContext);
+  const { categoriesArray, setCategoriesArray } = useDataContext();
 
   const [serviceData, setServiceData] = useState();
 

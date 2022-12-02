@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import DataContext from "../../contexts/DataContext";
+import { useDataContext } from "../../contexts/DataContext";
 import {
   Container,
   Category,
@@ -19,7 +18,7 @@ export default function ServicesSection({
   handleReservation,
   isChoosingMoreServices,
 }) {
-  const { categoriesArray } = useContext(DataContext);
+  const { categoriesArray } = useDataContext();
 
   return (
     <>

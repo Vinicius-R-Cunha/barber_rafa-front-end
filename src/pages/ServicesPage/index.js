@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import * as api from "../../services/api";
-import DataContext from "../../contexts/DataContext";
+import { useDataContext } from "../../contexts/DataContext";
 import { toast } from "react-toastify";
 import UserContext from "../../contexts/UserContext";
 import HeaderSection from "../../components/HeaderSection";
@@ -11,7 +11,7 @@ import ReadMoreModal from "../../components/ReadMoreModal";
 import ReservationModal from "../../components/ReservationModal";
 
 export default function ServicesPage() {
-  const { categoriesArray, setCategoriesArray } = useContext(DataContext);
+  const { categoriesArray, setCategoriesArray } = useDataContext();
   const { token, setAuthenticationIsOpen } = useContext(UserContext);
 
   const [readMoreModalIsOpen, setReadMoreModalIsOpen] = useState(false);
