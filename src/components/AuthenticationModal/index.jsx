@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { IoEye, IoEyeOff, IoClose } from "react-icons/io5";
 import { useUserContext } from "../../contexts/UserContext";
 import * as api from "../../services/api";
@@ -33,43 +33,42 @@ export default function AuthenticationModal() {
 
   const [page, setPage] = useState("entrar");
   const [isShowingPassword, setIsShowingPassword] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    password: "",
-  });
   const [submitIsLoading, setSubmitIsLoading] = useState(false);
+  const nameRef = useRef(null);
+  const emailRef = useRef(null);
+  const phoneRef = useRef(null);
+  const passwordRef = useRef(null);
 
   function closeModal() {
     document.body.style.overflow = "unset";
     setAuthenticationIsOpen(false);
 
     setPage("entrar");
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      password: "",
-    });
     setIsShowingPassword(false);
-  }
-
-  function handleFormData(e) {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
   function handleSubmit(e) {
     e.preventDefault();
     setSubmitIsLoading(true);
 
-    if (page === "inscrever-se") return signUp();
-    if (page === "entrar") return signIn();
-    if (page === "redefinir senha") return sendRecuperationEmail();
+    if (page === "inscrever-se")
+      return signUp({
+        name: nameRef.current.value,
+        email: emailRef.current.value,
+        phone: phoneRef?.current?.state.value,
+        password: passwordRef.current.value,
+      });
+    if (page === "entrar")
+      return signIn({
+        email: emailRef.current.value,
+        password: passwordRef.current.value,
+      });
+    if (page === "redefinir senha")
+      return sendRecuperationEmail(emailRef.current.value);
   }
 
-  async function signUp() {
-    const response = await api.signUp(formData);
+  async function signUp(data) {
+    const response = await api.signUp(data);
     setSubmitIsLoading(false);
 
     if (response.status === 201) {
@@ -82,12 +81,8 @@ export default function AuthenticationModal() {
     return;
   }
 
-  async function signIn() {
-    const signInObject = {
-      email: formData.email,
-      password: formData.password,
-    };
-    const response = await api.signIn(signInObject);
+  async function signIn(data) {
+    const response = await api.signIn(data);
     setSubmitIsLoading(false);
 
     if (response.status === 200) {
@@ -102,13 +97,12 @@ export default function AuthenticationModal() {
     return;
   }
 
-  async function sendRecuperationEmail() {
-    const { email } = formData;
-    const response = await api.sendRecuperationEmail(email);
+  async function sendRecuperationEmail(data) {
+    const response = await api.sendRecuperationEmail(data);
     setSubmitIsLoading(false);
 
     if (response.status === 200) {
-      renderToast("success", `Email de recuperação enviado para ${email}`);
+      renderToast("success", `Email de recuperação enviado para ${data}`);
       closeModal();
       return;
     }
@@ -164,8 +158,7 @@ export default function AuthenticationModal() {
             name="name"
             type="text"
             placeholder="Nome completo"
-            onChange={(e) => handleFormData(e)}
-            value={formData.name}
+            ref={nameRef}
             required
           />
         )}
@@ -173,17 +166,15 @@ export default function AuthenticationModal() {
           name="email"
           type="email"
           placeholder="E-mail"
-          onChange={(e) => handleFormData(e)}
-          value={formData.email}
+          ref={emailRef}
           required
         />
         {page === "inscrever-se" && (
           <NumberFormat
             name="phone"
             placeholder="Número do celular"
-            onChange={(e) => handleFormData(e)}
             format={"(##) #####-####"}
-            value={formData.phone}
+            ref={phoneRef}
             required
           />
         )}
@@ -193,8 +184,7 @@ export default function AuthenticationModal() {
               name="password"
               type={isShowingPassword ? "text" : "password"}
               placeholder="Senha"
-              onChange={(e) => handleFormData(e)}
-              value={formData.password}
+              ref={passwordRef}
               required
             />
 
