@@ -14,8 +14,7 @@ import UpdateNewUserModal from "./components/UpdateNewUserModal";
 import NotFoundPage from "./pages/NotFoundPage";
 import { ToastContainer } from "react-toastify";
 import ScrollToTop from "./utils/ScrollToTop";
-import "./styles/reset.css";
-import "./styles/style.css";
+import GlobalStyles from "./styles/GlobalStyles";
 
 export default function App() {
   const { token, validateToken, userIsLoggedIn, userIsAdmin } =
@@ -54,6 +53,7 @@ export default function App() {
       </BrowserRouter>
       <AuthenticationModal />
       <UpdateNewUserModal />
+      <GlobalStyles />
       <ToastContainer />
     </>
   );
