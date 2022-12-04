@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import * as variables from "../../styles/variables";
 import Modal from "react-modal";
 
 export const StyledModal = styled(Modal)`
@@ -12,7 +13,7 @@ export const StyledModal = styled(Modal)`
 
   .close-icon {
     font-size: 2.4rem;
-    color: #e1e1e1;
+    color: ${variables.WHITE};
 
     position: absolute;
     top: 7px;
@@ -29,7 +30,7 @@ export const Title = styled.p`
   line-height: 1em;
   letter-spacing: 1.8px;
   text-transform: uppercase;
-  color: #96885f;
+  color: ${variables.DARK_YELLOW};
 
   text-align: center;
 
@@ -77,7 +78,7 @@ export const Input = styled.input`
   font-style: normal;
   font-weight: 800;
   letter-spacing: 0.7px;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   box-sizing: border-box;
   padding: 0 25px;
@@ -116,7 +117,7 @@ export const Button = styled.button`
   line-height: 1em;
   letter-spacing: 0.7px;
   text-transform: uppercase;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   display: flex;
   justify-content: center;
@@ -125,13 +126,13 @@ export const Button = styled.button`
   padding: 12px 58px;
 
   border-radius: 4px;
-  border: 5px solid #96885f;
+  border: 5px solid ${variables.DARK_YELLOW};
 
   cursor: pointer;
 
   :hover {
     transition: 0.3s ease-out;
-    background-color: #96885f;
+    background-color: ${variables.DARK_YELLOW};
   }
 
   @media (max-width: 739px) {

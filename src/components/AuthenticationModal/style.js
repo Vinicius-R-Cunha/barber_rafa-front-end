@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import * as variables from "../../styles/variables";
 import Modal from "react-modal";
 
 export const StyledModal = styled(Modal)`
@@ -11,7 +12,7 @@ export const StyledModal = styled(Modal)`
   position: relative;
   .close-button {
     font-size: 2.4rem;
-    color: #e1e1e1;
+    color: ${variables.WHITE};
 
     position: absolute;
     top: 7px;
@@ -28,7 +29,7 @@ export const Title = styled.p`
   line-height: 1em;
   letter-spacing: 1.8px;
   text-transform: uppercase;
-  color: #96885f;
+  color: ${variables.DARK_YELLOW};
 
   @media (max-width: 424px) {
     font-size: 1.9rem;
@@ -42,7 +43,7 @@ export const Description = styled.p`
   font-weight: 800;
   letter-spacing: 0.7px;
   text-align: center;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   margin-top: 15px;
 `;
@@ -67,7 +68,7 @@ export const InputsForm = styled.form`
     font-style: normal;
     font-weight: 800;
     letter-spacing: 0.7px;
-    color: #e1e1e1;
+    color: ${variables.WHITE};
 
     box-sizing: border-box;
     padding: 0 25px;
@@ -117,7 +118,7 @@ export const PasswordContainer = styled.div`
 
   .show-hide {
     font-size: 1.325rem;
-    color: #e1e1e1;
+    color: ${variables.WHITE};
 
     position: absolute;
     top: 17px;
@@ -145,14 +146,14 @@ export const NavigationText = styled.div`
   font-weight: 500;
   letter-spacing: 0.15px;
   text-decoration-line: underline;
-  color: #96885f;
+  color: ${variables.DARK_YELLOW};
 
   margin-top: 22px;
 
   cursor: pointer;
 
   :hover {
-    color: #e1e1e1;
+    color: ${variables.WHITE};
   }
 
   @media (max-width: 424px) {
@@ -173,7 +174,7 @@ export const ForgotPassword = styled.p`
   font-weight: 500;
   letter-spacing: 0.15px;
   text-decoration-line: underline;
-  color: #96885f;
+  color: ${variables.DARK_YELLOW};
 
   position: absolute;
   top: -18px;
@@ -181,7 +182,7 @@ export const ForgotPassword = styled.p`
   cursor: pointer;
 
   :hover {
-    color: #e1e1e1;
+    color: ${variables.WHITE};
   }
 
   @media (max-width: 424px) {
@@ -202,7 +203,7 @@ export const Button = styled.button`
   line-height: 1em;
   letter-spacing: 0.7px;
   text-transform: uppercase;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   display: flex;
   justify-content: center;
@@ -211,13 +212,13 @@ export const Button = styled.button`
   padding: 12px 23px;
 
   border-radius: 4px;
-  border: 5px solid #96885f;
+  border: 5px solid ${variables.DARK_YELLOW};
 
   cursor: pointer;
 
   :hover {
     transition: 0.3s ease-out;
-    background-color: #96885f;
+    background-color: ${variables.DARK_YELLOW};
   }
 
   @media (max-width: 494px) {
@@ -242,7 +243,7 @@ export const Spacer = styled.div`
   font-style: normal;
   font-weight: 800;
   letter-spacing: 0.15px;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   display: flex;
   justify-content: space-between;

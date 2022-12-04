@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import * as variables from "../../styles/variables";
 
 export const Container = styled.div`
   width: 100%;
@@ -8,7 +9,7 @@ export const Container = styled.div`
 
   padding: 112px 0;
 
-  background-color: #252525;
+  background-color: ${variables.DARK_GREY};
 
   @media (max-width: 767px) {
     padding: 50px 0;
@@ -69,7 +70,7 @@ export const BarberName = styled.p`
   line-height: 1em;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   padding-bottom: 25px;
 

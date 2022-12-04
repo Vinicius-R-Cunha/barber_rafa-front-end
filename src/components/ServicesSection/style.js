@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import * as variables from "../../styles/variables";
 
 export const Container = styled.div`
   width: 100%;
 
-  background-color: #252525;
+  background-color: ${variables.DARK_GREY};
 
   padding-bottom: 80px;
 `;
@@ -29,7 +30,7 @@ export const Title = styled.p`
   line-height: 1em;
   letter-spacing: 1.8px;
   text-transform: uppercase;
-  color: #96885f;
+  color: ${variables.DARK_YELLOW};
 
   @media (max-width: 750px) {
     font-size: 2.575rem;
@@ -100,7 +101,7 @@ export const NamePrice = styled.div`
   line-height: 1em;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   display: flex;
   justify-content: space-between;
@@ -152,7 +153,7 @@ export const ReadMore = styled.p`
   line-height: 1em;
   letter-spacing: 0.7px;
   text-transform: uppercase;
-  color: #96885f;
+  color: ${variables.DARK_YELLOW};
 
   display: flex;
   justify-content: flex-end;
@@ -198,7 +199,7 @@ export const Button = styled.button`
   font-weight: 800;
   line-height: 1em;
   letter-spacing: 0.7px;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   padding: 6px 10px;
 
@@ -207,13 +208,13 @@ export const Button = styled.button`
   align-items: center;
 
   border-radius: 4px;
-  border: 4px solid #96885f;
+  border: 4px solid ${variables.DARK_YELLOW};
 
   cursor: pointer;
 
   :hover {
     transition: 0.3s ease-out;
-    background-color: #96885f;
+    background-color: ${variables.DARK_YELLOW};
   }
 
   @media (max-width: 1023px) {

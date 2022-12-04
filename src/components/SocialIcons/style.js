@@ -1,8 +1,9 @@
 import styled from "styled-components";
+import * as variables from "../../styles/variables";
 
 export const Container = styled.div`
   font-size: 1.725rem;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   margin: 35px 0 52px;
 
@@ -16,13 +17,13 @@ export const Container = styled.div`
     padding: 10px;
 
     border-radius: 4px;
-    border: 4px solid #96885f;
+    border: 4px solid ${variables.DARK_YELLOW};
 
     cursor: pointer;
 
     :hover {
       transition: 0.3s ease-out;
-      background-color: #96885f;
+      background-color: ${variables.DARK_YELLOW};
     }
   }
 

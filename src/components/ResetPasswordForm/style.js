@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import * as variables from "../../styles/variables";
 
 export const Container = styled.div`
   width: 100%;
@@ -9,7 +10,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
 
-  background-color: #252525;
+  background-color: ${variables.DARK_GREY};
 `;
 
 export const Title = styled.p`
@@ -19,7 +20,7 @@ export const Title = styled.p`
   line-height: 1em;
   letter-spacing: 1.8px;
   text-transform: uppercase;
-  color: #96885f;
+  color: ${variables.DARK_YELLOW};
 
   @media (max-width: 424px) {
     font-size: 1.9rem;
@@ -46,7 +47,7 @@ export const PasswordContainer = styled.div`
 
   .show-hide {
     font-size: 1.325rem;
-    color: #e1e1e1;
+    color: ${variables.WHITE};
 
     position: absolute;
     top: 17px;
@@ -67,7 +68,7 @@ export const Input = styled.input`
   font-style: normal;
   font-weight: 800;
   letter-spacing: 0.7px;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   box-sizing: border-box;
   padding: 0 25px;
@@ -94,7 +95,7 @@ export const Button = styled.button`
   line-height: 1em;
   letter-spacing: 0.7px;
   text-transform: uppercase;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   display: flex;
   justify-content: center;
@@ -106,13 +107,13 @@ export const Button = styled.button`
   padding: 12px 23px;
 
   border-radius: 4px;
-  border: 5px solid #96885f;
+  border: 5px solid ${variables.DARK_YELLOW};
 
   cursor: pointer;
 
   :hover {
     transition: 0.3s ease-out;
-    background-color: #96885f;
+    background-color: ${variables.DARK_YELLOW};
   }
 
   @media (max-width: 494px) {

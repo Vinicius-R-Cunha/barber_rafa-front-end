@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import * as variables from "../../styles/variables";
 
 export const Container = styled.div`
   display: none;
@@ -40,7 +41,7 @@ export const Icons = styled.div`
   height: fit-content;
 
   font-size: 2.0125rem;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   display: flex;
   align-items: center;
@@ -58,7 +59,7 @@ export const Icons = styled.div`
 export const MenuContainer = styled.div`
   width: 100%;
 
-  background-color: #252525;
+  background-color: ${variables.DARK_GREY};
 
   position: absolute;
   top: 70px;
@@ -78,7 +79,7 @@ export const NavButton = styled.div`
   font-family: "Montserrat";
   font-size: 1rem;
   font-weight: 400;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   box-sizing: border-box;
   padding: 19px;

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import * as variables from "../../styles/variables";
 import ScrollContainer from "react-indiana-drag-scroll";
 
 export const Container = styled.div`
@@ -11,7 +12,7 @@ export const Container = styled.div`
 
   padding-top: 50px;
 
-  background-color: #252525;
+  background-color: ${variables.DARK_GREY};
 `;
 
 export const Title = styled.p`
@@ -21,7 +22,7 @@ export const Title = styled.p`
   line-height: 1em;
   letter-spacing: 1.8px;
   text-transform: uppercase;
-  color: #96885f;
+  color: ${variables.DARK_YELLOW};
 
   @media (max-width: 768px) {
     font-size: 2.375rem;
@@ -104,7 +105,7 @@ export const Author = styled.p`
   line-height: 1em;
   letter-spacing: 0.7px;
   text-transform: uppercase;
-  color: #96885f;
+  color: ${variables.DARK_YELLOW};
 
   padding-top: 20px;
 

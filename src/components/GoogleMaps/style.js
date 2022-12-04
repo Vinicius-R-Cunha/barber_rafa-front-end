@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import * as variables from "../../styles/variables";
 
 export const Container = styled.div`
   width: 100%;
@@ -6,7 +7,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
 
-  background-color: #252525;
+  background-color: ${variables.DARK_GREY};
 `;
 
 export const MapContainer = styled.div`

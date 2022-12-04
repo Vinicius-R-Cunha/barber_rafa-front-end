@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import * as variables from "../../styles/variables";
 import Modal from "react-modal";
 
 export const StyledModal = styled(Modal)`
@@ -26,7 +27,7 @@ export const Title = styled.p`
   line-height: 1em;
   letter-spacing: 1.8px;
   text-transform: uppercase;
-  color: #96885f;
+  color: ${variables.DARK_YELLOW};
 
   text-align: center;
   @media (max-width: 739px) {
@@ -56,7 +57,7 @@ export const Button = styled.button`
   line-height: 1em;
   letter-spacing: 0.7px;
   text-transform: uppercase;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   display: flex;
   justify-content: center;
@@ -65,13 +66,13 @@ export const Button = styled.button`
   padding: 12px 58px;
 
   border-radius: 4px;
-  border: 4px solid #96885f;
+  border: 4px solid ${variables.DARK_YELLOW};
 
   cursor: pointer;
 
   :hover {
     transition: 0.3s ease-out;
-    background-color: #96885f;
+    background-color: ${variables.DARK_YELLOW};
   }
 
   @media (max-width: 739px) {

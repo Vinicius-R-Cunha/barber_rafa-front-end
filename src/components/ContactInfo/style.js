@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import * as variables from "../../styles/variables";
 
 export const Container = styled.div`
   width: 100%;
@@ -9,7 +10,7 @@ export const Container = styled.div`
 
   padding-top: 112px;
 
-  background-color: #252525;
+  background-color: ${variables.DARK_GREY};
 
   @media (max-width: 768px) {
     padding-top: 50px;
@@ -63,7 +64,7 @@ export const Title = styled.p`
   line-height: 2em;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   margin-top: 15px;
 

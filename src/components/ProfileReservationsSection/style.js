@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import * as variables from "../../styles/variables";
 
 export const Container = styled.div`
   width: 100%;
@@ -9,7 +10,7 @@ export const Container = styled.div`
 
   padding: 20px 0 50px 0;
 
-  background-color: #252525;
+  background-color: ${variables.DARK_GREY};
 `;
 
 export const Message = styled.p`
@@ -19,7 +20,7 @@ export const Message = styled.p`
   line-height: 1em;
   letter-spacing: 0.7px;
   text-align: center;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   margin-top: ${(props) => (props.marginTop ? props.marginTop : "50px")};
 
@@ -91,12 +92,12 @@ export const Summary = styled.p`
   line-height: 1.2em;
   letter-spacing: 0.7px;
   text-align: center;
-  color: #96885f;
+  color: ${variables.DARK_YELLOW};
 
   margin-bottom: 15px;
 
   :last-of-type {
-    color: #e1e1e1;
+    color: ${variables.WHITE};
     margin-bottom: 0;
   }
 
@@ -157,7 +158,7 @@ export const Button = styled.button`
   font-weight: 800;
   line-height: 1em;
   letter-spacing: 0.7px;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   display: flex;
   justify-content: center;
@@ -166,13 +167,13 @@ export const Button = styled.button`
   margin-top: 50px;
 
   border-radius: 4px;
-  border: 5px solid #96885f;
+  border: 5px solid ${variables.DARK_YELLOW};
 
   cursor: pointer;
 
   :hover {
     transition: 0.3s ease-out;
-    background-color: #96885f;
+    background-color: ${variables.DARK_YELLOW};
   }
 
   .whats-icon {

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import * as variables from "../../styles/variables";
 
 export const Container = styled.div`
   width: 100%;
@@ -91,7 +92,7 @@ export const HeaderDiv = styled.div`
 export const MenuContainer = styled.div`
   width: 160px;
 
-  background-color: #252525;
+  background-color: ${variables.DARK_GREY};
 
   position: absolute;
   top: 110px;
@@ -115,7 +116,7 @@ export const ProfileButton = styled.div`
   font-family: "Montserrat";
   font-size: 1rem;
   font-weight: 400;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   display: flex;
   justify-content: flex-end;
@@ -126,7 +127,7 @@ export const ProfileButton = styled.div`
   cursor: pointer;
 
   :hover {
-    color: #96885f;
+    color: ${variables.DARK_YELLOW};
     transition: 0.1s ease-in-out;
   }
 `;
@@ -147,7 +148,7 @@ export const NavButton = styled.div`
   letter-spacing: 0px;
   font-weight: 400;
   line-height: 1.176em;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   display: flex;
   align-items: center;
@@ -157,7 +158,7 @@ export const NavButton = styled.div`
   cursor: pointer;
 
   :hover {
-    color: #96885f;
+    color: ${variables.DARK_YELLOW};
     transition: 0.1s ease-in-out;
   }
 
@@ -187,7 +188,7 @@ export const About = styled.div`
   letter-spacing: 2.2px;
   text-align: center;
   text-transform: uppercase;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   margin-top: ${(props) => (props.page === "home" ? "200px" : "95px")};
 
@@ -200,7 +201,7 @@ export const About = styled.div`
   z-index: 1;
 
   span {
-    color: #96885f;
+    color: ${variables.DARK_YELLOW};
   }
 
   @media (max-width: 1100px) {
@@ -245,14 +246,14 @@ export const BookButton = styled.button`
   line-height: 1em;
   text-transform: uppercase;
   letter-spacing: 0.7px;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   display: flex;
   justify-content: center;
   align-items: center;
 
   border-radius: 4px;
-  border: 5px solid #96885f;
+  border: 5px solid ${variables.DARK_YELLOW};
 
   z-index: 1;
 
@@ -260,14 +261,14 @@ export const BookButton = styled.button`
 
   :hover {
     transition: 0.3s ease-out;
-    background-color: #96885f;
+    background-color: ${variables.DARK_YELLOW};
   }
 
   @media (max-width: 1100px) {
     width: 260px;
     height: 53px;
 
-    border: 3px solid #96885f;
+    border: 3px solid ${variables.DARK_YELLOW};
   }
 
   @media (max-width: 767px) {

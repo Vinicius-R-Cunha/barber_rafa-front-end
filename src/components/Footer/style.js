@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import * as variables from "../../styles/variables";
 
 export const Container = styled.footer`
   width: 100%;
@@ -9,7 +10,7 @@ export const Container = styled.footer`
   flex-direction: column;
   align-items: center;
 
-  background-color: #252525;
+  background-color: ${variables.DARK_GREY};
 
   @media (max-width: 768px) {
     padding: 0 0 40px 0;
@@ -38,7 +39,7 @@ export const NavButton = styled.div`
   letter-spacing: 0px;
   font-weight: 400;
   line-height: 3.076em;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   display: flex;
   justify-content: center;
@@ -49,7 +50,7 @@ export const NavButton = styled.div`
   cursor: pointer;
 
   :hover {
-    color: #96885f;
+    color: ${variables.DARK_YELLOW};
     transition: 0.1s ease-in-out;
   }
 

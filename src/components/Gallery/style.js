@@ -1,10 +1,11 @@
 import styled from "styled-components";
+import * as variables from "../../styles/variables";
 import ScrollContainer from "react-indiana-drag-scroll";
 
 export const Container = styled.div`
   width: 100%;
 
-  background-color: #252525;
+  background-color: ${variables.DARK_GREY};
 
   padding-bottom: 70px;
 

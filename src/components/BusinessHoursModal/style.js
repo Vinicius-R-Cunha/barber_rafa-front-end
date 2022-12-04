@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import * as variables from "../../styles/variables";
 import Modal from "react-modal";
 
 export const StyledModal = styled(Modal)`
@@ -12,7 +13,7 @@ export const StyledModal = styled(Modal)`
 
   .close-icon {
     font-size: 2.4rem;
-    color: #e1e1e1;
+    color: ${variables.WHITE};
 
     position: absolute;
     top: 7px;
@@ -23,7 +24,7 @@ export const StyledModal = styled(Modal)`
 
   .go-back-icon {
     font-size: 2.4rem;
-    color: #e1e1e1;
+    color: ${variables.WHITE};
 
     position: absolute;
     top: 7px;
@@ -41,7 +42,7 @@ export const Title = styled.p`
   letter-spacing: 1.8px;
   text-align: center;
   text-transform: uppercase;
-  color: #96885f;
+  color: ${variables.DARK_YELLOW};
 
   margin-bottom: 35px;
 
@@ -58,21 +59,21 @@ export const WeekDay = styled.div`
   font-weight: 500;
   line-height: 1.2em;
   letter-spacing: 0.7px;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   display: flex;
   align-items: center;
 
   padding: 18px;
 
-  border-top: 1px solid #96885f;
+  border-top: 1px solid ${variables.DARK_YELLOW};
 
   position: relative;
 
   cursor: pointer;
 
   :last-of-type {
-    border-bottom: 1px solid #96885f;
+    border-bottom: 1px solid ${variables.DARK_YELLOW};
   }
 
   p {
@@ -105,7 +106,7 @@ export const CheckBox = styled.div`
     line-height: 1.4em;
     text-align: center;
     letter-spacing: 1.2px;
-    color: #e1e1e1;
+    color: ${variables.WHITE};
   }
 
   input {
@@ -151,7 +152,7 @@ export const Schedule = styled.div`
     line-height: 1.4em;
     text-align: center;
     letter-spacing: 1.2px;
-    color: #e1e1e1;
+    color: ${variables.WHITE};
   }
 
   input {
@@ -179,7 +180,7 @@ export const Button = styled.button`
   line-height: 1em;
   letter-spacing: 0.7px;
   text-transform: uppercase;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   display: flex;
   justify-content: center;
@@ -188,7 +189,7 @@ export const Button = styled.button`
   padding: 12px 58px;
 
   border-radius: 4px;
-  border: 4px solid #96885f;
+  border: 4px solid ${variables.DARK_YELLOW};
 
   margin-top: 10px;
 
@@ -196,7 +197,7 @@ export const Button = styled.button`
 
   :hover {
     transition: 0.3s ease-out;
-    background-color: #96885f;
+    background-color: ${variables.DARK_YELLOW};
   }
 
   @media (max-width: 739px) {

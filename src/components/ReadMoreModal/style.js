@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import * as variables from "../../styles/variables";
 import Modal from "react-modal";
 
 export const StyledModal = styled(Modal)`
@@ -15,7 +16,7 @@ export const ModalHeader = styled.div`
 
   .close-icon {
     font-size: 1.888rem;
-    color: #e1e1e1;
+    color: ${variables.WHITE};
 
     margin-top: -5px;
     margin-right: -14px;
@@ -55,7 +56,7 @@ export const Title = styled.p`
   line-height: 1em;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 `;
 
 export const Description = styled.div`
@@ -104,7 +105,7 @@ export const ButtonContainer = styled.div`
     font-weight: 800;
     line-height: 1em;
     letter-spacing: 0.7px;
-    color: #e1e1e1;
+    color: ${variables.WHITE};
 
     padding: 19px 150px;
 
@@ -113,13 +114,13 @@ export const ButtonContainer = styled.div`
     align-items: center;
 
     border-radius: 4px;
-    border: 4px solid #96885f;
+    border: 4px solid ${variables.DARK_YELLOW};
 
     cursor: pointer;
 
     :hover {
       transition: 0.3s ease-out;
-      background-color: #96885f;
+      background-color: ${variables.DARK_YELLOW};
     }
   }
 
@@ -158,7 +159,7 @@ export const Price = styled.p`
   line-height: 1em;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   @media (max-width: 640px) {
     font-size: 1.388rem;
@@ -202,7 +203,7 @@ export const Button = styled.button`
   font-weight: 800;
   line-height: 1em;
   letter-spacing: 0.7px;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   padding: 19px 150px;
 
@@ -211,13 +212,13 @@ export const Button = styled.button`
   align-items: center;
 
   border-radius: 4px;
-  border: 4px solid #96885f;
+  border: 4px solid ${variables.DARK_YELLOW};
 
   cursor: pointer;
 
   :hover {
     transition: 0.3s ease-out;
-    background-color: #96885f;
+    background-color: ${variables.DARK_YELLOW};
   }
 
   @media (max-width: 640px) {

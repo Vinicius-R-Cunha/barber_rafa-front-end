@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import * as variables from "../../styles/variables";
 
 export const Container = styled.div`
   width: 100%;
@@ -7,7 +8,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
 
-  background-color: #252525;
+  background-color: ${variables.DARK_GREY};
 
   padding: 80px 0;
 `;
@@ -37,7 +38,7 @@ export const Button = styled.button`
   letter-spacing: 0.7px;
   text-transform: uppercase;
   text-align: center;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   display: flex;
   justify-content: center;
@@ -46,13 +47,13 @@ export const Button = styled.button`
   padding: 12px 48px;
 
   border-radius: 4px;
-  border: 5px solid #96885f;
+  border: 5px solid ${variables.DARK_YELLOW};
 
   cursor: pointer;
 
   :hover {
     transition: 0.3s ease-out;
-    background-color: #96885f;
+    background-color: ${variables.DARK_YELLOW};
   }
 `;
 
@@ -90,7 +91,7 @@ export const Title = styled.p`
   line-height: 1em;
   letter-spacing: 1.8px;
   text-transform: uppercase;
-  color: #96885f;
+  color: ${variables.DARK_YELLOW};
 
   @media (max-width: 1200px) {
     font-size: 2.575rem;
@@ -216,7 +217,7 @@ export const NamePrice = styled.div`
   line-height: 1em;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   display: flex;
   justify-content: space-between;

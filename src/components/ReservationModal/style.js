@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import * as variables from "../../styles/variables";
 import Modal from "react-modal";
 
 export const StyledModal = styled(Modal)`
@@ -16,7 +17,7 @@ export const StyledModal = styled(Modal)`
 
   .close-icon {
     font-size: 1.888rem;
-    color: #e1e1e1;
+    color: ${variables.WHITE};
 
     position: absolute;
     top: 15px;
@@ -63,7 +64,7 @@ export const Title = styled.p`
   line-height: 1em;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 `;
 
 export const AddCancelServices = styled.div`
@@ -88,7 +89,7 @@ export const AddCancelServices = styled.div`
     line-height: 1em;
     text-align: center;
     letter-spacing: 0.4px;
-    color: #e1e1e1;
+    color: ${variables.WHITE};
 
     border-radius: 4px;
 
@@ -133,7 +134,7 @@ export const DateStatus = styled.div`
   line-height: 1em;
   letter-spacing: 0.7px;
   text-align: center;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   margin-top: 35px;
 
@@ -155,7 +156,7 @@ export const ScheduleContainer = styled.div`
 
   .nav-arrow-left {
     font-size: 2rem;
-    color: #e1e1e1;
+    color: ${variables.WHITE};
 
     position: absolute;
     left: -20px;
@@ -165,7 +166,7 @@ export const ScheduleContainer = styled.div`
 
   .nav-arrow-right {
     font-size: 2rem;
-    color: #e1e1e1;
+    color: ${variables.WHITE};
 
     position: absolute;
     right: -20px;
@@ -242,7 +243,7 @@ export const Timetable = styled.p`
   font-weight: 400;
   line-height: 1em;
   letter-spacing: 0.7px;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   display: flex;
   justify-content: center;
@@ -252,13 +253,13 @@ export const Timetable = styled.p`
   padding: 12px 10px;
 
   border-radius: 5px;
-  border: 2px solid #96885f;
+  border: 2px solid ${variables.DARK_YELLOW};
 
   cursor: pointer;
 
   :hover {
     transition: 0.3s ease-out;
-    background-color: #96885f;
+    background-color: ${variables.DARK_YELLOW};
   }
 
   @media (max-width: 424px) {
@@ -293,7 +294,7 @@ export const Price = styled.p`
   line-height: 1em;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   @media (max-width: 640px) {
     font-size: 1.188rem;
@@ -337,7 +338,7 @@ export const Button = styled.button`
   font-weight: 800;
   line-height: 1em;
   letter-spacing: 0.7px;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   padding: 23px 80px;
 
@@ -346,13 +347,13 @@ export const Button = styled.button`
   align-items: center;
 
   border-radius: 4px;
-  border: 4px solid #96885f;
+  border: 4px solid ${variables.DARK_YELLOW};
 
   cursor: pointer;
 
   :hover {
     transition: 0.3s ease-out;
-    background-color: #96885f;
+    background-color: ${variables.DARK_YELLOW};
   }
 
   @media (max-width: 640px) {

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import * as variables from "../../styles/variables";
 
 export const Container = styled.div`
   width: 100%;
@@ -10,7 +11,7 @@ export const Container = styled.div`
 
   padding: 112px 0;
 
-  background-color: #252525;
+  background-color: ${variables.DARK_GREY};
 
   position: relative;
 
@@ -55,7 +56,7 @@ export const Title = styled.p`
   letter-spacing: 1px;
   text-transform: uppercase;
   text-align: center;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   padding-bottom: 25px;
 
@@ -84,7 +85,7 @@ export const Button = styled.button`
   line-height: 1em;
   text-transform: uppercase;
   letter-spacing: 0.7px;
-  color: #e1e1e1;
+  color: ${variables.WHITE};
 
   margin-top: 30px;
 
@@ -93,7 +94,7 @@ export const Button = styled.button`
   align-items: center;
 
   border-radius: 4px;
-  border: 5px solid #96885f;
+  border: 5px solid ${variables.DARK_YELLOW};
 
   z-index: 1;
 
@@ -101,14 +102,14 @@ export const Button = styled.button`
 
   :hover {
     transition: 0.3s ease-out;
-    background-color: #96885f;
+    background-color: ${variables.DARK_YELLOW};
   }
 
   @media (max-width: 1100px) {
     width: 260px;
     height: 53px;
 
-    border: 3px solid #96885f;
+    border: 3px solid ${variables.DARK_YELLOW};
   }
 
   @media (max-width: 767px) {

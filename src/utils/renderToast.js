@@ -13,4 +13,6 @@ export default function renderToast(type, message) {
 
   if (type === "success") return toast.success(message, toastStyles);
   if (type === "error") return toast.error(message, toastStyles);
+
+  return toast.info(message, toastStyles);
 }
