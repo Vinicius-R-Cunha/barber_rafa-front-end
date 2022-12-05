@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { IoEye, IoEyeOff, IoClose } from "react-icons/io5";
+import { IoClose } from "react-icons/io5";
 import { useUserContext } from "../../contexts/UserContext";
 import * as api from "../../services/api";
 import {
@@ -7,7 +7,6 @@ import {
   Title,
   Description,
   InputsForm,
-  PasswordContainer,
   LinkButtonDiv,
   NavigationText,
   ForgotPassword,
@@ -21,6 +20,7 @@ import NumberFormat from "react-number-format";
 import { signInWithGoogle } from "../../services/Firebase";
 import renderToast from "../../utils/renderToast";
 import { renderDotsLoading } from "../../utils/renderDotsLoading";
+import PasswordInput from "../PasswordInput";
 // import { signInWithGoogle, signInWithFacebook } from "../../services/Firebase";
 
 export default function AuthenticationModal() {
@@ -155,23 +155,15 @@ export default function AuthenticationModal() {
       <InputsForm>
         {page === "inscrever-se" && (
           <input
-            name="name"
             type="text"
             placeholder="Nome completo"
             ref={nameRef}
             required
           />
         )}
-        <input
-          name="email"
-          type="email"
-          placeholder="E-mail"
-          ref={emailRef}
-          required
-        />
+        <input type="email" placeholder="E-mail" ref={emailRef} required />
         {page === "inscrever-se" && (
           <NumberFormat
-            name="phone"
             placeholder="Número do celular"
             format={"(##) #####-####"}
             ref={phoneRef}
@@ -179,27 +171,7 @@ export default function AuthenticationModal() {
           />
         )}
         {page !== "redefinir senha" && (
-          <PasswordContainer>
-            <input
-              name="password"
-              type={isShowingPassword ? "text" : "password"}
-              placeholder="Senha"
-              ref={passwordRef}
-              required
-            />
-
-            {isShowingPassword ? (
-              <IoEyeOff
-                onClick={() => setIsShowingPassword(!isShowingPassword)}
-                className="show-hide"
-              />
-            ) : (
-              <IoEye
-                onClick={() => setIsShowingPassword(!isShowingPassword)}
-                className="show-hide"
-              />
-            )}
-          </PasswordContainer>
+          <PasswordInput placeholder={"Senha"} reference={passwordRef} />
         )}
         <LinkButtonDiv>
           <NavigationText onClick={togglePage}>

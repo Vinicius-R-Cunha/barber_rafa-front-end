@@ -111,23 +111,6 @@ export const InputsForm = styled.form`
   }
 `;
 
-export const PasswordContainer = styled.div`
-  width: 100%;
-
-  position: relative;
-
-  .show-hide {
-    font-size: 1.325rem;
-    color: ${variables.WHITE};
-
-    position: absolute;
-    top: 17px;
-    right: 23px;
-
-    cursor: pointer;
-  }
-`;
-
 export const LinkButtonDiv = styled.div`
   width: 100%;
 
