@@ -10,6 +10,7 @@ import {
   Button,
   modalStyles,
 } from "./style";
+import handleApiErrors from "../../utils/handleApiErrors";
 
 export default function DeleteAccountModal({
   deleteAccountModalIsOpen,
@@ -38,16 +39,8 @@ export default function DeleteAccountModal({
       return renderToast("success", "Conta excluída com sucesso");
     }
 
-    return handleError(response.data);
-  }
-
-  function handleError(responseData) {
-    if (responseData) return renderToast("error", responseData);
-
-    return renderToast(
-      "error",
-      "Erro no servidor, tente novamente em alguns momentos"
-    );
+    handleApiErrors(response);
+    return;
   }
 
   function clearToken() {

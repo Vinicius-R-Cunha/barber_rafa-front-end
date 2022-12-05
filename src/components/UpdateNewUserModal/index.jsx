@@ -5,6 +5,7 @@ import * as api from "../../services/api";
 import renderToast from "../../utils/renderToast";
 import { renderDotsLoading } from "../../utils/renderDotsLoading";
 import { StyledModal, Title, InputsForm, Button, modalStyles } from "./style";
+import handleApiErrors from "../../utils/handleApiErrors";
 
 export default function UpdateNewUserModal() {
   const { token, setToken, userIsNewUser, setUserIsNewUser } = useUserContext();
@@ -31,26 +32,8 @@ export default function UpdateNewUserModal() {
       return;
     }
 
-    handleResponseErrors(response);
+    handleApiErrors(response);
     setSubmitIsLoading(false);
-    return;
-  }
-
-  function handleResponseErrors(response) {
-    if (response.status === 409) {
-      renderToast("error", response.data);
-      return;
-    }
-
-    if (response.status === 422) {
-      renderToast("error", response.data.error);
-      return;
-    }
-
-    renderToast(
-      "error",
-      "Erro no servidor, tente novamente em alguns momentos"
-    );
     return;
   }
 

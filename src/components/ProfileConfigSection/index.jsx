@@ -13,6 +13,7 @@ import {
   Action,
   DeleteAccount,
 } from "./style";
+import handleApiErrors from "../../utils/handleApiErrors";
 
 export default function ProfileConfigSection({ setDeleteAccountModalIsOpen }) {
   const { userData, setUserData, token } = useUserContext();
@@ -68,25 +69,13 @@ export default function ProfileConfigSection({ setDeleteAccountModalIsOpen }) {
     setIsLoading(false);
     setName("");
     setPhone("");
+
     if (response.status === 200) {
       renderToast("success", "Alterado com sucesso!");
       return;
     }
 
-    if (response.status === 409) {
-      renderToast("error", response.data);
-      return;
-    }
-
-    if (response.status === 422) {
-      renderToast("error", response.data.error);
-      return;
-    }
-
-    renderToast(
-      "error",
-      "Erro no servidor, tente novamente em alguns momentos"
-    );
+    handleApiErrors(response);
     return;
   }
 

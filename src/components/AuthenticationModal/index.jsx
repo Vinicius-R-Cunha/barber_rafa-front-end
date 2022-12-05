@@ -21,6 +21,7 @@ import { signInWithGoogle } from "../../services/Firebase";
 import renderToast from "../../utils/renderToast";
 import { renderDotsLoading } from "../../utils/renderDotsLoading";
 import PasswordInput from "../PasswordInput";
+import handleApiErrors from "../../utils/handleApiErrors";
 // import { signInWithGoogle, signInWithFacebook } from "../../services/Firebase";
 
 export default function AuthenticationModal() {
@@ -32,7 +33,6 @@ export default function AuthenticationModal() {
   } = useUserContext();
 
   const [page, setPage] = useState("entrar");
-  const [isShowingPassword, setIsShowingPassword] = useState(false);
   const [submitIsLoading, setSubmitIsLoading] = useState(false);
   const nameRef = useRef(null);
   const emailRef = useRef(null);
@@ -44,7 +44,6 @@ export default function AuthenticationModal() {
     setAuthenticationIsOpen(false);
 
     setPage("entrar");
-    setIsShowingPassword(false);
   }
 
   function handleSubmit(e) {
@@ -77,7 +76,7 @@ export default function AuthenticationModal() {
       return;
     }
 
-    handleResponseErrors(response);
+    handleApiErrors(response);
     return;
   }
 
@@ -93,7 +92,7 @@ export default function AuthenticationModal() {
       return;
     }
 
-    handleResponseErrors(response);
+    handleApiErrors(response);
     return;
   }
 
@@ -107,27 +106,8 @@ export default function AuthenticationModal() {
       return;
     }
 
-    handleResponseErrors(response);
+    handleApiErrors(response);
     return;
-  }
-
-  function handleResponseErrors(response) {
-    if (response.status === "loginCancelled") return;
-
-    if (response.status === 409) {
-      renderToast("error", response.data);
-      return;
-    }
-
-    if (response.status === 422) {
-      renderToast("error", response.data.error);
-      return;
-    }
-
-    return renderToast(
-      "error",
-      "Erro no servidor, tente novamente em alguns momentos"
-    );
   }
 
   function togglePage() {

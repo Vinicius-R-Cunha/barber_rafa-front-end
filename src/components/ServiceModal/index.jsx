@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { useUserContext } from "../../contexts/UserContext";
 import * as api from "../../services/api";
+import handleApiErrors from "../../utils/handleApiErrors";
 import renderToast from "../../utils/renderToast";
 import {
   StyledModal,
@@ -115,7 +116,7 @@ export default function ServiceModal({
     );
     if (response.status === 200) return handleSuccess("Serviço editado!");
 
-    return handleError(response.data);
+    return handleApiErrors(response);
   }
 
   function handleSuccess(message) {
@@ -123,15 +124,6 @@ export default function ServiceModal({
     renderPage();
 
     return renderToast("success", message);
-  }
-
-  function handleError(responseData) {
-    if (responseData) return renderToast("error", responseData);
-
-    return renderToast(
-      "error",
-      "Erro no servidor, tente novamente em alguns momentos"
-    );
   }
 
   function handleFormData(e) {

@@ -5,6 +5,7 @@ import { Container, Title, InputsForm, Button } from "./style";
 import * as api from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import PasswordInput from "../PasswordInput";
+import handleApiErrors from "../../utils/handleApiErrors";
 
 export default function ResetPasswordForm({ hash }) {
   const navigate = useNavigate();
@@ -33,21 +34,7 @@ export default function ResetPasswordForm({ hash }) {
       return;
     }
 
-    handleResponseErrors(response);
-    return;
-  }
-
-  function handleResponseErrors(response) {
-    if (response.status === 422) {
-      renderToast("error", response.data.error);
-      return;
-    }
-
-    if (response.data) {
-      renderToast("error", response.data);
-      return;
-    }
-
+    handleApiErrors(response);
     return;
   }
 

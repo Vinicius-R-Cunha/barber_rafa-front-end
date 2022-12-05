@@ -12,6 +12,7 @@ import {
   Button,
   modalStyles,
 } from "./style";
+import handleApiErrors from "../../utils/handleApiErrors";
 
 export default function CategoryModal({
   categoryModalIsOpen,
@@ -51,14 +52,14 @@ export default function CategoryModal({
     const response = await api.createCategory(token, { title });
     if (response.status === 201) return handleSuccess("Categoria criada!");
 
-    return handleError(response.data);
+    return handleApiErrors(response);
   }
 
   async function deleteCategory() {
     const response = await api.deleteCategory(token, categoryData._id);
     if (response.status === 200) return handleSuccess("Categoria excluída!");
 
-    return handleError(response.data);
+    return handleApiErrors(response);
   }
 
   async function editCategory() {
@@ -67,7 +68,7 @@ export default function CategoryModal({
     });
     if (response.status === 200) return handleSuccess("Categoria editada!");
 
-    return handleError(response.data);
+    return handleApiErrors(response);
   }
 
   function handleSuccess(message) {
@@ -75,15 +76,6 @@ export default function CategoryModal({
     renderPage();
 
     return renderToast("success", message);
-  }
-
-  function handleError(responseData) {
-    if (responseData) return renderToast("error", responseData);
-
-    return renderToast(
-      "error",
-      "Erro no servidor, tente novamente em alguns momentos"
-    );
   }
 
   return (
