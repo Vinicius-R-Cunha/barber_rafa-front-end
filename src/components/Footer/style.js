@@ -4,17 +4,13 @@ import * as variables from "../../styles/variables";
 export const Container = styled.footer`
   width: 100%;
 
-  padding: 20px 0 80px 0;
+  padding: 20px 0 40px 0;
 
   display: flex;
   flex-direction: column;
   align-items: center;
 
   background-color: ${variables.DARK_GREY};
-
-  @media (max-width: 768px) {
-    padding: 0 0 40px 0;
-  }
 `;
 
 export const FooterLogo = styled.img`
