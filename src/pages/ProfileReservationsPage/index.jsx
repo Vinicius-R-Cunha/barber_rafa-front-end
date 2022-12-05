@@ -3,7 +3,7 @@ import { useUserContext } from "../../contexts/UserContext";
 import * as api from "../../services/api";
 import renderToast from "../../utils/renderToast";
 import HeaderSection from "../../components/HeaderSection";
-import Footer from "../../components/Footer";
+
 import ProfileReservationsSection from "../../components/ProfileReservationsSection";
 import Loading from "../../components/Loading";
 import CancelReservationModal from "../../components/CancelReservationModal";
@@ -37,7 +37,6 @@ export default function ProfileReservationsPage() {
       <>
         <HeaderSection page="profile" title="Reservas" />
         <Loading />
-        <Footer />
       </>
     );
   }
@@ -57,7 +56,6 @@ export default function ProfileReservationsPage() {
         renderPage={renderPage}
         eventId={eventId}
       />
-      <Footer />
     </>
   );
 }

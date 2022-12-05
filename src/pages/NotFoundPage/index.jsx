@@ -1,5 +1,5 @@
 import HeaderSection from "../../components/HeaderSection";
-import Footer from "../../components/Footer";
+
 import * as variables from "../../styles/variables";
 
 export default function NotFoundPage() {
@@ -13,7 +13,6 @@ export default function NotFoundPage() {
           height: "100px",
         }}
       />
-      <Footer />
     </>
   );
 }

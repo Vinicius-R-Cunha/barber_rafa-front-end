@@ -2,7 +2,6 @@ import HeaderSection from "../../components/HeaderSection";
 import AboutSection from "../../components/AboutSection";
 import Gallery from "../../components/Gallery";
 import CommentsSection from "../../components/CommentsSection";
-import Footer from "../../components/Footer";
 
 export default function AboutPage() {
   return (
@@ -11,7 +10,6 @@ export default function AboutPage() {
       <AboutSection />
       <Gallery />
       <CommentsSection />
-      <Footer />
     </>
   );
 }

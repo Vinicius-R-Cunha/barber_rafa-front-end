@@ -4,7 +4,7 @@ import * as api from "../../services/api";
 import renderToast from "../../utils/renderToast";
 import HeaderSection from "../../components/HeaderSection";
 import AdminSection from "../../components/AdminSection";
-import Footer from "../../components/Footer";
+
 import Loading from "../../components/Loading";
 import CategoryModal from "../../components/CategoryModal";
 import ServiceModal from "../../components/ServiceModal";
@@ -106,8 +106,6 @@ export default function AdminPage() {
         type={serviceModalType}
         renderPage={renderPage}
       />
-
-      <Footer />
     </>
   );
 }

@@ -5,7 +5,7 @@ import renderToast from "../../utils/renderToast";
 import { useUserContext } from "../../contexts/UserContext";
 import HeaderSection from "../../components/HeaderSection";
 import ServicesSection from "../../components/ServicesSection";
-import Footer from "../../components/Footer";
+
 import Loading from "../../components/Loading";
 import ReadMoreModal from "../../components/ReadMoreModal";
 import ReservationModal from "../../components/ReservationModal";
@@ -61,7 +61,6 @@ export default function ServicesPage() {
       <>
         <HeaderSection page={"services"} title="Serviços" />
         <Loading />
-        <Footer />
       </>
     );
   }
@@ -88,7 +87,6 @@ export default function ServicesPage() {
         setWantedReservations={setWantedReservations}
         setIsChoosingMoreServices={setIsChoosingMoreServices}
       />
-      <Footer />
     </>
   );
 }

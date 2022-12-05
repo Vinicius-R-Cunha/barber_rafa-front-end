@@ -11,6 +11,7 @@ import AdminPage from "./pages/AdminPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import AuthenticationModal from "./components/AuthenticationModal";
 import UpdateNewUserModal from "./components/UpdateNewUserModal";
+import Footer from "./components/Footer";
 import NotFoundPage from "./pages/NotFoundPage";
 import { ToastContainer } from "react-toastify";
 import ScrollToTop from "./utils/ScrollToTop";
@@ -50,6 +51,7 @@ export default function App() {
           />
           <Route path={"*"} element={<NotFoundPage />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
       <AuthenticationModal />
       <UpdateNewUserModal />

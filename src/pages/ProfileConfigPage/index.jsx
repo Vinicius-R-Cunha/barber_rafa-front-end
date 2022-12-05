@@ -1,5 +1,5 @@
 import HeaderSection from "../../components/HeaderSection";
-import Footer from "../../components/Footer";
+
 import ProfileConfigSection from "../../components/ProfileConfigSection";
 import DeleteAccountModal from "../../components/DeleteAccountModal";
 import { useState } from "react";
@@ -18,7 +18,6 @@ export default function ProfileConfigPage() {
         deleteAccountModalIsOpen={deleteAccountModalIsOpen}
         setDeleteAccountModalIsOpen={setDeleteAccountModalIsOpen}
       />
-      <Footer />
     </>
   );
 }
