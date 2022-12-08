@@ -10,23 +10,19 @@ import handleApiErrors from "../../utils/handleApiErrors";
 export default function ResetPasswordForm({ hash }) {
   const navigate = useNavigate();
 
-  const [submitIsLoading, setSubmitIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const passwordRef = useRef(null);
   const passwordConfirmationRef = useRef(null);
 
-  async function handleSubmit(e) {
+  async function resetPassword(e) {
     e.preventDefault();
-    setSubmitIsLoading(true);
 
-    return resetPassword();
-  }
-
-  async function resetPassword() {
+    setLoading(true);
     const response = await api.resetPassword(hash, {
       password: passwordRef.current.value,
       passwordConfirmation: passwordConfirmationRef.current.value,
     });
-    setSubmitIsLoading(false);
+    setLoading(false);
 
     if (response.status === 200) {
       navigate("/");
@@ -48,12 +44,12 @@ export default function ResetPasswordForm({ hash }) {
           reference={passwordConfirmationRef}
         />
 
-        {submitIsLoading ? (
+        {loading ? (
           <Button type="button" disabled>
             {renderDotsLoading()}
           </Button>
         ) : (
-          <Button onClick={(e) => handleSubmit(e)}>Redefinir</Button>
+          <Button onClick={resetPassword}>Redefinir</Button>
         )}
       </InputsForm>
     </Container>

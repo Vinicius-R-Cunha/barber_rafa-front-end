@@ -11,16 +11,17 @@ export default function ResetPasswordPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    renderPage();
+    async function hashValidation() {
+      const response = await api.validateHash(hash);
+      if (response.status !== 200) return navigate("/");
+
+      setShowPage(true);
+      return;
+    }
+
+    hashValidation();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hash]);
-
-  async function renderPage() {
-    const response = await api.validateHash(hash);
-    if (response.status !== 200) return navigate("/");
-
-    return setShowPage(true);
-  }
 
   return <>{showPage && <ResetPasswordForm hash={hash} />}</>;
 }
