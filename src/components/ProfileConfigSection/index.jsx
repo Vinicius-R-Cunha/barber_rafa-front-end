@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useUserContext } from "../../contexts/UserContext";
 import * as api from "../../services/api";
 import renderToast from "../../utils/renderToast";
@@ -9,45 +9,44 @@ import {
   InputContainer,
   FieldName,
   Input,
-  StyledNumberFormat,
   Action,
   DeleteAccount,
 } from "./style";
 import handleApiErrors from "../../utils/handleApiErrors";
+import PhoneNumberInput from "../PhoneNumberInput";
 
 export default function ProfileConfigSection({ setDeleteAccountModalIsOpen }) {
   const { userData, setUserData, token } = useUserContext();
 
+  const nameRef = useRef(null);
+  const phoneRef = useRef(null);
+
   const [change, setChange] = useState("");
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   async function changeInformation(field) {
-    if (change === field) {
-      setIsLoading(true);
-      setChange("");
-      if (field === "name") {
-        const response = await api.updateUser(token, { name }, "name");
-        if (response.status === 200) setUserData({ ...userData, name });
+    const name = nameRef.current.value;
+    const phone = phoneRef.current.value;
+    const input = field === "name" ? name : phone;
+    nameRef.current.value = "";
+    phoneRef.current.value = "";
 
-        handleResponse(response);
-        return;
-      }
+    if (change !== field) return setChange(field);
 
-      if (field === "phone") {
-        const response = await api.updateUser(token, { phone }, "phone");
-        if (response.status === 200) setUserData({ ...userData, phone });
-        handleResponse(response);
-        return;
-      }
+    setChange("");
 
+    setIsLoading(true);
+    const response = await api.updateUser(token, { [field]: input }, field);
+    setIsLoading(false);
+
+    if (response.status === 200) {
+      setUserData({ ...userData, [field]: input });
+      renderToast("success", "Alterado com sucesso!");
       return;
     }
 
-    setName("");
-    setPhone("");
-    setChange(field);
+    handleApiErrors(response);
+    return;
   }
 
   async function sendRecuperationEmail() {
@@ -58,20 +57,6 @@ export default function ProfileConfigSection({ setDeleteAccountModalIsOpen }) {
         "success",
         `Email de recuperação enviado para ${userData?.email}`
       );
-      return;
-    }
-
-    handleResponse(response);
-    return;
-  }
-
-  function handleResponse(response) {
-    setIsLoading(false);
-    setName("");
-    setPhone("");
-
-    if (response.status === 200) {
-      renderToast("success", "Alterado com sucesso!");
       return;
     }
 
@@ -91,8 +76,7 @@ export default function ProfileConfigSection({ setDeleteAccountModalIsOpen }) {
         <FieldName>Nome</FieldName>
         <Input
           placeholder={change === "name" ? "" : userData?.name}
-          onChange={(e) => setName(e.target.value)}
-          value={name}
+          ref={nameRef}
           disabled={change === "name" && !isLoading ? false : true}
         />
         <Action onClick={() => changeInformation("name")}>
@@ -105,11 +89,9 @@ export default function ProfileConfigSection({ setDeleteAccountModalIsOpen }) {
       </InputContainer>
       <InputContainer>
         <FieldName>Celular</FieldName>
-        <StyledNumberFormat
+        <PhoneNumberInput
           placeholder={change === "phone" ? "" : userData?.phone}
-          onChange={(e) => setPhone(e.target.value)}
-          format={"(##) #####-####"}
-          value={phone}
+          reference={phoneRef}
           disabled={change === "phone" && !isLoading ? false : true}
         />
         <Action onClick={() => changeInformation("phone")}>
@@ -123,13 +105,11 @@ export default function ProfileConfigSection({ setDeleteAccountModalIsOpen }) {
       <InputContainer>
         <FieldName>Senha</FieldName>
         <Input placeholder="Alterar senha" disabled />
-        <Action onClick={() => sendRecuperationEmail()}>Alterar</Action>
+        <Action onClick={sendRecuperationEmail}>Alterar</Action>
       </InputContainer>
 
       <InputContainer>
-        <DeleteAccount onClick={() => openConfirmation()}>
-          Excluir conta
-        </DeleteAccount>
+        <DeleteAccount onClick={openConfirmation}>Excluir conta</DeleteAccount>
       </InputContainer>
     </Container>
   );

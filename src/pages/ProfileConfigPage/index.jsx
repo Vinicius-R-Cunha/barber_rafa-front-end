@@ -1,5 +1,4 @@
 import HeaderSection from "../../components/HeaderSection";
-
 import ProfileConfigSection from "../../components/ProfileConfigSection";
 import DeleteAccountModal from "../../components/DeleteAccountModal";
 import { useState } from "react";
