@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useUserContext } from "../../contexts/UserContext";
-import NumberFormat from "react-number-format";
+import PhoneNumberInput from "../PhoneNumberInput";
 import * as api from "../../services/api";
 import renderToast from "../../utils/renderToast";
 import { renderDotsLoading } from "../../utils/renderDotsLoading";
@@ -10,7 +10,7 @@ import handleApiErrors from "../../utils/handleApiErrors";
 export default function UpdateNewUserModal() {
   const { token, setToken, userIsNewUser, setUserIsNewUser } = useUserContext();
 
-  const [phone, setPhone] = useState("");
+  const phoneRef = useRef(null);
   const [submitIsLoading, setSubmitIsLoading] = useState(false);
 
   function closeModal() {
@@ -20,8 +20,10 @@ export default function UpdateNewUserModal() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setSubmitIsLoading(true);
 
+    const phone = phoneRef?.current?.value;
+
+    setSubmitIsLoading(true);
     const response = await api.updateUser(token, { phone }, "phone");
     if (response.status === 200) {
       localStorage.setItem("token", response.data);
@@ -43,12 +45,9 @@ export default function UpdateNewUserModal() {
         Digite o número do seu celular, isso só é necessário uma única vez
       </Title>
       <InputsForm>
-        <NumberFormat
-          type="text"
+        <PhoneNumberInput
           placeholder="Número do celular"
-          format={"(##) #####-####"}
-          onChange={(e) => setPhone(e.target.value)}
-          value={phone}
+          reference={phoneRef}
           required
         />
 

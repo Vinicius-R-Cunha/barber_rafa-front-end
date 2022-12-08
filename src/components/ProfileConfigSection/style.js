@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import * as variables from "../../styles/variables";
-import NumberFormat from "react-number-format";
 
 export const Container = styled.div`
   width: 100%;

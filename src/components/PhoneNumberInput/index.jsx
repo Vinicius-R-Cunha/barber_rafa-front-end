@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { Input } from "./style";
 
-export default function PhoneNumberInput({ placeholder, reference, disabled }) {
+export default function PhoneNumberInput({
+  placeholder,
+  reference,
+  disabled = false,
+  required = false,
+}) {
   const [inputValue, setInputValue] = useState("");
 
   function mask(e) {
@@ -36,6 +41,7 @@ export default function PhoneNumberInput({ placeholder, reference, disabled }) {
       onChange={(e) => handleChange(mask(e))}
       value={reference?.current?.value === "" ? "" : inputValue}
       disabled={disabled}
+      required={required}
     />
   );
 }

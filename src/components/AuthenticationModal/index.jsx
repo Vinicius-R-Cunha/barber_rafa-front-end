@@ -16,12 +16,12 @@ import {
   // FacebookLogin,
   modalStyles,
 } from "./style";
-import NumberFormat from "react-number-format";
 import { signInWithGoogle } from "../../services/Firebase";
 import renderToast from "../../utils/renderToast";
 import { renderDotsLoading } from "../../utils/renderDotsLoading";
 import PasswordInput from "../PasswordInput";
 import handleApiErrors from "../../utils/handleApiErrors";
+import PhoneNumberInput from "../PhoneNumberInput";
 // import { signInWithGoogle, signInWithFacebook } from "../../services/Firebase";
 
 export default function AuthenticationModal() {
@@ -52,7 +52,7 @@ export default function AuthenticationModal() {
 
     const name = nameRef?.current?.value;
     const email = emailRef?.current?.value;
-    const phone = phoneRef?.current?.state?.value;
+    const phone = phoneRef?.current?.value;
     const password = passwordRef?.current?.value;
 
     if (page === "inscrever-se")
@@ -138,11 +138,10 @@ export default function AuthenticationModal() {
         )}
         <input type="email" placeholder="E-mail" ref={emailRef} required />
         {page === "inscrever-se" && (
-          <NumberFormat
+          <PhoneNumberInput
             placeholder="Número do celular"
-            format={"(##) #####-####"}
-            ref={phoneRef}
-            required
+            reference={phoneRef}
+            required={true}
           />
         )}
         {page !== "redefinir senha" && (
