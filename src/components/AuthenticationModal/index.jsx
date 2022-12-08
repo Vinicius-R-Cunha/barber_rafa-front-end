@@ -50,20 +50,15 @@ export default function AuthenticationModal() {
     e.preventDefault();
     setSubmitIsLoading(true);
 
+    const name = nameRef?.current?.value;
+    const email = emailRef?.current?.value;
+    const phone = phoneRef?.current?.state?.value;
+    const password = passwordRef?.current?.value;
+
     if (page === "inscrever-se")
-      return signUp({
-        name: nameRef.current.value,
-        email: emailRef.current.value,
-        phone: phoneRef?.current?.state.value,
-        password: passwordRef.current.value,
-      });
-    if (page === "entrar")
-      return signIn({
-        email: emailRef.current.value,
-        password: passwordRef.current.value,
-      });
-    if (page === "redefinir senha")
-      return sendRecuperationEmail(emailRef.current.value);
+      return signUp({ name, email, phone, password });
+    if (page === "entrar") return signIn({ email, password });
+    if (page === "redefinir senha") return sendRecuperationEmail(email);
   }
 
   async function signUp(data) {
