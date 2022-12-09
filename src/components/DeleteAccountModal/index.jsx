@@ -25,18 +25,14 @@ export default function DeleteAccountModal({
     setDeleteAccountModalIsOpen(false);
   }
 
-  function handleSubmit() {
-    deleteAccount();
-    return;
-  }
-
   async function deleteAccount() {
     const response = await api.deleteAccount(token);
     if (response.status === 200) {
       closeModal();
       clearToken();
       navigate("/");
-      return renderToast("success", "Conta excluída com sucesso");
+      renderToast("success", "Conta excluída com sucesso");
+      return;
     }
 
     handleApiErrors(response);
@@ -52,18 +48,18 @@ export default function DeleteAccountModal({
     <StyledModal
       isOpen={deleteAccountModalIsOpen}
       ariaHideApp={false}
-      onRequestClose={() => closeModal()}
+      onRequestClose={closeModal}
       style={modalStyles}
     >
-      <IoClose className="close-icon" onClick={() => closeModal()} />
+      <IoClose className="close-icon" onClick={closeModal} />
 
       <Title>Tem certeza que quer excluir sua conta?</Title>
 
       <ActionButtons>
-        <Button type="button" onClick={() => closeModal()}>
+        <Button type="button" onClick={closeModal}>
           Cancelar
         </Button>
-        <Button onClick={handleSubmit}>Confirmar</Button>
+        <Button onClick={deleteAccount}>Confirmar</Button>
       </ActionButtons>
     </StyledModal>
   );
