@@ -21,19 +21,18 @@ export default function ProfileConfigSection({ setDeleteAccountModalIsOpen }) {
   const nameRef = useRef(null);
   const phoneRef = useRef(null);
 
-  const [change, setChange] = useState("");
+  const [changingField, setChangingField] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   async function changeInformation(field) {
-    const name = nameRef.current.value;
-    const phone = phoneRef.current.value;
-    const input = field === "name" ? name : phone;
+    if (changingField !== field) return setChangingField(field);
+
+    setChangingField("");
+
+    const input =
+      field === "name" ? nameRef.current.value : phoneRef.current.value;
     nameRef.current.value = "";
     phoneRef.current.value = "";
-
-    if (change !== field) return setChange(field);
-
-    setChange("");
 
     setIsLoading(true);
     const response = await api.updateUser(token, { [field]: input }, field);
@@ -69,37 +68,38 @@ export default function ProfileConfigSection({ setDeleteAccountModalIsOpen }) {
     document.body.style.overflow = "hidden";
   }
 
+  function renderButton(field) {
+    if (changingField === field) {
+      if (isLoading) return renderDotsLoading();
+      return "Salvar";
+    }
+
+    return "Alterar";
+  }
+
   return (
     <Container>
       <Title>Detalhes da conta</Title>
       <InputContainer>
         <FieldName>Nome</FieldName>
         <Input
-          placeholder={change === "name" ? "" : userData?.name}
+          placeholder={changingField === "name" ? "" : userData?.name}
           ref={nameRef}
-          disabled={change === "name" && !isLoading ? false : true}
+          disabled={changingField === "name" && !isLoading ? false : true}
         />
         <Action onClick={() => changeInformation("name")}>
-          {change === "name"
-            ? isLoading
-              ? renderDotsLoading()
-              : "Salvar"
-            : "Alterar"}
+          {renderButton("name")}
         </Action>
       </InputContainer>
       <InputContainer>
         <FieldName>Celular</FieldName>
         <PhoneNumberInput
-          placeholder={change === "phone" ? "" : userData?.phone}
+          placeholder={changingField === "phone" ? "" : userData?.phone}
           reference={phoneRef}
-          disabled={change === "phone" && !isLoading ? false : true}
+          disabled={changingField === "phone" && !isLoading ? false : true}
         />
         <Action onClick={() => changeInformation("phone")}>
-          {change === "phone"
-            ? isLoading
-              ? renderDotsLoading()
-              : "Salvar"
-            : "Alterar"}
+          {renderButton("phone")}
         </Action>
       </InputContainer>
       <InputContainer>
