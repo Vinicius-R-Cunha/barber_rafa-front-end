@@ -13,8 +13,8 @@ import renderToast from "../../utils/renderToast";
 import { renderDotsLoading } from "../../utils/renderDotsLoading";
 
 export default function CancelReservationModal({
-  confirmationIsOpen,
-  setConfirmationIsOpen,
+  openModal,
+  setOpenModal,
   renderPage,
   eventId,
 }) {
@@ -24,7 +24,7 @@ export default function CancelReservationModal({
 
   function closeModal() {
     document.body.style.overflow = "unset";
-    setConfirmationIsOpen(false);
+    setOpenModal(false);
   }
 
   async function handleCancelReservation() {
@@ -45,7 +45,7 @@ export default function CancelReservationModal({
 
   return (
     <StyledModal
-      isOpen={confirmationIsOpen}
+      isOpen={openModal}
       ariaHideApp={false}
       onRequestClose={() => closeModal()}
       style={modalStyles}

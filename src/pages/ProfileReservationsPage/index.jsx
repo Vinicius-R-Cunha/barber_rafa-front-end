@@ -3,16 +3,15 @@ import { useUserContext } from "../../contexts/UserContext";
 import * as api from "../../services/api";
 import renderToast from "../../utils/renderToast";
 import HeaderSection from "../../components/HeaderSection";
-
 import ProfileReservationsSection from "../../components/ProfileReservationsSection";
 import Loading from "../../components/Loading";
 import CancelReservationModal from "../../components/CancelReservationModal";
 
 export default function ProfileReservationsPage() {
   const { token } = useUserContext();
-  const [reservationsArray, setReservationsArray] = useState();
 
-  const [confirmationIsOpen, setConfirmationIsOpen] = useState(false);
+  const [reservationsArray, setReservationsArray] = useState(null);
+  const [openModal, setOpenModal] = useState(false);
   const [eventId, setEventId] = useState();
 
   useEffect(() => {
@@ -26,33 +25,30 @@ export default function ProfileReservationsPage() {
       setReservationsArray(promise.data);
       return;
     }
+
     return renderToast(
       "error",
       "Erro ao carregar serviços, por favor recarregue a página"
     );
   }
 
-  if (!reservationsArray) {
-    return (
-      <>
-        <HeaderSection page="profile" title="Reservas" />
-        <Loading />
-      </>
-    );
-  }
-
   return (
     <>
       <HeaderSection page="profile" title="Reservas" />
-      <ProfileReservationsSection
-        reservationsArray={reservationsArray}
-        setConfirmationIsOpen={setConfirmationIsOpen}
-        setEventId={setEventId}
-      />
+
+      {reservationsArray === null ? (
+        <Loading />
+      ) : (
+        <ProfileReservationsSection
+          reservationsArray={reservationsArray}
+          setOpenModal={setOpenModal}
+          setEventId={setEventId}
+        />
+      )}
 
       <CancelReservationModal
-        confirmationIsOpen={confirmationIsOpen}
-        setConfirmationIsOpen={setConfirmationIsOpen}
+        openModal={openModal}
+        setOpenModal={setOpenModal}
         renderPage={renderPage}
         eventId={eventId}
       />
