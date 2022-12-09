@@ -22,9 +22,13 @@ export default function ProfileReservationsSection({
     const start = dayjs(startTime).add(3, "h");
     const end = dayjs(endTime);
 
-    return `${end.format("DD/MM/YYYY")} - ${start.format(
-      "HH:mm"
-    )} até ${end.format("HH:mm")}`;
+    return (
+      end.format("DD/MM/YYYY") +
+      " - " +
+      start.format("HH:mm") +
+      " até " +
+      end.format("HH:mm")
+    );
   }
 
   return (

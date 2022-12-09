@@ -20,7 +20,7 @@ export default function CancelReservationModal({
 }) {
   const { token } = useUserContext();
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   function closeModal() {
     document.body.style.overflow = "unset";
@@ -28,15 +28,16 @@ export default function CancelReservationModal({
   }
 
   async function handleCancelReservation() {
-    setIsLoading(true);
+    setLoading(true);
     const promise = await api.deleteReservation(token, eventId);
-    setIsLoading(false);
+    setLoading(false);
     closeModal();
     renderPage();
 
     if (promise.status === 200) {
       return renderToast("success", "Reserva cancelada com sucesso");
     }
+
     return renderToast(
       "error",
       "Erro ao cancelar reserva, por favor tente mais tarde"
@@ -47,20 +48,21 @@ export default function CancelReservationModal({
     <StyledModal
       isOpen={openModal}
       ariaHideApp={false}
-      onRequestClose={() => closeModal()}
+      onRequestClose={closeModal}
       style={modalStyles}
     >
-      <IoClose className="close-icon" onClick={() => closeModal()} />
+      <IoClose className="close-icon" onClick={closeModal} />
       <Title>Tem certeza que quer excluir essa reserva?</Title>
-      {isLoading ? (
+
+      {loading ? (
         <ActionButtons>
           <Button>Cancelar</Button>
           <Button>{renderDotsLoading()}</Button>
         </ActionButtons>
       ) : (
         <ActionButtons>
-          <Button onClick={() => closeModal()}>Cancelar</Button>
-          <Button onClick={() => handleCancelReservation()}>Confirmar</Button>
+          <Button onClick={closeModal}>Cancelar</Button>
+          <Button onClick={handleCancelReservation}>Confirmar</Button>
         </ActionButtons>
       )}
     </StyledModal>
