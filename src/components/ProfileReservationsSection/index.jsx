@@ -8,40 +8,23 @@ import {
   Button,
 } from "./style";
 import { BsWhatsapp } from "react-icons/bs";
+import dayjs from "dayjs";
 
 export default function ProfileReservationsSection({
   reservationsArray,
-  setConfirmationIsOpen,
+  setOpenModal,
   setEventId,
 }) {
   const PHONE_NUMBER = process.env.REACT_APP_PHONE_NUMBER.replace("-", "");
   const whastAppLink = `https://api.whatsapp.com/send?phone=5511${PHONE_NUMBER}`;
 
   function formatDate(startTime, endTime) {
-    const start = convertTimePlusThree(startTime);
-    const end = new Date(endTime);
+    const start = dayjs(startTime).add(3, "h");
+    const end = dayjs(endTime);
 
-    return `${getDay(start)} - ${getHour(start)} até ${getHour(end)}`;
-  }
-
-  function convertTimePlusThree(date) {
-    const newDate = new Date(date);
-    return new Date(newDate.setTime(newDate.getTime() + 3 * 60 * 60 * 1000));
-  }
-
-  function getDay(date) {
-    const day = date.getDate().toString().padStart(2, "0");
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
-    const year = date.getFullYear().toString().padStart(2, "0");
-
-    return `${day}/${month}/${year}`;
-  }
-
-  function getHour(date) {
-    const startHour = date.getHours().toString().padStart(2, "0");
-    const startMinutes = date.getMinutes().toString().padStart(2, "0");
-
-    return `${startHour}:${startMinutes}`;
+    return `${end.format("DD/MM/YYYY")} - ${start.format(
+      "HH:mm"
+    )} até ${end.format("HH:mm")}`;
   }
 
   return (
@@ -57,7 +40,7 @@ export default function ProfileReservationsSection({
                 <Summary>{formatDate(data?.startTime, data?.endTime)}</Summary>
                 <CancelButton
                   onClick={() => {
-                    setConfirmationIsOpen(true);
+                    setOpenModal(true);
                     setEventId(data?.eventId);
                   }}
                 >
