@@ -32,6 +32,12 @@ export default function ProfileReservationsPage() {
     );
   }
 
+  function openCancelConfirmation(eventId) {
+    document.body.style.overflow = "hidden";
+    setOpenModal(true);
+    setEventId(eventId);
+  }
+
   return (
     <>
       <HeaderSection page="profile" title="Reservas" />
@@ -41,8 +47,7 @@ export default function ProfileReservationsPage() {
       ) : (
         <ProfileReservationsSection
           reservationsArray={reservationsArray}
-          setOpenModal={setOpenModal}
-          setEventId={setEventId}
+          openCancelConfirmation={openCancelConfirmation}
         />
       )}
 

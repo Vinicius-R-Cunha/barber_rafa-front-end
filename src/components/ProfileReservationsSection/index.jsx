@@ -12,8 +12,7 @@ import dayjs from "dayjs";
 
 export default function ProfileReservationsSection({
   reservationsArray,
-  setOpenModal,
-  setEventId,
+  openCancelConfirmation,
 }) {
   const PHONE_NUMBER = process.env.REACT_APP_PHONE_NUMBER.replace("-", "");
   const whastAppLink = `https://api.whatsapp.com/send?phone=5511${PHONE_NUMBER}`;
@@ -43,10 +42,7 @@ export default function ProfileReservationsSection({
                 <Summary>{data?.summary}</Summary>
                 <Summary>{formatDate(data?.startTime, data?.endTime)}</Summary>
                 <CancelButton
-                  onClick={() => {
-                    setOpenModal(true);
-                    setEventId(data?.eventId);
-                  }}
+                  onClick={() => openCancelConfirmation(data?.eventId)}
                 >
                   Cancelar reserva
                 </CancelButton>
