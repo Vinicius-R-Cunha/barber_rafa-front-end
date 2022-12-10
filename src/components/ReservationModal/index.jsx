@@ -4,54 +4,34 @@ import {
   AddCancelServices,
   Title,
   DateStatus,
-  ScheduleContainer,
-  ScrollableDiv,
-  ButtonContainer,
-  Timetable,
-  Price,
-  Duration,
-  Button,
   modalStyles,
 } from "./style";
 import "react-calendar/dist/Calendar.css";
-import Calendar from "react-calendar";
 import { IoClose } from "react-icons/io5";
-import {
-  BsFillArrowLeftCircleFill,
-  BsFillArrowRightCircleFill,
-} from "react-icons/bs";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import * as api from "../../services/api";
 import { useUserContext } from "../../contexts/UserContext";
-import ScrollContainer from "react-indiana-drag-scroll";
 import renderToast from "../../utils/renderToast";
-import "react-toastify/dist/ReactToastify.css";
 import { renderDotsLoading } from "../../utils/renderDotsLoading";
-import {
-  displayServiceNames,
-  sumDurations,
-  sumPrices,
-} from "./convertionFunctions";
+import { displayServiceNames, sumDurations } from "./convertionFunctions";
+import ScheduleContainer from "./ScheduleContainer";
+import Calendar from "../Calendar";
+import dayjs from "dayjs";
 
 export default function ReservationModal({
   reservationModalIsOpen,
   setReservationModalIsOpen,
-  wantedReservations,
-  setWantedReservations,
+  reservationsList,
+  setReservationsList,
   setIsChoosingMoreServices,
 }) {
   const { token, userData } = useUserContext();
+
   const [scheduleArray, setScheduleArray] = useState(null);
   const [scrollX, setScrollX] = useState(0);
   const [selectedTime, setSelectedTime] = useState("");
   const [day, setDay] = useState();
-  const [viewWidth, setViewWidth] = useState(0);
   const [loadingSchedule, setLoadingSchedule] = useState(false);
-
-  useEffect(() => {
-    window.addEventListener("resize", setViewWidth(window.innerWidth));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [window.innerWidth]);
 
   function closeModal(resetReservations = true) {
     document.body.style.overflow = "unset";
@@ -59,23 +39,25 @@ export default function ReservationModal({
     setScheduleArray(null);
     setDay();
     if (resetReservations) {
-      setWantedReservations([]);
+      setReservationsList([]);
       setIsChoosingMoreServices(false);
     }
   }
 
   async function handleCalendarClick(e) {
-    setLoadingSchedule(true);
+    const startTime = dayjs(e).toISOString();
+    const endTime = dayjs(e).add(1, "day").add(-1, "m").toISOString();
+    const duration = sumDurations(reservationsList);
 
-    const { startTime, endTime, duration } = getTimes(e);
+    setLoadingSchedule(true);
     const response = await api.checkAvailability(token, {
       startTime,
       endTime,
       duration,
     });
     setLoadingSchedule(false);
-    scrollToBottom();
 
+    scrollToBottom();
     setDay(e);
     setScrollX(0);
     setSelectedTime("");
@@ -94,18 +76,6 @@ export default function ReservationModal({
     modal.scrollTo(0, modal.scrollHeight);
   }
 
-  function getTimes(date) {
-    const startTime = new Date(date).toISOString();
-    const tomorrow = new Date(date);
-    tomorrow.setDate(date.getDate() + 1);
-
-    const endTime = new Date(tomorrow.setUTCHours(2, 59, 0, 0)).toISOString();
-
-    const duration = sumDurations(wantedReservations);
-
-    return { startTime, endTime, duration };
-  }
-
   async function handleReservation() {
     const reservationTime = selectedTime.split(":");
     const startTime = new Date(day);
@@ -113,15 +83,13 @@ export default function ReservationModal({
 
     const response = await api.createCalendarEvent(token, {
       startTime: startTime.toISOString(),
-      duration: sumDurations(wantedReservations),
+      duration: sumDurations(reservationsList),
       summary: userData?.name,
       description: `Serviço(s): ${displayServiceNames(
-        wantedReservations
+        reservationsList
       )}, Telefone: ${
         userData?.phone
-      }, horário: ${selectedTime}, duração: ${sumDurations(
-        wantedReservations
-      )}`,
+      }, horário: ${selectedTime}, duração: ${sumDurations(reservationsList)}`,
     });
     closeModal();
 
@@ -134,65 +102,25 @@ export default function ReservationModal({
     );
   }
 
-  function handleDisabledTiles(e) {
-    const today = new Date();
-    const yesterday = new Date(today);
-    yesterday.setDate(yesterday.getDate() - 1);
-
-    return yesterday > e.date;
-  }
-
-  function handleLeftArrow() {
-    let margin = scrollX + 350;
-    if (margin > 0) {
-      margin = 0;
-    }
-    setScrollX(margin);
-  }
-
-  function handleRightArrow() {
-    let margin = scrollX - 350;
-    //array size * (Timetable size + gap size) - last gap
-    let listWidth = scheduleArray.length * (94 + 20) - 20;
-    const ScrollableDivSize = 469.797;
-
-    if (ScrollableDivSize - listWidth > margin) {
-      margin = ScrollableDivSize - listWidth;
-    }
-    setScrollX(margin);
-  }
-
   return (
     <StyledModal
       id="reservation-modal"
       isOpen={reservationModalIsOpen}
       ariaHideApp={false}
-      onRequestClose={() => closeModal()}
+      onRequestClose={closeModal}
       style={modalStyles}
     >
-      <IoClose className="close-icon" onClick={() => closeModal()} />
+      <IoClose className="close-icon" onClick={closeModal} />
       <ModalHeader>
-        {wantedReservations.length === 1 ? (
-          <Title key={wantedReservations[0]?._id}>
-            {wantedReservations[0]?.name}
+        {reservationsList.map((data, i, arr) => (
+          <Title key={data?._id}>
+            {i === arr.length - 1 ? data?.name : `${data?.name} + `}
           </Title>
-        ) : (
-          wantedReservations.map((data, index, arr) => (
-            <Title key={index}>
-              {index !== arr.length - 1 ? `${data?.name} + ` : data?.name}
-            </Title>
-          ))
-        )}
+        ))}
       </ModalHeader>
-      <Calendar
-        className={["c1"]}
-        calendarType={"US"}
-        onClickDay={(e) => handleCalendarClick(e)}
-        tileClassName={"tile"}
-        tileDisabled={(e) => handleDisabledTiles(e)}
-        minDate={new Date()}
-        maxDate={new Date(new Date().setMonth(new Date().getMonth() + 2))}
-      />
+
+      <Calendar handleCalendarClick={handleCalendarClick} />
+
       {scheduleArray === null && (
         <DateStatus>Selecione uma data para reserva</DateStatus>
       )}
@@ -200,74 +128,22 @@ export default function ReservationModal({
         <DateStatus>Não temos horários disponíveis</DateStatus>
       )}
       {loadingSchedule && <DateStatus>{renderDotsLoading()}</DateStatus>}
-      {scheduleArray?.length !== 0 &&
-        scheduleArray !== null &&
-        !loadingSchedule && (
-          <>
-            <DateStatus>Selecione um horário :</DateStatus>
-            <ScheduleContainer>
-              <BsFillArrowLeftCircleFill
-                onClick={handleLeftArrow}
-                className="nav-arrow-left"
-              />
-              <BsFillArrowRightCircleFill
-                onClick={handleRightArrow}
-                className="nav-arrow-right"
-              />
-
-              <ScrollableDiv>
-                {viewWidth < 1024 ? (
-                  <ScrollContainer className="inside-scroll">
-                    {scheduleArray?.map((time) => {
-                      return (
-                        <Timetable
-                          key={time}
-                          onClick={() => setSelectedTime(time)}
-                        >
-                          {time}
-                        </Timetable>
-                      );
-                    })}
-                  </ScrollContainer>
-                ) : (
-                  <div
-                    className="inside-scroll"
-                    style={{
-                      marginLeft: scrollX,
-                      width: scheduleArray?.length * 114 - 20,
-                      transition: "all ease 0.9s",
-                    }}
-                  >
-                    {scheduleArray?.map((time) => {
-                      return (
-                        <Timetable
-                          key={time}
-                          onClick={() => setSelectedTime(time)}
-                        >
-                          {time}
-                        </Timetable>
-                      );
-                    })}
-                  </div>
-                )}
-              </ScrollableDiv>
-            </ScheduleContainer>
-
-            {selectedTime !== "" && (
-              <ButtonContainer>
-                <div>
-                  <Price>{`R$ ${sumPrices(wantedReservations)}`}</Price>
-                  <Duration>{sumDurations(wantedReservations)}</Duration>
-                </div>
-                <Button
-                  onClick={() => handleReservation()}
-                >{`Reservar horário - ${selectedTime}`}</Button>
-              </ButtonContainer>
-            )}
-          </>
-        )}
+      {scheduleArray?.length > 0 && (
+        <>
+          <DateStatus>Selecione um horário :</DateStatus>
+          <ScheduleContainer
+            scrollX={scrollX}
+            setScrollX={setScrollX}
+            scheduleArray={scheduleArray}
+            selectedTime={selectedTime}
+            setSelectedTime={setSelectedTime}
+            handleReservation={handleReservation}
+            reservationsList={reservationsList}
+          />
+        </>
+      )}
       <AddCancelServices>
-        <button onClick={() => closeModal()}>Cancelar</button>
+        <button onClick={closeModal}>Cancelar</button>
         <button
           onClick={() => {
             setIsChoosingMoreServices(true);

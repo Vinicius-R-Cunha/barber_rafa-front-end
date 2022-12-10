@@ -10,31 +10,16 @@ import {
   modalStyles,
 } from "./style";
 import { IoClose } from "react-icons/io5";
-import { useUserContext } from "../../contexts/UserContext";
 
 export default function ReadMoreModal({
   readMoreModalIsOpen,
   setReadMoreModalIsOpen,
-  serviceData,
-  setReservationModalIsOpen,
+  readMoreData,
+  handleReservation,
 }) {
-  const { token, setAuthenticationIsOpen } = useUserContext();
-
   function closeModal() {
     document.body.style.overflow = "unset";
     setReadMoreModalIsOpen(false);
-  }
-
-  function handleReservation() {
-    closeModal();
-    if (!token) {
-      setAuthenticationIsOpen(true);
-      document.body.style.overflow = "hidden";
-      return;
-    }
-    setReservationModalIsOpen(true);
-    document.body.style.overflow = "hidden";
-    return;
   }
 
   return (
@@ -42,20 +27,27 @@ export default function ReadMoreModal({
       <StyledModal
         isOpen={readMoreModalIsOpen}
         ariaHideApp={false}
-        onRequestClose={() => closeModal()}
+        onRequestClose={closeModal}
         style={modalStyles}
       >
         <ModalHeader>
-          <Title>{serviceData?.name}</Title>
-          <IoClose className="close-icon" onClick={() => closeModal()} />
+          <Title>{readMoreData?.name}</Title>
+          <IoClose className="close-icon" onClick={closeModal} />
         </ModalHeader>
-        <Description>{serviceData?.description}</Description>
+        <Description>{readMoreData?.description}</Description>
         <ButtonContainer>
           <div>
-            <Price>{`R$ ${serviceData?.price}`}</Price>
-            <Duration>{serviceData?.duration}</Duration>
+            <Price>{`R$ ${readMoreData?.price}`}</Price>
+            <Duration>{readMoreData?.duration}</Duration>
           </div>
-          <Button onClick={() => handleReservation()}>Reservar</Button>
+          <Button
+            onClick={() => {
+              closeModal();
+              handleReservation(readMoreData);
+            }}
+          >
+            Reservar
+          </Button>
         </ButtonContainer>
       </StyledModal>
     </>

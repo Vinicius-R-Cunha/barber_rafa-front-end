@@ -14,6 +14,7 @@ import UpdateNewUserModal from "./components/UpdateNewUserModal";
 import Footer from "./components/Footer";
 import NotFoundPage from "./pages/NotFoundPage";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import ScrollToTop from "./utils/ScrollToTop";
 import GlobalStyles from "./styles/GlobalStyles";
 
