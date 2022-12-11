@@ -19,8 +19,8 @@ import Calendar from "../Calendar";
 import dayjs from "dayjs";
 
 export default function ReservationModal({
-  reservationModalIsOpen,
-  setReservationModalIsOpen,
+  reservationModalIsOpen: openModal,
+  setReservationModalIsOpen: setOpenModal,
   reservationsList,
   setReservationsList,
   setIsChoosingMoreServices,
@@ -35,12 +35,14 @@ export default function ReservationModal({
 
   function closeModal(resetReservations = true) {
     document.body.style.overflow = "unset";
-    setReservationModalIsOpen(false);
+    setOpenModal(false);
     setScheduleArray(null);
     setDay();
     if (resetReservations) {
       setReservationsList([]);
       setIsChoosingMoreServices(false);
+    } else {
+      setIsChoosingMoreServices(true);
     }
   }
 
@@ -105,7 +107,7 @@ export default function ReservationModal({
   return (
     <StyledModal
       id="reservation-modal"
-      isOpen={reservationModalIsOpen}
+      isOpen={openModal}
       ariaHideApp={false}
       onRequestClose={closeModal}
       style={modalStyles}
@@ -113,7 +115,7 @@ export default function ReservationModal({
       <IoClose className="close-icon" onClick={closeModal} />
       <ModalHeader>
         {reservationsList.map((data, i, arr) => (
-          <Title key={data?._id}>
+          <Title key={i}>
             {i === arr.length - 1 ? data?.name : `${data?.name} + `}
           </Title>
         ))}
@@ -144,12 +146,7 @@ export default function ReservationModal({
       )}
       <AddCancelServices>
         <button onClick={closeModal}>Cancelar</button>
-        <button
-          onClick={() => {
-            setIsChoosingMoreServices(true);
-            closeModal(false);
-          }}
-        >
+        <button onClick={() => closeModal(false)}>
           Adicionar outro serviço
         </button>
       </AddCancelServices>
