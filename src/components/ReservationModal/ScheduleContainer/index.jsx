@@ -1,5 +1,7 @@
 import {
   Container,
+  LeftArrow,
+  RightArrow,
   ScrollableDiv,
   Timetable,
   ButtonContainer,
@@ -7,13 +9,8 @@ import {
   Duration,
   Button,
 } from "./style";
-import {
-  BsFillArrowLeftCircleFill,
-  BsFillArrowRightCircleFill,
-} from "react-icons/bs";
 import { sumPrices, sumDurations } from "../auxiliarFunctions";
 import ScrollContainer from "react-indiana-drag-scroll";
-import { useEffect, useState } from "react";
 
 export default function ScheduleContainer({
   scheduleArray,
@@ -24,13 +21,6 @@ export default function ScheduleContainer({
   reservationsList,
   handleReservation,
 }) {
-  const [viewWidth, setViewWidth] = useState(0);
-
-  useEffect(() => {
-    window.addEventListener("resize", setViewWidth(window.innerWidth));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [window.innerWidth]);
-
   function handleLeftArrow() {
     let margin = scrollX + 350;
     if (margin > 0) {
@@ -54,17 +44,11 @@ export default function ScheduleContainer({
   return (
     <>
       <Container>
-        <BsFillArrowLeftCircleFill
-          onClick={handleLeftArrow}
-          className="nav-arrow-left"
-        />
-        <BsFillArrowRightCircleFill
-          onClick={handleRightArrow}
-          className="nav-arrow-right"
-        />
+        <LeftArrow onClick={handleLeftArrow} />
+        <RightArrow onClick={handleRightArrow} />
 
         <ScrollableDiv>
-          {viewWidth < 1024 ? (
+          {window.innerWidth < 1024 && (
             <ScrollContainer className="inside-scroll">
               {scheduleArray?.map((time) => {
                 return (
@@ -74,7 +58,8 @@ export default function ScheduleContainer({
                 );
               })}
             </ScrollContainer>
-          ) : (
+          )}
+          {window.innerWidth >= 1024 && (
             <div
               className="inside-scroll"
               style={{
