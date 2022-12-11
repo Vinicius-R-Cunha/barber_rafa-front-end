@@ -1,5 +1,9 @@
 import styled from "styled-components";
 import * as variables from "../../../styles/variables";
+import {
+  BsFillArrowLeftCircleFill,
+  BsFillArrowRightCircleFill,
+} from "react-icons/bs";
 
 export const Container = styled.div`
   width: 90%;
@@ -11,36 +15,6 @@ export const Container = styled.div`
   align-items: center;
 
   position: relative;
-
-  .nav-arrow-left {
-    font-size: 2rem;
-    color: ${variables.WHITE};
-
-    position: absolute;
-    left: -20px;
-
-    cursor: pointer;
-  }
-
-  .nav-arrow-right {
-    font-size: 2rem;
-    color: ${variables.WHITE};
-
-    position: absolute;
-    right: -20px;
-
-    cursor: pointer;
-  }
-
-  @media (max-width: 1023px) {
-    .nav-arrow-left {
-      display: none;
-    }
-
-    .nav-arrow-right {
-      display: none;
-    }
-  }
 
   @media (max-width: 640px) {
     width: 500px;
@@ -56,6 +30,34 @@ export const Container = styled.div`
 
   @media (max-width: 340px) {
     width: 343px;
+  }
+`;
+
+export const LeftArrow = styled(BsFillArrowLeftCircleFill)`
+  font-size: 2rem;
+  color: ${variables.WHITE};
+
+  position: absolute;
+  left: -20px;
+
+  cursor: pointer;
+
+  @media (max-width: 1023px) {
+    display: none;
+  }
+`;
+
+export const RightArrow = styled(BsFillArrowRightCircleFill)`
+  font-size: 2rem;
+  color: ${variables.WHITE};
+
+  position: absolute;
+  right: -20px;
+
+  cursor: pointer;
+
+  @media (max-width: 1023px) {
+    display: none;
   }
 `;
 
