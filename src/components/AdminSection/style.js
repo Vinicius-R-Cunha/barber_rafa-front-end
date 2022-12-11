@@ -180,7 +180,7 @@ export const Service = styled.div`
   flex-direction: column;
   align-items: center;
 
-  background-color: #2c2c2c;
+  background-color: ${variables.LESS_DARK_GREY};
 
   position: relative;
 
@@ -246,7 +246,7 @@ export const Description = styled.div`
   font-weight: 400;
   line-height: 1.167em;
   letter-spacing: 0;
-  color: #8d8d8d;
+  color: ${variables.LIGHT_GREY};
 
   @media (max-width: 1023px) {
     font-size: 0.725rem;
@@ -261,7 +261,7 @@ export const Duration = styled.p`
   font-weight: 400;
   line-height: 1em;
   letter-spacing: 0.7px;
-  color: #8d8d8d;
+  color: ${variables.LIGHT_GREY};
 
   display: flex;
   justify-content: flex-end;

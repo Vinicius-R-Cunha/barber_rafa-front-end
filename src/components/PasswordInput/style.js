@@ -37,7 +37,7 @@ export const Input = styled.input`
   margin-bottom: 13px;
 
   border-radius: 4px;
-  border: 5px solid #454545;
+  border: 5px solid ${variables.MEDIUM_GREY};
 
   ::placeholder {
     text-transform: uppercase;

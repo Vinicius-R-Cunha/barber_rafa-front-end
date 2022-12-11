@@ -75,7 +75,7 @@ export const Description = styled.div`
   line-height: 1.75em;
   text-align: justify;
   text-justify: inter-word;
-  color: #8d8d8d;
+  color: ${variables.LIGHT_GREY};
 
   @media (max-width: 767px) {
     padding-top: 30px;

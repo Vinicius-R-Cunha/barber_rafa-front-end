@@ -67,7 +67,7 @@ export const Description = styled.div`
   font-weight: 400;
   line-height: 1.297em;
   letter-spacing: 0;
-  color: #8d8d8d;
+  color: ${variables.LIGHT_GREY};
 
   padding-top: 25px;
 
@@ -180,7 +180,7 @@ export const Duration = styled.p`
   font-weight: 400;
   line-height: 1.167em;
   letter-spacing: 0;
-  color: #8d8d8d;
+  color: ${variables.LIGHT_GREY};
 
   @media (max-width: 640px) {
     font-size: 0.925rem;
@@ -261,7 +261,7 @@ export const modalStyles = {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    background: "#2c2c2c",
+    background: variables.LESS_DARK_GREY,
     border: "hidden",
     boxSizing: "border-box",
     padding: "20px 35px",

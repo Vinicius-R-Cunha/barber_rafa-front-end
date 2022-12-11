@@ -115,7 +115,7 @@ export const modalStyles = {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    background: "#2c2c2c",
+    background: variables.LESS_DARK_GREY,
     border: "hidden",
     boxSizing: "border-box",
     padding: "35px",

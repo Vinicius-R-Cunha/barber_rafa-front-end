@@ -45,7 +45,7 @@ export const Info = styled.div`
   justify-content: center;
   align-items: center;
 
-  background-color: #2c2c2c;
+  background-color: ${variables.LESS_DARK_GREY};
 
   @media (max-width: 768px) {
     width: 100%;
@@ -81,7 +81,7 @@ export const Description = styled.p`
   font-weight: 400;
   line-height: 1.667em;
   letter-spacing: 0;
-  color: #8d8d8d;
+  color: ${variables.LIGHT_GREY};
   text-align: center;
 
   display: flex;

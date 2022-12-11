@@ -59,53 +59,12 @@ export const AddCancelServices = styled.div`
 
   margin-top: 35px;
 
-  button {
-    all: unset;
-
-    width: 46%;
-    height: 100%;
-
-    font-family: "Montserrat";
-    font-size: 0.9rem;
-    font-weight: 800;
-    line-height: 1em;
-    text-align: center;
-    letter-spacing: 0.4px;
-    color: ${variables.WHITE};
-
-    border-radius: 4px;
-
-    :first-of-type {
-      border: 4px solid #70927b;
-
-      :hover {
-        transition: 0.3s ease-out;
-        background-color: #70927b;
-      }
-    }
-
-    :last-of-type {
-      border: 4px solid #70927b;
-
-      :hover {
-        transition: 0.3s ease-out;
-        background-color: #70927b;
-      }
-    }
-
-    cursor: pointer;
-  }
-
   @media (max-width: 372px) {
     width: 340px;
   }
 
   @media (max-width: 340px) {
     width: 318px;
-
-    button {
-      font-size: 0.8rem;
-    }
   }
 `;
 
@@ -122,6 +81,47 @@ export const DateStatus = styled.div`
 
   @media (max-width: 640px) {
     font-size: 1.075rem;
+  }
+`;
+
+export const Button = styled.button`
+  all: unset;
+
+  width: 46%;
+  height: 100%;
+
+  font-family: "Montserrat";
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1em;
+  text-align: center;
+  letter-spacing: 0.4px;
+  color: ${variables.WHITE};
+
+  border-radius: 4px;
+
+  :first-of-type {
+    border: 4px solid ${variables.LIGHT_BLUE};
+
+    :hover {
+      transition: 0.3s ease-out;
+      background-color: ${variables.LIGHT_BLUE};
+    }
+  }
+
+  :last-of-type {
+    border: 4px solid ${variables.LIGHT_BLUE};
+
+    :hover {
+      transition: 0.3s ease-out;
+      background-color: ${variables.LIGHT_BLUE};
+    }
+  }
+
+  cursor: pointer;
+
+  @media (max-width: 340px) {
+    font-size: 0.8rem;
   }
 `;
 
@@ -147,7 +147,7 @@ export const modalStyles = {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    background: "#2c2c2c",
+    background: variables.LESS_DARK_GREY,
     border: "hidden",
     boxSizing: "border-box",
     padding: "20px 35px 30px 35px",

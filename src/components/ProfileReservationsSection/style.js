@@ -80,7 +80,7 @@ export const Service = styled.div`
 
   box-sizing: border-box;
 
-  background-color: #2c2c2c;
+  background-color: ${variables.LESS_DARK_GREY};
 
   position: relative;
 `;

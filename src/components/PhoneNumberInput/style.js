@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import * as variables from "../../styles/variables";
 
 export const Input = styled.input`
   all: unset;
@@ -17,7 +18,7 @@ export const Input = styled.input`
   padding: 0 75px 0 25px;
 
   border-radius: 4px;
-  border: 5px solid #454545;
+  border: 5px solid ${variables.MEDIUM_GREY};
 
   ::placeholder {
     color: #ffffff;

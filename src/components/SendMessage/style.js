@@ -47,7 +47,7 @@ export const Spacer = styled.div`
   width: 80px;
   height: 2px;
 
-  background-color: #454545;
+  background-color: ${variables.MEDIUM_GREY};
 
   margin: 40px 0;
 `;
@@ -58,7 +58,7 @@ export const Subtitle = styled.p`
   font-weight: 400;
   line-height: 1.667em;
   letter-spacing: 0;
-  color: #8d8d8d;
+  color: ${variables.LIGHT_GREY};
   text-align: center;
 
   margin-bottom: 40px;

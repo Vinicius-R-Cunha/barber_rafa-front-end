@@ -5,6 +5,7 @@ import {
   Title,
   DateStatus,
   modalStyles,
+  Button,
 } from "./style";
 import "react-calendar/dist/Calendar.css";
 import { IoClose } from "react-icons/io5";
@@ -51,6 +52,8 @@ export default function ReservationModal({
     const endTime = dayjs(e).add(1, "day").add(-1, "m").toISOString();
     const duration = sumDurations(reservationsList);
 
+    scrollToBottom();
+
     setLoadingSchedule(true);
     const response = await api.checkAvailability(token, {
       startTime,
@@ -59,7 +62,6 @@ export default function ReservationModal({
     });
     setLoadingSchedule(false);
 
-    scrollToBottom();
     setDay(e);
     setScrollX(0);
     setSelectedTime("");
@@ -79,12 +81,14 @@ export default function ReservationModal({
   }
 
   async function handleReservation() {
-    const reservationTime = selectedTime.split(":");
-    const startTime = new Date(day);
-    startTime.setHours(reservationTime[0] - 3, reservationTime[1], 0);
+    const [hour, minute] = selectedTime.split(":");
+    const startTime = dayjs(day)
+      .add(+hour - 3, "h")
+      .add(minute, "m")
+      .toISOString();
 
     const response = await api.createCalendarEvent(token, {
-      startTime: startTime.toISOString(),
+      startTime,
       duration: sumDurations(reservationsList),
       summary: userData?.name,
       description: getDescription(
@@ -127,10 +131,10 @@ export default function ReservationModal({
         <DateStatus>Selecione uma data para reserva</DateStatus>
       )}
       {scheduleArray?.length === 0 && (
-        <DateStatus>Não temos horários disponíveis</DateStatus>
+        <DateStatus>Não temos horários disponíveis nessa data</DateStatus>
       )}
       {loadingSchedule && <DateStatus>{renderDotsLoading()}</DateStatus>}
-      {scheduleArray?.length > 0 && (
+      {!loadingSchedule && scheduleArray?.length > 0 && (
         <>
           <DateStatus>Selecione um horário :</DateStatus>
           <ScheduleContainer
@@ -145,10 +149,10 @@ export default function ReservationModal({
         </>
       )}
       <AddCancelServices>
-        <button onClick={closeModal}>Cancelar</button>
-        <button onClick={() => closeModal(false)}>
+        <Button onClick={closeModal}>Cancelar</Button>
+        <Button onClick={() => closeModal(false)}>
           Adicionar outro serviço
-        </button>
+        </Button>
       </AddCancelServices>
     </StyledModal>
   );

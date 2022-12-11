@@ -86,7 +86,7 @@ export const Input = styled.input`
   margin-bottom: 13px;
 
   border-radius: 4px;
-  border: 5px solid #454545;
+  border: 5px solid ${variables.MEDIUM_GREY};
 
   ::placeholder {
     text-transform: uppercase;
@@ -148,7 +148,7 @@ export const Textarea = styled.textarea`
   margin-bottom: 13px;
 
   border-radius: 4px;
-  border: 5px solid #454545;
+  border: 5px solid ${variables.MEDIUM_GREY};
 
   ::placeholder {
     text-transform: uppercase;
@@ -235,7 +235,7 @@ export const modalStyles = {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    background: "#2c2c2c",
+    background: variables.LESS_DARK_GREY,
     border: "hidden",
     boxSizing: "border-box",
     padding: "35px",

@@ -173,7 +173,7 @@ export const Duration = styled.p`
   font-weight: 400;
   line-height: 1.167em;
   letter-spacing: 0;
-  color: #8d8d8d;
+  color: ${variables.LIGHT_GREY};
 
   @media (max-width: 640px) {
     font-size: 0.825rem;

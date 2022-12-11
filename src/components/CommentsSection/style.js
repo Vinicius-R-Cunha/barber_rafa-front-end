@@ -37,7 +37,7 @@ export const Spacer = styled.div`
   width: 80px;
   height: 2px;
 
-  background-color: #454545;
+  background-color: ${variables.MEDIUM_GREY};
 
   margin-top: 40px;
 
@@ -88,7 +88,7 @@ export const Description = styled.p`
   font-weight: 400;
   line-height: 1.75em;
   text-align: center;
-  color: #8d8d8d;
+  color: ${variables.LIGHT_GREY};
 
   padding-top: 20px;
 
