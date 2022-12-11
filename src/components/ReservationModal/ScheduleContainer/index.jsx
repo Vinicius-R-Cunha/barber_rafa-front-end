@@ -21,6 +21,8 @@ export default function ScheduleContainer({
   reservationsList,
   handleReservation,
 }) {
+  const isDesktop = window.innerWidth >= 1024;
+
   function handleLeftArrow() {
     let margin = scrollX + 350;
     if (margin > 0) {
@@ -41,6 +43,14 @@ export default function ScheduleContainer({
     setScrollX(margin);
   }
 
+  function renderScheduleTimes() {
+    return scheduleArray?.map((time) => (
+      <Timetable key={time} onClick={() => setSelectedTime(time)}>
+        {time}
+      </Timetable>
+    ));
+  }
+
   return (
     <>
       <Container>
@@ -48,18 +58,7 @@ export default function ScheduleContainer({
         <RightArrow onClick={handleRightArrow} />
 
         <ScrollableDiv>
-          {window.innerWidth < 1024 && (
-            <ScrollContainer className="inside-scroll">
-              {scheduleArray?.map((time) => {
-                return (
-                  <Timetable key={time} onClick={() => setSelectedTime(time)}>
-                    {time}
-                  </Timetable>
-                );
-              })}
-            </ScrollContainer>
-          )}
-          {window.innerWidth >= 1024 && (
+          {isDesktop && (
             <div
               className="inside-scroll"
               style={{
@@ -68,14 +67,13 @@ export default function ScheduleContainer({
                 transition: "all ease 0.9s",
               }}
             >
-              {scheduleArray?.map((time) => {
-                return (
-                  <Timetable key={time} onClick={() => setSelectedTime(time)}>
-                    {time}
-                  </Timetable>
-                );
-              })}
+              {renderScheduleTimes()}
             </div>
+          )}
+          {!isDesktop && (
+            <ScrollContainer className="inside-scroll">
+              {renderScheduleTimes()}
+            </ScrollContainer>
           )}
         </ScrollableDiv>
       </Container>
