@@ -11,7 +11,7 @@ import {
   BsFillArrowLeftCircleFill,
   BsFillArrowRightCircleFill,
 } from "react-icons/bs";
-import { sumPrices, sumDurations } from "../convertionFunctions";
+import { sumPrices, sumDurations } from "../auxiliarFunctions";
 import ScrollContainer from "react-indiana-drag-scroll";
 import { useEffect, useState } from "react";
 

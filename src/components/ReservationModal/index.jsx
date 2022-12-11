@@ -13,7 +13,7 @@ import * as api from "../../services/api";
 import { useUserContext } from "../../contexts/UserContext";
 import renderToast from "../../utils/renderToast";
 import { renderDotsLoading } from "../../utils/renderDotsLoading";
-import { displayServiceNames, sumDurations } from "./convertionFunctions";
+import { getDescription, sumDurations } from "./auxiliarFunctions";
 import ScheduleContainer from "./ScheduleContainer";
 import Calendar from "../Calendar";
 import dayjs from "dayjs";
@@ -87,11 +87,11 @@ export default function ReservationModal({
       startTime: startTime.toISOString(),
       duration: sumDurations(reservationsList),
       summary: userData?.name,
-      description: `Serviço(s): ${displayServiceNames(
-        reservationsList
-      )}, Telefone: ${
+      description: getDescription(
+        reservationsList,
+        selectedTime,
         userData?.phone
-      }, horário: ${selectedTime}, duração: ${sumDurations(reservationsList)}`,
+      ),
     });
     closeModal();
 
