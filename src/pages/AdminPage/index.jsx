@@ -24,7 +24,7 @@ export default function AdminPage() {
 
   const [businessHoursModalIsOpen, setBusinessHoursModalIsOpen] =
     useState(false);
-  const [schedulesArray, setSchedulesArray] = useState();
+  const [schedulesArray, setSchedulesArray] = useState(null);
 
   useEffect(() => {
     renderPage();
@@ -40,9 +40,11 @@ export default function AdminPage() {
 
   async function getCategories() {
     const response = await api.getCategories();
+
     if (response.status === 200) {
       return setCategoriesArray(response.data);
     }
+
     return renderToast(
       "error",
       "Erro ao carregar serviços, por favor recarregue a página"
@@ -51,37 +53,34 @@ export default function AdminPage() {
 
   async function getSchedules() {
     const response = await api.getSchedules();
+
     if (response.status === 200) {
       return setSchedulesArray(response.data);
     }
+
     return renderToast(
       "error",
       "Erro ao carregar serviços, por favor recarregue a página"
     );
   }
 
-  if (
-    categoriesArray?.length === 0 ||
-    !categoriesArray ||
-    schedulesArray?.length === 0 ||
-    !schedulesArray
-  ) {
-    return <Loading />;
-  }
-
   return (
     <>
       <HeaderSection page="admin" title="Administração" />
-      <AdminSection
-        categoriesArray={categoriesArray}
-        setServiceData={setServiceData}
-        setCategoryData={setCategoryData}
-        setCategoryModalType={setCategoryModalType}
-        setCategoryModalIsOpen={setCategoryModalIsOpen}
-        setServiceModalType={setServiceModalType}
-        setServiceModalIsOpen={setServiceModalIsOpen}
-        setBusinessHoursModalIsOpen={setBusinessHoursModalIsOpen}
-      />
+
+      {categoriesArray === null || schedulesArray === null ? (
+        <Loading />
+      ) : (
+        <AdminSection
+          setServiceData={setServiceData}
+          setCategoryData={setCategoryData}
+          setCategoryModalType={setCategoryModalType}
+          setCategoryModalIsOpen={setCategoryModalIsOpen}
+          setServiceModalType={setServiceModalType}
+          setServiceModalIsOpen={setServiceModalIsOpen}
+          setBusinessHoursModalIsOpen={setBusinessHoursModalIsOpen}
+        />
+      )}
 
       <BusinessHoursModal
         businessHoursModalIsOpen={businessHoursModalIsOpen}

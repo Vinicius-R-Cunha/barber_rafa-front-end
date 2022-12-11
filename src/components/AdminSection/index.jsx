@@ -16,9 +16,9 @@ import {
 import { AiFillEdit } from "react-icons/ai";
 import { FaTrashAlt } from "react-icons/fa";
 import { MdOutlineAddCircle } from "react-icons/md";
+import { useDataContext } from "../../contexts/DataContext";
 
 export default function AdminSection({
-  categoriesArray,
   setServiceData,
   setCategoryData,
   setCategoryModalType,
@@ -27,26 +27,20 @@ export default function AdminSection({
   setServiceModalIsOpen,
   setBusinessHoursModalIsOpen,
 }) {
+  const { categoriesArray } = useDataContext();
+
   function handleCategoryAction(category, action) {
-    setCategoryModalType(action);
-    openCategoryModal(category);
-  }
-
-  function handleServiceAction(category, service, action) {
-    setServiceModalType(action);
-    openServiceModal(category, service);
-  }
-
-  function openCategoryModal(category) {
-    setCategoryModalIsOpen(true);
     setCategoryData(category);
+    setCategoryModalType(action);
+    setCategoryModalIsOpen(true);
     document.body.style.overflow = "hidden";
   }
 
-  function openServiceModal(category, service) {
-    setServiceModalIsOpen(true);
+  function handleServiceAction(category, service, action) {
     setCategoryData(category);
     setServiceData(service);
+    setServiceModalType(action);
+    setServiceModalIsOpen(true);
     document.body.style.overflow = "hidden";
   }
 
@@ -59,7 +53,7 @@ export default function AdminSection({
     <>
       <Container>
         <Buttons>
-          <Button onClick={() => openBusinessHoursModal()}>
+          <Button onClick={openBusinessHoursModal}>
             Horário de funcionamento
           </Button>
           <Button onClick={() => handleCategoryAction("", "create")}>

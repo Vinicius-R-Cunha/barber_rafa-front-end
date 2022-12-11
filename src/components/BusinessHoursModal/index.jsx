@@ -37,7 +37,6 @@ export default function BusinessHoursModal({
   function handleSelection(weekday) {
     setSelectionTab(false);
     setSelectedWeekday(weekday);
-
     setShowSchedules(weekday.isOpen);
     if (weekday?.schedule?.length !== 0) {
       setStartTime(weekday.schedule[0]);
@@ -55,10 +54,6 @@ export default function BusinessHoursModal({
     setSelectedWeekday();
   }
 
-  function handleSubmit() {
-    return editSchedule();
-  }
-
   async function editSchedule() {
     const response = await api.editSchedule(token, selectedWeekday.weekId, {
       startTime,
@@ -66,27 +61,25 @@ export default function BusinessHoursModal({
       isOpen: showSchedules,
     });
 
-    if (response.status === 200) return handleSuccess("Horário editado!");
+    if (response.status === 200) {
+      setSelectionTab(true);
+      renderPage();
+      renderToast("success", "Horário editado!");
+      return;
+    }
 
     handleApiErrors(response);
     return;
-  }
-
-  function handleSuccess(message) {
-    setSelectionTab(true);
-    renderPage();
-
-    return renderToast("success", message);
   }
 
   return (
     <StyledModal
       isOpen={businessHoursModalIsOpen}
       ariaHideApp={false}
-      onRequestClose={() => closeModal()}
+      onRequestClose={closeModal}
       style={modalStyles}
     >
-      <IoClose className="close-icon" onClick={() => closeModal()} />
+      <IoClose className="close-icon" onClick={closeModal} />
 
       {selectionTab && (
         <>
@@ -164,7 +157,7 @@ export default function BusinessHoursModal({
               </Schedule>
             </>
           )}
-          <Button onClick={() => handleSubmit()}>Salvar</Button>
+          <Button onClick={editSchedule}>Salvar</Button>
         </>
       )}
     </StyledModal>
