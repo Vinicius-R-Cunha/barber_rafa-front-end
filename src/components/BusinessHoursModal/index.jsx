@@ -84,17 +84,17 @@ export default function BusinessHoursModal({
       {selectionTab && (
         <>
           <Title>Horário de funcionamento</Title>
-          {schedulesArray.map((weekday) => {
+          {schedulesArray?.map((weekday) => {
             return (
               <WeekDay
-                key={weekday._id}
+                key={weekday?._id}
                 onClick={() => handleSelection(weekday)}
               >
-                <p>{weekdays[weekday.weekId]}</p>
-                {weekday.isOpen ? (
+                <p>{weekdays[weekday?.weekId]}</p>
+                {weekday?.isOpen ? (
                   <p>
-                    {`${weekday.schedule[0]} - ${
-                      weekday.schedule[weekday.schedule.length - 1]
+                    {`${weekday?.schedule[0]} - ${
+                      weekday?.schedule[weekday?.schedule.length - 1]
                     }`}
                   </p>
                 ) : (
@@ -116,7 +116,7 @@ export default function BusinessHoursModal({
               setSelectedWeekday();
             }}
           />
-          <Title>{weekdays[selectedWeekday.weekId]}</Title>
+          <Title>{weekdays[selectedWeekday?.weekId]}</Title>
 
           <CheckBox>
             <p>Fechar dia:</p>
