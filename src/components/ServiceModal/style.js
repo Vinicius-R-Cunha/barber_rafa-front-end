@@ -67,6 +67,29 @@ export const InputsForm = styled.form`
   }
 `;
 
+export const PriceContainer = styled.div`
+  width: 100%;
+
+  position: relative;
+
+  p {
+    font-family: "Montserrat";
+    font-size: 0.95rem;
+    font-style: normal;
+    font-weight: 800;
+    letter-spacing: 0.7px;
+    color: ${variables.WHITE};
+
+    position: absolute;
+    left: 22px;
+    top: 20px;
+  }
+
+  input {
+    text-indent: 20px;
+  }
+`;
+
 export const Input = styled.input`
   all: unset;
 

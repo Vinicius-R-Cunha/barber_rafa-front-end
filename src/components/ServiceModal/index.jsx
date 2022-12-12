@@ -8,6 +8,7 @@ import {
   StyledModal,
   Title,
   InputsForm,
+  PriceContainer,
   Input,
   ActionButtons,
   RangeInput,
@@ -154,14 +155,17 @@ export default function ServiceModal({
               value={formData.name}
               required
             />
-            <Input
-              name="price"
-              type="text"
-              placeholder="Preço"
-              onChange={(e) => handleFormData(e)}
-              value={formData.price}
-              required
-            />
+            <PriceContainer>
+              <p>R$</p>
+              <Input
+                name="price"
+                type="text"
+                placeholder="Preço"
+                onChange={(e) => handleFormData(e)}
+                value={formData.price}
+                required
+              />
+            </PriceContainer>
             <RangeInput>
               <p>Duração: {duration}</p>
               <input
