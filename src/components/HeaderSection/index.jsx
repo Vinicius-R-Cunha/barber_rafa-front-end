@@ -57,22 +57,6 @@ export default function HeaderSection({ page, title }) {
       />
 
       <HeaderDiv>
-        {profileTabIsOpen && (
-          <MenuContainer>
-            {userIsAdmin && (
-              <ProfileButton onClick={() => navigateToPage("/admin")}>
-                Administração
-              </ProfileButton>
-            )}
-            <ProfileButton onClick={() => navigateToPage("/config")}>
-              Configurações
-            </ProfileButton>
-            <ProfileButton onClick={() => navigateToPage("/reservas")}>
-              Reservas
-            </ProfileButton>
-            <ProfileButton onClick={() => logout()}>Sair</ProfileButton>
-          </MenuContainer>
-        )}
         <LogoImage onClick={() => navigate("/")} src={logo} alt="" />
         <NavButtons>
           <NavButton onClick={() => navigate("/")}>Página Inicial</NavButton>
@@ -98,6 +82,22 @@ export default function HeaderSection({ page, title }) {
                 </NavButton>
               )}
             </>
+          )}
+          {profileTabIsOpen && (
+            <MenuContainer>
+              {userIsAdmin && (
+                <ProfileButton onClick={() => navigateToPage("/admin")}>
+                  Administração
+                </ProfileButton>
+              )}
+              <ProfileButton onClick={() => navigateToPage("/config")}>
+                Configurações
+              </ProfileButton>
+              <ProfileButton onClick={() => navigateToPage("/reservas")}>
+                Reservas
+              </ProfileButton>
+              <ProfileButton onClick={() => logout()}>Sair</ProfileButton>
+            </MenuContainer>
           )}
         </NavButtons>
       </HeaderDiv>
