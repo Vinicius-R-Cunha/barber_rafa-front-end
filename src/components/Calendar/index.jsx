@@ -1,74 +1,71 @@
-import { Calendar as ReactCalendar } from "react-calendar";
 import dayjs from "dayjs";
-import { Container, Week, Day, YearMonth } from "./style";
+import { Container, Row, Arrow, YearMonth, Weekday, Day } from "./style";
 import { useEffect, useState } from "react";
 import buildCalendar from "./build";
+import { months, weekdays } from "./translate";
 
 export default function Calendar({ handleCalendarClick }) {
   const [calendar, setCalendar] = useState([]);
   const [value, setValue] = useState(dayjs());
   const [selected, setSelected] = useState(dayjs());
 
+  const MIN_DATE = dayjs();
+  const MAX_DATE = dayjs().add(2, "month");
+
   useEffect(() => {
     setCalendar(buildCalendar(value));
   }, [value]);
 
-  function currMonthName() {
-    return value.format("MMMM");
-  }
-
-  function currYear() {
-    return value.format("YYYY");
-  }
-
   function handlePreviousMonth() {
-    if (value.add(-1, "month").isBefore(dayjs(), "month")) return;
+    const previousMonth = value.add(-1, "month");
+    if (previousMonth.isBefore(MIN_DATE, "month")) return;
+
     setValue((prev) => prev.add(-1, "month"));
   }
 
   function handleNextMonth() {
-    if (value.add(1, "month").isAfter(dayjs().add(2, "month"), "month")) return;
+    const nextMonth = value.add(1, "month");
+    if (nextMonth.isAfter(MAX_DATE, "month")) return;
+
     setValue((prev) => prev.add(1, "month"));
   }
 
   return (
     <Container>
-      <Week>
-        <Day
+      <Row>
+        <Arrow
           onClick={handlePreviousMonth}
-          tileDisabled={value.add(-1, "month").isBefore(dayjs(), "month")}
+          isDisabled={value.add(-1, "month").isBefore(MIN_DATE, "month")}
         >
           {"<"}
-        </Day>
+        </Arrow>
         <YearMonth>
-          {currMonthName()} - {currYear()}
+          {months[value.get("month")]} - {value.format("YYYY")}
         </YearMonth>
-        <Day
+        <Arrow
           onClick={handleNextMonth}
-          tileDisabled={value
-            .add(1, "month")
-            .isAfter(dayjs().add(2, "month"), "month")}
+          isDisabled={value.add(1, "month").isAfter(MAX_DATE, "month")}
         >
           {">"}
-        </Day>
-      </Week>
-      <Week>
-        <Day isWeekend={true}>DOM</Day>
-        <Day>SEG</Day>
-        <Day>TER</Day>
-        <Day>QUA</Day>
-        <Day>QUI</Day>
-        <Day>SEX</Day>
-        <Day isWeekend={true}>SÁB</Day>
-      </Week>
+        </Arrow>
+      </Row>
+
+      <Row>
+        {weekdays.map((day, i) => (
+          <Weekday isWeekend={i === 0 || i === 6} key={day}>
+            {day}
+          </Weekday>
+        ))}
+      </Row>
+
       {calendar.map((week, i) => (
-        <Week key={i}>
+        <Row key={i}>
           {week.map((day, j) => (
             <Day
               key={j}
-              isNotFromThisMonth={day.month() !== value.month()}
+              isNotFromThisMonth={!day.isSame(value, "month")}
               isToday={dayjs().isSame(day, "day")}
-              isSelected={selected.isSame(day, "day")}
+              isSelected={day.isSame(selected, "day")}
               isWeekend={j === 0 || j === 6}
               tileDisabled={
                 day.isBefore(dayjs(), "day") ||
@@ -88,16 +85,8 @@ export default function Calendar({ handleCalendarClick }) {
               {day.format("D").toString()}
             </Day>
           ))}
-        </Week>
+        </Row>
       ))}
-      {/* <ReactCalendar
-          className={["c1"]}
-          calendarType={"US"}
-          onClickDay={handleCalendarClick}
-          tileDisabled={({ date }) => date < dayjs().add(-1, "day").toDate()}
-          minDate={dayjs().toDate()}
-          maxDate={dayjs().add(2, "M").toDate()}
-        /> */}
     </Container>
   );
 }

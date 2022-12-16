@@ -7,7 +7,6 @@ import {
   modalStyles,
   Button,
 } from "./style";
-import "react-calendar/dist/Calendar.css";
 import { IoClose } from "react-icons/io5";
 import { useState } from "react";
 import * as api from "../../services/api";

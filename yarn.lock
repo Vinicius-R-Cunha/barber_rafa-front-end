@@ -2823,11 +2823,6 @@
     "@webassemblyjs/ast" "1.11.1"
     "@xtuc/long" "4.2.2"
 
-"@wojtekmaj/date-utils@^1.0.2":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@wojtekmaj/date-utils/-/date-utils-1.0.3.tgz#2dcfd92881425c5923e429c2aec86fb3609032a1"
-  integrity sha512-1VPkkTBk07gMR1fjpBtse4G+oJqpmE+0gUFB0dg3VIL7qJmUVaBoD/vlzMm/jNeOPfvlmerl1lpnsZyBUFIRuw==
-
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@xtuc/ieee754/-/ieee754-1.2.0.tgz#eef014a3145ae477a1cbc00cd1e552336dceb790"
@@ -5186,13 +5181,6 @@ get-symbol-description@^1.0.0:
     call-bind "^1.0.2"
     get-intrinsic "^1.1.1"
 
-get-user-locale@^1.2.0:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/get-user-locale/-/get-user-locale-1.5.1.tgz#18a9ba2cfeed0e713ea00968efa75d620523a5ea"
-  integrity sha512-WiNpoFRcHn1qxP9VabQljzGwkAQDrcpqUtaP0rNBEkFxJdh4f3tik6MfZsMYZc+UgQJdGCxWEjL9wnCUlRQXag==
-  dependencies:
-    lodash.memoize "^4.1.1"
-
 glob-parent@^5.1.2, glob-parent@~5.1.2:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-5.1.2.tgz#869832c58034fe68a4093c17dc15e8340d8401c4"
@@ -6683,7 +6671,7 @@ lodash.debounce@^4.0.8:
   resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
   integrity sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==
 
-lodash.memoize@^4.1.1, lodash.memoize@^4.1.2:
+lodash.memoize@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
   integrity sha512-t7j+NzmgnQzTAYXcsHYLgimltOV1MXHtlOWf6GjL9Kj8GK5FInw5JotxvbOs+IvV1/Dzo04/fCGfLVs7aXb4Ag==
@@ -6786,11 +6774,6 @@ memfs@^3.1.2, memfs@^3.4.3:
   integrity sha512-0bCUP+L79P4am30yP1msPzApwuMQG23TjwlwdHeEV5MxioDR1a0AgB0T9FfggU52eJuDCq8WVwb5ekznFyWiTQ==
   dependencies:
     fs-monkey "^1.0.3"
-
-merge-class-names@^1.1.1:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/merge-class-names/-/merge-class-names-1.4.2.tgz#78d6d95ab259e7e647252a7988fd25a27d5a8835"
-  integrity sha512-bOl98VzwCGi25Gcn3xKxnR5p/WrhWFQB59MS/aGENcmUc6iSm96yrFDF0XSNurX9qN4LbJm0R9kfvsQ17i8zCw==
 
 merge-descriptors@1.0.1:
   version "1.0.1"
@@ -7949,7 +7932,7 @@ prompts@^2.0.1, prompts@^2.4.2:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.6.0, prop-types@^15.7.2, prop-types@^15.8.1:
+prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -8080,16 +8063,6 @@ react-app-polyfill@^3.0.0:
     raf "^3.4.1"
     regenerator-runtime "^0.13.9"
     whatwg-fetch "^3.6.2"
-
-react-calendar@^3.7.0:
-  version "3.9.0"
-  resolved "https://registry.yarnpkg.com/react-calendar/-/react-calendar-3.9.0.tgz#4dfe342ef61574c0e819e49847981076c7af58ea"
-  integrity sha512-g6RJCEaPovHTiV2bMhBUfm0a1YoMj4bOUpL8hQSLmR1Glhc7lgRLtZBd4mcC4jkoGsb+hv9uA/QH4pZcm5l9lQ==
-  dependencies:
-    "@wojtekmaj/date-utils" "^1.0.2"
-    get-user-locale "^1.2.0"
-    merge-class-names "^1.1.1"
-    prop-types "^15.6.0"
 
 react-dev-utils@^12.0.0:
   version "12.0.1"
