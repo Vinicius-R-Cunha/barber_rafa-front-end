@@ -253,6 +253,7 @@ export const modalStyles = {
     overflowX: "hidden",
   },
   content: {
+    outline: "none",
     width: "650px",
     position: "fixed",
     top: "150px",
