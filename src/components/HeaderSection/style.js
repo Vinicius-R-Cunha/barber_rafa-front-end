@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import * as variables from "../../styles/variables";
 
-export const Container = styled.div`
+export const Container = styled.header`
   width: 100%;
   height: ${(props) => (props.page === "home" ? "960px" : "537px")};
 
@@ -143,7 +143,9 @@ export const NavButtons = styled.div`
   align-items: center;
 `;
 
-export const NavButton = styled.div`
+export const NavButton = styled.button`
+  all: unset;
+
   font-size: 1.163rem;
   letter-spacing: 0px;
   font-weight: 400;
