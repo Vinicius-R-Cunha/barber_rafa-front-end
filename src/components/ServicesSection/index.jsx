@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useDataContext } from "../../contexts/DataContext";
 import {
   Container,
@@ -13,7 +14,7 @@ import {
   Button,
 } from "./style";
 
-export default function ServicesSection({
+function ServicesSection({
   readMore,
   handleReservation,
   isChoosingMoreServices,
@@ -56,3 +57,5 @@ export default function ServicesSection({
     </Container>
   );
 }
+
+export default memo(ServicesSection);
