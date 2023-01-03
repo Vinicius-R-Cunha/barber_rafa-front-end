@@ -1,8 +1,9 @@
-import { Container, FooterLogo, NavButtons, NavButton } from "./style";
-import logo from "../../assets/logo.png";
+import { Container } from "./style";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../../contexts/UserContext";
-import { renderDotsLoading } from "../../utils/renderDotsLoading";
+import NavButtons from "./NavButtons";
+
+import { useCallback } from "react";
 
 export default function Footer() {
   const { openAuthenticationModal, loadingUserValidation, userIsLoggedIn } =
@@ -10,31 +11,18 @@ export default function Footer() {
 
   const navigate = useNavigate();
 
+  const navTo = useCallback((page) => {
+    navigate(page);
+  }, []);
+
   return (
     <Container>
-      <FooterLogo src={logo} alt="" />
-      <NavButtons>
-        <NavButton onClick={() => navigate("/")}>Página Inicial</NavButton>
-        <NavButton onClick={() => navigate("/servicos")}>Serviços</NavButton>
-        <NavButton onClick={() => navigate("/sobre")}>Sobre</NavButton>
-        <NavButton onClick={() => navigate("/contato")}>Contato</NavButton>
-
-        {loadingUserValidation ? (
-          <NavButton>{renderDotsLoading()}</NavButton>
-        ) : (
-          <>
-            {userIsLoggedIn ? (
-              <NavButton onClick={() => navigate("/reservas")}>
-                Reservas
-              </NavButton>
-            ) : (
-              <NavButton onClick={() => openAuthenticationModal()}>
-                Entrar/Inscrever-se
-              </NavButton>
-            )}
-          </>
-        )}
-      </NavButtons>
+      <NavButtons
+        navTo={navTo}
+        openAuthenticationModal={openAuthenticationModal}
+        loadingUserValidation={loadingUserValidation}
+        userIsLoggedIn={userIsLoggedIn}
+      />
     </Container>
   );
 }
