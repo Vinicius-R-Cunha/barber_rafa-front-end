@@ -1,4 +1,4 @@
-import { useState, createContext, useContext } from "react";
+import { useState, createContext, useContext, useCallback } from "react";
 import * as api from "../services/api";
 
 const UserContext = createContext();
@@ -12,10 +12,10 @@ export function UserContextProvider(props) {
   const [authenticationIsOpen, setAuthenticationIsOpen] = useState(false);
   const [userData, setUserData] = useState();
 
-  function openAuthenticationModal() {
+  const openAuthenticationModal = useCallback(() => {
     setAuthenticationIsOpen(true);
     document.body.style.overflow = "hidden";
-  }
+  }, []);
 
   async function validateToken(token) {
     const user = await api.validateToken(token);

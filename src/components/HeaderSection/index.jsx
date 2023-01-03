@@ -1,49 +1,36 @@
-import {
-  Container,
-  BackgroundImage,
-  BackgroundDarkness,
-  HeaderDiv,
-  NavButtons,
-  NavButton,
-  About,
-  BookButton,
-  MenuContainer,
-  ProfileButton,
-  LogoImage,
-} from "./style";
+import { Container, BackgroundImage, BackgroundDarkness } from "./style";
 import { useNavigate } from "react-router-dom";
-import logo from "../../assets/logo.png";
 import background from "../../assets/colored_lion.png";
-import { BsPersonCircle } from "react-icons/bs";
-import ResponsiveHeader from "../ResponsiveHeader";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useUserContext } from "../../contexts/UserContext";
-import { renderDotsLoading } from "../../utils/renderDotsLoading";
+import ResponsiveHeader from "../ResponsiveHeader";
+import DesktopHeader from "./DesktopHeader";
+import Title from "./Title";
 
 export default function HeaderSection({ page, title }) {
   const {
     setToken,
     openAuthenticationModal,
-    loadingUserValidation,
     userIsLoggedIn,
     userIsAdmin,
+    loadingUserValidation,
   } = useUserContext();
 
   const [profileTabIsOpen, setProfileTabIsOpen] = useState(false);
 
   const navigate = useNavigate();
 
-  function navigateToPage(page) {
+  const navTo = useCallback((page) => {
     setProfileTabIsOpen(false);
     navigate(page);
-  }
+  }, []);
 
-  function logout() {
+  const logout = useCallback(() => {
     navigate("/");
     setProfileTabIsOpen(false);
     localStorage.removeItem("token");
     setToken(null);
-  }
+  }, []);
 
   return (
     <Container page={page}>
@@ -56,67 +43,18 @@ export default function HeaderSection({ page, title }) {
         logout={logout}
       />
 
-      <HeaderDiv>
-        <LogoImage onClick={() => navigate("/")} src={logo} alt="" />
-        <NavButtons>
-          <NavButton onClick={() => navigate("/")}>Página Inicial</NavButton>
-          <NavButton onClick={() => navigate("/servicos")}>Serviços</NavButton>
-          <NavButton onClick={() => navigate("/sobre")}>Sobre</NavButton>
-          <NavButton onClick={() => navigate("/contato")}>Contato</NavButton>
+      <DesktopHeader
+        openAuthenticationModal={openAuthenticationModal}
+        navTo={navTo}
+        userIsLoggedIn={userIsLoggedIn}
+        userIsAdmin={userIsAdmin}
+        loadingUserValidation={loadingUserValidation}
+        profileTabIsOpen={profileTabIsOpen}
+        setProfileTabIsOpen={setProfileTabIsOpen}
+        logout={logout}
+      />
 
-          {loadingUserValidation ? (
-            <NavButton>{renderDotsLoading()}</NavButton>
-          ) : (
-            <>
-              {userIsLoggedIn ? (
-                <NavButton
-                  onClick={() => setProfileTabIsOpen(!profileTabIsOpen)}
-                >
-                  <BsPersonCircle className="login-icon" />
-                  <p>Perfil</p>
-                </NavButton>
-              ) : (
-                <NavButton onClick={() => openAuthenticationModal()}>
-                  <BsPersonCircle className="login-icon" />
-                  <p>Entrar/Inscrever-se</p>
-                </NavButton>
-              )}
-            </>
-          )}
-          {profileTabIsOpen && (
-            <MenuContainer>
-              {userIsAdmin && (
-                <ProfileButton onClick={() => navigateToPage("/admin")}>
-                  Administração
-                </ProfileButton>
-              )}
-              <ProfileButton onClick={() => navigateToPage("/config")}>
-                Configurações
-              </ProfileButton>
-              <ProfileButton onClick={() => navigateToPage("/reservas")}>
-                Reservas
-              </ProfileButton>
-              <ProfileButton onClick={() => logout()}>Sair</ProfileButton>
-            </MenuContainer>
-          )}
-        </NavButtons>
-      </HeaderDiv>
-
-      {page === "home" ? (
-        <>
-          <About page={page}>
-            Barbearia com ambiente
-            <br />
-            <span>para toda a família</span>
-          </About>
-
-          <BookButton onClick={() => navigate("/servicos")}>
-            Agende seu corte
-          </BookButton>
-        </>
-      ) : (
-        <About>{title}</About>
-      )}
+      <Title page={page} title={title} navTo={navTo} />
     </Container>
   );
 }
