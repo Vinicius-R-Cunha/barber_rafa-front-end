@@ -4,33 +4,29 @@ import { BsPersonCircle } from "react-icons/bs";
 import logo from "../../assets/logo.png";
 import { useState } from "react";
 import { IoClose } from "react-icons/io5";
-import { useNavigate } from "react-router-dom";
-import { useUserContext } from "../../contexts/UserContext";
 import { renderDotsLoading } from "../../utils/renderDotsLoading";
+import { memo } from "react";
 
-export default function ResponsiveHeader({
+function ResponsiveHeader({
+  openAuthenticationModal,
+  navTo,
+  loadingUserValidation,
+  userIsLoggedIn,
+  userIsAdmin,
   profileTabIsOpen,
   setProfileTabIsOpen,
   logout,
 }) {
-  const {
-    openAuthenticationModal,
-    loadingUserValidation,
-    userIsLoggedIn,
-    userIsAdmin,
-  } = useUserContext();
   const [menuIsOpen, setMenuIsOpen] = useState(false);
-
-  const navigate = useNavigate();
 
   function navigateToPage(page) {
     setMenuIsOpen(false);
-    navigate(page);
+    navTo(page);
   }
 
   return (
     <Container>
-      <Logo src={logo} onClick={() => navigate("/")} alt="" />
+      <Logo src={logo} onClick={() => navTo("/")} alt="" />
       <Icons>
         {menuIsOpen ? (
           <IoClose onClick={() => setMenuIsOpen(!menuIsOpen)} />
@@ -47,7 +43,7 @@ export default function ResponsiveHeader({
                 onClick={() => setProfileTabIsOpen(!profileTabIsOpen)}
               />
             ) : (
-              <BsPersonCircle onClick={() => openAuthenticationModal()} />
+              <BsPersonCircle onClick={openAuthenticationModal} />
             )}
           </>
         )}
@@ -90,7 +86,7 @@ export default function ResponsiveHeader({
           >
             Reservas
           </NavButton>
-          <NavButton className="flex-end" onClick={() => logout()}>
+          <NavButton className="flex-end" onClick={logout}>
             Sair
           </NavButton>
         </MenuContainer>
@@ -98,3 +94,5 @@ export default function ResponsiveHeader({
     </Container>
   );
 }
+
+export default memo(ResponsiveHeader);

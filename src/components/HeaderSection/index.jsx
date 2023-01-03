@@ -38,6 +38,11 @@ export default function HeaderSection({ page, title }) {
       <BackgroundDarkness />
 
       <ResponsiveHeader
+        openAuthenticationModal={openAuthenticationModal}
+        navTo={navTo}
+        loadingUserValidation={loadingUserValidation}
+        userIsLoggedIn={userIsLoggedIn}
+        userIsAdmin={userIsAdmin}
         profileTabIsOpen={profileTabIsOpen}
         setProfileTabIsOpen={setProfileTabIsOpen}
         logout={logout}
