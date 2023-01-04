@@ -9,10 +9,12 @@ import Loading from "../../components/Loading";
 import ReadMoreModal from "../../components/ReadMoreModal";
 import ReservationModal from "../../components/ReservationModal";
 import { useCallback } from "react";
+import { useAuthModalContext } from "../../contexts/AuthModalContext";
 
 function ServicesPage() {
   const { categoriesArray, setCategoriesArray } = useDataContext();
-  const { token, openAuthenticationModal } = useUserContext();
+  const { token } = useUserContext();
+  const { openAuthenticationModal } = useAuthModalContext();
 
   const [readMoreModalIsOpen, setReadMoreModalIsOpen] = useState(false);
   const [reservationModalIsOpen, setReservationModalIsOpen] = useState(false);

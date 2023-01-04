@@ -4,10 +4,11 @@ import { useUserContext } from "../../contexts/UserContext";
 import NavButtons from "./NavButtons";
 
 import { useCallback } from "react";
+import { useAuthModalContext } from "../../contexts/AuthModalContext";
 
 export default function Footer() {
-  const { openAuthenticationModal, loadingUserValidation, userIsLoggedIn } =
-    useUserContext();
+  const { loadingUserValidation, userIsLoggedIn } = useUserContext();
+  const { openAuthenticationModal } = useAuthModalContext();
 
   const navigate = useNavigate();
 

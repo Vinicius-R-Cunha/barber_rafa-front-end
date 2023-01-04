@@ -6,15 +6,13 @@ import { useUserContext } from "../../contexts/UserContext";
 import ResponsiveHeader from "../ResponsiveHeader";
 import DesktopHeader from "./DesktopHeader";
 import Title from "./Title";
+import { useAuthModalContext } from "../../contexts/AuthModalContext";
 
 export default function HeaderSection({ page, title }) {
-  const {
-    setToken,
-    openAuthenticationModal,
-    userIsLoggedIn,
-    userIsAdmin,
-    loadingUserValidation,
-  } = useUserContext();
+  const { setToken, userIsLoggedIn, userIsAdmin, loadingUserValidation } =
+    useUserContext();
+
+  const { openAuthenticationModal } = useAuthModalContext();
 
   const [profileTabIsOpen, setProfileTabIsOpen] = useState(false);
 

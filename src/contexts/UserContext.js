@@ -9,13 +9,7 @@ export function UserContextProvider(props) {
   const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
   const [userIsAdmin, setUserIsAdmin] = useState(false);
   const [userIsNewUser, setUserIsNewUser] = useState(false);
-  const [authenticationIsOpen, setAuthenticationIsOpen] = useState(false);
   const [userData, setUserData] = useState();
-
-  const openAuthenticationModal = useCallback(() => {
-    setAuthenticationIsOpen(true);
-    document.body.style.overflow = "hidden";
-  }, []);
 
   async function validateToken(token) {
     const user = await api.validateToken(token);
@@ -41,9 +35,6 @@ export function UserContextProvider(props) {
   return (
     <UserContext.Provider
       value={{
-        authenticationIsOpen,
-        setAuthenticationIsOpen,
-        openAuthenticationModal,
         validateToken,
         token,
         setToken,

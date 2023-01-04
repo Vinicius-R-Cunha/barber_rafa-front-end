@@ -13,15 +13,13 @@ import { signInWithGoogle } from "../../services/Firebase";
 import ResetPassword from "./ResetPassword";
 import SignUp from "./SignUp";
 import SignIn from "./SignIn";
+import { useAuthModalContext } from "../../contexts/AuthModalContext";
 // import { signInWithGoogle, signInWithFacebook } from "../../services/Firebase";
 
 export default function AuthenticationModal() {
-  const {
-    authenticationIsOpen,
-    setAuthenticationIsOpen,
-    setToken,
-    setLoadingUserValidation,
-  } = useUserContext();
+  const { setToken, setLoadingUserValidation } = useUserContext();
+  const { authenticationIsOpen, setAuthenticationIsOpen } =
+    useAuthModalContext();
 
   const [page, setPage] = useState("entrar");
 
