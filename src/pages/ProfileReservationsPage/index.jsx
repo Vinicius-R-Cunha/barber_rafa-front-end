@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useUserContext } from "../../contexts/UserContext";
 import * as api from "../../services/api";
 import renderToast from "../../utils/renderToast";
@@ -19,7 +19,7 @@ export default function ProfileReservationsPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  async function renderPage() {
+  const renderPage = useCallback(async () => {
     const promise = await api.getReservations(token);
     if (promise.status === 200) {
       setReservationsArray(promise.data);
@@ -30,13 +30,13 @@ export default function ProfileReservationsPage() {
       "error",
       "Erro ao carregar serviços, por favor recarregue a página"
     );
-  }
+  }, []);
 
-  function openCancelConfirmation(eventId) {
+  const openCancelConfirmation = useCallback((eventId) => {
     document.body.style.overflow = "hidden";
     setOpenModal(true);
     setEventId(eventId);
-  }
+  }, []);
 
   return (
     <>

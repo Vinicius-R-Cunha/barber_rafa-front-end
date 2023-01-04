@@ -9,8 +9,9 @@ import {
 } from "./style";
 import { BsWhatsapp } from "react-icons/bs";
 import dayjs from "dayjs";
+import { memo } from "react";
 
-export default function ProfileReservationsSection({
+function ProfileReservationsSection({
   reservationsArray,
   openCancelConfirmation,
 }) {
@@ -62,3 +63,5 @@ export default function ProfileReservationsSection({
     </Container>
   );
 }
+
+export default memo(ProfileReservationsSection);
