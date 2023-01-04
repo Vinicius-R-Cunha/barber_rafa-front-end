@@ -2,9 +2,8 @@ import HeaderSection from "../../components/HeaderSection";
 import ContactInfo from "../../components/ContactInfo";
 import GoogleMaps from "../../components/GoogleMaps";
 import SendMessage from "../../components/SendMessage";
-import { memo } from "react";
 
-function ContactUsPage() {
+export default function ContactUsPage() {
   return (
     <>
       <HeaderSection page="contact-us" title="Contato" />
@@ -14,5 +13,3 @@ function ContactUsPage() {
     </>
   );
 }
-
-export default memo(ContactUsPage);
