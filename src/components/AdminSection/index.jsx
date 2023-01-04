@@ -17,8 +17,9 @@ import { AiFillEdit } from "react-icons/ai";
 import { FaTrashAlt } from "react-icons/fa";
 import { MdOutlineAddCircle } from "react-icons/md";
 import { useDataContext } from "../../contexts/DataContext";
+import { memo } from "react";
 
-export default function AdminSection({
+function AdminSection({
   setServiceData,
   setCategoryData,
   setCategoryModalType,
@@ -113,3 +114,5 @@ export default function AdminSection({
     </>
   );
 }
+
+export default memo(AdminSection);
