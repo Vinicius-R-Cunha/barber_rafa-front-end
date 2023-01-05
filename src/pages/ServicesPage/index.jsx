@@ -48,16 +48,19 @@ function ServicesPage() {
     setReadMoreData(service);
   }, []);
 
-  const handleReservation = useCallback((service) => {
-    if (!token) {
-      openAuthenticationModal();
+  const handleReservation = useCallback(
+    (service) => {
+      if (!token) {
+        openAuthenticationModal();
+        return;
+      }
+      setReservationsList((prev) => [...prev, service]);
+      setReservationModalIsOpen(true);
+      document.body.style.overflow = "hidden";
       return;
-    }
-    setReservationsList((prev) => [...prev, service]);
-    setReservationModalIsOpen(true);
-    document.body.style.overflow = "hidden";
-    return;
-  }, []);
+    },
+    [token]
+  );
 
   return (
     <>

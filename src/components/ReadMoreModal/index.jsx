@@ -10,6 +10,7 @@ import {
   modalStyles,
 } from "./style";
 import { IoClose } from "react-icons/io5";
+import { useMemo } from "react";
 
 export default function ReadMoreModal({
   readMoreModalIsOpen,
@@ -22,14 +23,9 @@ export default function ReadMoreModal({
     setReadMoreModalIsOpen(false);
   }
 
-  return (
-    <>
-      <StyledModal
-        isOpen={readMoreModalIsOpen}
-        ariaHideApp={false}
-        onRequestClose={closeModal}
-        style={modalStyles}
-      >
+  const contentMemo = useMemo(
+    () => (
+      <>
         <ModalHeader>
           <Title>{readMoreData?.name}</Title>
           <IoClose className="close-icon" onClick={closeModal} />
@@ -49,6 +45,20 @@ export default function ReadMoreModal({
             Reservar
           </Button>
         </ButtonContainer>
+      </>
+    ),
+    [readMoreData]
+  );
+
+  return (
+    <>
+      <StyledModal
+        isOpen={readMoreModalIsOpen}
+        ariaHideApp={false}
+        onRequestClose={closeModal}
+        style={modalStyles}
+      >
+        {contentMemo}
       </StyledModal>
     </>
   );
