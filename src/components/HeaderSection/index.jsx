@@ -1,7 +1,7 @@
 import { Container, BackgroundImage, BackgroundDarkness } from "./style";
 import { useNavigate } from "react-router-dom";
 import background from "../../assets/colored_lion.png";
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import { useUserContext } from "../../contexts/UserContext";
 import ResponsiveHeader from "../ResponsiveHeader";
 import DesktopHeader from "./DesktopHeader";
@@ -9,14 +9,26 @@ import Title from "./Title";
 import { useAuthModalContext } from "../../contexts/AuthModalContext";
 
 export default function HeaderSection({ page, title }) {
-  const { setToken, userIsLoggedIn, userIsAdmin, loadingUserValidation } =
-    useUserContext();
+  const {
+    token,
+    setToken,
+    validateToken,
+    userIsLoggedIn,
+    userIsAdmin,
+    loadingUserValidation,
+  } = useUserContext();
 
   const { openAuthenticationModal } = useAuthModalContext();
 
   const [profileTabIsOpen, setProfileTabIsOpen] = useState(false);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    validateToken(token);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token]);
 
   const navTo = useCallback((page) => {
     setProfileTabIsOpen(false);

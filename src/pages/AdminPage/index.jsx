@@ -9,9 +9,12 @@ import Loading from "../../components/Loading";
 import CategoryModal from "../../components/CategoryModal";
 import ServiceModal from "../../components/ServiceModal";
 import BusinessHoursModal from "../../components/BusinessHoursModal";
+import { useUserContext } from "../../contexts/UserContext";
+import { useNavigate } from "react-router-dom";
 
 export default function AdminPage() {
   const { categoriesArray, setCategoriesArray } = useDataContext();
+  const { userIsLoggedIn, userIsAdmin } = useUserContext();
 
   const [serviceData, setServiceData] = useState();
 
@@ -26,8 +29,14 @@ export default function AdminPage() {
     useState(false);
   const [schedulesArray, setSchedulesArray] = useState(null);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
-    renderPage();
+    if (userIsLoggedIn && userIsAdmin) {
+      renderPage();
+    } else {
+      navigate("/404");
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -63,6 +72,8 @@ export default function AdminPage() {
       "Erro ao carregar serviços, por favor recarregue a página"
     );
   }
+
+  if (!userIsAdmin) return <></>;
 
   return (
     <>

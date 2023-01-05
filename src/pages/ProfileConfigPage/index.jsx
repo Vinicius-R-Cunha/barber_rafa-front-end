@@ -1,11 +1,23 @@
 import HeaderSection from "../../components/HeaderSection";
 import ProfileConfigSection from "../../components/ProfileConfigSection";
 import DeleteAccountModal from "../../components/DeleteAccountModal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useUserContext } from "../../contexts/UserContext";
+import { useNavigate } from "react-router-dom";
 
 export default function ProfileConfigPage() {
+  const { userIsLoggedIn } = useUserContext();
+
   const [deleteAccountModalIsOpen, setDeleteAccountModalIsOpen] =
     useState(false);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!userIsLoggedIn) {
+      navigate("/404");
+    }
+  }, []);
 
   return (
     <>

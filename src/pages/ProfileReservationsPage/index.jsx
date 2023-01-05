@@ -6,16 +6,23 @@ import HeaderSection from "../../components/HeaderSection";
 import ProfileReservationsSection from "../../components/ProfileReservationsSection";
 import Loading from "../../components/Loading";
 import CancelReservationModal from "../../components/CancelReservationModal";
+import { useNavigate } from "react-router-dom";
 
 export default function ProfileReservationsPage() {
-  const { token } = useUserContext();
+  const { token, userIsLoggedIn } = useUserContext();
 
   const [reservationsArray, setReservationsArray] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const [eventId, setEventId] = useState();
 
+  const navigate = useNavigate();
+
   useEffect(() => {
-    renderPage();
+    if (userIsLoggedIn) {
+      renderPage();
+    } else {
+      navigate("/404");
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
