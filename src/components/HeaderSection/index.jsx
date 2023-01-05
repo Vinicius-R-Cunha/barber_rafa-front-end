@@ -1,5 +1,5 @@
 import { Container, BackgroundImage, BackgroundDarkness } from "./style";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import background from "../../assets/colored_lion.png";
 import { useCallback, useState, useEffect } from "react";
 import { useUserContext } from "../../contexts/UserContext";
@@ -23,6 +23,7 @@ export default function HeaderSection({ page, title }) {
   const [profileTabIsOpen, setProfileTabIsOpen] = useState(false);
 
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   useEffect(() => {
     validateToken(token);
@@ -31,8 +32,10 @@ export default function HeaderSection({ page, title }) {
   }, [token]);
 
   const navTo = useCallback((page) => {
-    setProfileTabIsOpen(false);
-    navigate(page);
+    if (pathname !== page) {
+      setProfileTabIsOpen(false);
+      navigate(page);
+    }
   }, []);
 
   const logout = useCallback(() => {
