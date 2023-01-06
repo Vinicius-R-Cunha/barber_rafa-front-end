@@ -14,7 +14,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function AdminPage() {
   const { categoriesArray, setCategoriesArray } = useDataContext();
-  const { userIsLoggedIn, userIsAdmin } = useUserContext();
+  const { userIsLoggedIn, userIsAdmin, loadingUserValidation } =
+    useUserContext();
 
   const [serviceData, setServiceData] = useState();
 
@@ -32,13 +33,15 @@ export default function AdminPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (userIsLoggedIn && userIsAdmin) {
-      renderPage();
-    } else {
-      navigate("/404");
+    if (!loadingUserValidation) {
+      if (userIsLoggedIn && userIsAdmin) {
+        renderPage();
+      } else {
+        navigate("/404");
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [loadingUserValidation]);
 
   function renderPage() {
     getCategories();

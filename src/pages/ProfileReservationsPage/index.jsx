@@ -9,7 +9,7 @@ import CancelReservationModal from "../../components/CancelReservationModal";
 import { useNavigate } from "react-router-dom";
 
 export default function ProfileReservationsPage() {
-  const { token, userIsLoggedIn } = useUserContext();
+  const { token, userIsLoggedIn, loadingUserValidation } = useUserContext();
 
   const [reservationsArray, setReservationsArray] = useState(null);
   const [openModal, setOpenModal] = useState(false);
@@ -18,13 +18,15 @@ export default function ProfileReservationsPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (userIsLoggedIn) {
-      renderPage();
-    } else {
-      navigate("/404");
+    if (!loadingUserValidation) {
+      if (userIsLoggedIn) {
+        renderPage();
+      } else {
+        navigate("/404");
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [loadingUserValidation]);
 
   const renderPage = useCallback(async () => {
     const promise = await api.getReservations(token);

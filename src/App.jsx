@@ -15,8 +15,17 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ScrollToTop from "./utils/ScrollToTop";
 import GlobalStyles from "./styles/GlobalStyles";
+import { useEffect } from "react";
+import { useUserContext } from "./contexts/UserContext";
 
 export default function App() {
+  const { token, validateToken } = useUserContext();
+
+  useEffect(() => {
+    validateToken(token);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token]);
   return (
     <>
       <BrowserRouter>

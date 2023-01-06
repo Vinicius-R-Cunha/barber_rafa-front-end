@@ -1,7 +1,7 @@
 import { Container, BackgroundImage, BackgroundDarkness } from "./style";
 import { useNavigate, useLocation } from "react-router-dom";
 import background from "../../assets/colored_lion.png";
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useState } from "react";
 import { useUserContext } from "../../contexts/UserContext";
 import ResponsiveHeader from "../ResponsiveHeader";
 import DesktopHeader from "./DesktopHeader";
@@ -9,14 +9,8 @@ import Title from "./Title";
 import { useAuthModalContext } from "../../contexts/AuthModalContext";
 
 export default function HeaderSection({ page, title }) {
-  const {
-    token,
-    setToken,
-    validateToken,
-    userIsLoggedIn,
-    userIsAdmin,
-    loadingUserValidation,
-  } = useUserContext();
+  const { setToken, userIsLoggedIn, userIsAdmin, loadingUserValidation } =
+    useUserContext();
 
   const { openAuthenticationModal } = useAuthModalContext();
 
@@ -24,12 +18,6 @@ export default function HeaderSection({ page, title }) {
 
   const navigate = useNavigate();
   const { pathname } = useLocation();
-
-  useEffect(() => {
-    validateToken(token);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token]);
 
   const navTo = useCallback((page) => {
     if (pathname !== page) {

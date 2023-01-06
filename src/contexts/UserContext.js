@@ -11,7 +11,7 @@ export function UserContextProvider(props) {
   const [userIsNewUser, setUserIsNewUser] = useState(false);
   const [userData, setUserData] = useState();
 
-  const validateToken = useCallback(async (token) => {
+  async function validateToken(token) {
     const user = await api.validateToken(token);
     if (user.status === 200) {
       setUserIsLoggedIn(true);
@@ -30,7 +30,7 @@ export function UserContextProvider(props) {
     setLoadingUserValidation(false);
 
     return;
-  }, []);
+  }
 
   return (
     <UserContext.Provider
@@ -43,7 +43,6 @@ export function UserContextProvider(props) {
         userIsLoggedIn,
         setUserIsLoggedIn,
         userIsAdmin,
-        setUserIsAdmin,
         userIsNewUser,
         setUserIsNewUser,
         userData,

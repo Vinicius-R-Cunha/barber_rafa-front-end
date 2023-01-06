@@ -6,7 +6,7 @@ import { useUserContext } from "../../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
 
 export default function ProfileConfigPage() {
-  const { userIsLoggedIn } = useUserContext();
+  const { userIsLoggedIn, loadingUserValidation } = useUserContext();
 
   const [deleteAccountModalIsOpen, setDeleteAccountModalIsOpen] =
     useState(false);
@@ -14,10 +14,10 @@ export default function ProfileConfigPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!userIsLoggedIn) {
+    if (!userIsLoggedIn && !loadingUserValidation) {
       navigate("/404");
     }
-  }, []);
+  }, [loadingUserValidation]);
 
   return (
     <>
