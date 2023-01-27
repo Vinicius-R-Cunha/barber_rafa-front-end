@@ -51,6 +51,11 @@ const GlobalStyles = createGlobalStyle`
     border-collapse: collapse;
     border-spacing: 0;
   }
+  button {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    padding: 0;
+  }
   // RESET
 
   body {

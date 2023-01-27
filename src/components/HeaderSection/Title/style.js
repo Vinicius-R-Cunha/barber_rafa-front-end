@@ -57,8 +57,6 @@ export const About = styled.div`
 `;
 
 export const BookButton = styled.button`
-  all: unset;
-
   width: 280px;
   height: 73px;
 

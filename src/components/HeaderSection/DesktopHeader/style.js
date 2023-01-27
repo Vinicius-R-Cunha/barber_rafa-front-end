@@ -78,8 +78,7 @@ export const NavButtons = styled.div`
 `;
 
 export const NavButton = styled.button`
-  all: unset;
-
+  font-family: "Montserrat";
   font-size: 1.163rem;
   letter-spacing: 0px;
   font-weight: 400;

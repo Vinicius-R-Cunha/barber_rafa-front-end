@@ -167,8 +167,6 @@ export const Duration = styled.p`
 `;
 
 export const Button = styled.button`
-  all: unset;
-
   font-family: "Montserrat";
   font-size: 1.275rem;
   font-weight: 800;

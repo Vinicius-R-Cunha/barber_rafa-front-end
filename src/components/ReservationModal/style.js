@@ -55,8 +55,6 @@ export const DateStatus = styled.div`
 `;
 
 export const Button = styled.button`
-  all: unset;
-
   width: 46%;
   height: 100%;
 

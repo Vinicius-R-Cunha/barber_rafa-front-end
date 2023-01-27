@@ -148,8 +148,6 @@ export const CancelButton = styled.div`
 `;
 
 export const Button = styled.button`
-  all: unset;
-
   width: 260px;
   height: 70px;
 

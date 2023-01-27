@@ -84,8 +84,6 @@ export const Description = styled.div`
 `;
 
 export const Button = styled.button`
-  all: unset;
-
   width: 280px;
   height: 73px;
 

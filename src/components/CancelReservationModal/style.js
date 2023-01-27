@@ -31,7 +31,6 @@ export const ActionButtons = styled.div`
 `;
 
 export const Button = styled.button`
-  all: unset;
   font-family: "Montserrat";
   font-size: 0.835rem;
   font-weight: 800;

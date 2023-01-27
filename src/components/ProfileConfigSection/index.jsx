@@ -14,8 +14,9 @@ import {
 } from "./style";
 import handleApiErrors from "../../utils/handleApiErrors";
 import PhoneNumberInput from "../PhoneNumberInput";
+import { memo } from "react";
 
-export default function ProfileConfigSection({ setDeleteAccountModalIsOpen }) {
+function ProfileConfigSection({ setDeleteAccountModalIsOpen }) {
   const { userData, setUserData, token } = useUserContext();
 
   const nameRef = useRef(null);
@@ -114,3 +115,5 @@ export default function ProfileConfigSection({ setDeleteAccountModalIsOpen }) {
     </Container>
   );
 }
+
+export default memo(ProfileConfigSection);

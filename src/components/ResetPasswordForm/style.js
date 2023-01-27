@@ -41,8 +41,6 @@ export const InputsForm = styled.form`
 `;
 
 export const Button = styled.button`
-  all: unset;
-
   width: 100%;
 
   font-family: "Montserrat";

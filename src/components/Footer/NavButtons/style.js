@@ -16,7 +16,7 @@ export const Container = styled.div`
   flex-wrap: wrap;
 `;
 
-export const NavButton = styled.div`
+export const NavButton = styled.button`
   width: 176px;
 
   font-size: 1.163rem;

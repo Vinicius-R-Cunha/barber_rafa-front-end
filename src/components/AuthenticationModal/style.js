@@ -37,8 +37,6 @@ export const InputsForm = styled.form`
   align-items: center;
 
   input {
-    all: unset;
-
     width: 100%;
     height: 55px;
 
@@ -145,8 +143,6 @@ export const ForgotPassword = styled.p`
 `;
 
 export const Button = styled.button`
-  all: unset;
-
   font-family: "Montserrat";
   font-size: 0.835rem;
   font-weight: 800;
