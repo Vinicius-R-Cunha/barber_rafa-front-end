@@ -144,9 +144,7 @@ export const Description = styled.div`
   }
 `;
 
-export const ReadMore = styled.p`
-  width: 85%;
-
+export const ReadMore = styled.button`
   font-family: "Montserrat";
   font-size: 0.875rem;
   font-weight: 800;
@@ -159,8 +157,11 @@ export const ReadMore = styled.p`
   justify-content: flex-end;
   align-items: center;
 
+  padding: 0;
+
   position: absolute;
   bottom: 75px;
+  right: 6%;
 
   cursor: pointer;
 

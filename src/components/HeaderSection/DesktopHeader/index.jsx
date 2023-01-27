@@ -23,7 +23,7 @@ function DesktopHeader({
 }) {
   return (
     <Container>
-      <LogoImage onClick={() => navTo("/")} src={logo} alt="" />
+      <LogoImage onClick={() => navTo("/")} src={logo} alt="logotipo" />
       <NavButtons>
         <NavButton onClick={() => navTo("/")}>Página Inicial</NavButton>
         <NavButton onClick={() => navTo("/servicos")}>Serviços</NavButton>

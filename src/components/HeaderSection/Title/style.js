@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import * as variables from "../../../styles/variables";
 
-export const About = styled.div`
+export const About = styled.p`
   font-family: "Teko";
   font-size: 5.625rem;
   font-weight: 500;

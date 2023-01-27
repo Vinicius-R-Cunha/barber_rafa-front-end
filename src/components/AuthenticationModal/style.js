@@ -37,6 +37,8 @@ export const InputsForm = styled.form`
   align-items: center;
 
   input {
+    all: unset;
+
     width: 100%;
     height: 55px;
 
@@ -211,7 +213,7 @@ export const Spacer = styled.div`
   }
 `;
 
-export const GoogleLogin = styled.div`
+export const GoogleLogin = styled.button`
   width: 100%;
 
   font-family: "Montserrat";
@@ -258,7 +260,6 @@ export const GoogleLogin = styled.div`
   :hover,
   :focus {
     background: #e74b37;
-    outline: none;
   }
 
   :active {
