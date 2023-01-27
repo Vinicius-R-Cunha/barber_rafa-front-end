@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import { IoClose } from "react-icons/io5";
 import renderToast from "../../utils/renderToast";
 import { useUserContext } from "../../contexts/UserContext";
 import * as api from "../../services/api";
 import {
-  StyledModal,
   Title,
   InputsForm,
   Input,
@@ -13,6 +11,7 @@ import {
   modalStyles,
 } from "./style";
 import handleApiErrors from "../../utils/handleApiErrors";
+import Modal from "../Modal";
 
 export default function CategoryModal({
   categoryModalIsOpen,
@@ -79,13 +78,12 @@ export default function CategoryModal({
   }
 
   return (
-    <StyledModal
+    <Modal
       isOpen={categoryModalIsOpen}
       ariaHideApp={false}
       onRequestClose={() => closeModal()}
       style={modalStyles}
     >
-      <IoClose className="close-icon" onClick={() => closeModal()} />
       {type === "create" && <Title>Criar Categoria</Title>}
       {type === "edit" && <Title>Editar Categoria</Title>}
       {type === "delete" && (
@@ -110,6 +108,6 @@ export default function CategoryModal({
           <Button onClick={(e) => handleSubmit(e)}>Confirmar</Button>
         </ActionButtons>
       </InputsForm>
-    </StyledModal>
+    </Modal>
   );
 }

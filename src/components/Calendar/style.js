@@ -10,8 +10,15 @@ export const Container = styled.div`
   border-radius: 5px;
   padding: 10px;
 
-  @media (max-width: 440px) {
+  @media (max-width: 488px) {
+    width: 350px;
+  }
+
+  @media (max-width: 430px) {
     width: 300px;
+  }
+  @media (max-width: 362px) {
+    width: 120%;
   }
 `;
 

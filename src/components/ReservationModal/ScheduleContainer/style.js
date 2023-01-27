@@ -20,16 +20,8 @@ export const Container = styled.div`
     width: 500px;
   }
 
-  @media (max-width: 500px) {
-    width: 400px;
-  }
-
-  @media (max-width: 424px) {
-    width: 380px;
-  }
-
-  @media (max-width: 340px) {
-    width: 343px;
+  @media (max-width: 595px) {
+    width: 100%;
   }
 `;
 
@@ -80,18 +72,6 @@ export const ScrollableDiv = styled.div`
 
   @media (max-width: 1023px) {
     width: 100%;
-  }
-
-  @media (max-width: 550px) {
-    width: 90%;
-  }
-
-  @media (max-width: 500px) {
-    width: 100%;
-  }
-
-  @media (max-width: 380px) {
-    width: 90%;
   }
 `;
 
@@ -181,10 +161,6 @@ export const Duration = styled.p`
     font-size: 0.825rem;
   }
 
-  @media (max-width: 424px) {
-    font-size: 0.825rem;
-  }
-
   @media (max-width: 340px) {
     font-size: 0.725rem;
   }
@@ -218,11 +194,7 @@ export const Button = styled.button`
 
   @media (max-width: 640px) {
     font-size: 0.725rem;
-    padding: 17px 20px;
-  }
-
-  @media (max-width: 424px) {
-    padding: 18px 15px;
+    padding: 17px 12%;
   }
 
   @media (max-width: 340px) {

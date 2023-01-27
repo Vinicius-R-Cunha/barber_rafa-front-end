@@ -17,6 +17,8 @@ import { getDescription, sumDurations } from "./auxiliarFunctions";
 import ScheduleContainer from "./ScheduleContainer";
 import Calendar from "../Calendar";
 import dayjs from "dayjs";
+import Modal from "../Modal";
+import { useRef } from "react";
 
 export default function ReservationModal({
   reservationModalIsOpen: openModal,
@@ -26,6 +28,8 @@ export default function ReservationModal({
   setIsChoosingMoreServices,
 }) {
   const { token, userData } = useUserContext();
+
+  const modalRef = useRef(null);
 
   const [scheduleArray, setScheduleArray] = useState(null);
   const [scrollX, setScrollX] = useState(0);
@@ -51,8 +55,6 @@ export default function ReservationModal({
     const endTime = dayjs(e).add(1, "day").add(-1, "m").toISOString();
     const duration = sumDurations(reservationsList);
 
-    scrollToBottom();
-
     setLoadingSchedule(true);
     const response = await api.checkAvailability(token, {
       startTime,
@@ -60,6 +62,7 @@ export default function ReservationModal({
       duration,
     });
     setLoadingSchedule(false);
+    setTimeout(scrollToBottom, 0);
 
     setDay(e);
     setScrollX(0);
@@ -74,7 +77,7 @@ export default function ReservationModal({
   }
 
   function scrollToBottom() {
-    const modal = document.getElementById("reservation-modal").parentElement;
+    const modal = document.getElementById("modal");
     modal.style.scrollBehavior = "smooth";
     modal.scrollTo(0, modal.scrollHeight);
   }
@@ -108,14 +111,12 @@ export default function ReservationModal({
   }
 
   return (
-    <StyledModal
-      id="reservation-modal"
+    <Modal
       isOpen={openModal}
       ariaHideApp={false}
       onRequestClose={closeModal}
       style={modalStyles}
     >
-      <IoClose className="close-icon" onClick={closeModal} />
       <ModalHeader>
         {reservationsList.map((data, i, arr) => (
           <Title key={i}>
@@ -153,6 +154,6 @@ export default function ReservationModal({
           Adicionar outro serviço
         </Button>
       </AddCancelServices>
-    </StyledModal>
+    </Modal>
   );
 }

@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { IoClose } from "react-icons/io5";
 import { useUserContext } from "../../contexts/UserContext";
 import * as api from "../../services/api";
 import handleApiErrors from "../../utils/handleApiErrors";
 import renderToast from "../../utils/renderToast";
+import Modal from "../Modal";
 import {
-  StyledModal,
   Title,
   InputsForm,
   PriceContainer,
@@ -132,13 +131,12 @@ export default function ServiceModal({
   }
 
   return (
-    <StyledModal
+    <Modal
       isOpen={serviceModalIsOpen}
       ariaHideApp={false}
       onRequestClose={() => closeModal()}
       style={modalStyles}
     >
-      <IoClose className="close-button" onClick={() => closeModal()} />
       {type === "create" && <Title>Criar Serviço</Title>}
       {type === "edit" && <Title>Editar Serviço</Title>}
       {type === "delete" && (
@@ -197,6 +195,6 @@ export default function ServiceModal({
           <Button onClick={(e) => handleSubmit(e)}>Confirmar</Button>
         </ActionButtons>
       </InputsForm>
-    </StyledModal>
+    </Modal>
   );
 }

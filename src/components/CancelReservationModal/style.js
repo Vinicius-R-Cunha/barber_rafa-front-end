@@ -1,24 +1,5 @@
 import styled from "styled-components";
 import * as variables from "../../styles/variables";
-import Modal from "react-modal";
-
-export const StyledModal = styled(Modal)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  position: relative;
-  .close-icon {
-    font-size: 2.4rem;
-    color: black;
-
-    position: absolute;
-    top: 7px;
-    right: 8px;
-
-    cursor: pointer;
-  }
-`;
 
 export const Title = styled.p`
   font-family: "Teko";
@@ -75,47 +56,25 @@ export const Button = styled.button`
     background-color: ${variables.DARK_YELLOW};
   }
 
-  @media (max-width: 739px) {
-    padding: 12px 43px;
+  @media (max-width: 564px) {
+    padding: 12px 10%;
+  }
+  @media (max-width: 458px) {
+    padding: 12px 8%;
   }
 
-  @media (max-width: 457px) {
-    padding: 10px 25px;
-  }
-
-  @media (max-width: 370px) {
+  @media (max-width: 408px) {
     font-size: 0.635rem;
-    padding: 10px 20px;
+  }
+
+  @media (max-width: 340px) {
+    padding: 12px 5%;
   }
 `;
 
 export const modalStyles = {
-  overlay: {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: 100,
-    display: "flex",
-    justifyContent: "center",
-    padding: "110px 0",
-    backgroundColor: "rgba(0, 0, 0, 0.7)",
-    overflowY: "auto",
-    overflowX: "hidden",
-  },
   content: {
-    outline: "none",
-    width: "520px",
-    margin: "auto",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    background: variables.LESS_DARK_GREY,
-    border: "hidden",
-    boxSizing: "border-box",
+    maxWidth: "520px",
     padding: "35px",
-    borderRadius: "4px",
   },
 };

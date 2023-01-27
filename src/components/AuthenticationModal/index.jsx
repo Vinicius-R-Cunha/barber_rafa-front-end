@@ -1,20 +1,18 @@
 import { useState } from "react";
-import { IoClose } from "react-icons/io5";
 import { useUserContext } from "../../contexts/UserContext";
 import {
-  StyledModal,
   Title,
   Spacer,
   GoogleLogin,
   // FacebookLogin,
   modalStyles,
 } from "./style";
+import Modal from "../Modal";
 import { signInWithGoogle } from "../../services/Firebase";
 import ResetPassword from "./ResetPassword";
 import SignUp from "./SignUp";
 import SignIn from "./SignIn";
 import { useAuthModalContext } from "../../contexts/AuthModalContext";
-import { useMemo } from "react";
 // import { signInWithGoogle, signInWithFacebook } from "../../services/Firebase";
 
 export default function AuthenticationModal() {
@@ -31,43 +29,33 @@ export default function AuthenticationModal() {
     setPage("entrar");
   }
 
-  const contentMemo = useMemo(
-    () => (
-      <>
-        <IoClose className="close-button" onClick={closeModal} />
-        <Title>{page}</Title>
-        {page === "redefinir senha" && (
-          <ResetPassword closeModal={closeModal} setPage={setPage} />
-        )}
-        {page === "entrar" && (
-          <SignIn closeModal={closeModal} setPage={setPage} />
-        )}
-        {page === "inscrever-se" && <SignUp setPage={setPage} />}
-
-        <Spacer>
-          <div></div> ou <div></div>
-        </Spacer>
-
-        <GoogleLogin
-          onClick={() =>
-            signInWithGoogle(setToken, closeModal, setLoadingUserValidation)
-          }
-        >
-          Entrar com Google
-        </GoogleLogin>
-      </>
-    ),
-    [page]
-  );
-
   return (
-    <StyledModal
+    <Modal
       isOpen={authenticationIsOpen}
       ariaHideApp={false}
       onRequestClose={closeModal}
       style={modalStyles}
     >
-      {contentMemo}
+      <Title>{page}</Title>
+      {page === "redefinir senha" && (
+        <ResetPassword closeModal={closeModal} setPage={setPage} />
+      )}
+      {page === "entrar" && (
+        <SignIn closeModal={closeModal} setPage={setPage} />
+      )}
+      {page === "inscrever-se" && <SignUp setPage={setPage} />}
+
+      <Spacer>
+        <div></div> ou <div></div>
+      </Spacer>
+
+      <GoogleLogin
+        onClick={() =>
+          signInWithGoogle(setToken, closeModal, setLoadingUserValidation)
+        }
+      >
+        Entrar com Google
+      </GoogleLogin>
       {/* <FacebookLogin
           onClick={() =>
             signInWithFacebook(setToken, closeModal, setLoadingUserValidation)
@@ -75,6 +63,6 @@ export default function AuthenticationModal() {
         >
           Entrar com Facebook
         </FacebookLogin> */}
-    </StyledModal>
+    </Modal>
   );
 }

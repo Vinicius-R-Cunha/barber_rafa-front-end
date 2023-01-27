@@ -1,16 +1,10 @@
-import { IoClose } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import renderToast from "../../utils/renderToast";
 import { useUserContext } from "../../contexts/UserContext";
 import * as api from "../../services/api";
-import {
-  StyledModal,
-  Title,
-  ActionButtons,
-  Button,
-  modalStyles,
-} from "./style";
+import { Title, ActionButtons, Button, modalStyles } from "./style";
 import handleApiErrors from "../../utils/handleApiErrors";
+import Modal from "../Modal";
 
 export default function DeleteAccountModal({
   deleteAccountModalIsOpen,
@@ -45,14 +39,12 @@ export default function DeleteAccountModal({
   }
 
   return (
-    <StyledModal
+    <Modal
       isOpen={deleteAccountModalIsOpen}
       ariaHideApp={false}
       onRequestClose={closeModal}
       style={modalStyles}
     >
-      <IoClose className="close-icon" onClick={closeModal} />
-
       <Title>Tem certeza que quer excluir sua conta?</Title>
 
       <ActionButtons>
@@ -61,6 +53,6 @@ export default function DeleteAccountModal({
         </Button>
         <Button onClick={deleteAccount}>Confirmar</Button>
       </ActionButtons>
-    </StyledModal>
+    </Modal>
   );
 }

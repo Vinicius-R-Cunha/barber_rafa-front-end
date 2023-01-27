@@ -1,34 +1,8 @@
 import styled from "styled-components";
 import * as variables from "../../styles/variables";
-import Modal from "react-modal";
-
-export const StyledModal = styled(Modal)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  position: relative;
-
-  .close-icon {
-    font-size: 1.888rem;
-    color: ${variables.WHITE};
-
-    position: absolute;
-    top: 15px;
-    right: 20px;
-
-    cursor: pointer;
-  }
-
-  @media (max-width: 424px) {
-    .close-icon {
-      right: 34px;
-    }
-  }
-`;
 
 export const ModalHeader = styled.div`
-  width: 90%;
+  width: 100%;
 
   display: flex;
   flex-wrap: wrap;
@@ -60,11 +34,7 @@ export const AddCancelServices = styled.div`
   margin-top: 35px;
 
   @media (max-width: 372px) {
-    width: 340px;
-  }
-
-  @media (max-width: 340px) {
-    width: 318px;
+    gap: 15px;
   }
 `;
 
@@ -126,32 +96,8 @@ export const Button = styled.button`
 `;
 
 export const modalStyles = {
-  overlay: {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: 100,
-    display: "flex",
-    justifyContent: "center",
-    padding: "100px 0",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    overflowY: "auto",
-    overflowX: "hidden",
-  },
   content: {
-    outline: "none",
-    width: "650px",
-    margin: "auto",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    background: variables.LESS_DARK_GREY,
-    border: "hidden",
-    boxSizing: "border-box",
+    maxWidth: "650px",
     padding: "20px 35px 30px 35px",
-    borderRadius: "4px",
   },
 };

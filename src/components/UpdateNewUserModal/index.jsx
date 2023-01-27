@@ -4,8 +4,9 @@ import PhoneNumberInput from "../PhoneNumberInput";
 import * as api from "../../services/api";
 import renderToast from "../../utils/renderToast";
 import { renderDotsLoading } from "../../utils/renderDotsLoading";
-import { StyledModal, Title, InputsForm, Button, modalStyles } from "./style";
+import { Title, InputsForm, Button, modalStyles } from "./style";
 import handleApiErrors from "../../utils/handleApiErrors";
+import Modal from "../Modal";
 
 export default function UpdateNewUserModal() {
   const { token, setToken, userIsNewUser, setUserIsNewUser } = useUserContext();
@@ -40,7 +41,12 @@ export default function UpdateNewUserModal() {
   }
 
   return (
-    <StyledModal isOpen={userIsNewUser} ariaHideApp={false} style={modalStyles}>
+    <Modal
+      isOpen={userIsNewUser}
+      showCloseOption={false}
+      ariaHideApp={false}
+      style={modalStyles}
+    >
       <Title>
         Digite o número do seu celular, isso só é necessário uma única vez
       </Title>
@@ -59,6 +65,6 @@ export default function UpdateNewUserModal() {
           <Button onClick={(e) => handleSubmit(e)}>Confirmar</Button>
         )}
       </InputsForm>
-    </StyledModal>
+    </Modal>
   );
 }

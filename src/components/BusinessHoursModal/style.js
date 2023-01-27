@@ -1,37 +1,16 @@
 import styled from "styled-components";
 import * as variables from "../../styles/variables";
-import Modal from "react-modal";
+import { IoIosArrowBack } from "react-icons/io";
 
-export const StyledModal = styled(Modal)`
-  width: fit-content;
+export const GoBackIcon = styled(IoIosArrowBack)`
+  font-size: 2.4rem;
+  color: ${variables.WHITE};
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  position: absolute;
+  top: 7px;
+  left: 8px;
 
-  position: relative;
-
-  .close-icon {
-    font-size: 2.4rem;
-    color: ${variables.WHITE};
-
-    position: absolute;
-    top: 7px;
-    right: 8px;
-
-    cursor: pointer;
-  }
-
-  .go-back-icon {
-    font-size: 2.4rem;
-    color: ${variables.WHITE};
-
-    position: absolute;
-    top: 7px;
-    left: 8px;
-
-    cursor: pointer;
-  }
+  cursor: pointer;
 `;
 
 export const Title = styled.p`
@@ -215,32 +194,9 @@ export const Button = styled.button`
 `;
 
 export const modalStyles = {
-  overlay: {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: 100,
-    display: "flex",
-    justifyContent: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.7)",
-    overflowY: "auto",
-    overflowX: "hidden",
-  },
   content: {
-    outline: "none",
-    width: "520px",
+    maxWidth: "520px",
     minHeight: "355px",
-    margin: "auto",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    background: variables.LESS_DARK_GREY,
-    border: "hidden",
-    boxSizing: "border-box",
     padding: "35px",
-    borderRadius: "4px",
   },
 };

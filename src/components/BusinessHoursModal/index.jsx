@@ -1,9 +1,8 @@
-import { IoClose } from "react-icons/io5";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowForward } from "react-icons/io";
 import * as api from "../../services/api";
 import renderToast from "../../utils/renderToast";
 import {
-  StyledModal,
+  GoBackIcon,
   Title,
   WeekDay,
   CheckBox,
@@ -18,6 +17,7 @@ import {
 import { useState } from "react";
 import { useUserContext } from "../../contexts/UserContext";
 import handleApiErrors from "../../utils/handleApiErrors";
+import Modal from "../Modal";
 
 export default function BusinessHoursModal({
   businessHoursModalIsOpen,
@@ -73,14 +73,12 @@ export default function BusinessHoursModal({
   }
 
   return (
-    <StyledModal
+    <Modal
       isOpen={businessHoursModalIsOpen}
       ariaHideApp={false}
       onRequestClose={closeModal}
       style={modalStyles}
     >
-      <IoClose className="close-icon" onClick={closeModal} />
-
       {selectionTab && (
         <>
           <Title>Horário de funcionamento</Title>
@@ -109,8 +107,7 @@ export default function BusinessHoursModal({
 
       {!selectionTab && (
         <>
-          <IoIosArrowBack
-            className="go-back-icon"
+          <GoBackIcon
             onClick={() => {
               setSelectionTab(true);
               setSelectedWeekday();
@@ -160,6 +157,6 @@ export default function BusinessHoursModal({
           <Button onClick={editSchedule}>Salvar</Button>
         </>
       )}
-    </StyledModal>
+    </Modal>
   );
 }

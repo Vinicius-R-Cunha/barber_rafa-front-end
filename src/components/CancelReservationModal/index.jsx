@@ -1,16 +1,10 @@
 import { useState } from "react";
-import { IoClose } from "react-icons/io5";
 import { useUserContext } from "../../contexts/UserContext";
-import {
-  StyledModal,
-  Title,
-  ActionButtons,
-  Button,
-  modalStyles,
-} from "./style";
+import { Title, ActionButtons, Button, modalStyles } from "./style";
 import * as api from "../../services/api";
 import renderToast from "../../utils/renderToast";
 import { renderDotsLoading } from "../../utils/renderDotsLoading";
+import Modal from "../Modal";
 
 export default function CancelReservationModal({
   openModal,
@@ -45,13 +39,12 @@ export default function CancelReservationModal({
   }
 
   return (
-    <StyledModal
+    <Modal
       isOpen={openModal}
       ariaHideApp={false}
       onRequestClose={closeModal}
       style={modalStyles}
     >
-      <IoClose className="close-icon" onClick={closeModal} />
       <Title>Tem certeza que quer excluir essa reserva?</Title>
 
       {loading ? (
@@ -65,6 +58,6 @@ export default function CancelReservationModal({
           <Button onClick={handleCancelReservation}>Confirmar</Button>
         </ActionButtons>
       )}
-    </StyledModal>
+    </Modal>
   );
 }
